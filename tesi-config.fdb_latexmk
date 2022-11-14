@@ -1,0 +1,21 @@
+# Fdb version 3
+["bibtex tesi-config"] 1666945623 "tesi-config.aux" "tesi-config.bbl" "tesi-config" 1666946019
+  "tesi-config.aux" 1666945623 8 a94a2480d3289e625eea47cd1b285758 ""
+  (generated)
+  "tesi-config.blg"
+  "tesi-config.bbl"
+["pdflatex"] 1666946019 "tesi-config.tex" "tesi-config.pdf" "tesi-config" 1666946019
+  "/usr/local/texlive/2021/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
+  "/usr/local/texlive/2021/texmf-dist/fonts/tfm/jknappen/ec/tcrm1000.tfm" 1136768653 1536 e07581a4bb3136ece9eeb4c3ffab8233 ""
+  "/usr/local/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmti10.tfm" 1136768653 1480 aa8e34af0eb6a2941b776984cf1dfdc4 ""
+  "/usr/local/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmtt10.tfm" 1136768653 768 1321e9409b4137d6fb428ac9dc956269 ""
+  "/usr/local/texlive/2021/texmf-dist/web2c/texmf.cnf" 1616443989 39972 3d6bb4d9d719e93193fa020b58adf5d4 ""
+  "/usr/local/texlive/2021/texmf-var/web2c/pdftex/pdflatex.fmt" 1639156070 2724742 5a3288f08241873f90824f7df1a70098 ""
+  "/usr/local/texlive/2021/texmf.cnf" 1616695596 577 4c1911a7228e554c6032256d3cf5567d ""
+  "glossario.tex" 1666943737 1753 f041d0a0edba7a16ff86a58b02a85bda ""
+  "tesi-config.aux" 1666945623 8 a94a2480d3289e625eea47cd1b285758 ""
+  "tesi-config.bbl" 1666945624 0 d41d8cd98f00b204e9800998ecf8427e "bibtex tesi-config"
+  "tesi-config.tex" 1666946019 8165 c9b04dd1453d530a0fcab85692d4b6fa ""
+  (generated)
+  "tesi-config.log"
+  "tesi-config.pdf"

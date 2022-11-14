@@ -1,0 +1,95 @@
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\babel@toc {italian}{}
+\babel@toc {italian}{}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {1}Introduzione}{1}{chapter.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1.1}L'azienda}{1}{section.1.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1.2}L'idea}{1}{section.1.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1.3}Organizzazione del testo}{1}{section.1.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {2}Descrizione dello stage}{3}{chapter.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.1}Introduzione al progetto}{3}{section.2.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.2}Analisi preventiva dei rischi}{3}{section.2.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.3}Requisiti e obiettivi}{3}{section.2.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.4}Pianificazione}{3}{section.2.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {3}Protocolli di modellazione e trasferimento dati}{5}{chapter.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.1}Introduzione ai protocolli}{5}{section.3.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.2}Approfondimento sullo stile architetturale REST}{7}{section.3.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.3}Approfondimento sul linguaggio di query GraphQL}{9}{section.3.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Query}{13}{section*.38}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {4}Introduzione ai casi d'uso per l'analisi comparativa}{17}{chapter.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.0.1}Confronto con stakeholder}{17}{subsection.4.0.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.1}Prototipo}{17}{section.4.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.1.1}Progettazione del prototipo}{18}{subsection.4.1.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Controller - Service - Repository}{18}{section*.44}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Entità e relazioni}{19}{section*.46}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Entità e repository}{20}{section*.49}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Service}{23}{section*.52}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{REST API}{24}{section*.55}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Testing BE}{24}{section*.56}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Analisi su funzionalità}{24}{section*.58}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Implementazione FE}{25}{section*.59}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Testing FE}{25}{section*.60}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.1.2}Realizzazione e testing con REST API}{25}{subsection.4.1.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.1.3}Migrazione da REST a GraphQL}{25}{subsection.4.1.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.2}SushiLab}{25}{section.4.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.2.1}Comprensione dell'applicativo}{25}{subsection.4.2.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Panoramica del backend}{26}{section*.63}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Panoramica del frontend}{26}{section*.64}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.2.2}Migrazione del BE da REST a GraphQL}{26}{subsection.4.2.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.2.3}Migrazione del FE da REST a GraphQL}{26}{subsection.4.2.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {5}Analisi comparativa dei protocolli REST e GraphQL}{27}{chapter.5}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5.1}Analisi comparativa teorica}{27}{section.5.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5.2}Analisi comparativa sui casi d'uso}{27}{section.5.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {6}Tecnologie utilizzate}{29}{chapter.6}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {7}Conclusioni}{31}{chapter.7}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {7.1}Consuntivo finale}{31}{section.7.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {7.2}Raggiungimento degli obiettivi}{31}{section.7.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {7.3}Conoscenze acquisite}{31}{section.7.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {7.4}Valutazione personale}{31}{section.7.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {A}Appendice A}{33}{appendix.Alph1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Bibliografia}{37}{appendix*.65}%

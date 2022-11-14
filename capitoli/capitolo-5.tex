@@ -1,0 +1,31 @@
+% !TEX encoding = UTF-8
+% !TEX TS-program = pdflatex
+% !TEX root = ../tesi.tex
+
+%**************************************************************
+\chapter{Analisi comparativa dei protocolli REST e GraphQL}
+\label{cap:analisi-comparativa}
+%**************************************************************
+
+\intro{In questo capitolo verrà effettuata un'analisi comparativa approfondita dei protocolli REST e GraphQL.}\\
+
+%**************************************************************
+\section{Analisi comparativa teorica}
+% \label{sec:tecnologie-strumenti}
+Spiegazione di cosa si intende per analisi comparativa teorica: analisi comparativa che va a comparare gli aspetti prettamente teorici, come ad esempio:
+\begin{itemize}
+  \item overfetching e underfetching;
+  \item un protocollo è una sorta di standard/stile architetturale (restfull api)     mentre l'altro un linguaggio di query fortemente tipizzato (REST invece non è safe dal punto di vista dei tipi);
+  \item come sfruttano il protocollo http (stati risposte http, endpoint multipli vs singolo, ecc...);
+  \item manuntenibilità nel tempo;
+  \item documentazione (GraphQL si autodocumenta, REST no);
+  \item meccanismo di caching integrato (mancante in GraphQL);
+  \item formati output di risposta (GraphQL --> JSON, REST --> JSON, XML, YAML);
+\end{itemize}
+\section{Analisi comparativa sui casi d'uso}
+Analisi comparativa basata su:
+\begin{itemize}
+  \item differenze nell'analisi e progettazione iniziale delle API;
+  \item differenze durante lo sviluppo delle API dal punto di vista di BE e FE(anche legate agli strumenti utilizzati ad es. Spring Data REST vs Spring GraphQL);
+  \item differenze prestazionali (utilizzato tool K6 per load test);
+\end{itemize}2

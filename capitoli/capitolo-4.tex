@@ -1,0 +1,264 @@
+% !TEX encoding = UTF-8
+% !TEX TS-program = pdflatex
+% !TEX root = ../tesi.tex
+
+%**************************************************************
+\chapter{Introduzione ai casi d'uso per l'analisi comparativa}
+\label{cap:casi-uso}
+%**************************************************************
+
+\intro{Illustrazione del prototipo realizzato, prime considerazioni su di esso.
+        Successivamente caso d'uso di SushiLab, migrazione e considerazioni.}\\
+\subsection{Confronto con stakeholder}
+Parlo confronto stakeholder....
+\section{Prototipo}
+\textcolor{red}{FORSE QUESTA PARTE VA SU UNO DEI PRIMI DUE CAPITOLI.... INTANTO LASCIO QUA.}\\\\
+Prima di procedere con la spiegazione nella progettazione, realizzazione e migrazione del prototipo vanno fatte delle premesse.\\
+Si tratta di un prototipo realizzato al fine di:
+\begin{itemize}
+  \item familiarizzare con le tecnologie Spring e Angular per la realizzazione rispettivamente di backend e frontend, il tutto in preparazione alla migrazione dell'applicativo aziendale riportato al punto \ref{sushi-lab};
+  \item familiarizzare con la realizzazione delle API sia con lo stile architetturale REST, che con il linguaggio di query GraphQL;
+  \item avere un caso d'uso ulteriore a conferma delle analisi che verranno poi ricavate dalla migrazione dell'applicativo SushiLab;
+\end{itemize}
+Per questi motivi si tratta di un prototipo specifico che mira alla realizzazione delle API e al loro massimo utilizzo.\\\\
+Il prototipo che è stato scelto di realizzare è un applicazione client-server con funzione di gestionale. Deve permettere di gestire gli impiegati e i progetti ai quali stanno lavorando, il tutto in diverse sedi con diversi dipartimenti.
+\subsection{Progettazione del prototipo}
+\subsubsection*{Architettura generale dell'applicativo}
+L'applicativo utilizza la classica architettura introdotta al punto \ref{client-server} con un backend sviluppato con Spring Boot e il frontend sviluppato con Angular. In figura \ref{prototype-architecture} è possibile visualizzare l'architettura del prototipo con API REST:
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.6\linewidth]{immagini/prototype_architecture.pdf}
+\caption{Architettura del prototipo di Web Application.}
+\label{prototype-architecture}
+\end{figure}
+Verrà dunque realizzato un server con framework Spring Boot e la Web Application con framework Angular. Per maggiori informazioni riguardo alle tecnologie consultare il capitolo \ref{tecnologie}.
+\subsubsection*{Architettura del server}
+% Qui devo parlare di:
+%   - pattern controller - service - repository;
+%   - architettura del backend con hibernate, postgreSQL.
+\paragraph{Controller - Service - Repository}
+È stato deciso di seguire il pattern controller - service - repository per la realizzazione del server del prototipo. Questa scelta è stata presa in quanto è consigliato nello sviluppo del backend con framework Spring Boot. Inoltre il pattern rispetta perfettamente il principio di "Separation Of Concerns".\\
+Il pattern prevedere la gestione delle entità e delle chiamate alle API attraverso tre strati:
+\begin{itemize}
+  \item \textbf{Controller layer}: si trova in cima all'immagine \ref{controller-service-repository}, è l'unico responsabile della interazione con entità esterne, inoltre gestisce le interfacce REST e invoca lo strato di servizio;
+  \item \textbf{Service layer}: è lo strato tra controller e repository, si occupa della business logic e qualora sia necessario visualizzare, salvare, modificare o eliminare dati allora comunica con lo strato di persistenza;
+  \item \textbf{Repository layer}: si tratta dello strato inferiore dell'architettura, si occupa della gestione dei dati e delle loro modifiche. Lo strato di repository inoltre si occupa della comunicazione e gestione del database.
+\end{itemize}
+%%%% IMG
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.8\linewidth]{immagini/controller_service_repository.pdf}
+\caption{Architettura interna backend.}
+\label{controller-service-repository}
+\end{figure}
+\textcolor{red}{PARLARE E INSERIRE QUI DIAGRAMMA DI SEQUENZA}
+%%%% IMG
+\paragraph{Entità e relazioni}
+\label{entity-relation}
+Trattandosi di un gestionale aziendale semplificato, sono previste solo quattro entità principali, queste sono:
+\begin{itemize}
+  \item \textbf{Employee}: l'impiegato che può lavorare ad uno o più progetti e in un dipartimento;
+  \item \textbf{Project}: un progetto aziendale a cui partecipano più impiegati;
+  \item \textbf{Site}: si tratta di una sede aziendale, può avere più dipartimenti;
+  \item \textbf{Department}: un dipartimento che appartiene ad una sede.
+\end{itemize}
+%%% IMG
+\FloatBarrier
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=0.8\linewidth]{immagini/ER_prototype.pdf}
+\caption{Diagramma ER del prototipo.}
+\label{ER-prototype}
+\end{figure}
+\FloatBarrier
+%%% IMG
+Ciascuna entità è caratterizzata da i campi presenti in figura \ref{ER-prototype} dove è stato utilizzato il linguaggio UML. Le relazioni presenti tra le varie entità sono:
+\begin{itemize}
+  \item \textbf{many to many}: è presente tra Employee e Project, infatti ciascun impiegato può lavorare a più progetti e ciascun progetto può avere più impiegati al quale ci lavorano;
+  \item \textbf{one to many}: è presente tra due coppie di entità:
+    \begin{itemize}
+      \item tra Employee e Department, infatti ciascun impiegato può lavorare in uno o nessun dipartimento, mentre ciascun dipartimento può ospitare più impiegati;
+      \item tra Department e Site, ciascun dipartimento può appartenere esclusivamente ad una sede, mentre ciascuna sede può esser composta da più dipartimenti.
+    \end{itemize}
+\end{itemize}
+\subsubsection*{Realizzazione e testing server}
+Durante la realizzazione viene seguito il percorso inverso rispetto a quanto visto nell'immagine \ref{controller-service-repository}, infatti la realizzazione avviene partendo dallo strato di persistenza, dunque dalla creazione delle entità e delle repositoryes.
+\paragraph{Entità e repository}
+A ciascun entità nel database viene fatta corrispondere una classe in Java. Per questo devono essere realizzate 4 classi rappresentanti le entità Employee, Project, Department e Site.\\
+Ciascuna classe entità implementa la classe \textit{Serializable}, così facendo è possibile serializzare i dati in flussi di byte. La serializzazione viene utilizzata poiché si tratta di dati che dovranno essere memorizzati nel database, dunque è necessario serializzarli poiché abbandonano la Java Virtual Machine. Viene inoltre utilizzato un \textit{serialVersionUID} per attribuire una versione a ciascuna classe di entità serializzabile, necessario per riconoscere quando nella comunicazione con il database o con altri moduli esterni la versione dell'entità risulta differente, si tratta dunque di entità che non corrispondono totalmente, in quel caso viene ritornato un erorre \texit{InvalidClassException}.\\
+Le quattro entità descritte quindi nel capitolo \ref{entity-relation} dovranno essere implementate come classi, segue l'esempio dell'implementazione della classe Employee:
+%%% IMG
+\FloatBarrier
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=0.9\linewidth]{immagini/employee_entity.png}
+\caption{Esempio di implementazione dell'entità Employee in Spring Boot.}
+\label{employee-entity-definition}
+\end{figure}
+\FloatBarrier
+%%% IMG
+Vengono attribuite alla classe Employee diverse annotazioni Spring, tra queste:
+\begin{itemize}
+  \item \textbf{@Entity}: si tratta dell'annotazione che permette di mappare la classe Employee come una corrispondente tabella nel database. Questa annotazione è resa disponibile dal modulo Spring Data JPA il quale implementa la specifica delle Java Persistence API attraverso Hibernate ORM e permette dunque il mapping della classi con corrispettive entità nel database;
+  \item \textbf{@Table}: questa annotazione permette di specificare il  nome della tabella generata o presente nel database durante la sua creazione o aggiornamento;
+  \item \textbf{@Data}: grazie alla libreria \textit{lombok} è possibile, attribuendo alla classe questa annotazione, generare automaticamente tutti i metodi get e set per tutti i campi della classe;
+  \item \textbf{@NoArgConstructor e @AllArgConstructor}: permettono di generare tutti le combinazioni di costruttori con parametri e quello senza parametri.
+\end{itemize}
+Spostando invece il focus sui campi della classe Employee in figura \ref{employee-entity-definition}, possiamo notare che il campo \textit{id} ha due annotazioni associate. La annotazione \textbf{@Id} permette di specificare nel mapping che si tratta della chiave primaria, mentre l'annotazione \textbf{@GeneratedValue} permette di specificare che quando una nuova istanza di una entità viene creata, deve essere generato un nuovo id randomico.\\\\
+Proseguendo sono presenti tutte le dichiarazioni dei vari campi dati dell'entità Employee e infine, troviamo le relazioni che Employee ha con le enetità Project e Department. Anche in questo caso le annotazioni fornite dalla specifica JPA permettono di specificare nel dettaglio le varie relazioni. Sono dunque presenti le annotazioni:
+\begin{itemize}
+  \item \textbf{@ManyToMany} e \textbf{@ManyToOne}: queste specificano il tipo di relazione che è presente con le altre entità, sono rispettivamente associate ai campi \textit{projects}, con il quale Employee ha una relazione molti a molti e infine al campo \textit{department}, con il quale Employee ha una relazione molti a uno;
+  \item \textbf{@JoinTable}: è associata al campo \textit{projects}, e poiché le relazioni molti a molti necessitano di una ulteriore tabella per la memorizzazione di tutte le associazioni, questa annotazione permette di specificarne il nome, ovvero \textit{EMPLOYEE-PROJECTS} e i nomi delle due colonne, ovvero \textit{EMPLOYEE-ID} e \textit{PROJECT-ID};
+  \item \textbf{@JsonIgnore}: associato al campo \textit{projects}, permette di escluderlo dalla serlizzazione;
+  \item \textbf{@JsonBackReference}: associato al campo \textit{department}, permette di dare una direzionalità alla relazione molti a uno con Department, fondamentale per evitare il problema della ricorsione infinita \textcolor{red}{(QUI NON SO SE SPIEGARE)}.
+\end{itemize}
+Analogamente sono state realizzate le classi corrispondenti alle entità Project, Department e Site.\\\\
+A questo punto si procede con la realizzazione delle classi repository: ciascuna entità ha una propria repository corrispondente. Dunque viene estesa l'interfaccia \textbf{JPArepository<T, ID>} con T il tipo della entità che si vuole gestire, mentre ID è il tipo della chiave primaria dell'entità T. La repository JPA deriva da diverse interfacce, tra le quali:
+\begin{itemize}
+  \item \textbf{CrudRepository<T, ID>}: la quale contiene le API per gestire le classiche operazioni CRUD;
+  \item \textbf{PagingAndSortingRepository<T, ID>}: la quale contiene le API per gestire la pagination e il sorting;
+\end{itemize}
+Dunque estendendo la JPARepository per ciascun tipo è possibile avere a disposizione diversi metodi per eseguire operazioni già implementate come: findAll, count, existById, SaveAndFlush, ecc...\\
+Qualora invece si volesse rendere disponibili nuovi metodi è possibile dichiararli nell'estensione della repository, senza necessariamente implementarli, poiché è sufficiente attribuire il nome corretto al metodo. Più specificatamente il nome del metodo corrispondente alla query che si vuole render disponibile è composto da un introducer che può essere uno tra: \textit{find}, \textit{read}, \textit{query}, \textit{count} o \textit{get}, e successivamente il criterio seguito dalla keywork \textit{By}, quindi ad esempio se si volesse fare una ricerca per salario, è sufficiente dichiarare un metodo chiamato \textit{findBySalary}. \\
+Infine ritroviamo il caso in qui si vuole realizzare una query complessa o personalizzata, in questo caso ci viene in aiuto la annotazione \textbf{@Query} alla quale è possibile passare come attributo la query che desideriamo in linguaggio JPQL. Di seguito è possibile visualizzare quanto spiegato nell'implementazione della \textbf{EmployeeRepository} in figura \ref{employee-repository}:
+%%% IMG
+\FloatBarrier
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=1\linewidth]{immagini/employee_repository.png}
+\caption{Esempio di implementazione della repository di Employee in Spring Boot.}
+\label{employee-repository}
+\end{figure}
+\FloatBarrier
+%%% IMG
+Dunque oltre ai classici metodi di ricerca disponibili già dopo l'estensione dell'interfaccia JPARepository<T, ID>, sono stati realizzati alcuni metodi per la ricerca di impiegati per nome, per cognome e per id di dipartimento in cui lavorano. Infine è stata realizzata una query personalizzata per la ricerca di impiegati nati in un range di date.\\
+Infine è possibile notare in figura \ref{employee-repository} l'annotazione \textbf{@Repository} attribuita alla'interfaccia, fondamentale al fine di indicare che la classe fornisce meccanismi per modellare i dati dell'applicativo.
+\paragraph{Service}
+Lo strato di servizio è lo strato che si trova tra lo strato di controller e quello di repository, il suo compito è facilitare la comunicazione tra controller e repository e inoltre contiene la business logic dell'applicativo.
+Per ciascun repository, dunque per ciascuna entità, è stato realizzato un servizio specifico per gestirne le logiche.\\
+Al fine di rispettare i principi SOLID della programmazione, per questioni di loose coupling e semplicità nel testing, è stato scelto di implementare il pattern secondo il quale per ogni entità viene realizzata una interfaccia del servizio ed la sua implementazione, come mostrato in figura \ref{service-serviceImpl} nel caso del servizio per l'entità Employee.
+%%% IMG
+\FloatBarrier
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=0.3\linewidth]{immagini/service_serviceImpl.pdf}
+\caption{Esempio di implementazione dell'interfaccia EmployeeService.}
+\label{service-serviceImpl}
+\end{figure}
+\FloatBarrier
+%%% IMG
+Di seguito, in figura \ref{employeeServiceImpl}, viene riportato un esempio di servizio implementato, in questo caso si tratta dell'implementazione del servizio per l'Employee, ovvero della classe \textbf{EmployeeServiceImpl}.
+%%% IMG
+\FloatBarrier
+\begin{figure}[!ht]
+\begin{mdframed}
+\centering
+\includegraphics[width=1\linewidth]{immagini/employeeServiceImpl.png}
+\end{mdframed}
+\caption{Classe EmployeeServiceImpl.}
+\label{employeeServiceImpl}
+\end{figure}
+\FloatBarrier
+%%% IMG
+In figura \ref{employeeServiceImpl} è possibile notare come la classe sia caratterizzata da due annotazioni: l'annotazione \textbf{@Service} la quale viene utilizzata per indicare classi che contengono la business logic e viene utilizzata dunque per marcare la classe come service provider, successivamente è presente l'annotazione \textbf{@Transactional} la quale
+
+
+
+\paragraph{REST API}
+Parte preponderante. Spiego come vengono progettate e infine realizzate le API REST.
+\paragraph{Testing BE}
+Come viene realizzato il testing del BE, soprattutto per quanto riguarda il testing dei metodi del controller (API).
+
+\subsubsection*{Frontend}
+Piccola spiegazione su perché vengono tralasciati aspetti fondamentali nella realizzazione del frontend (ad es. analisi dell'utente, accessibilità, desing, ecc...), il motivo è che lo scopo del prototipo è imparare come implementare e modificare lo strato di servizio (nel mio caso) frontend per la gestione delle chiamate API al backend (sia in REST che GraphQL) al fine di testarle e di sapersi muovere su SushiLab.
+\paragraph{Analisi su funzionalità}
+Breve analisi sul perché fornire nell'interfaccia grafica la possibilità di certe azioni (ad es. visualizzazione tutti employee, ricerca per id, per nome, ecc...). Ovviamente realizzate per permettere l'utilizzo di tutte le chiamate API fornite da back-end, sia in GraphQL che REST. Spiego che il protitipo è prima stato realizzato in REST per poi farne la migrazione in GraphQL
+\paragraph{Implementazione FE}
+Come è stato realizzato il FE del protitipo: main components, strato servizio (con chiamate alle API del BE), ecc...
+Desing pattern adottati (ad es. MVC, Dependency Injection, principi SOLID, Signleton, ecc...).
+\paragraph{Testing FE}
+Spiegazione su come vengono realizzati i test sulle API call al BE.
+\subsection{Realizzazione e testing con REST API}
+Spiegazione su come è stato implementato il prototipo.... andranno qui tutti i vari strati di servizio ecc... e API.
+
+
+
+
+
+
+
+\subsection{Migrazione da REST a GraphQL}
+\subsubsection*{Migrazione Backend}
+Spiego come è stata realizzata la migrazione da REST a GraphQL. Partendo da backend, viene realizzata un'analisi sui tipi necessari da riportare nel GraphQL schema (tipi di input e tipi di ritorno). Sucessivamente vengono ristrutturate le API rese disponibili in REST (non sempre i metodi dei controller REST corrispondono a quelli GraphQL, oltre a differenze nelle annotazioni, ecc...). Vengono dunque implementati i metodi dei controller GraphQL, soffermarsi sulle difficoltà riscontrate nel mapping dei tipi GraphQL schema con i tipi corrispondenti del BE. Una volta ricostruito tutto il sistema di query GraphQL nel BE e testato, si può passare alla migrazione frontend. Volendo dividere il tutto in subsubsection:
+\begin{itemize}
+  \item analisi sui tipi;
+  \item ristrutturazione API secondo principi GraphQL;
+  \item realizzazione API con tool Spring GraphQL (e problemi mapping tipi);
+  \item testing;
+\end{itemize}
+\subsubsection*{Migrazione Frontend}
+La migrazione su FE è molto più semplice rispetto al BE, infatti è sufficiente andare ad aggiornare lo strato di servizio, il quale si occupa della gestione della chiamate API al BE. Anche qui si possono riscontrare alcuni problemi per quanto riguarda la corrispondenza dei tipi (ma ho avuto più problemi in SushiLab, qui trascurabile dunque).
+Volendo dividere il tutto in subsubsection:
+\begin{itemize}
+  \item aggiornamento strato servizio con modulo apollo;
+\end{itemize}
+Questo capitoletto conterrebbe tutto, da come costruire la query a seconda di ciò che è necessario, all'eliminazione della parte di gestione delle risorse nel protitipo REST (per questioni di under e overfetching).
+
+\section{SushiLab}
+\label{sushi-lab}
+\subsection{Comprensione dell'applicativo}
+Breve panoramica su SushiLab, ambito d'uso, funzionalità, ecc...
+\subsubsection{Panoramica del backend}
+Panoramica su architettura del backend (sviluppato in Spring), entità e relazioni, business logic, strato di persistenza, test, \textbf{API} (Parte preponderante della panoramica sul backend).
+\subsubsection{Panoramica del frontend}
+Panoramica su architettura del frontend (sviluppato in Angular), principali components, \textbf{strato di servizio} (parte preponderante perché gestisce le chiamate alle API del backend).
+\subsection{Migrazione del BE da REST a GraphQL}
+Molto simile a quanto scritto per il prototipo nella parte di migrazione adattato alle API specifiche di SushiLab.
+\subsection{Migrazione del FE da REST a GraphQL}
+
+
+% \subsection{Progettazione }
+% Tecnologie scelte per lo sviluppo del protitipo (poi espresse meglio in capitoli successivi).
+% Viene spiegata l'architettura del software che si vuole realizzare (diviso per BE e FE), le entità e relative relazioni.
+% \subsection{Business logic - BE}
+
+
+% \subsection{Sviluppo API}
+% Panoramica su quali api vengono rese disponibili da BE.
+% \subsubsection{Sviluppo REST API}
+% Come vengono implementate con protocollo REST.
+% \subsubsection{Sviluppo GraphQL API}
+% Come vengono implementate con protocollo GraphQL.
+% \subsection{Comparazione dei due protocolli}
+% Illustrazione delle differenze (con vantaggi e svantaggi) individuate nelle varie fasi di realizazzione del
+% prototipo (analisi, progettazione, sviluppo, testing, ...). Si tratta di:
+% \begin{itemize}
+%         \item differenze architetturali del prototipo (dunque come sono strutturati BE e FE a seconda della tecnologia utilizzata, differenze lievi ma presenti);
+%         \item differenze legate alla natura dei protocolli (ad es. che GraphQL non usa i codici di stato http classici),dunque come si rispecchiano queste differenze nel concreto (ad es. gestione differente degli errori) ;
+%         \item differenze negli strumenti utilizzati (ad es. differenti librerie).
+% \end{itemize}
+% \section{SushiLab}
+% \subsection{Comprensione della struttura e delle logiche della webapp}
+% Descrizione di BE e FE della webapp, sue entità, relazioni e logica di base.
+% \subsection{Migrazione BE da REST a GraphQL}
+% \subsubsection{Analisi delle componenti da modificare}
+% Ad esempio i metodi i controller.
+% \subsubsection{Realizzazione della migrazione}
+% Come ogni componente varia durante tutta la migrazione.
+% \subsubsection{Difficoltà riscontrate durante la migrazione}
+% Problemi riscontrati nel passaggio da REST a GraphQL (ad es. problemi legati alla forte tipizzazione di GraphQl).
+% \subsection{Migrazione FE da REST a GraphQL}
+% Stessa cosa del BE, probabilmente sarà molto più breve.
+% \subsubsection{Analisi delle componenti da modificare}
+% \subsubsection{Realizzazione della migrazione}
+% \subsubsection{Difficoltà riscontrate durante la migrazione}
+% \subsection{Analisi comparativa}
+% Analisi comparativa della webapp nelle due versioni. Vantaggi e svantaggi della webapp due versioni sotto tutti i punti di vista:
+% \begin{itemize}
+%         \item complessità dei protocolli e dunque i costi per la realizzazione di una versione rispetto all'altra;
+% \end{itemize}
+
+
+% Volendo aggiungo anche un analisi prestazionale riportando i risultati del load testing.
+% \subsection{Considerazioni finali}
+% Perché in questo caso d'uso specifico ha più senso utilizzare un protocollo rispetto che l'altro.
