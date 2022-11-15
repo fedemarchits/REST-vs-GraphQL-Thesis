@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.12.10)  13 NOV 2022 10:33
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.12.10)  15 NOV 2022 14:58
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1369,7 +1369,7 @@ Overfull \hbox (3.78238pt too wide) has occurred while \output is active
 [10]
 
 pdfTeX warning: pdflatex (file ./immagini/one_to_one.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<immagini/one_to_one.pdf, id=258, 246.11949pt x 69.55988pt>
+<immagini/one_to_one.pdf, id=260, 246.11949pt x 69.55988pt>
 File: immagini/one_to_one.pdf Graphic file (type pdf)
 <use immagini/one_to_one.pdf>
 Package pdftex.def Info: immagini/one_to_one.pdf  used on input line 127.
@@ -1387,7 +1387,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 141--142
 
 
 pdfTeX warning: pdflatex (file ./immagini/one_to_many.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<immagini/one_to_many.pdf, id=281, 203.66087pt x 197.33725pt>
+<immagini/one_to_many.pdf, id=283, 203.66087pt x 197.33725pt>
 File: immagini/one_to_many.pdf Graphic file (type pdf)
 <use immagini/one_to_many.pdf>
 Package pdftex.def Info: immagini/one_to_many.pdf  used on input line 145.
@@ -1395,7 +1395,7 @@ Package pdftex.def Info: immagini/one_to_many.pdf  used on input line 145.
 
 
 pdfTeX warning: pdflatex (file ./immagini/many_to_many.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<immagini/many_to_many.pdf, id=283, 247.02289pt x 192.82037pt>
+<immagini/many_to_many.pdf, id=285, 247.02289pt x 192.82037pt>
 File: immagini/many_to_many.pdf Graphic file (type pdf)
 <use immagini/many_to_many.pdf>
 Package pdftex.def Info: immagini/many_to_many.pdf  used on input line 163.
@@ -1450,7 +1450,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 23--25
 
 
 pdfTeX warning: pdflatex (file ./immagini/prototype_architecture.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<immagini/prototype_architecture.pdf, id=360, 400.19514pt x 398.78986pt>
+<immagini/prototype_architecture.pdf, id=362, 400.19514pt x 398.78986pt>
 File: immagini/prototype_architecture.pdf Graphic file (type pdf)
 <use immagini/prototype_architecture.pdf>
 Package pdftex.def Info: immagini/prototype_architecture.pdf  used on input line 30.
@@ -1461,7 +1461,7 @@ LaTeX Warning: Reference `tecnologie' on page 17 undefined on input line 34.
 [17]
 
 pdfTeX warning: pdflatex (file ./immagini/controller_service_repository.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<immagini/controller_service_repository.pdf, id=366, 292.69351pt x 233.07074pt>
+<immagini/controller_service_repository.pdf, id=368, 292.69351pt x 233.07074pt>
 File: immagini/controller_service_repository.pdf Graphic file (type pdf)
 <use immagini/controller_service_repository.pdf>
 Package pdftex.def Info: immagini/controller_service_repository.pdf  used on input line 50.
@@ -1477,7 +1477,7 @@ Overfull \hbox (16.00052pt too wide) has occurred while \output is active
 [18 <./immagini/prototype_architecture.pdf>]
 
 pdfTeX warning: pdflatex (file ./immagini/ER_prototype.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<immagini/ER_prototype.pdf, id=403, 451.6875pt x 301.72725pt>
+<immagini/ER_prototype.pdf, id=406, 451.6875pt x 301.72725pt>
 File: immagini/ER_prototype.pdf Graphic file (type pdf)
 <use immagini/ER_prototype.pdf>
 Package pdftex.def Info: immagini/ER_prototype.pdf  used on input line 69.
@@ -1498,7 +1498,7 @@ Overfull \hbox (16.00052pt too wide) has occurred while \output is active
  []
 
 [20 <./immagini/ER_prototype.pdf>]
-<immagini/employee_entity.png, id=490, 758.835pt x 510.90875pt>
+<immagini/employee_entity.png, id=492, 758.835pt x 510.90875pt>
 File: immagini/employee_entity.png Graphic file (type png)
 <use immagini/employee_entity.png>
 Package pdftex.def Info: immagini/employee_entity.png  used on input line 94.
@@ -1513,7 +1513,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 115--117
 
  []
 
-<immagini/employee_repository.png, id=499, 701.62125pt x 374.39874pt>
+<immagini/employee_repository.png, id=501, 701.62125pt x 374.39874pt>
 File: immagini/employee_repository.png Graphic file (type png)
 <use immagini/employee_repository.png>
 Package pdftex.def Info: immagini/employee_repository.png  used on input line 128.
@@ -1526,66 +1526,86 @@ Overfull \hbox (16.00052pt too wide) has occurred while \output is active
 [22]
 
 pdfTeX warning: pdflatex (file ./immagini/service_serviceImpl.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<immagini/service_serviceImpl.pdf, id=506, 191.01363pt x 198.7425pt>
+<immagini/service_serviceImpl.pdf, id=508, 191.01363pt x 198.7425pt>
 File: immagini/service_serviceImpl.pdf Graphic file (type pdf)
 <use immagini/service_serviceImpl.pdf>
 Package pdftex.def Info: immagini/service_serviceImpl.pdf  used on input line 144.
 (pdftex.def)             Requested size: 111.60114pt x 116.11984pt.
 [23 <./immagini/employee_repository.png> <./immagini/service_serviceImpl.pdf>]
 Package mdframed Info: mdframed works in twoside mode on input line 155.
-<immagini/employeeServiceImpl.png, id=523, 871.75688pt x 487.8225pt>
+<immagini/employeeServiceImpl.png, id=525, 873.76437pt x 464.73625pt>
 File: immagini/employeeServiceImpl.png Graphic file (type png)
 <use immagini/employeeServiceImpl.png>
 Package pdftex.def Info: immagini/employeeServiceImpl.png  used on input line 156.
-(pdftex.def)             Requested size: 351.20001pt x 196.52493pt.
+(pdftex.def)             Requested size: 351.20001pt x 186.7918pt.
 Package mdframed Info: mdframed inside float 
  mdframed uses option nobreak mdframed on input line 157.
 Package mdframed Info: mdframed inside a box 
  mdframed uses option nobreak mdframed on input line 157.
 
+./capitoli/capitolo-4.tex:164: Undefined control sequence.
+l.164 ...za viene risolta con l'annotazione \texbf
+                                                  {@Autowired}, la quale per...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Package mdframed Info: mdframed works in twoside mode on input line 171.
+<immagini/EmployeeController.png, id=528, 1062.46938pt x 532.99126pt>
+File: immagini/EmployeeController.png Graphic file (type png)
+<use immagini/EmployeeController.png>
+Package pdftex.def Info: immagini/EmployeeController.png  used on input line 172.
+(pdftex.def)             Requested size: 351.20001pt x 176.18044pt.
+Package mdframed Info: mdframed inside float 
+ mdframed uses option nobreak mdframed on input line 173.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 173.
+
 Overfull \hbox (16.00052pt too wide) has occurred while \output is active
 \T1/cmr/m/n/10 24 \T1/cmr/m/sl/10 CAPITOLO 4.  INTRODUZIONE AI CASI D'USO PER L'ANALISI COMPARATIVA
  []
 
-[24 <./immagini/employeeServiceImpl.png>] [25]) (./capitoli/capitolo-5.tex
+[24 <./immagini/employeeServiceImpl.png>] [25 <./immagini/EmployeeController.png>]
 Overfull \hbox (16.00052pt too wide) has occurred while \output is active
 \T1/cmr/m/n/10 26 \T1/cmr/m/sl/10 CAPITOLO 4.  INTRODUZIONE AI CASI D'USO PER L'ANALISI COMPARATIVA
  []
 
-[26]
+[26]) (./capitoli/capitolo-5.tex [27] [28
+
+]
 Capitolo 5.
 
 Underfull \hbox (badness 10000) in paragraph at lines 10--11
 
  []
 
-) (./capitoli/capitolo-6.tex [27
-
-]
+) (./capitoli/capitolo-6.tex [29]
 Overfull \hbox (10.23804pt too wide) has occurred while \output is active
-\T1/cmr/m/n/10 28 \T1/cmr/m/sl/10 CAPITOLO 5.  ANALISI COMPARATIVA DEI PROTOCOLLI REST E GRAPHQL
+\T1/cmr/m/n/10 30 \T1/cmr/m/sl/10 CAPITOLO 5.  ANALISI COMPARATIVA DEI PROTOCOLLI REST E GRAPHQL
  []
 
-[28]
+[30]
 Capitolo 6.
-) (./capitoli/capitolo-7.tex [29
+) (./capitoli/capitolo-7.tex [31
 
-] [30
+] [32
 
 ]
 Capitolo 7.
-) (./capitoli/capitolo-A.tex [31] [32
+) (./capitoli/capitolo-A.tex [33] [34
 
 ]
 Appendice A.
-) [33] [34
+) [35] [36
 
 ]
 No file tesi.acr.
 No file tesi.gls.
-(./inizio-fine/bibliografia.tex [35] [36
+(./inizio-fine/bibliografia.tex [37] [38
 
-]) [37
+]) [39
 
 ] (./tesi.aux)
 
@@ -1596,11 +1616,11 @@ Package logreq Info: Writing requests to 'tesi.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 37080 strings out of 478994
- 632898 string characters out of 5858183
- 1461544 words of memory out of 5000000
- 53423 multiletter control sequences out of 15000+600000
- 437893 words of font info for 210 fonts, out of 8000000 for 9000
+ 37095 strings out of 478994
+ 633212 string characters out of 5858183
+ 1461657 words of memory out of 5000000
+ 53432 multiletter control sequences out of 15000+600000
+ 437964 words of font info for 211 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
  102i,8n,125p,1129b,3024s stack positions out of 5000i,500n,10000p,200000b,80000s
 pdfTeX warning (dest): name{glo:api} has been referenced but does not exist, replaced by a fixed one
@@ -1608,10 +1628,10 @@ pdfTeX warning (dest): name{glo:api} has been referenced but does not exist, rep
 {/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfbx0900.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfbx1728.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfbx2074.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfbx2488.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfcc1000.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfcc1200.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfcc1440.p
 fb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm0600.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm0700.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm0800.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm0900.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfsi1000.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfsl1000.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfsl1200.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfti0800.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfti1000.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sftt1000.
 pfb>
-Output written on tesi.pdf (49 pages, 1027645 bytes).
+Output written on tesi.pdf (51 pages, 1248872 bytes).
 PDF statistics:
- 866 PDF objects out of 1000 (max. 8388607)
- 730 compressed objects within 8 object streams
- 163 named destinations out of 1000 (max. 500000)
- 68484 words of extra memory for PDF output out of 74296 (max. 10000000)
+ 880 PDF objects out of 1000 (max. 8388607)
+ 740 compressed objects within 8 object streams
+ 166 named destinations out of 1000 (max. 500000)
+ 68489 words of extra memory for PDF output out of 74296 (max. 10000000)
 

@@ -160,14 +160,42 @@ Di seguito, in figura \ref{employeeServiceImpl}, viene riportato un esempio di s
 \end{figure}
 \FloatBarrier
 %%% IMG
-In figura \ref{employeeServiceImpl} è possibile notare come la classe sia caratterizzata da due annotazioni: l'annotazione \textbf{@Service} la quale viene utilizzata per indicare classi che contengono la business logic e viene utilizzata dunque per marcare la classe come service provider, successivamente è presente l'annotazione \textbf{@Transactional} la quale
-
-
-
-\paragraph{REST API}
-Parte preponderante. Spiego come vengono progettate e infine realizzate le API REST.
+In figura \ref{employeeServiceImpl} è possibile notare come la classe sia caratterizzata dall'annotazione \textbf{@Service} la quale viene utilizzata per indicare classi che contengono la business logic e viene utilizzata dunque per marcare la classe come service provider.\\
+Continuando ed andando ad analizzare i campi dati è possibile visualizzare la dipendenza che la classe \textit{EmployeeServicImpl} ha con la repository \textit{EmployeeRepository}. In Spring questa dipendenza viene risolta con l'annotazione \texbf{@Autowired}, la quale permette di eseguire la dependency injection del bean \textit{employeeRepository}.\\
+Infine sono presenti tutti i metodi, ciascuno con annotazione \textbf{@Override} poiché sono stati dichiarati anche nell'interfaccia implementata da \textit{EmployeeServiceImpl}. Sono stati resi disponibili metodi semplici che vanno ad invocare, grazie alla dipendenza con la repository, le query già disponibili con la \textit{JPARepository<T, ID>} e la query vista precedenemente \textit{SelByBornInRage}.
+\paragraph{Controller}
+Infine troviamo i controller, ovvero l'ultimo strato che si occupa di gestire le richieste che il server riceve attraverso il protocollo HTTP, e di mapparle inoltre ai relativi metodi. In figura \ref{employeeController} il controller di Employee, ovvero la classe \textit{EmployeeController}:
+\FloatBarrier
+\begin{figure}[!ht]
+\begin{mdframed}
+\centering
+\includegraphics[width=1\linewidth]{immagini/EmployeeController.png}
+\end{mdframed}
+\caption{Classe EmployeeServiceImpl.}
+\label{employeeController}
+\end{figure}
+\FloatBarrier
+Questa classe permette di gestire e mappare le richieste a seconda dell'url dal quale proviene la richiesta. In figura \ref{employeeController} è possibile visualizzare due annotazioni associate alla classe, l'annotazione \textbf{@RestController}, utilizzata per definire la classe come un controller di tipo REST, mentre l'annotazione \textbf{@RequestMapping} indica l'url al quale il client dovrà mandare le richieste per quello specifico controller.\\
+Proseguendo è possibile indivudare una dipendenza della classe con lo strato di servizio, infatti con l'annotazione \textbf{@Autowired} e dunque con la dependency injection viene risolta la dipendenza. La classe \textit{EmployeeController} necessita una dipendenza con la classe \textit{EmployeeServiceImpl} poiché dovrà andare ad invocarne i metodi.\\
+Dunque proseguendo è possibile visualizzare i vari metodi, tutti hanno una annotazione che può essere :
+\begin{itemize}
+  \item \textbf{@GetMapping}: indica che si tratta di un metodo per la risoluzione di una richiesta GET; specifica l'url al quale ricevere la richiesta e ciò che viene ritornato, ovvero un file JSON;
+  \item \textbf{@PostMapping}: indica che si tratta di un metodo per la risoluzione di una richiesta POST, specifica l'url al quale ricevere la richiesta e ciò che richiede in input, ovvero un file JSON passato attraverso il body della richiesta HTTP;
+  \item  \textbf{@DeleteMapping}: indica che si tratta di un metodo per la risoluzione di una richiesta DELETE, specifica l'url al quale ricevere la richiesta;
+\end{itemize}
+Oltre alle annotazioni sopra riportate, sono presenti tra gli argomenti le annotazionie \textbf{@PathVariable} la quale vuole indicare che si tratta di una variabile che verrà fornita nell'url nel posto definito dal nome specificato, \textbf{@RequestBody} ovvero un argomento che verrà fornito nel body della chiamata HTTP e infine \textbf{@DateTimeFormat} per specificare il formato del tipo di dato \textit{Date} che verrà passato dal client nell'url della richiesta.
+Sono state rese dunque disponibili le seguenti query:
+\begin{itemize}
+  \item \textbf{listAllEmployee}: ritorna tutti gli impiegati presenti;
+  \item \textbf{listEmployeeByName}: ritorna tutti gli impiegati con una determinato nome;
+  \item \textbf{listEmployeeBySurname}: ritorna tutti gli impiegati con un determinato cognome;
+  \item \textbf{listEmployeeByDepartment}: ritorna tutti gli impiegati di un dipartimento;
+  \item \textbf{listEmployeeByBornInDataRange}: ritorna tutti gli impiegati nati in un determinato range di date;
+  \item \textbf{createEmployee}: aggiunta di un nuovo impiegato;
+  \item \textbf{deleteEmployee}: rimozione di un impiegato.
+\end{itemize}
 \paragraph{Testing BE}
-Come viene realizzato il testing del BE, soprattutto per quanto riguarda il testing dei metodi del controller (API).
+Essendo un prototipo incentrato sulla realizzazione delle API, sono stati svolti i test esclusivamente per i controller.
 
 \subsubsection*{Frontend}
 Piccola spiegazione su perché vengono tralasciati aspetti fondamentali nella realizzazione del frontend (ad es. analisi dell'utente, accessibilità, desing, ecc...), il motivo è che lo scopo del prototipo è imparare come implementare e modificare lo strato di servizio (nel mio caso) frontend per la gestione delle chiamate API al backend (sia in REST che GraphQL) al fine di testarle e di sapersi muovere su SushiLab.

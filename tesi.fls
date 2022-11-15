@@ -1,4 +1,4 @@
-PWD /Users/federicomarchi/Desktop/Università/Tesi/Thesis-template
+PWD /Users/federicomarchi/Desktop/StageSyncLab/tesifede
 INPUT /usr/local/texlive/2021/texmf.cnf
 INPUT /usr/local/texlive/2021/texmf-dist/web2c/texmf.cnf
 INPUT /usr/local/texlive/2021/texmf-var/web2c/pdftex/pdflatex.fmt
@@ -2007,6 +2007,11 @@ INPUT ./immagini/employeeServiceImpl.png
 INPUT immagini/employeeServiceImpl.png
 INPUT ./immagini/employeeServiceImpl.png
 INPUT ./immagini/employeeServiceImpl.png
+INPUT ./immagini/EmployeeController.png
+INPUT ./immagini/EmployeeController.png
+INPUT immagini/EmployeeController.png
+INPUT ./immagini/EmployeeController.png
+INPUT ./immagini/EmployeeController.png
 INPUT ./capitoli/capitolo-5.tex
 INPUT ./capitoli/capitolo-5.tex
 INPUT ./capitoli/capitolo-5.tex
