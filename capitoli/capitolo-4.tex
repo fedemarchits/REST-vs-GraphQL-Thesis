@@ -182,8 +182,9 @@ Dunque proseguendo è possibile visualizzare i vari metodi, tutti hanno una anno
   \item \textbf{@GetMapping}: indica che si tratta di un metodo per la risoluzione di una richiesta GET; specifica l'url al quale ricevere la richiesta e ciò che viene ritornato, ovvero un file JSON;
   \item \textbf{@PostMapping}: indica che si tratta di un metodo per la risoluzione di una richiesta POST, specifica l'url al quale ricevere la richiesta e ciò che richiede in input, ovvero un file JSON passato attraverso il body della richiesta HTTP;
   \item  \textbf{@DeleteMapping}: indica che si tratta di un metodo per la risoluzione di una richiesta DELETE, specifica l'url al quale ricevere la richiesta;
+  \item \textbf{@PutMapping}: indica che si tratta di un metodo per la risoluzione di una richieste PUT, specifica l'url al quale ricevere la richiesta e ciò che richiede in input, ovvero un file JSON passato attraverso il body della richiesta HTTP;
 \end{itemize}
-Oltre alle annotazioni sopra riportate, sono presenti tra gli argomenti le annotazionie \textbf{@PathVariable} la quale vuole indicare che si tratta di una variabile che verrà fornita nell'url nel posto definito dal nome specificato, \textbf{@RequestBody} ovvero un argomento che verrà fornito nel body della chiamata HTTP e infine \textbf{@DateTimeFormat} per specificare il formato del tipo di dato \textit{Date} che verrà passato dal client nell'url della richiesta.
+Oltre alle annotazioni sopra riportate, sono presenti tra gli argomenti le annotazione \textbf{@PathVariable} la quale vuole indicare che si tratta di una variabile che verrà fornita nell'url nel posto definito dal nome specificato, \textbf{@RequestBody} ovvero un argomento che verrà fornito nel body della chiamata HTTP e infine \textbf{@DateTimeFormat} per specificare il formato del tipo di dato \textit{Date} che verrà passato dal client nell'url della richiesta.
 Sono state rese dunque disponibili le seguenti query:
 \begin{itemize}
   \item \textbf{listAllEmployee}: ritorna tutti gli impiegati presenti;
@@ -191,12 +192,26 @@ Sono state rese dunque disponibili le seguenti query:
   \item \textbf{listEmployeeBySurname}: ritorna tutti gli impiegati con un determinato cognome;
   \item \textbf{listEmployeeByDepartment}: ritorna tutti gli impiegati di un dipartimento;
   \item \textbf{listEmployeeByBornInDataRange}: ritorna tutti gli impiegati nati in un determinato range di date;
+  \item \textbf{updateEmployee}: vengono aggiornati i campi dati di un impiegato;
   \item \textbf{createEmployee}: aggiunta di un nuovo impiegato;
   \item \textbf{deleteEmployee}: rimozione di un impiegato.
 \end{itemize}
-\paragraph{Testing BE}
-Essendo un prototipo incentrato sulla realizzazione delle API, sono stati svolti i test esclusivamente per i controller.
-
+\textcolor{red}{Parlare della gestione delle eccezioni.........}
+\paragraph{Testing API}
+Essendo un prototipo incentrato sulla realizzazione delle API, sono stati svolti in maniera semplice e veloce i test per gli strati di servizio e repository, mentre sono stati svolti dei test più approfonditi per quanto riguarda lo strato di controller.\\
+Per eseguire i test sui metodi del controller è stato scelto di utilizzare il framework JUnit5 \textcolor{red}{(RINDIRIZZARE AL CAPITOLO TECNOLOGIE)} ed è stato utilizzato il classico pattern \textit{Arrange - Act - Assert} per la realizzazione di ciascun test.\\
+Prima di procedere visualizzando i test bisogna premettere che è stato utilizzato un database identico, ma con dati differenti al fine di poter testare quanto risposto dai metodi del controller. \\
+È stata creata una una classe per ciascun controller al fine di testarne tutti i metodi. Nell'immagine \ref{EmployeeControllerTest} l'esempio di un test \textit{listEmployeeByNameTest} della classe di test \textit{EmployeeControllerTest}:
+\FloatBarrier
+\begin{figure}[!ht]
+\begin{mdframed}
+\centering
+\includegraphics[width=1\linewidth]{immagini/EmployeeControllerTest.png}
+\end{mdframed}
+\caption{Test sul metodo \textit{listEmployeeByName} del controller \textit{EmployeeController}.}
+\label{employeeController}
+\end{figure}
+\FloatBarrier
 \subsubsection*{Frontend}
 Piccola spiegazione su perché vengono tralasciati aspetti fondamentali nella realizzazione del frontend (ad es. analisi dell'utente, accessibilità, desing, ecc...), il motivo è che lo scopo del prototipo è imparare come implementare e modificare lo strato di servizio (nel mio caso) frontend per la gestione delle chiamate API al backend (sia in REST che GraphQL) al fine di testarle e di sapersi muovere su SushiLab.
 \paragraph{Analisi su funzionalità}
