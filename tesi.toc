@@ -50,27 +50,27 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {paragraph}{Testing API}{26}{section*.57}%
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Analisi su funzionalità}{28}{section*.61}%
+\contentsline {paragraph}{Analisi su funzionalità}{28}{section*.62}%
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Implementazione FE}{28}{section*.62}%
+\contentsline {paragraph}{Implementazione FE}{29}{section*.63}%
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Testing FE}{28}{section*.63}%
+\contentsline {paragraph}{Testing FE}{29}{section*.64}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.1.2}Realizzazione e testing con REST API}{28}{subsection.4.1.2}%
+\contentsline {subsection}{\numberline {4.1.2}Realizzazione e testing con REST API}{29}{subsection.4.1.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.1.3}Migrazione da REST a GraphQL}{28}{subsection.4.1.3}%
+\contentsline {subsection}{\numberline {4.1.3}Migrazione da REST a GraphQL}{29}{subsection.4.1.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.2}SushiLab}{29}{section.4.2}%
+\contentsline {section}{\numberline {4.2}SushiLab}{30}{section.4.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.2.1}Comprensione dell'applicativo}{29}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.1}Comprensione dell'applicativo}{30}{subsection.4.2.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Panoramica del backend}{29}{section*.66}%
+\contentsline {subsubsection}{Panoramica del backend}{30}{section*.67}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Panoramica del frontend}{29}{section*.67}%
+\contentsline {subsubsection}{Panoramica del frontend}{30}{section*.68}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.2.2}Migrazione del BE da REST a GraphQL}{29}{subsection.4.2.2}%
+\contentsline {subsection}{\numberline {4.2.2}Migrazione del BE da REST a GraphQL}{30}{subsection.4.2.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.2.3}Migrazione del FE da REST a GraphQL}{29}{subsection.4.2.3}%
+\contentsline {subsection}{\numberline {4.2.3}Migrazione del FE da REST a GraphQL}{30}{subsection.4.2.3}%
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {5}Analisi comparativa dei protocolli REST e GraphQL}{31}{chapter.5}%
 \defcounter {refsection}{0}\relax 

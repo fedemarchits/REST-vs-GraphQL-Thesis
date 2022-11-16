@@ -18,14 +18,14 @@ Nel seguente capitolo verranno analizzati nel dettaglio e paragonati i due proto
 Come sottolineato in precedenza, GraphQL e REST hanno diversi aspetti che li differenziano, il primo tra tutti è legato alla loro natura: infatti quando si fa riferimento a REST, si sta parlando di uno stile architetturale, dunque di un modo di costruire le proprie API le quali, se rispettano i vincoli REST illustrati al punto \ref{principi-REST}, vengono definite RESTful. Quando si fa riferimento a GraphQL invece, si sta parlando di un linguaggio di query fortemente tipizzato.
 \subsection{Endpoints}
 Un altro grande fatto che differenzia i due protocolli è la questione riguardante gli endpoints, infatti REST prevede l'utilizzo di endpoints multipli e a seconda del tipo di richiesta si sceglie un endpoint piuttosto che un altro, mentre GraphQL permette di esporre un unico endpoint al quale ricevere tutte le richieste. Dunque REST basta la sua intera struttura sulla molteplicità degli endpoints.\\
-\FloatBarrier
-\begin{figure}[!ht]
-\centering
-\includegraphics[width=1\linewidth]{immagini/endpoints.pdf}
-\caption{Test sul metodo \textit{listEmployeeByName} del controller \textit{EmployeeController}.}
-\label{endpoints}
-\end{figure}
-\FloatBarrier
+%\FloatBarrier
+%\begin{figure}[!ht]
+%\centering
+%\includegraphics[width=1\linewidth]{immagini/endpoints.pdf}
+%\caption{Test sul metodo \textit{listEmployeeByName} del controller \textit{EmployeeController}.}
+%\label{endpoints}
+%\end{figure}
+%\FloatBarrier
 
 \subsection{Overfetching e Underfetching}
 Il motivo principale per il quale spesso viene scelto GraphQL piuttosto che REST per la realizzazione delle proprie Web API è la questione legata all'overfetching e all'underfetching.\\

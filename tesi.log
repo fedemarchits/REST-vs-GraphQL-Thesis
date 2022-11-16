@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.12.10)  16 NOV 2022 12:00
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.12.10)  16 NOV 2022 15:40
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -752,4 +752,965 @@ Package: fp-eval 1995/04/03
 Package: glossaries-compatible-307 2020/03/19 v4.46 (NLCT)
 ) (/usr/local/texlive/2021/texmf-dist/tex/latex/tracklang/tracklang.sty
 Package: tracklang 2020/06/30 v1.5 (NLCT) Track Languages
- (/usr/local/texlive
+ (/usr/local/texlive/2021/texmf-dist/tex/generic/tracklang/tracklang.tex)) (/usr/local/texlive/2021/texmf-dist/tex/latex/translator/translator.sty
+Package: translator 2020-08-03 v1.12c Easy translation of strings in LaTeX
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/glossaries-english/glossaries-english.ldf
+File: glossaries-english.ldf 2014/11/23 v1.0
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/glossaries-italian/glossaries-italian.ldf
+File: glossaries-italian.ldf 2014/11/23 v1.0
+)
+\gls@level=\count357
+\@gls@tmpb=\toks37
+\gls@tmplen=\skip146
+\glskeylisttok=\toks38
+\glslabeltok=\toks39
+\glsshorttok=\toks40
+\glslongtok=\toks41
+ (/usr/local/texlive/2021/texmf-dist/tex/latex/glossaries/styles/glossary-hypernav.sty
+Package: glossary-hypernav 2020/03/19 v4.46 (NLCT)
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/glossaries/styles/glossary-list.sty
+Package: glossary-list 2020/03/19 v4.46 (NLCT)
+\glslistdottedwidth=\skip147
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/glossaries/styles/glossary-long.sty
+Package: glossary-long 2020/03/19 v4.46 (NLCT)
+\glsdescwidth=\skip148
+\glspagelistwidth=\skip149
+)
+(/usr/local/texlive/2021/texmf-dist/tex/latex/glossaries/styles/glossary-super.sty
+Package: glossary-super 2020/03/19 v4.46 (NLCT)
+ (/usr/local/texlive/2021/texmf-dist/tex/latex/supertabular/supertabular.sty
+Package: supertabular 2020/02/02 v4.1g the supertabular environment
+\c@tracingst=\count358
+\ST@wd=\dimen199
+\ST@rightskip=\skip150
+\ST@leftskip=\skip151
+\ST@parfillskip=\skip152
+\ST@pageleft=\dimen256
+\ST@headht=\dimen257
+\ST@tailht=\dimen258
+\ST@pagesofar=\dimen259
+\ST@pboxht=\dimen260
+\ST@lineht=\dimen261
+\ST@prevht=\dimen262
+\ST@toadd=\dimen263
+\ST@dimen=\dimen264
+\ST@pbox=\box64
+)) (/usr/local/texlive/2021/texmf-dist/tex/latex/glossaries/styles/glossary-tree.sty
+Package: glossary-tree 2020/03/19 v4.46 (NLCT)
+\glstreeindent=\skip153
+)) (/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex/biblatex.sty
+Package: biblatex 2020/12/31 v3.16 programmable bibliographies (PK/MW)
+ (/usr/local/texlive/2021/texmf-dist/tex/latex/logreq/logreq.sty
+Package: logreq 2010/08/04 v1.0 xml request logger
+\lrq@indent=\count359
+ (/usr/local/texlive/2021/texmf-dist/tex/latex/logreq/logreq.def
+File: logreq.def 2010/08/04 v1.0 logreq spec v1.0
+))
+\c@tabx@nest=\count360
+\c@listtotal=\count361
+\c@listcount=\count362
+\c@liststart=\count363
+\c@liststop=\count364
+\c@citecount=\count365
+\c@citetotal=\count366
+\c@multicitecount=\count367
+\c@multicitetotal=\count368
+\c@instcount=\count369
+\c@maxnames=\count370
+\c@minnames=\count371
+\c@maxitems=\count372
+\c@minitems=\count373
+\c@citecounter=\count374
+\c@maxcitecounter=\count375
+\c@savedcitecounter=\count376
+\c@uniquelist=\count377
+\c@uniquename=\count378
+\c@refsection=\count379
+\c@refsegment=\count380
+\c@maxextratitle=\count381
+\c@maxextratitleyear=\count382
+\c@maxextraname=\count383
+\c@maxextradate=\count384
+\c@maxextraalpha=\count385
+\c@abbrvpenalty=\count386
+\c@highnamepenalty=\count387
+\c@lownamepenalty=\count388
+\c@maxparens=\count389
+\c@parenlevel=\count390
+\blx@tempcnta=\count391
+\blx@tempcntb=\count392
+\blx@tempcntc=\count393
+\blx@maxsection=\count394
+\blx@maxsegment@0=\count395
+\blx@notetype=\count396
+\blx@parenlevel@text=\count397
+\blx@parenlevel@foot=\count398
+\blx@sectionciteorder@0=\count399
+\blx@entrysetcounter=\count400
+\blx@biblioinstance=\count401
+\labelnumberwidth=\skip154
+\labelalphawidth=\skip155
+\biblabelsep=\skip156
+\bibitemsep=\skip157
+\bibnamesep=\skip158
+\bibinitsep=\skip159
+\bibparsep=\skip160
+\bibhang=\skip161
+\blx@bcfin=\read4
+\blx@bcfout=\write4
+\blx@langwohyphens=\language88
+\c@mincomprange=\count402
+\c@maxcomprange=\count403
+\c@mincompwidth=\count404
+Package biblatex Info: Trying to load biblatex default data model...
+Package biblatex Info: ... file 'blx-dm.def' found.
+ (/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex/blx-dm.def
+File: blx-dm.def 2020/12/31 v3.16 biblatex localization (PK/MW)
+)
+Package biblatex Info: Trying to load biblatex style data model...
+Package biblatex Info: ... file 'verbose-ibid.dbx' not found.
+Package biblatex Info: Trying to load biblatex custom data model...
+Package biblatex Info: ... file 'biblatex-dm.cfg' not found.
+\c@afterword=\count405
+\c@savedafterword=\count406
+\c@annotator=\count407
+\c@savedannotator=\count408
+\c@author=\count409
+\c@savedauthor=\count410
+\c@bookauthor=\count411
+\c@savedbookauthor=\count412
+\c@commentator=\count413
+\c@savedcommentator=\count414
+\c@editor=\count415
+\c@savededitor=\count416
+\c@editora=\count417
+\c@savededitora=\count418
+\c@editorb=\count419
+\c@savededitorb=\count420
+\c@editorc=\count421
+\c@savededitorc=\count422
+\c@foreword=\count423
+\c@savedforeword=\count424
+\c@holder=\count425
+\c@savedholder=\count426
+\c@introduction=\count427
+\c@savedintroduction=\count428
+\c@namea=\count429
+\c@savednamea=\count430
+\c@nameb=\count431
+\c@savednameb=\count432
+\c@namec=\count433
+\c@savednamec=\count434
+\c@translator=\count435
+\c@savedtranslator=\count436
+\c@shortauthor=\count437
+\c@savedshortauthor=\count438
+\c@shorteditor=\count439
+\c@savedshorteditor=\count440
+\c@labelname=\count441
+\c@savedlabelname=\count442
+\c@institution=\count443
+\c@savedinstitution=\count444
+\c@lista=\count445
+\c@savedlista=\count446
+\c@listb=\count447
+\c@savedlistb=\count448
+\c@listc=\count449
+\c@savedlistc=\count450
+\c@listd=\count451
+\c@savedlistd=\count452
+\c@liste=\count453
+\c@savedliste=\count454
+\c@listf=\count455
+\c@savedlistf=\count456
+\c@location=\count457
+\c@savedlocation=\count458
+\c@organization=\count459
+\c@savedorganization=\count460
+\c@origlocation=\count461
+\c@savedoriglocation=\count462
+\c@origpublisher=\count463
+\c@savedorigpublisher=\count464
+\c@publisher=\count465
+\c@savedpublisher=\count466
+\c@language=\count467
+\c@savedlanguage=\count468
+\c@origlanguage=\count469
+\c@savedoriglanguage=\count470
+\c@pageref=\count471
+\c@savedpageref=\count472
+\shorthandwidth=\skip162
+\shortjournalwidth=\skip163
+\shortserieswidth=\skip164
+\shorttitlewidth=\skip165
+\shortauthorwidth=\skip166
+\shorteditorwidth=\skip167
+\locallabelnumberwidth=\skip168
+\locallabelalphawidth=\skip169
+\localshorthandwidth=\skip170
+\localshortjournalwidth=\skip171
+\localshortserieswidth=\skip172
+\localshorttitlewidth=\skip173
+\localshortauthorwidth=\skip174
+\localshorteditorwidth=\skip175
+Package biblatex Info: Trying to load compatibility code...
+Package biblatex Info: ... file 'blx-compat.def' found.
+ (/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex/blx-compat.def
+File: blx-compat.def 2020/12/31 v3.16 biblatex compatibility (PK/MW)
+)
+Package biblatex Info: Trying to load generic definitions...
+Package biblatex Info: ... file 'biblatex.def' found.
+ (/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex/biblatex.def
+File: biblatex.def 2020/12/31 v3.16 biblatex compatibility (PK/MW)
+\c@textcitecount=\count473
+\c@textcitetotal=\count474
+\c@textcitemaxnames=\count475
+\c@biburlbigbreakpenalty=\count476
+\c@biburlbreakpenalty=\count477
+\c@biburlnumpenalty=\count478
+\c@biburlucpenalty=\count479
+\c@biburllcpenalty=\count480
+\biburlbigskip=\muskip18
+\biburlnumskip=\muskip19
+\biburlucskip=\muskip20
+\biburllcskip=\muskip21
+\c@smartand=\count481
+)
+Package biblatex Info: Trying to load bibliography style 'verbose-ibid'...
+Package biblatex Info: ... file 'verbose-ibid.bbx' found.
+ (/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex/bbx/verbose-ibid.bbx
+File: verbose-ibid.bbx 2020/12/31 v3.16 biblatex bibliography style (PK/MW)
+Package biblatex Info: Trying to load bibliography style 'authortitle'...
+Package biblatex Info: ... file 'authortitle.bbx' found.
+ (/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex/bbx/authortitle.bbx
+File: authortitle.bbx 2020/12/31 v3.16 biblatex bibliography style (PK/MW)
+Package biblatex Info: Trying to load bibliography style 'standard'...
+Package biblatex Info: ... file 'standard.bbx' found.
+ (/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex/bbx/standard.bbx
+File: standard.bbx 2020/12/31 v3.16 biblatex bibliography style (PK/MW)
+\c@bbx:relatedcount=\count482
+\c@bbx:relatedtotal=\count483
+)))
+Package biblatex Info: Trying to load citation style 'verbose-ibid'...
+Package biblatex Info: ... file 'verbose-ibid.cbx' found.
+ (/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex/cbx/verbose-ibid.cbx
+File: verbose-ibid.cbx 2020/12/31 v3.16 biblatex citation style (PK/MW)
+Package biblatex Info: Redefining '\cite'.
+Package biblatex Info: Redefining '\parencite'.
+Package biblatex Info: Redefining '\footcite'.
+Package biblatex Info: Redefining '\footcitetext'.
+Package biblatex Info: Redefining '\smartcite'.
+Package biblatex Info: Redefining '\textcite'.
+Package biblatex Info: Redefining '\textcites'.
+)
+Package biblatex Info: Trying to load configuration file...
+Package biblatex Info: ... file 'biblatex.cfg' found.
+
+(/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex/biblatex.cfg
+File: biblatex.cfg 
+)) (./tesi-config.tex
+\glswrite=\write5
+\glo@main@file=\write6
+\openout6 = `tesi.glo'.
+
+Package glossaries Info: Writing glossary file tesi.glo on input line 88.
+\glo@acronym@file=\write7
+\openout7 = `tesi.acn'.
+
+Package glossaries Info: Writing glossary file tesi.acn on input line 88.
+ (./glossario.tex)
+Package hyperref Info: Option `colorlinks' set `true' on input line 134.
+Package hyperref Info: Option `linktocpage' set `true' on input line 134.
+Package hyperref Info: Option `breaklinks' set `true' on input line 134.
+Package hyperref Info: Option `pageanchor' set `true' on input line 134.
+Package hyperref Info: Option `plainpages' set `false' on input line 134.
+Package hyperref Info: Option `bookmarksnumbered' set `true' on input line 134.
+Package hyperref Info: Option `bookmarksopen' set `true' on input line 134.
+Package hyperref Info: Option `hypertexnames' set `true' on input line 134.
+
+
+Package hyperref Warning: Option `pdftitle' has already been used,
+(hyperref)                setting the option has no effect on input line 134.
+
+
+Package hyperref Warning: Option `pdfauthor' has already been used,
+(hyperref)                setting the option has no effect on input line 134.
+
+
+Package hyperref Warning: Option `pdfsubject' has already been used,
+(hyperref)                setting the option has no effect on input line 134.
+
+
+Package hyperref Warning: Option `pdfkeywords' has already been used,
+(hyperref)                setting the option has no effect on input line 134.
+
+
+Package hyperref Warning: Option `pdfcreator' has already been used,
+(hyperref)                setting the option has no effect on input line 134.
+
+
+Package hyperref Warning: Option `pdfproducer' has already been used,
+(hyperref)                setting the option has no effect on input line 134.
+
+(/usr/local/texlive/2021/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2020/03/24 1.8d listings language file
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/listings/lstlang2.sty
+File: lstlang2.sty 2020/03/24 1.8d listings language file
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/listings/lstlang3.sty
+File: lstlang3.sty 2020/03/24 1.8d listings language file
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2020/03/24 1.8d listings language file
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/listings/lstlang2.sty
+File: lstlang2.sty 2020/03/24 1.8d listings language file
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/listings/lstlang3.sty
+File: lstlang3.sty 2020/03/24 1.8d listings language file
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2020/03/24 1.8d listings language file
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/listings/lstlang2.sty
+File: lstlang2.sty 2020/03/24 1.8d listings language file
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/listings/lstlang3.sty
+File: lstlang3.sty 2020/03/24 1.8d listings language file
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2020/03/24 1.8d (Carsten Heinz)
+)
+\c@riskcounter=\count484
+\c@usecasecounter=\count485
+)
+Package csquotes Info: Checking for multilingual support...
+Package csquotes Info: ... found 'babel' package.
+Package csquotes Info: Adjusting default style.
+Package csquotes Info: Redefining alias 'default' -> 'italian'.
+ (./tesi.aux
+
+LaTeX Warning: Label `employee-controller-test' multiply defined.
+
+)
+\openout1 = `tesi.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 122.
+LaTeX Font Info:    ... okay on input line 122.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 122.
+LaTeX Font Info:    ... okay on input line 122.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 122.
+LaTeX Font Info:    ... okay on input line 122.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 122.
+LaTeX Font Info:    ... okay on input line 122.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 122.
+LaTeX Font Info:    ... okay on input line 122.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 122.
+LaTeX Font Info:    ... okay on input line 122.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 122.
+LaTeX Font Info:    ... okay on input line 122.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 122.
+LaTeX Font Info:    ... okay on input line 122.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 122.
+LaTeX Font Info:    ... okay on input line 122.
+ (/usr/local/texlive/2021/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count486
+\scratchdimen=\dimen265
+\scratchbox=\box65
+\nofMPsegments=\count487
+\nofMParguments=\count488
+\everyMPshowfont=\toks42
+\MPscratchCnt=\count489
+\MPscratchDim=\dimen266
+\MPnumerator=\count490
+\makeMPintoPDFobject=\count491
+\everyMPtoPDFconversion=\toks43
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+ (/usr/local/texlive/2021/texmf-dist/tex/latex/grfext/grfext.sty
+Package: grfext 2019/12/03 v1.3 Manage graphics extensions (HO)
+)
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
+Package grfext Info: Graphics extension search list:
+(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPEG,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 504.
+ (/usr/local/texlive/2021/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
+))
+Package hyperref Info: Link coloring ON on input line 122.
+LaTeX Info: Redefining \ref on input line 122.
+LaTeX Info: Redefining \pageref on input line 122.
+LaTeX Info: Redefining \nameref on input line 122.
+LaTeX Info: Redefining \Ref on input line 122.
+LaTeX Info: Redefining \it@ocap on input line 122.
+LaTeX Info: Redefining \it@ccap on input line 122.
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: subfig package v1.3 is loaded.
+Package caption Info: listings package is loaded.
+Package caption Info: longtable package is loaded.
+ (/usr/local/texlive/2021/texmf-dist/tex/latex/caption/ltcaption.sty
+Package: ltcaption 2020/05/30 v1.4b longtable captions (AR)
+)
+Package caption Info: supertabular package is loaded.
+Package caption Info: End \AtBeginDocument code.
+
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: a4paper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* bindingoffset: 14.22636pt
+* modes: twoside 
+* h-part:(L,W,R)=(86.13797pt, 372.0pt, 125.14354pt)
+* v-part:(T,H,B)=(100.71263pt, 601.90594pt, 142.42827pt)
+* \paperwidth=597.50787pt
+* \paperheight=845.04684pt
+* \textwidth=372.0pt
+* \textheight=601.90594pt
+* \oddsidemargin=28.09435pt
+* \evensidemargin=52.87355pt
+* \topmargin=-1.62485pt
+* \headheight=12.0pt
+* \headsep=18.06749pt
+* \topskip=10.0pt
+* \footskip=25.29494pt
+* \marginparwidth=115.0pt
+* \marginparsep=7.0pt
+* \columnsep=10.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidetrue
+* \@mparswitchtrue
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+\c@lstlisting=\count492
+LaTeX Info: Redefining \microtypecontext on input line 122.
+Package microtype Info: Generating PDF output.
+Package microtype Info: Character protrusion enabled (level 2).
+Package microtype Info: Using default protrusion set `alltext'.
+Package microtype Info: Automatic font expansion enabled (level 2),
+(microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
+Package microtype Info: Using default expansion set `alltext-nott'.
+LaTeX Info: Redefining \showhyphens on input line 122.
+Package microtype Info: No adjustment of tracking.
+Package microtype Info: No adjustment of interword spacing.
+Package microtype Info: No adjustment of character kerning.
+(/usr/local/texlive/2021/texmf-dist/tex/latex/microtype/mt-cmr.cfg
+File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman (RS)
+)
+Package biblatex Info: Trying to load language 'italian'...
+Package biblatex Info: ... file 'italian.lbx' found.
+ (/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex/lbx/italian.lbx
+File: italian.lbx 2020/12/31 v3.16 biblatex localization (PK/MW)
+)
+Package biblatex Info: Trying to load language 'english'...
+Package biblatex Info: ... file 'english.lbx' found.
+ (/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex/lbx/english.lbx
+File: english.lbx 2020/12/31 v3.16 biblatex localization (PK/MW)
+)
+Package biblatex Info: Input encoding 'utf8' detected.
+Package biblatex Info: Automatic encoding selection.
+(biblatex)             Assuming data encoding 'utf8'.
+Package biblatex Info: Document encoding is UTF8 ....
+Package biblatex Info: ... and expl3
+(biblatex)             2021-02-18 L3 programming layer (loader) 
+(biblatex)             is new enough (at least 2020/04/06),
+(biblatex)             setting 'casechanger=expl3'.
+ (/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex/blx-case-expl3.sty
+Package: blx-case-expl3 2020/12/31 v3.16 expl3 case changing code for biblatex
+)
+\openout4 = `tesi.bcf'.
+
+Package biblatex Info: Trying to load bibliographic data...
+Package biblatex Info: ... file 'tesi.bbl' found.
+ (./tesi.bbl)
+Package biblatex Info: Reference section=0 on input line 122.
+Package biblatex Info: Reference segment=0 on input line 122.
+ (./inizio-fine/frontespizio.tex
+<immagini//logo-unipd.png, id=5, 943.525pt x 949.5475pt>
+File: immagini//logo-unipd.png Graphic file (type png)
+<use immagini//logo-unipd.png>
+Package pdftex.def Info: immagini//logo-unipd.png  used on input line 31.
+(pdftex.def)             Requested size: 169.62561pt x 170.71652pt.
+ [1
+
+\openout5 = `tesi.ist'.
+
+
+
+ <./immagini//logo-unipd.png>]) (./inizio-fine/colophon.tex) (./inizio-fine/dedica.tex [2
+
+]) (./inizio-fine/sommario.tex [3
+
+] [4
+
+]) (./inizio-fine/ringraziamenti.tex [5] [6
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 29--30
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 31--32
+
+ []
+
+) (./inizio-fine/indici.tex [7] [8
+
+] (./tesi.toc [9
+
+])
+\tf@toc=\write8
+\openout8 = `tesi.toc'.
+
+ [10] (./tesi.lof)
+\tf@lof=\write9
+\openout9 = `tesi.lof'.
+
+ (./tesi.lot)
+\tf@lot=\write10
+\openout10 = `tesi.lot'.
+
+ [11
+
+] [12
+
+]) (./capitoli/capitolo-1.tex
+Capitolo 1.
+
+Underfull \hbox (badness 10000) in paragraph at lines 10--11
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 12--14
+
+ []
+
+LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 16.
+(/usr/local/texlive/2021/texmf-dist/tex/latex/base/t1cmtt.fd
+File: t1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
+)
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `cmtt' (encoding: T1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+
+Underfull \hbox (badness 10000) in paragraph at lines 15--17
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--20
+
+ []
+
+
+LaTeX Warning: Hyper reference `cap:processi-metodologie' on page 1 undefined on input line 35.
+
+
+LaTeX Warning: Hyper reference `cap:analisi-requisiti' on page 1 undefined on input line 39.
+
+
+LaTeX Warning: Hyper reference `cap:progettazione-codifica' on page 1 undefined on input line 41.
+
+
+LaTeX Warning: Hyper reference `cap:verifica-validazione' on page 1 undefined on input line 43.
+
+[1
+
+
+
+]) (./capitoli/capitolo-2.tex [2]
+Capitolo 2.
+LaTeX Font Info:    Trying to load font information for T1+cmss on input line 10.
+(/usr/local/texlive/2021/texmf-dist/tex/latex/base/t1cmss.fd
+File: t1cmss.fd 2019/12/16 v2.5j Standard LaTeX font definitions
+)
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `cmss' (encoding: T1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+
+Underfull \hbox (badness 10000) in paragraph at lines 10--11
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--20
+
+ []
+
+) (./capitoli/capitolo-3.tex [3
+
+] [4
+
+]
+Capitolo 3.
+
+Underfull \hbox (badness 10000) in paragraph at lines 11--12
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 19--22
+
+ []
+
+[5] [6] [7]
+Underfull \vbox (badness 1337) has occurred while \output is active []
+
+ [8]
+Underfull \hbox (badness 10000) in paragraph at lines 89--91
+
+ []
+
+[9]
+Overfull \hbox (3.78238pt too wide) has occurred while \output is active
+\T1/cmr/m/n/10 10 \T1/cmr/m/sl/10 CAPITOLO 3.  PROTOCOLLI DI MODELLAZIONE E TRASFERIMENTO DATI
+ []
+
+[10]
+
+pdfTeX warning: pdflatex (file ./immagini/one_to_one.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
+<immagini/one_to_one.pdf, id=272, 246.11949pt x 69.55988pt>
+File: immagini/one_to_one.pdf Graphic file (type pdf)
+<use immagini/one_to_one.pdf>
+Package pdftex.def Info: immagini/one_to_one.pdf  used on input line 128.
+(pdftex.def)             Requested size: 186.0pt x 52.56992pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 125--134
+
+ []
+
+[11 <./immagini/one_to_one.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 142--143
+
+ []
+
+
+
+pdfTeX warning: pdflatex (file ./immagini/one_to_many.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
+<immagini/one_to_many.pdf, id=295, 203.66087pt x 197.33725pt>
+File: immagini/one_to_many.pdf Graphic file (type pdf)
+<use immagini/one_to_many.pdf>
+Package pdftex.def Info: immagini/one_to_many.pdf  used on input line 146.
+(pdftex.def)             Requested size: 148.79773pt x 144.17844pt.
+
+
+pdfTeX warning: pdflatex (file ./immagini/many_to_many.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
+<immagini/many_to_many.pdf, id=297, 247.02289pt x 192.82037pt>
+File: immagini/many_to_many.pdf Graphic file (type pdf)
+<use immagini/many_to_many.pdf>
+Package pdftex.def Info: immagini/many_to_many.pdf  used on input line 164.
+(pdftex.def)             Requested size: 148.79773pt x 116.14915pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 161--172
+
+ []
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+Overfull \hbox (3.78238pt too wide) has occurred while \output is active
+\T1/cmr/m/n/10 12 \T1/cmr/m/sl/10 CAPITOLO 3.  PROTOCOLLI DI MODELLAZIONE E TRASFERIMENTO DATI
+ []
+
+[12 <./immagini/one_to_many.pdf>] [13 <./immagini/many_to_many.pdf>]
+Overfull \hbox (3.78238pt too wide) has occurred while \output is active
+\T1/cmr/m/n/10 14 \T1/cmr/m/sl/10 CAPITOLO 3.  PROTOCOLLI DI MODELLAZIONE E TRASFERIMENTO DATI
+ []
+
+[14]) (./capitoli/capitolo-4.tex
+Underfull \hbox (badness 10000) in paragraph at lines 241--4
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 241--4
+
+ []
+
+[15] [16
+
+]
+Capitolo 4.
+
+Underfull \hbox (badness 10000) in paragraph at lines 11--12
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 15--18
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 23--25
+
+ []
+
+
+
+pdfTeX warning: pdflatex (file ./immagini/prototype_architecture.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
+<immagini/prototype_architecture.pdf, id=374, 400.19514pt x 398.78986pt>
+File: immagini/prototype_architecture.pdf Graphic file (type pdf)
+<use immagini/prototype_architecture.pdf>
+Package pdftex.def Info: immagini/prototype_architecture.pdf  used on input line 30.
+(pdftex.def)             Requested size: 223.20227pt x 222.42021pt.
+
+LaTeX Warning: Reference `tecnologie' on page 17 undefined on input line 34.
+
+[17]
+
+pdfTeX warning: pdflatex (file ./immagini/controller_service_repository.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
+<immagini/controller_service_repository.pdf, id=380, 292.69351pt x 233.07074pt>
+File: immagini/controller_service_repository.pdf Graphic file (type pdf)
+<use immagini/controller_service_repository.pdf>
+Package pdftex.def Info: immagini/controller_service_repository.pdf  used on input line 50.
+(pdftex.def)             Requested size: 297.60114pt x 236.98216pt.
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+Overfull \hbox (16.00052pt too wide) has occurred while \output is active
+\T1/cmr/m/n/10 18 \T1/cmr/m/sl/10 CAPITOLO 4.  INTRODUZIONE AI CASI D'USO PER L'ANALISI COMPARATIVA
+ []
+
+[18 <./immagini/prototype_architecture.pdf>]
+
+pdfTeX warning: pdflatex (file ./immagini/ER_prototype.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
+<immagini/ER_prototype.pdf, id=418, 451.6875pt x 301.72725pt>
+File: immagini/ER_prototype.pdf Graphic file (type pdf)
+<use immagini/ER_prototype.pdf>
+Package pdftex.def Info: immagini/ER_prototype.pdf  used on input line 69.
+(pdftex.def)             Requested size: 297.60114pt x 198.8091pt.
+[19 <./immagini/controller_service_repository.pdf>]
+Overfull \hbox (16.00052pt too wide) has occurred while \output is active
+\T1/cmr/m/n/10 20 \T1/cmr/m/sl/10 CAPITOLO 4.  INTRODUZIONE AI CASI D'USO PER L'ANALISI COMPARATIVA
+ []
+
+[20 <./immagini/ER_prototype.pdf>]
+<immagini/employee_entity.png, id=504, 758.835pt x 510.90875pt>
+File: immagini/employee_entity.png Graphic file (type png)
+<use immagini/employee_entity.png>
+Package pdftex.def Info: immagini/employee_entity.png  used on input line 94.
+(pdftex.def)             Requested size: 334.79773pt x 225.41641pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 107--109
+
+ []
+
+[21 <./immagini/employee_entity.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 115--117
+
+ []
+
+<immagini/employee_repository.png, id=513, 701.62125pt x 374.39874pt>
+File: immagini/employee_repository.png Graphic file (type png)
+<use immagini/employee_repository.png>
+Package pdftex.def Info: immagini/employee_repository.png  used on input line 128.
+(pdftex.def)             Requested size: 372.0pt x 198.51036pt.
+
+Overfull \hbox (16.00052pt too wide) has occurred while \output is active
+\T1/cmr/m/n/10 22 \T1/cmr/m/sl/10 CAPITOLO 4.  INTRODUZIONE AI CASI D'USO PER L'ANALISI COMPARATIVA
+ []
+
+[22]
+
+pdfTeX warning: pdflatex (file ./immagini/service_serviceImpl.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
+<immagini/service_serviceImpl.pdf, id=520, 191.01363pt x 198.7425pt>
+File: immagini/service_serviceImpl.pdf Graphic file (type pdf)
+<use immagini/service_serviceImpl.pdf>
+Package pdftex.def Info: immagini/service_serviceImpl.pdf  used on input line 144.
+(pdftex.def)             Requested size: 111.60114pt x 116.11984pt.
+[23 <./immagini/employee_repository.png> <./immagini/service_serviceImpl.pdf>]
+Package mdframed Info: mdframed works in twoside mode on input line 155.
+<immagini/employeeServiceImpl.png, id=537, 873.76437pt x 464.73625pt>
+File: immagini/employeeServiceImpl.png Graphic file (type png)
+<use immagini/employeeServiceImpl.png>
+Package pdftex.def Info: immagini/employeeServiceImpl.png  used on input line 156.
+(pdftex.def)             Requested size: 351.20001pt x 186.7918pt.
+Package mdframed Info: mdframed inside float 
+ mdframed uses option nobreak mdframed on input line 157.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 157.
+Package mdframed Info: mdframed works in twoside mode on input line 171.
+<immagini/EmployeeController.png, id=540, 1066.48438pt x 580.66937pt>
+File: immagini/EmployeeController.png Graphic file (type png)
+<use immagini/EmployeeController.png>
+Package pdftex.def Info: immagini/EmployeeController.png  used on input line 172.
+(pdftex.def)             Requested size: 351.20001pt x 191.21391pt.
+Package mdframed Info: mdframed inside float 
+ mdframed uses option nobreak mdframed on input line 173.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 173.
+
+Overfull \hbox (16.00052pt too wide) has occurred while \output is active
+\T1/cmr/m/n/10 24 \T1/cmr/m/sl/10 CAPITOLO 4.  INTRODUZIONE AI CASI D'USO PER L'ANALISI COMPARATIVA
+ []
+
+[24 <./immagini/employeeServiceImpl.png>] [25 <./immagini/EmployeeController.png>]
+Package mdframed Info: mdframed works in twoside mode on input line 208.
+<immagini/SmokeTest.png, id=556, 509.40312pt x 417.05812pt>
+File: immagini/SmokeTest.png Graphic file (type png)
+<use immagini/SmokeTest.png>
+Package pdftex.def Info: immagini/SmokeTest.png  used on input line 209.
+(pdftex.def)             Requested size: 245.83893pt x 201.27382pt.
+Package mdframed Info: mdframed inside float 
+ mdframed uses option nobreak mdframed on input line 210.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 210.
+
+Overfull \hbox (16.00052pt too wide) has occurred while \output is active
+\T1/cmr/m/n/10 26 \T1/cmr/m/sl/10 CAPITOLO 4.  INTRODUZIONE AI CASI D'USO PER L'ANALISI COMPARATIVA
+ []
+
+[26]
+Package mdframed Info: mdframed works in twoside mode on input line 219.
+
+
+pdfTeX warning: pdflatex (file ./immagini/EmployeeControllerTest.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
+<immagini/EmployeeControllerTest.pdf, id=563, 1218.5525pt x 560.49402pt>
+File: immagini/EmployeeControllerTest.pdf Graphic file (type pdf)
+<use immagini/EmployeeControllerTest.pdf>
+Package pdftex.def Info: immagini/EmployeeControllerTest.pdf  used on input line 220.
+(pdftex.def)             Requested size: 351.20001pt x 161.53847pt.
+Package mdframed Info: mdframed inside float 
+ mdframed uses option nobreak mdframed on input line 221.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 221.
+[27 <./immagini/SmokeTest.png> <./immagini/EmployeeControllerTest.pdf>]
+
+LaTeX Warning: Reference `create-employee' on page 28 undefined on input line 233.
+
+Package mdframed Info: mdframed works in twoside mode on input line 237.
+<immagini/createEmployee.png, id=582, 808.01875pt x 286.57062pt>
+File: immagini/createEmployee.png Graphic file (type png)
+<use immagini/createEmployee.png>
+Package pdftex.def Info: immagini/createEmployee.png  used on input line 238.
+(pdftex.def)             Requested size: 351.20001pt x 124.55664pt.
+Package mdframed Info: mdframed inside float 
+ mdframed uses option nobreak mdframed on input line 239.
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 239.
+./capitoli/capitolo-4.tex:240: Undefined control sequence.
+<argument> ...createEmployee} della classe \texit 
+                                                  {EmployeeControllerTest}.\...
+l.240 ...a classe \texit{EmployeeControllerTest}.}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./capitoli/capitolo-4.tex:240: Undefined control sequence.
+<argument> ...createEmployee} della classe \texit 
+                                                  {EmployeeControllerTest}.
+l.240 ...a classe \texit{EmployeeControllerTest}.}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./capitoli/capitolo-4.tex:240: Undefined control sequence.
+<argument> ...createEmployee} della classe \texit 
+                                                  {EmployeeControllerTest}.
+l.240 ...a classe \texit{EmployeeControllerTest}.}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 246--247
+
+ []
+
+
+Overfull \hbox (16.00052pt too wide) has occurred while \output is active
+\T1/cmr/m/n/10 28 \T1/cmr/m/sl/10 CAPITOLO 4.  INTRODUZIONE AI CASI D'USO PER L'ANALISI COMPARATIVA
+ []
+
+[28 <./immagini/createEmployee.png>] [29]) (./capitoli/capitolo-5.tex
+Overfull \hbox (16.00052pt too wide) has occurred while \output is active
+\T1/cmr/m/n/10 30 \T1/cmr/m/sl/10 CAPITOLO 4.  INTRODUZIONE AI CASI D'USO PER L'ANALISI COMPARATIVA
+ []
+
+[30]
+Capitolo 5.
+
+Underfull \hbox (badness 10000) in paragraph at lines 9--14
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 20--29
+
+ []
+
+[31
+
+]) (./capitoli/capitolo-6.tex
+Overfull \hbox (10.23804pt too wide) has occurred while \output is active
+\T1/cmr/m/n/10 32 \T1/cmr/m/sl/10 CAPITOLO 5.  ANALISI COMPARATIVA DEI PROTOCOLLI REST E GRAPHQL
+ []
+
+[32]
+Capitolo 6.
+) (./capitoli/capitolo-7.tex [33
+
+] [34
+
+]
+Capitolo 7.
+) (./capitoli/capitolo-A.tex [35] [36
+
+]
+Appendice A.
+) [37] [38
+
+]
+No file tesi.acr.
+No file tesi.gls.
+(./inizio-fine/bibliografia.tex [39] [40
+
+]) [41
+
+] (./tesi.aux)
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: There were multiply-defined labels.
+
+Package logreq Info: Writing requests to 'tesi.run.xml'.
+\openout1 = `tesi.run.xml'.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 37159 strings out of 478994
+ 634333 string characters out of 5858183
+ 1463089 words of memory out of 5000000
+ 53462 multiletter control sequences out of 15000+600000
+ 439815 words of font info for 223 fonts, out of 8000000 for 9000
+ 1143 hyphenation exceptions out of 8191
+ 102i,8n,125p,1129b,3012s stack positions out of 5000i,500n,10000p,200000b,80000s
+pdfTeX warning (dest): name{glo:api} has been referenced but does not exist, replaced by a fixed one
+
+{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfbx0900.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfbx1728.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfbx2074.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfbx2488.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfcc1000.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfcc1200.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfcc1440.p
+fb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm0600.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm0700.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm0800.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm0900.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfsi1000.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfsl1000.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfsl1200.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfti0800.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfti0900.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfti1000.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfti1200.
+pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sftt1000.pfb>
+Output written on tesi.pdf (53 pages, 1809456 bytes).
+PDF statistics:
+ 936 PDF objects out of 1000 (max. 8388607)
+ 782 compressed objects within 8 object streams
+ 174 named destinations out of 1000 (max. 500000)
+ 70576 words of extra memory for PDF output out of 74296 (max. 10000000)
+

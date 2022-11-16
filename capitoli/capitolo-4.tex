@@ -85,7 +85,7 @@ Ciascuna entità è caratterizzata da i campi presenti in figura \ref{ER-prototy
 Durante la realizzazione viene seguito il percorso inverso rispetto a quanto visto nell'immagine \ref{controller-service-repository}, infatti la realizzazione avviene partendo dallo strato di persistenza, dunque dalla creazione delle entità e delle repositoryes.
 \paragraph{Entità e repository}
 A ciascun entità nel database viene fatta corrispondere una classe in Java. Per questo devono essere realizzate 4 classi rappresentanti le entità Employee, Project, Department e Site.\\
-Ciascuna classe entità implementa la classe \textit{Serializable}, così facendo è possibile serializzare i dati in flussi di byte. La serializzazione viene utilizzata poiché si tratta di dati che dovranno essere memorizzati nel database, dunque è necessario serializzarli poiché abbandonano la Java Virtual Machine. Viene inoltre utilizzato un \textit{serialVersionUID} per attribuire una versione a ciascuna classe di entità serializzabile, necessario per riconoscere quando nella comunicazione con il database o con altri moduli esterni la versione dell'entità risulta differente, si tratta dunque di entità che non corrispondono totalmente, in quel caso viene ritornato un erorre \texit{InvalidClassException}.\\
+Ciascuna classe entità implementa la classe \textit{Serializable}, così facendo è possibile serializzare i dati in flussi di byte. La serializzazione viene utilizzata poiché si tratta di dati che dovranno essere memorizzati nel database, dunque è necessario serializzarli poiché abbandonano la Java Virtual Machine. Viene inoltre utilizzato un \textit{serialVersionUID} per attribuire una versione a ciascuna classe di entità serializzabile, necessario per riconoscere quando nella comunicazione con il database o con altri moduli esterni la versione dell'entità risulta differente, si tratta dunque di entità che non corrispondono totalmente, in quel caso viene ritornato un erorre \textit{InvalidClassException}.\\
 Le quattro entità descritte quindi nel capitolo \ref{entity-relation} dovranno essere implementate come classi, segue l'esempio dell'implementazione della classe Employee:
 %%% IMG
 \FloatBarrier
@@ -161,7 +161,7 @@ Di seguito, in figura \ref{employeeServiceImpl}, viene riportato un esempio di s
 \FloatBarrier
 %%% IMG
 In figura \ref{employeeServiceImpl} è possibile notare come la classe sia caratterizzata dall'annotazione \textbf{@Service} la quale viene utilizzata per indicare classi che contengono la business logic e viene utilizzata dunque per marcare la classe come service provider.\\
-Continuando ed andando ad analizzare i campi dati è possibile visualizzare la dipendenza che la classe \textit{EmployeeServicImpl} ha con la repository \textit{EmployeeRepository}. In Spring questa dipendenza viene risolta con l'annotazione \texbf{@Autowired}, la quale permette di eseguire la dependency injection del bean \textit{employeeRepository}.\\
+Continuando ed andando ad analizzare i campi dati è possibile visualizzare la dipendenza che la classe \textit{EmployeeServicImpl} ha con la repository \textit{EmployeeRepository}. In Spring questa dipendenza viene risolta con l'annotazione \textbf{@Autowired}, la quale permette di eseguire la dependency injection del bean \textit{employeeRepository}.\\
 Infine sono presenti tutti i metodi, ciascuno con annotazione \textbf{@Override} poiché sono stati dichiarati anche nell'interfaccia implementata da \textit{EmployeeServiceImpl}. Sono stati resi disponibili metodi semplici che vanno ad invocare, grazie alla dipendenza con la repository, le query già disponibili con la \textit{JPARepository<T, ID>} e la query vista precedenemente \textit{SelByBornInRage}.
 \paragraph{Controller}
 Infine troviamo i controller, ovvero l'ultimo strato che si occupa di gestire le richieste che il server riceve attraverso il protocollo HTTP, e di mapparle inoltre ai relativi metodi. In figura \ref{employeeController} il controller di Employee, ovvero la classe \textit{EmployeeController}:
@@ -171,7 +171,7 @@ Infine troviamo i controller, ovvero l'ultimo strato che si occupa di gestire le
 \centering
 \includegraphics[width=1\linewidth]{immagini/EmployeeController.png}
 \end{mdframed}
-\caption{Classe EmployeeServiceImpl.}
+\caption{Classe EmployeeController.}
 \label{employeeController}
 \end{figure}
 \FloatBarrier
@@ -196,35 +196,61 @@ Sono state rese dunque disponibili le seguenti query:
   \item \textbf{createEmployee}: aggiunta di un nuovo impiegato;
   \item \textbf{deleteEmployee}: rimozione di un impiegato.
 \end{itemize}
-\textcolor{red}{Parlare della gestione delle eccezioni.........}
+\textcolor{red}{Parlare della gestione delle eccezioni con @ExceptionHandler, se ho tempo.}
 \paragraph{Testing API}
 Essendo un prototipo incentrato sulla realizzazione delle API, sono stati svolti in maniera semplice e veloce i test per gli strati di servizio e repository, dunque non verranno riportati. Per quanto riguarda i testi sui controller stati svolti dei test più approfonditi.\\
-Per eseguire i test sui metodi del controller è stato scelto di utilizzare il framework JUnit5 \textcolor{red}{(RINDIRIZZARE AL CAPITOLO TECNOLOGIE)} ed è stato utilizzato il classico pattern \textit{Arrange - Act - Assert} per la realizzazione di ciascun test.\\
-Prima di procedere visualizzando i test bisogna premettere che è stato utilizzato un database identico, ma con dati differenti al fine di poter testare quanto risposto dai metodi del controller. \\
-Il primo test realizzato è uno \textit{SmokeTest} e da qui il nome della classe realizzata per testare che il contesto Spring abbia creato i controller dell'applicazione. In figura \ref{smoke-test} la classe \textit{SmokeTest} con una dipendenza per ciascun controller risolta con la dependency injection grazie all'annotazione \textbf{@Autowired}. Infine un metodo per la verifica sulla presenza o meno di ciascun controller.
+Per eseguire i test sui metodi del controller è stato scelto di utilizzare il framework JUnit5 \textcolor{red}{(REINDIRIZZARE AL CAPITOLO TECNOLOGIE)}.\\
+Il primo test realizzato è uno \textit{SmokeTest} e da qui il nome della classe realizzata per testare che il contesto Spring abbia effettivamente creato i controller dell'applicazione. In figura \ref{smoke-test} la classe \textit{SmokeTest} con una dipendenza per ciascun controller risolta con la dependency injection grazie all'annotazione \textbf{@Autowired}. Sono poi presenti quattro metodi, uno per controller, per verificarne se sono stati creati nel contesto. Infine ciascun metodo deve essere annotato con \textbf{@Test} per indicare al framework JUnit5 che si tratta di un metodo di test.\\
+Come possiamo notare sempre nell'immagine \ref{smoke-test} è presente l'annotazione \textbf{@SpringBootTest}, necessaria per indicare a Spring Boot dove si trova la principale classe di configurazione, e dunque avviare il contesto Spring. Da notare inoltre che ciascun metodo è dichiarato in maniera da poter sollevare eccezzioni se necessario.
 \FloatBarrier
 \begin{figure}[!ht]
 \begin{mdframed}
 \centering
-\includegraphics[width=1\linewidth]{immagini/SmokeTest.png}
+\includegraphics[width=0.7\linewidth]{immagini/SmokeTest.png}
 \end{mdframed}
 \caption{Classe \textit{SmokeTest} sulla creazione dei controller.}
 \label{smoke-test}
 \end{figure}
 \FloatBarrier
-Passiamo ora ai test sui singoli metodi dei controller. Nell'immagine \ref{EmployeeControllerTest} l'esempio di un test \textit{listEmployeeByNameTest} della classe di test \textit{EmployeeControllerTest}:
+Passiamo ora ai test metodi del controller \textit{EmployeeController}. Nell'immagine \ref{employee-controller-test} è raffigurata la classe \textit{EmployeeControllerTest} con metodi i vari test da effettuare sul controller.
 \FloatBarrier
 \begin{figure}[!ht]
 \begin{mdframed}
 \centering
 \includegraphics[width=1\linewidth]{immagini/EmployeeControllerTest.pdf}
 \end{mdframed}
-\caption{Test sul metodo \textit{listEmployeeByName} del controller \textit{EmployeeController}.}
-\label{employeeController}
+\caption{Classe \textit{EmployeeControllerTest}.}
+\label{employee-controller-test}
 \end{figure}
 \FloatBarrier
+Nell'immagine \ref{employee-controller-test} la classe \textit{EmployeeControllerTest} ha due annotazioni: la prima è \textbf{@WebMvcTest}, utile poiché permette di caricare nel contesto di test esclusivamente il controller di Employee e inoltre permette di tralsciare tutte le configurazioni classiche per lasciar spazio alle configurazioni di test, mentre \textbf{@ExtendWhit} permette di integrare nel contesto di test la \textit{SpringExtension} utile poiché fornisce supporto per il testing \textcolor{red}{(Non necessaria qui forse...)}.\\
+Nella classe di test \textit{EmployeeControllerTest} sono dichiarate tre dipendenze fondamentali:
+\begin{itemize}
+  \item \textbf{MockMvc}: dipendenza risolta cona la dependency injection, viene utilizzata sucessivamente per simulare chiamate HTTP e verificarne la risposta;
+  \item \textbf{ObjectMapper}: dipendenza risolta con la dependency injection, oggetto utilizzato nei test per la serializzazione e deserializzazione degli oggetti JSON in oggetti java e viceversa;
+  \item \textbf{EmployeeService}: servizio che viene utilizzato nei test, per questo motivo ha l'annotazione \textbf{@MockBean}, la quale permette di aggiungere un mock dell'oggetto \textit{EmployeeService}.
+\end{itemize}
+Per finire la sezione sulle REST API viene di seguito riportato in figura \ref{create-employee} l'implementazione nel dettaglio del metodo di test \textit{createEmployee} seguendo il pattern \textit{Arrange - Act - Assert}.
+\FloatBarrier
+\begin{figure}[!ht]
+\begin{mdframed}
+\centering
+\includegraphics[width=1\linewidth]{immagini/createEmployee.png}
+\end{mdframed}
+\caption{Metodo di test \textit{createEmployee} della classe \texit{EmployeeControllerTest}.}
+\label{employee-controller-test}
+\end{figure}
+\FloatBarrier
+Nella prima parte (arrange) viene creato un nuovo Employee e gli viene assegnato un nome, un cognome e una data di nascita, successivamente nella fase successiva (act), viene eseguita la chiamata GET utilizzando l'oggetto \textit{MockMvc} e passando nel body della richiesta HTTP l'oggetto Java Employee trasformato in JSON grazie all'\textit{ObjectMapper}. Infine nella fase finale (Assert), si verifica che lo stato di ritorno sia \textit{created}, in caso contrario il test fallisce.
 \subsubsection*{Frontend}
-Piccola spiegazione su perché vengono tralasciati aspetti fondamentali nella realizzazione del frontend (ad es. analisi dell'utente, accessibilità, desing, ecc...), il motivo è che lo scopo del prototipo è imparare come implementare e modificare lo strato di servizio (nel mio caso) frontend per la gestione delle chiamate API al backend (sia in REST che GraphQL) al fine di testarle e di sapersi muovere su SushiLab.
+Per quanto riguarda il frontend dell'applicativo per la sua realizzazione è stato utilizzato il framework Angular. Si tratta di un frontend minimale, realizzato con lo solo scopo di comprendere e sviluppare la parte di comunicazione con il server utilizzando al massimo le REST API disponibili. Per questo motivo non è stata effettuata alcuna analisi sulla possibile utenza e sono stati tralascati completamente aspetti quali il design e l'accessibilità.\\
+
+
+
+
+
+
+%Piccola spiegazione su perché vengono tralasciati aspetti fondamentali nella realizzazione del frontend (ad es. analisi dell'utente, accessibilità, desing, ecc...), il motivo è che lo scopo del prototipo è imparare come implementare e modificare lo strato di servizio (nel mio caso) frontend per la gestione delle chiamate API al backend (sia in REST che GraphQL) al fine di testarle e di sapersi muovere su SushiLab.
 \paragraph{Analisi su funzionalità}
 Breve analisi sul perché fornire nell'interfaccia grafica la possibilità di certe azioni (ad es. visualizzazione tutti employee, ricerca per id, per nome, ecc...). Ovviamente realizzate per permettere l'utilizzo di tutte le chiamate API fornite da back-end, sia in GraphQL che REST. Spiego che il protitipo è prima stato realizzato in REST per poi farne la migrazione in GraphQL
 \paragraph{Implementazione FE}
