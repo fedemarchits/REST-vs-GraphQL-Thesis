@@ -198,15 +198,26 @@ Sono state rese dunque disponibili le seguenti query:
 \end{itemize}
 \textcolor{red}{Parlare della gestione delle eccezioni.........}
 \paragraph{Testing API}
-Essendo un prototipo incentrato sulla realizzazione delle API, sono stati svolti in maniera semplice e veloce i test per gli strati di servizio e repository, mentre sono stati svolti dei test più approfonditi per quanto riguarda lo strato di controller.\\
+Essendo un prototipo incentrato sulla realizzazione delle API, sono stati svolti in maniera semplice e veloce i test per gli strati di servizio e repository, dunque non verranno riportati. Per quanto riguarda i testi sui controller stati svolti dei test più approfonditi.\\
 Per eseguire i test sui metodi del controller è stato scelto di utilizzare il framework JUnit5 \textcolor{red}{(RINDIRIZZARE AL CAPITOLO TECNOLOGIE)} ed è stato utilizzato il classico pattern \textit{Arrange - Act - Assert} per la realizzazione di ciascun test.\\
 Prima di procedere visualizzando i test bisogna premettere che è stato utilizzato un database identico, ma con dati differenti al fine di poter testare quanto risposto dai metodi del controller. \\
-È stata creata una una classe per ciascun controller al fine di testarne tutti i metodi. Nell'immagine \ref{EmployeeControllerTest} l'esempio di un test \textit{listEmployeeByNameTest} della classe di test \textit{EmployeeControllerTest}:
+Il primo test realizzato è uno \textit{SmokeTest} e da qui il nome della classe realizzata per testare che il contesto Spring abbia creato i controller dell'applicazione. In figura \ref{smoke-test} la classe \textit{SmokeTest} con una dipendenza per ciascun controller risolta con la dependency injection grazie all'annotazione \textbf{@Autowired}. Infine un metodo per la verifica sulla presenza o meno di ciascun controller.
 \FloatBarrier
 \begin{figure}[!ht]
 \begin{mdframed}
 \centering
-\includegraphics[width=1\linewidth]{immagini/EmployeeControllerTest.png}
+\includegraphics[width=1\linewidth]{immagini/SmokeTest.png}
+\end{mdframed}
+\caption{Classe \textit{SmokeTest} sulla creazione dei controller.}
+\label{smoke-test}
+\end{figure}
+\FloatBarrier
+Passiamo ora ai test sui singoli metodi dei controller. Nell'immagine \ref{EmployeeControllerTest} l'esempio di un test \textit{listEmployeeByNameTest} della classe di test \textit{EmployeeControllerTest}:
+\FloatBarrier
+\begin{figure}[!ht]
+\begin{mdframed}
+\centering
+\includegraphics[width=1\linewidth]{immagini/EmployeeControllerTest.pdf}
 \end{mdframed}
 \caption{Test sul metodo \textit{listEmployeeByName} del controller \textit{EmployeeController}.}
 \label{employeeController}
