@@ -254,7 +254,7 @@ L'architettura della web application realizzata in Angular prevede l'utilizzo de
 \label{angular-architecture}
 \end{figure}
 \FloatBarrier
-Come visibile in figura \ref{angular-architecture} l'utente interagisce con la user interface (View) e ne modifica lo stato, 
+Come visibile in figura \ref{angular-architecture} l'utente interagisce con la user interface (View) e ne modifica lo stato. Le resources (Model) vengono modificate dai services (Controller) anche su invocazione dei servizi da parte della user interface. I services sono coloro che si occupano della comunicazione con il server di backend attraverso le richiesta e risposte HTTP.
 \paragraph{Funzionalità}
 Per le ragioni spiegate precedentemente saranno rese disponibili nell'interfaccia grafica quelle funzionalita che andranno a permettere il massimo utilizzo delle richieste API al backend.\\
 Come fatto in precedenza, verrà mostrata e spiegata esclusivamente la parte riguardante l'entità Employee per questioni di praticità, questo perché le altre entità sono state trattate in maniera analoga.\\
@@ -265,8 +265,67 @@ Dunque, in linea con le query rese disponibili dal backend riportate sulla sezio
   \item \textbf{Aggiornamento di un Employee}: deve essere possibile aggiornare i campi dati di un impiegato specificandone l'id e il/gli campo/i da modificare;
   \item \textbf{Eliminazione di un Employee}: deve essere possibile eliminare un impiegato specificandone l'id.
 \end{itemize}
+Nel paragrafo sucessivo verrà mostrato come sono state implementate le funzionalità appena introdotte.
 \paragraph{Implementazione FE}
-
+Inizialmente sono state create le interfacce per poter creare gli oggetti corrispondenti alle quattro entità del prototipo. Di seguito in figura \ref{employee-interface} l'esempio della dichiarazione della interfaccia dell'entità Employee:
+\FloatBarrier
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=0.3\linewidth]{immagini/employeeInterface.png}
+\caption{Interfaccia di Employee.}
+\label{employee-interface}
+\end{figure}
+\FloatBarrier
+Analogamente sono state create le interfacce delle altre entità.\\
+Proseguendo, è stata realizzata la realizzazione dell'interaccia grafica inserendo nella pagina iniziale la possibilità di effettuare due scelte: la prima scelta riguarda l'entità, mentre la seconda riguarda l'operazione che si vuole eseguire sull'entità selezioanta. In figura \ref{first-page} è possibile visualizzare la prima pagina:
+\FloatBarrier
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=0.7\linewidth]{immagini/firstPage.png}
+\caption{Prima pagina della Web Application.}
+\label{first-page}
+\end{figure}
+\FloatBarrier
+Una volta selezionate le due opzioni viene aggiunta dinamicamente la possibilità di specificare i dettagli della richiesta. Considerando solo l'entità Employee per le ragioni spiegate precedentemente, vengono di seguito mostrate le diverse interfacce che variano al variare della scelta selezionata e il servizio che permette di eseguire la chiamata alle API del backend.\\
+In figura \ref{get-employee}abbiamo il caso in cui è stato selezionata l'entità Employee con operazione GET:
+\FloatBarrier
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=0.7\linewidth]{immagini/getEmployee.png}
+\caption{Opzioni disponibili con operazione GET selezionata.}
+\label{get-employee}
+\end{figure}
+\FloatBarrier
+Viene dunque visualizzata immediatamente una lista contenente tutti gli impiegati, per ciascun impiegato vengono mostrati id, nome e cognome, salario e data di nascita. Successivamnete viene visualizzata la scelta riguardante il campo per il quale eseguire la ricerca, in questo caso è stato scelto il nome, dunque inserendo nell'apposito campo di input il nome e selezionendo il bottone è possibile effettuare la ricerca per nome.\\
+La scelta dell'opzione get permette alla vista di invocare immediatamente il servizio che esegue una chiamata alle REST API del backend per ricevere la lista di tutti gli employee, stessa cosa accade anche quando premiamo il bottone "Esegui ricerca " dopo aver inserito il nome. Il servizio in questione si chiama \textit{EmployeeService} e di seguito in figura \ref{employee-service} ne è riportata l'implementazione:
+\FloatBarrier
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=0.6\linewidth]{immagini/employeeService.png}
+\caption{Classe \textit{EmployeeService}.}
+\label{employee-service}
+\end{figure}
+\FloatBarrier
+Il servizio realizzato per le chiamate alle REST API del backend, permette di essere invocato direttamente dalla vista alla selezione di un elemento HTML.\\\\
+Proseguendo verranno visualizzati ora i casi in cui si sceglie come operazione quella di modificare o aggiungere un nuovo impiegato. In figura \ref{insert-update} è possibile visualizzare la porzione di interfaccia grafica per l'inserimento o l'aggiornamento di un impiegato:
+\FloatBarrier
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=0.3\linewidth]{immagini/postEmployee.png}
+\caption{Opzioni disponibili con operazione Insert/Update selezionata.}
+\label{post-employee}
+\end{figure}
+\FloatBarrier
+Dunque una volta inseriti tutti i valori per ciascun campo, tranne il campo ID che viene generato automaticamente, è possibile aggiungere un nuovo impiegato. Qualora invece si specificasse anche l'id, allora si tratterebbe di una modifica di un employee già esistente, questo solo se l'id inserito corrisponde veramente all'id di un employee. Anche in questo caso selezionando il bottone "Insert or update Employee!" viene invocato il metodo del servizio riportato in figura \ref{employee-service}.\\
+Per finire in figura \ref{delete-employee} il caso in cui venga selezionata l'opzione delete:
+\FloatBarrier
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=0.3\linewidth]{immagini/deleteEmployee.png}
+\caption{Opzioni disponibili con operazione Delete selezionata.}
+\label{delete-employee}
+\end{figure}
+\FloatBarrier
 %Come è stato realizzato il FE del protitipo: main components, strato servizio (con chiamate alle API del BE), ecc...
 %Desing pattern adottati (ad es. MVC, Dependency Injection, principi SOLID, Signleton, ecc...).
 \paragraph{Testing FE}
