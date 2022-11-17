@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.12.10)  16 NOV 2022 15:40
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.12.10)  17 NOV 2022 11:15
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1080,11 +1080,7 @@ Package csquotes Info: Checking for multilingual support...
 Package csquotes Info: ... found 'babel' package.
 Package csquotes Info: Adjusting default style.
 Package csquotes Info: Redefining alias 'default' -> 'italian'.
- (./tesi.aux
-
-LaTeX Warning: Label `employee-controller-test' multiply defined.
-
-)
+ (./tesi.aux)
 \openout1 = `tesi.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 122.
@@ -1582,11 +1578,8 @@ Package mdframed Info: mdframed inside float
 Package mdframed Info: mdframed inside a box 
  mdframed uses option nobreak mdframed on input line 221.
 [27 <./immagini/SmokeTest.png> <./immagini/EmployeeControllerTest.pdf>]
-
-LaTeX Warning: Reference `create-employee' on page 28 undefined on input line 233.
-
 Package mdframed Info: mdframed works in twoside mode on input line 237.
-<immagini/createEmployee.png, id=582, 808.01875pt x 286.57062pt>
+<immagini/createEmployee.png, id=583, 808.01875pt x 286.57062pt>
 File: immagini/createEmployee.png Graphic file (type png)
 <use immagini/createEmployee.png>
 Package pdftex.def Info: immagini/createEmployee.png  used on input line 238.
@@ -1595,55 +1588,32 @@ Package mdframed Info: mdframed inside float
  mdframed uses option nobreak mdframed on input line 239.
 Package mdframed Info: mdframed inside a box 
  mdframed uses option nobreak mdframed on input line 239.
-./capitoli/capitolo-4.tex:240: Undefined control sequence.
-<argument> ...createEmployee} della classe \texit 
-                                                  {EmployeeControllerTest}.\...
-l.240 ...a classe \texit{EmployeeControllerTest}.}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-./capitoli/capitolo-4.tex:240: Undefined control sequence.
-<argument> ...createEmployee} della classe \texit 
-                                                  {EmployeeControllerTest}.
-l.240 ...a classe \texit{EmployeeControllerTest}.}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-./capitoli/capitolo-4.tex:240: Undefined control sequence.
-<argument> ...createEmployee} della classe \texit 
-                                                  {EmployeeControllerTest}.
-l.240 ...a classe \texit{EmployeeControllerTest}.}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
 
 Underfull \hbox (badness 10000) in paragraph at lines 246--247
 
  []
 
 
+
+pdfTeX warning: pdflatex (file ./immagini/angular_architecture.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
+<immagini/angular_architecture.pdf, id=584, 462.92952pt x 202.7575pt>
+File: immagini/angular_architecture.pdf Graphic file (type pdf)
+<use immagini/angular_architecture.pdf>
+Package pdftex.def Info: immagini/angular_architecture.pdf  used on input line 252.
+(pdftex.def)             Requested size: 372.0pt x 162.93636pt.
+
 Overfull \hbox (16.00052pt too wide) has occurred while \output is active
 \T1/cmr/m/n/10 28 \T1/cmr/m/sl/10 CAPITOLO 4.  INTRODUZIONE AI CASI D'USO PER L'ANALISI COMPARATIVA
  []
 
-[28 <./immagini/createEmployee.png>] [29]) (./capitoli/capitolo-5.tex
+[28 <./immagini/createEmployee.png>] [29 <./immagini/angular_architecture.pdf>]
 Overfull \hbox (16.00052pt too wide) has occurred while \output is active
 \T1/cmr/m/n/10 30 \T1/cmr/m/sl/10 CAPITOLO 4.  INTRODUZIONE AI CASI D'USO PER L'ANALISI COMPARATIVA
  []
 
-[30]
+[30]) (./capitoli/capitolo-5.tex [31] [32
+
+]
 Capitolo 5.
 
 Underfull \hbox (badness 10000) in paragraph at lines 9--14
@@ -1655,62 +1625,57 @@ Underfull \hbox (badness 10000) in paragraph at lines 20--29
 
  []
 
-[31
-
-]) (./capitoli/capitolo-6.tex
+[33]) (./capitoli/capitolo-6.tex
 Overfull \hbox (10.23804pt too wide) has occurred while \output is active
-\T1/cmr/m/n/10 32 \T1/cmr/m/sl/10 CAPITOLO 5.  ANALISI COMPARATIVA DEI PROTOCOLLI REST E GRAPHQL
+\T1/cmr/m/n/10 34 \T1/cmr/m/sl/10 CAPITOLO 5.  ANALISI COMPARATIVA DEI PROTOCOLLI REST E GRAPHQL
  []
 
-[32]
+[34]
 Capitolo 6.
-) (./capitoli/capitolo-7.tex [33
+) (./capitoli/capitolo-7.tex [35
 
-] [34
+] [36
 
 ]
 Capitolo 7.
-) (./capitoli/capitolo-A.tex [35] [36
+) (./capitoli/capitolo-A.tex [37] [38
 
 ]
 Appendice A.
-) [37] [38
+) [39] [40
 
 ]
 No file tesi.acr.
 No file tesi.gls.
-(./inizio-fine/bibliografia.tex [39] [40
+(./inizio-fine/bibliografia.tex [41] [42
 
-]) [41
+]) [43
 
 ] (./tesi.aux)
 
 LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: There were multiply-defined labels.
 
 Package logreq Info: Writing requests to 'tesi.run.xml'.
 \openout1 = `tesi.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 37159 strings out of 478994
- 634333 string characters out of 5858183
- 1463089 words of memory out of 5000000
- 53462 multiletter control sequences out of 15000+600000
- 439815 words of font info for 223 fonts, out of 8000000 for 9000
+ 37167 strings out of 478994
+ 634608 string characters out of 5858183
+ 1463210 words of memory out of 5000000
+ 53468 multiletter control sequences out of 15000+600000
+ 439744 words of font info for 222 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
- 102i,8n,125p,1129b,3012s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 102i,8n,125p,1129b,2994s stack positions out of 5000i,500n,10000p,200000b,80000s
 pdfTeX warning (dest): name{glo:api} has been referenced but does not exist, replaced by a fixed one
 
 {/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfbx0900.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfbx1728.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfbx2074.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfbx2488.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfcc1000.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfcc1200.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfcc1440.p
 fb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm0600.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm0700.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm0800.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm0900.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfsi1000.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfsl1000.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfsl1200.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfti0800.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfti0900.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfti1000.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfti1200.
 pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sftt1000.pfb>
-Output written on tesi.pdf (53 pages, 1809456 bytes).
+Output written on tesi.pdf (55 pages, 1819867 bytes).
 PDF statistics:
- 936 PDF objects out of 1000 (max. 8388607)
- 782 compressed objects within 8 object streams
- 174 named destinations out of 1000 (max. 500000)
- 70576 words of extra memory for PDF output out of 74296 (max. 10000000)
+ 1011 PDF objects out of 1200 (max. 8388607)
+ 850 compressed objects within 9 object streams
+ 177 named destinations out of 1000 (max. 500000)
+ 70573 words of extra memory for PDF output out of 74296 (max. 10000000)
 

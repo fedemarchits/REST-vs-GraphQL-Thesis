@@ -237,29 +237,40 @@ Per finire la sezione sulle REST API viene di seguito riportato in figura \ref{c
 \centering
 \includegraphics[width=1\linewidth]{immagini/createEmployee.png}
 \end{mdframed}
-\caption{Metodo di test \textit{createEmployee} della classe \texit{EmployeeControllerTest}.}
-\label{employee-controller-test}
+\caption{Metodo di test \textit{createEmployee} della classe \textit{EmployeeControllerTest}.}
+\label{create-employee}
 \end{figure}
 \FloatBarrier
 Nella prima parte (arrange) viene creato un nuovo Employee e gli viene assegnato un nome, un cognome e una data di nascita, successivamente nella fase successiva (act), viene eseguita la chiamata GET utilizzando l'oggetto \textit{MockMvc} e passando nel body della richiesta HTTP l'oggetto Java Employee trasformato in JSON grazie all'\textit{ObjectMapper}. Infine nella fase finale (Assert), si verifica che lo stato di ritorno sia \textit{created}, in caso contrario il test fallisce.
 \subsubsection*{Frontend}
-Per quanto riguarda il frontend dell'applicativo per la sua realizzazione è stato utilizzato il framework Angular. Si tratta di un frontend minimale, realizzato con lo solo scopo di comprendere e sviluppare la parte di comunicazione con il server utilizzando al massimo le REST API disponibili. Per questo motivo non è stata effettuata alcuna analisi sulla possibile utenza e sono stati tralascati completamente aspetti quali il design e l'accessibilità.\\
-
-
-
-
-
-
-%Piccola spiegazione su perché vengono tralasciati aspetti fondamentali nella realizzazione del frontend (ad es. analisi dell'utente, accessibilità, desing, ecc...), il motivo è che lo scopo del prototipo è imparare come implementare e modificare lo strato di servizio (nel mio caso) frontend per la gestione delle chiamate API al backend (sia in REST che GraphQL) al fine di testarle e di sapersi muovere su SushiLab.
-\paragraph{Analisi su funzionalità}
-Breve analisi sul perché fornire nell'interfaccia grafica la possibilità di certe azioni (ad es. visualizzazione tutti employee, ricerca per id, per nome, ecc...). Ovviamente realizzate per permettere l'utilizzo di tutte le chiamate API fornite da back-end, sia in GraphQL che REST. Spiego che il protitipo è prima stato realizzato in REST per poi farne la migrazione in GraphQL
+Per quanto riguarda il frontend dell'applicativo è stato utilizzato il framework Angular per realizzare una single-page application. Si tratta di un frontend minimale, realizzato con il solo scopo di comprendere e sviluppare la parte di comunicazione con il server utilizzando al massimo le REST API disponibili. Per questo motivo non è stata effettuata alcuna analisi sull' utenza e sono stati tralascati completamente aspetti quali estetica grafica, accessibilità e responsive design.\\
+\paragraph{Architettura}
+L'architettura della web application realizzata in Angular prevede l'utilizzo del pattern Model-View-Controller:
+\FloatBarrier
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=1\linewidth]{immagini/angular_architecture.pdf}
+\caption{Architettura della Web Application del prototipo.}
+\label{angular-architecture}
+\end{figure}
+\FloatBarrier
+Come visibile in figura \ref{angular-architecture} l'utente interagisce con la user interface (View) e ne modifica lo stato, 
+\paragraph{Funzionalità}
+Per le ragioni spiegate precedentemente saranno rese disponibili nell'interfaccia grafica quelle funzionalita che andranno a permettere il massimo utilizzo delle richieste API al backend.\\
+Come fatto in precedenza, verrà mostrata e spiegata esclusivamente la parte riguardante l'entità Employee per questioni di praticità, questo perché le altre entità sono state trattate in maniera analoga.\\
+Dunque, in linea con le query rese disponibili dal backend riportate sulla sezione riguardante i controller, devono essere presenti le seguenti funzionalità:
+\begin{itemize}
+  \item \textbf{Visualizzazione degli Employee}: devono poter essere visualizzati gli impiegati in lista, o ricercati attraverso i campi: nome, cognome, data di nascita o dipartimento di appartenenza;
+  \item \textbf{Aggiunta di un Employee}: deve essere possibile aggiungere un nuovo impiegato potendone specificare: nome, cognome, salario, data di nascita, dipartimento di appartenenza e infine i progetti che segue;
+  \item \textbf{Aggiornamento di un Employee}: deve essere possibile aggiornare i campi dati di un impiegato specificandone l'id e il/gli campo/i da modificare;
+  \item \textbf{Eliminazione di un Employee}: deve essere possibile eliminare un impiegato specificandone l'id.
+\end{itemize}
 \paragraph{Implementazione FE}
-Come è stato realizzato il FE del protitipo: main components, strato servizio (con chiamate alle API del BE), ecc...
-Desing pattern adottati (ad es. MVC, Dependency Injection, principi SOLID, Signleton, ecc...).
+
+%Come è stato realizzato il FE del protitipo: main components, strato servizio (con chiamate alle API del BE), ecc...
+%Desing pattern adottati (ad es. MVC, Dependency Injection, principi SOLID, Signleton, ecc...).
 \paragraph{Testing FE}
 Spiegazione su come vengono realizzati i test sulle API call al BE.
-\subsection{Realizzazione e testing con REST API}
-Spiegazione su come è stato implementato il prototipo.... andranno qui tutti i vari strati di servizio ecc... e API.
 
 
 
