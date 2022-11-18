@@ -326,16 +326,27 @@ Per finire in figura \ref{delete-employee} il caso in cui venga selezionata l'op
 \label{delete-employee}
 \end{figure}
 \FloatBarrier
-%Come è stato realizzato il FE del protitipo: main components, strato servizio (con chiamate alle API del BE), ecc...
-%Desing pattern adottati (ad es. MVC, Dependency Injection, principi SOLID, Signleton, ecc...).
 \paragraph{Testing FE}
-Spiegazione su come vengono realizzati i test sulle API call al BE.
-
-
-
-
-
-
+I test di unità sono stati implementati seguendo il pattern \textit{Arrange - Act - Assert} sui metodi del servizio riportato in figura \ref{employee-service}. Di seguito nell'immagine \ref{employee-service-tests} è possibile visualizzare la funzione \textit{describe} la quale viene utilizzata per raggruppare un insieme di test:
+\FloatBarrier
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=0.6\linewidth]{immagini/employeeServiceTest.png}
+\caption{Test per i metodi del servizio \textit{EmployeeService}.}
+\label{employee-service-tests}
+\end{figure}
+\FloatBarrier
+Viene utilizzato il modulo Angular \textit{HttpClientTestModule}, necessario al fine di importare il servizio inettabile \textit{HttpTestingController}, utilizzato per il mocking e il flushing per eliminare le microtasks in sospeso. Sono inoltre presenti le funzioni \textit{BeforeEach()} utilizzata per configurare l'ambiente di test, dunque importare i moduli necessari e risolvere le dipendenze, e la funzione \textit{afterEach()} utilizzata per controllare, dopo l'esecuzion di ciascun test, che non siano rimaste richieste in sospeso. Infine, con la funzione \textit{it()} viene definito un titolo per ciascun test e viene implementato il test.\\
+Più nello specifico in figura \ref{get-all-test} si può visualizzare l'implementazione di un test per il metodo \textit{allEmployee} del servizio \textit{EmployeeService}:
+\FloatBarrier
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=0.8\linewidth]{immagini/allEmployeeTest.png}
+\caption{Test sul metodo \textit{allEmployee()} di \textit{EmployeeService}.}
+\label{get-all-test}
+\end{figure}
+\FloatBarrier
+Viene inizialmente creato un array di Employee che ci si aspetterà di ricevere dalla chiamata, e sucessivamente viene controllato un test per verificare che ciò accada effettivamente con la funzione \textit{expect()}. Infine viene controllato che l'url sia corretto, che venga effettuata una sola chiamata GET e che si tratti effettivamente di una richiesta GET. 
 
 \subsection{Migrazione da REST a GraphQL}
 \subsubsection*{Migrazione Backend}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.12.10)  17 NOV 2022 18:24
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.12.10)  18 NOV 2022 12:32
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1371,7 +1371,7 @@ Overfull \hbox (3.78238pt too wide) has occurred while \output is active
 [10]
 
 pdfTeX warning: pdflatex (file ./immagini/one_to_one.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<immagini/one_to_one.pdf, id=284, 246.11949pt x 69.55988pt>
+<immagini/one_to_one.pdf, id=288, 246.11949pt x 69.55988pt>
 File: immagini/one_to_one.pdf Graphic file (type pdf)
 <use immagini/one_to_one.pdf>
 Package pdftex.def Info: immagini/one_to_one.pdf  used on input line 128.
@@ -1389,7 +1389,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 142--143
 
 
 pdfTeX warning: pdflatex (file ./immagini/one_to_many.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<immagini/one_to_many.pdf, id=308, 203.66087pt x 197.33725pt>
+<immagini/one_to_many.pdf, id=312, 203.66087pt x 197.33725pt>
 File: immagini/one_to_many.pdf Graphic file (type pdf)
 <use immagini/one_to_many.pdf>
 Package pdftex.def Info: immagini/one_to_many.pdf  used on input line 146.
@@ -1397,7 +1397,7 @@ Package pdftex.def Info: immagini/one_to_many.pdf  used on input line 146.
 
 
 pdfTeX warning: pdflatex (file ./immagini/many_to_many.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<immagini/many_to_many.pdf, id=310, 247.02289pt x 192.82037pt>
+<immagini/many_to_many.pdf, id=314, 247.02289pt x 192.82037pt>
 File: immagini/many_to_many.pdf Graphic file (type pdf)
 <use immagini/many_to_many.pdf>
 Package pdftex.def Info: immagini/many_to_many.pdf  used on input line 164.
@@ -1452,7 +1452,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 23--25
 
 
 pdfTeX warning: pdflatex (file ./immagini/prototype_architecture.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<immagini/prototype_architecture.pdf, id=386, 400.19514pt x 398.78986pt>
+<immagini/prototype_architecture.pdf, id=390, 400.19514pt x 398.78986pt>
 File: immagini/prototype_architecture.pdf Graphic file (type pdf)
 <use immagini/prototype_architecture.pdf>
 Package pdftex.def Info: immagini/prototype_architecture.pdf  used on input line 30.
@@ -1463,7 +1463,7 @@ LaTeX Warning: Reference `tecnologie' on page 17 undefined on input line 34.
 [17]
 
 pdfTeX warning: pdflatex (file ./immagini/controller_service_repository.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<immagini/controller_service_repository.pdf, id=392, 292.69351pt x 233.07074pt>
+<immagini/controller_service_repository.pdf, id=396, 292.69351pt x 233.07074pt>
 File: immagini/controller_service_repository.pdf Graphic file (type pdf)
 <use immagini/controller_service_repository.pdf>
 Package pdftex.def Info: immagini/controller_service_repository.pdf  used on input line 50.
@@ -1479,7 +1479,7 @@ Overfull \hbox (16.00052pt too wide) has occurred while \output is active
 [18 <./immagini/prototype_architecture.pdf>]
 
 pdfTeX warning: pdflatex (file ./immagini/ER_prototype.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<immagini/ER_prototype.pdf, id=430, 451.6875pt x 301.72725pt>
+<immagini/ER_prototype.pdf, id=434, 451.6875pt x 301.72725pt>
 File: immagini/ER_prototype.pdf Graphic file (type pdf)
 <use immagini/ER_prototype.pdf>
 Package pdftex.def Info: immagini/ER_prototype.pdf  used on input line 69.
@@ -1490,7 +1490,7 @@ Overfull \hbox (16.00052pt too wide) has occurred while \output is active
  []
 
 [20 <./immagini/ER_prototype.pdf>]
-<immagini/employee_entity.png, id=516, 758.835pt x 510.90875pt>
+<immagini/employee_entity.png, id=520, 758.835pt x 510.90875pt>
 File: immagini/employee_entity.png Graphic file (type png)
 <use immagini/employee_entity.png>
 Package pdftex.def Info: immagini/employee_entity.png  used on input line 94.
@@ -1505,7 +1505,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 115--117
 
  []
 
-<immagini/employee_repository.png, id=525, 701.62125pt x 374.39874pt>
+<immagini/employee_repository.png, id=530, 701.62125pt x 374.39874pt>
 File: immagini/employee_repository.png Graphic file (type png)
 <use immagini/employee_repository.png>
 Package pdftex.def Info: immagini/employee_repository.png  used on input line 128.
@@ -1518,14 +1518,14 @@ Overfull \hbox (16.00052pt too wide) has occurred while \output is active
 [22]
 
 pdfTeX warning: pdflatex (file ./immagini/service_serviceImpl.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<immagini/service_serviceImpl.pdf, id=533, 191.01363pt x 198.7425pt>
+<immagini/service_serviceImpl.pdf, id=537, 191.01363pt x 198.7425pt>
 File: immagini/service_serviceImpl.pdf Graphic file (type pdf)
 <use immagini/service_serviceImpl.pdf>
 Package pdftex.def Info: immagini/service_serviceImpl.pdf  used on input line 144.
 (pdftex.def)             Requested size: 111.60114pt x 116.11984pt.
 [23 <./immagini/employee_repository.png> <./immagini/service_serviceImpl.pdf>]
 Package mdframed Info: mdframed works in twoside mode on input line 155.
-<immagini/employeeServiceImpl.png, id=549, 873.76437pt x 464.73625pt>
+<immagini/employeeServiceImpl.png, id=553, 873.76437pt x 464.73625pt>
 File: immagini/employeeServiceImpl.png Graphic file (type png)
 <use immagini/employeeServiceImpl.png>
 Package pdftex.def Info: immagini/employeeServiceImpl.png  used on input line 156.
@@ -1535,7 +1535,7 @@ Package mdframed Info: mdframed inside float
 Package mdframed Info: mdframed inside a box 
  mdframed uses option nobreak mdframed on input line 157.
 Package mdframed Info: mdframed works in twoside mode on input line 171.
-<immagini/EmployeeController.png, id=552, 1066.48438pt x 580.66937pt>
+<immagini/EmployeeController.png, id=556, 1066.48438pt x 580.66937pt>
 File: immagini/EmployeeController.png Graphic file (type png)
 <use immagini/EmployeeController.png>
 Package pdftex.def Info: immagini/EmployeeController.png  used on input line 172.
@@ -1551,7 +1551,7 @@ Overfull \hbox (16.00052pt too wide) has occurred while \output is active
 
 [24 <./immagini/employeeServiceImpl.png>] [25 <./immagini/EmployeeController.png>]
 Package mdframed Info: mdframed works in twoside mode on input line 208.
-<immagini/SmokeTest.png, id=568, 509.40312pt x 417.05812pt>
+<immagini/SmokeTest.png, id=572, 509.40312pt x 417.05812pt>
 File: immagini/SmokeTest.png Graphic file (type png)
 <use immagini/SmokeTest.png>
 Package pdftex.def Info: immagini/SmokeTest.png  used on input line 209.
@@ -1570,7 +1570,7 @@ Package mdframed Info: mdframed works in twoside mode on input line 219.
 
 
 pdfTeX warning: pdflatex (file ./immagini/EmployeeControllerTest.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<immagini/EmployeeControllerTest.pdf, id=575, 1218.5525pt x 560.49402pt>
+<immagini/EmployeeControllerTest.pdf, id=579, 1218.5525pt x 560.49402pt>
 File: immagini/EmployeeControllerTest.pdf Graphic file (type pdf)
 <use immagini/EmployeeControllerTest.pdf>
 Package pdftex.def Info: immagini/EmployeeControllerTest.pdf  used on input line 220.
@@ -1581,7 +1581,7 @@ Package mdframed Info: mdframed inside a box
  mdframed uses option nobreak mdframed on input line 221.
 [27 <./immagini/SmokeTest.png> <./immagini/EmployeeControllerTest.pdf>]
 Package mdframed Info: mdframed works in twoside mode on input line 237.
-<immagini/createEmployee.png, id=595, 808.01875pt x 286.57062pt>
+<immagini/createEmployee.png, id=599, 808.01875pt x 286.57062pt>
 File: immagini/createEmployee.png Graphic file (type png)
 <use immagini/createEmployee.png>
 Package pdftex.def Info: immagini/createEmployee.png  used on input line 238.
@@ -1598,7 +1598,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 246--247
 
 
 pdfTeX warning: pdflatex (file ./immagini/angular_architecture.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<immagini/angular_architecture.pdf, id=596, 462.92952pt x 202.7575pt>
+<immagini/angular_architecture.pdf, id=600, 462.92952pt x 202.7575pt>
 File: immagini/angular_architecture.pdf Graphic file (type pdf)
 <use immagini/angular_architecture.pdf>
 Package pdftex.def Info: immagini/angular_architecture.pdf  used on input line 252.
@@ -1609,18 +1609,18 @@ Overfull \hbox (16.00052pt too wide) has occurred while \output is active
  []
 
 [28 <./immagini/createEmployee.png>]
-<immagini/employeeInterface.png, id=606, 207.77625pt x 164.615pt>
+<immagini/employeeInterface.png, id=610, 207.77625pt x 164.615pt>
 File: immagini/employeeInterface.png Graphic file (type png)
 <use immagini/employeeInterface.png>
 Package pdftex.def Info: immagini/employeeInterface.png  used on input line 274.
 (pdftex.def)             Requested size: 111.60114pt x 88.41855pt.
  [29 <./immagini/angular_architecture.pdf>]
-<immagini/firstPage.png, id=678, 560.0925pt x 296.10625pt>
+<immagini/firstPage.png, id=682, 560.0925pt x 296.10625pt>
 File: immagini/firstPage.png Graphic file (type png)
 <use immagini/firstPage.png>
 Package pdftex.def Info: immagini/firstPage.png  used on input line 284.
 (pdftex.def)             Requested size: 260.39886pt x 137.6699pt.
-<immagini/getEmployee.png, id=680, 556.0775pt x 291.0875pt>
+<immagini/getEmployee.png, id=684, 556.0775pt x 291.0875pt>
 File: immagini/getEmployee.png Graphic file (type png)
 <use immagini/getEmployee.png>
 Package pdftex.def Info: immagini/getEmployee.png  used on input line 294.
@@ -1631,7 +1631,7 @@ Overfull \hbox (16.00052pt too wide) has occurred while \output is active
  []
 
 [30 <./immagini/employeeInterface.png> <./immagini/firstPage.png>]
-<immagini/employeeService.png, id=688, 405.515pt x 398.48875pt>
+<immagini/employeeService.png, id=692, 405.515pt x 398.48875pt>
 File: immagini/employeeService.png Graphic file (type png)
 <use immagini/employeeService.png>
 Package pdftex.def Info: immagini/employeeService.png  used on input line 304.
@@ -1646,22 +1646,38 @@ Underfull \hbox (badness 10000) in paragraph at lines 309--311
  []
 
 [31 <./immagini/getEmployee.png> <./immagini/employeeService.png>]
-<immagini/postEmployee.png, id=696, 161.60374pt x 337.26pt>
+<immagini/postEmployee.png, id=700, 161.60374pt x 337.26pt>
 File: immagini/postEmployee.png Graphic file (type png)
 <use immagini/postEmployee.png>
 Package pdftex.def Info: immagini/postEmployee.png  used on input line 314.
 (pdftex.def)             Requested size: 111.60114pt x 232.9052pt.
-<immagini/deleteEmployee.png, id=699, 145.54375pt x 74.2775pt>
+<immagini/deleteEmployee.png, id=703, 145.54375pt x 74.2775pt>
 File: immagini/deleteEmployee.png Graphic file (type png)
 <use immagini/deleteEmployee.png>
 Package pdftex.def Info: immagini/deleteEmployee.png  used on input line 324.
 (pdftex.def)             Requested size: 111.60114pt x 56.95583pt.
+<immagini/employeeServiceTest.png, id=706, 453.695pt x 546.04pt>
+File: immagini/employeeServiceTest.png Graphic file (type png)
+<use immagini/employeeServiceTest.png>
+Package pdftex.def Info: immagini/employeeServiceTest.png  used on input line 334.
+(pdftex.def)             Requested size: 223.20227pt x 268.62842pt.
 
 Overfull \hbox (16.00052pt too wide) has occurred while \output is active
 \T1/cmr/m/n/10 32 \T1/cmr/m/sl/10 CAPITOLO 4.  INTRODUZIONE AI CASI D'USO PER L'ANALISI COMPARATIVA
  []
 
-[32 <./immagini/postEmployee.png> <./immagini/deleteEmployee.png>]) (./capitoli/capitolo-5.tex [33] [34
+[32 <./immagini/postEmployee.png> <./immagini/deleteEmployee.png>]
+<immagini/allEmployeeTest.png, id=715, 740.7675pt x 323.2075pt>
+File: immagini/allEmployeeTest.png Graphic file (type png)
+<use immagini/allEmployeeTest.png>
+Package pdftex.def Info: immagini/allEmployeeTest.png  used on input line 344.
+(pdftex.def)             Requested size: 297.60114pt x 129.84785pt.
+ [33 <./immagini/employeeServiceTest.png> <./immagini/allEmployeeTest.png>]
+Overfull \hbox (16.00052pt too wide) has occurred while \output is active
+\T1/cmr/m/n/10 34 \T1/cmr/m/sl/10 CAPITOLO 4.  INTRODUZIONE AI CASI D'USO PER L'ANALISI COMPARATIVA
+ []
+
+[34]) (./capitoli/capitolo-5.tex [35] [36
 
 ]
 Capitolo 5.
@@ -1675,31 +1691,31 @@ Underfull \hbox (badness 10000) in paragraph at lines 20--29
 
  []
 
-[35]) (./capitoli/capitolo-6.tex
+[37]) (./capitoli/capitolo-6.tex
 Overfull \hbox (10.23804pt too wide) has occurred while \output is active
-\T1/cmr/m/n/10 36 \T1/cmr/m/sl/10 CAPITOLO 5.  ANALISI COMPARATIVA DEI PROTOCOLLI REST E GRAPHQL
+\T1/cmr/m/n/10 38 \T1/cmr/m/sl/10 CAPITOLO 5.  ANALISI COMPARATIVA DEI PROTOCOLLI REST E GRAPHQL
  []
 
-[36]
+[38]
 Capitolo 6.
-) (./capitoli/capitolo-7.tex [37
+) (./capitoli/capitolo-7.tex [39
 
-] [38
+] [40
 
 ]
 Capitolo 7.
-) (./capitoli/capitolo-A.tex [39] [40
+) (./capitoli/capitolo-A.tex [41] [42
 
 ]
 Appendice A.
-) [41] [42
+) [43] [44
 
 ]
 No file tesi.acr.
 No file tesi.gls.
-(./inizio-fine/bibliografia.tex [43] [44
+(./inizio-fine/bibliografia.tex [45] [46
 
-]) [45
+]) [47
 
 ] (./tesi.aux)
 
@@ -1710,11 +1726,11 @@ Package logreq Info: Writing requests to 'tesi.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 37222 strings out of 478994
- 635879 string characters out of 5858183
- 1463683 words of memory out of 5000000
- 53507 multiletter control sequences out of 15000+600000
- 439815 words of font info for 223 fonts, out of 8000000 for 9000
+ 37244 strings out of 478994
+ 636395 string characters out of 5858183
+ 1463866 words of memory out of 5000000
+ 53521 multiletter control sequences out of 15000+600000
+ 439934 words of font info for 224 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
  102i,8n,125p,1129b,2994s stack positions out of 5000i,500n,10000p,200000b,80000s
 pdfTeX warning (dest): name{glo:api} has been referenced but does not exist, replaced by a fixed one
@@ -1722,10 +1738,10 @@ pdfTeX warning (dest): name{glo:api} has been referenced but does not exist, rep
 {/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfbx0900.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfbx1728.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfbx2074.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfbx2488.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfcc1000.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfcc1200.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfcc1440.p
 fb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm0600.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm0700.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm0800.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm0900.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfsi1000.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfsl1000.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfsl1200.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfti0800.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfti0900.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfti1000.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfti1200.
 pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sftt1000.pfb>
-Output written on tesi.pdf (57 pages, 1909725 bytes).
+Output written on tesi.pdf (59 pages, 2007137 bytes).
 PDF statistics:
- 1051 PDF objects out of 1200 (max. 8388607)
- 876 compressed objects within 9 object streams
- 185 named destinations out of 1000 (max. 500000)
- 70603 words of extra memory for PDF output out of 74296 (max. 10000000)
+ 1071 PDF objects out of 1200 (max. 8388607)
+ 890 compressed objects within 9 object streams
+ 189 named destinations out of 1000 (max. 500000)
+ 70613 words of extra memory for PDF output out of 74296 (max. 10000000)
 
