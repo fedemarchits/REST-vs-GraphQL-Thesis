@@ -277,7 +277,7 @@ Inizialmente sono state create le interfacce per poter creare gli oggetti corris
 \end{figure}
 \FloatBarrier
 Analogamente sono state create le interfacce delle altre entità.\\
-Proseguendo, è stata realizzata la realizzazione dell'interaccia grafica inserendo nella pagina iniziale la possibilità di effettuare due scelte: la prima scelta riguarda l'entità, mentre la seconda riguarda l'operazione che si vuole eseguire sull'entità selezioanta. In figura \ref{first-page} è possibile visualizzare la prima pagina:
+Proseguendo, è stata realizzata la realizzazione dell'interaccia grafica inserendo nella pagina iniziale la possibilità di effettuare due scelte: la prima scelta riguarda l'entità, mentre la seconda riguarda l'operazione che si vuole eseguire sull'entità selezionata. In figura \ref{first-page} è possibile visualizzare la prima pagina:
 \FloatBarrier
 \begin{figure}[!ht]
 \centering
@@ -307,7 +307,7 @@ La scelta dell'opzione get permette alla vista di invocare immediatamente il ser
 \end{figure}
 \FloatBarrier
 Il servizio realizzato per le chiamate alle REST API del backend, permette di essere invocato direttamente dalla vista alla selezione di un elemento HTML.\\\\
-Proseguendo verranno visualizzati ora i casi in cui si sceglie come operazione quella di modificare o aggiungere un nuovo impiegato. In figura \ref{insert-update} è possibile visualizzare la porzione di interfaccia grafica per l'inserimento o l'aggiornamento di un impiegato:
+Proseguendo vengono visualizzati ora i casi in cui si sceglie come operazione quella di modificare o aggiungere un nuovo impiegato. In figura \ref{post-employee} è possibile visualizzare la porzione di interfaccia grafica per l'inserimento o l'aggiornamento di un impiegato:
 \FloatBarrier
 \begin{figure}[!ht]
 \centering
@@ -346,24 +346,100 @@ Più nello specifico in figura \ref{get-all-test} si può visualizzare l'impleme
 \label{get-all-test}
 \end{figure}
 \FloatBarrier
-Viene inizialmente creato un array di Employee che ci si aspetterà di ricevere dalla chiamata, e sucessivamente viene controllato un test per verificare che ciò accada effettivamente con la funzione \textit{expect()}. Infine viene controllato che l'url sia corretto, che venga effettuata una sola chiamata GET e che si tratti effettivamente di una richiesta GET. 
+Viene inizialmente creato un array di Employee che ci si aspetterà di ricevere dalla chiamata, e sucessivamente viene controllato un test per verificare che ciò accada effettivamente con la funzione \textit{expect()}. Infine viene controllato che l'url sia corretto, che venga effettuata una sola chiamata GET e che si tratti effettivamente di una richiesta GET.
 
 \subsection{Migrazione da REST a GraphQL}
+Nella seguente sottosezione verrà mostrato come è stato migrato sia il backend che il frontend del prototipo realizzato da REST API a GraphQL API.
 \subsubsection*{Migrazione Backend}
-Spiego come è stata realizzata la migrazione da REST a GraphQL. Partendo da backend, viene realizzata un'analisi sui tipi necessari da riportare nel GraphQL schema (tipi di input e tipi di ritorno). Sucessivamente vengono ristrutturate le API rese disponibili in REST (non sempre i metodi dei controller REST corrispondono a quelli GraphQL, oltre a differenze nelle annotazioni, ecc...). Vengono dunque implementati i metodi dei controller GraphQL, soffermarsi sulle difficoltà riscontrate nel mapping dei tipi GraphQL schema con i tipi corrispondenti del BE. Una volta ricostruito tutto il sistema di query GraphQL nel BE e testato, si può passare alla migrazione frontend. Volendo dividere il tutto in subsubsection:
-\begin{itemize}
-  \item analisi sui tipi;
-  \item ristrutturazione API secondo principi GraphQL;
-  \item realizzazione API con tool Spring GraphQL (e problemi mapping tipi);
-  \item testing;
-\end{itemize}
+Il backend realizzato in Spring Boot con l'aiuto del modulo Spring Data REST per la realizzazione dei controller di REST API, deve essere riscritto in parte utilizzando il modulo Spring GraphQL per la realizzazione dei controller in GraphQL.\\
+Seguendo la metodologia \textit{Schema First} la prima cosa che è stata creata è il GraphQL Schema.
+\paragraph{GraphQL Schema}
+Il GraphQL Schema è necessario al fine di definire i tipi, le query, le mutation e le subscription che il server GraphQL renderà disponibili al client.\\
+Inizialmente è necessario fare un'analisi sulle enetità presenti e comprendere quali entità riportare nel GraphQL Schema. Infatti non tutte le entità devono essere necessariamente riportate nel GraphQL Schema, ma andranno riportate solo le entità che verranno utilizzate API. Nel caso del prototipo le quattro entità presenti, ovvero Employee, Project, Department e Site devono essere riportate tutte nel GraphQL schema poiché sono tutte accessibili dal client.\\
+Partendo dunque dalle quattro entità, sarà necessario riportarle nel GraphQL Schema, sia come entità di input che di output nelle query, questo è necessario poiché GraphQL distingue i due tipi. In figura \ref{employee-schema} è possibile visualizzare l'implementazione dell'entità \textit{Employee} e \textit{EmployeeInput}.
+\FloatBarrier
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=0.8\linewidth]{immagini/employeeSchema.pdf}
+\caption{Tipi \textit{Employee} e \textit{EmployeeInput} nel GraphQL Schema.}
+\label{employee-schema}
+\end{figure}
+\FloatBarrier
+Come si può notare i due tipi \textit{Employee} e \textit{EmployeeInput} non corrispondono completamente. Infatti i campi \textit{projects} e \textit{department} di \textit{Employee} non sono presenti in \textit{EmployeeInput}, o  meglio sono presenti ma in diversa forma. Questo è dovuto al fatto che il tipo \textit{Employee} è un tipo che verrà ritornato al client su richiesta, dunque dovrà contenere le varie istanze dei progetti a cui un impiegato sta partecipando e anche l'oggetto dipartimento. Mentre per quanto riguarda il tipo \textit{EmployeeInput} che corrisponde al tipo di input per l'impiegato, qualora ad esempio il client volesse creare attraverso una mutation un nuovo impiegato, sarà sufficiente specificare l'id del dipartimento in cui lavora o gli id dei progetti ai quali sta partecipando, non serve passare l'interno oggetto Project o Department.\\
+Prima di passare alla dichiarazione di query, mutation e subscription, è necessario prima parlare dei tipi unione, utilizzati per gestire gli errori e poter ritornare al client un errore personalizzato ed evitare dunque che vengano ritornati gli errori incomprensibili dal GraphQL Server. Per far ciò è stato creato una interfaccia \textit{Message} e cinque tipi che la implementano e rappresentano i possibili errori o il caso di successo dell'operazione richiesta dal client, vedi figura \ref{message-interface}.
+\FloatBarrier
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=0.6\linewidth]{immagini/messageInterface.png}
+\caption{Interfaccia \textit{Message} e definizione dei tipi che la implementano nel GraphQL Schema.}
+\label{message-interface}
+\end{figure}
+\FloatBarrier
+A questo punto vengono dichiarati i tipi di unione necesssari nella realizzazione delle query e mutation che verranno dichiarate in seguito. In figura \ref{union-types} è possibile visualizzare l'implementazione dei tipi unione.
+\FloatBarrier
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=1\linewidth]{immagini/unionType.png}
+\caption{Interfaccia \textit{Message} e definizione dei tipi che la implementano nel GraphQL Schema.}
+\label{union-types}
+\end{figure}
+\FloatBarrier
+A questo punto è possibile definire le query, le mutation ed eventualmente le subscription che si vogliono rendere disponibili al client. In figura \ref{query-employee} è possibile visualizzare la dichiarazione delle query, mutation e della subscription riguardanti l'entità Employee.
+\FloatBarrier
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=0.6\linewidth]{immagini/queryEmployee.png}
+\caption{Implementazione delle query, mutation e subscription nel GraphQL Schema.}
+\label{query-employee}
+\end{figure}
+\FloatBarrier
+Come è possibile notare sono state rese disponibili le medesime query e mutation rese disponibili nelle REST API. Il tipo di ritorno è il tipo unione \textit{EmployeePayload}, così facendo è possibile ritornare oltre che l'impiegato o gli impiegati richiesti, anche i messaggi d'errore specifici o di successo della richiesta.\\
+È stata aggiunta inoltre una subscription per sfruttare a pieno le funzionalità di GraphQL. Questa subscription permette dunque, come spiegato nel capitolo \ref{protocolli-trasmissione-dati}, che il client riceva i nuovi impiegati aggiunti senza per forza richiederli.\\
+
+\paragraph{Controller refactoring}
+A questo punto resta solo la riscrittura dei controller, questo perché gli strati di servizio e repository durante la migrazione possono rimanere invariati, infatti le logiche del server e l'accesso e la gestione del database rimangono invariati. Tuttavia prima di analizzare l'implementazione del controller GraphQL, è necessario dichiarare le classi Java corrispondenti ad i vari errori ed ai tipi di input; questo è necessario poiché qualora dovessere essere ritornato un errore o dovesse essere ricevuto in input ad esempio il tipo dichiarato precedentemente \textit{EmployeeInput}, il quale non corrisponde al tipo Employee dichiarato in Java, si creerebbero degli errori durante il mapping tra i tipi Java e i tipi dichiarati nel GraphQL Schema. Per questo motivo è stato dichiarato un Java record per ciascun errore/successo, più le classi relative ai vari tipi di input.\\
+L'implementazione del controller risulta differente rispetto a quella vista con le REST API. Di seguito in figura \ref{graphql-controller} è possibile visualizzarne la struttura ed i metodi:
+\FloatBarrier
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=0.8\linewidth]{immagini/graphQLEmployeeController.png}
+\caption{Classe \textit{EmployeeController}.}
+\label{graphql-controller}
+\end{figure}
+\FloatBarrier
+Come si può notare in figura \ref{graphql-controller} si tratta di un controller differente rispetto al controller REST. Innanzitutto ha l'annotazione \textbf{@Controller} e non @RestController, poiché quest'ultima serve per indicare esclusivamente Spring Controller per REST API, mentre la prima è più generica ed indica esclusivamente che si tratta di un controller. Poi è possibile notare come le annotazioni sui metodi siano differenti, per le query si usa l'annotazione \textbf{@QueryMapping}, per le mutation l'annotazione \textbf{@MutationMapping}, mentre per le subscription l'annotazione \textbf{@SubscriptionMapping}, infine per gli argomenti dei metodi l'annotazione \textbf{@Argument}. Queste annotazioni sono fondamentali poiché permettono di effettuare il mapping tra i tipi, query, mutation o subscription definiti nel GraphQL Schema e quelli definiti nel controller. Per questo motivo il nome di ciascun metodo o tipo negli argomenti deve corrispondere esattamente al nome nel GraphQL Schema, altrimenti il mapping non andrà a buon fine e verranno generati degli errori.\\
+In figura \ref{employee-by-name-graphql} è possibile visualizzare un esempio di implementazione di un metodo del controller, in questo caso si tratta del metodo \textit{employeeByName} il quale ritorna un errore \textit{NotFoundError} nel caso non venisse trovato alcun impiegato con il nome specificato, oppure una lista di impiegati con quel determinato nome.
+\FloatBarrier
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=0.8\linewidth]{immagini/employeeByNameGraphQL.png}
+\caption{Metodo \textit{employeeByName} del controller \textit{EmployeeController}.}
+\label{graphql-controller}
+\end{figure}
+\FloatBarrier
+Infine, trattandosi di una particolare funzionalità disponibile esclusivamente in GraphQL, in figura \ref{subscription-graphql} è possibile visualizzare l'implementazione della subscription \textit{newEmployeeAdded}:
+\FloatBarrier
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=0.8\linewidth]{immagini/newEmployeeAdded.png}
+\caption{Subscription \textit{newEmployeeAdded}.}
+\label{graphql-controller}
+\end{figure}
+\FloatBarrier
+% Spiego come è stata realizzata la migrazione da REST a GraphQL. Partendo da backend, viene realizzata un'analisi sui tipi necessari da riportare nel GraphQL schema (tipi di input e tipi di ritorno). Sucessivamente vengono ristrutturate le API rese disponibili in REST (non sempre i metodi dei controller REST corrispondono a quelli GraphQL, oltre a differenze nelle annotazioni, ecc...). Vengono dunque implementati i metodi dei controller GraphQL, soffermarsi sulle difficoltà riscontrate nel mapping dei tipi GraphQL schema con i tipi corrispondenti del BE. Una volta ricostruito tutto il sistema di query GraphQL nel BE e testato, si può passare alla migrazione frontend. Volendo dividere il tutto in subsubsection:
+%\begin{itemize}
+%  \item analisi sui tipi;
+%  \item ristrutturazione API secondo principi GraphQL;
+%  \item realizzazione API con tool Spring GraphQL (e problemi mapping tipi);
+%  \item testing;
+%\end{itemize}
 \subsubsection*{Migrazione Frontend}
-La migrazione su FE è molto più semplice rispetto al BE, infatti è sufficiente andare ad aggiornare lo strato di servizio, il quale si occupa della gestione della chiamate API al BE. Anche qui si possono riscontrare alcuni problemi per quanto riguarda la corrispondenza dei tipi (ma ho avuto più problemi in SushiLab, qui trascurabile dunque).
-Volendo dividere il tutto in subsubsection:
-\begin{itemize}
-  \item aggiornamento strato servizio con modulo apollo;
-\end{itemize}
-Questo capitoletto conterrebbe tutto, da come costruire la query a seconda di ciò che è necessario, all'eliminazione della parte di gestione delle risorse nel protitipo REST (per questioni di under e overfetching).
+%La migrazione su FE è molto più semplice rispetto al BE, infatti è sufficiente andare ad aggiornare lo strato di servizio, il quale si occupa della gestione della chiamate API al BE. Anche qui si possono riscontrare alcuni problemi per quanto riguarda la corrispondenza dei tipi (ma ho avuto più problemi in SushiLab, qui trascurabile dunque).
+%Volendo dividere il tutto in subsubsection:
+%\begin{itemize}
+%  \item aggiornamento strato servizio con modulo apollo;
+%\end{itemize}
+%Questo capitoletto conterrebbe tutto, da come costruire la query a seconda di ciò che è necessario, all'eliminazione della parte di gestione delle risorse nel protitipo REST (per questioni di under e overfetching).
 
 \section{SushiLab}
 \label{sushi-lab}

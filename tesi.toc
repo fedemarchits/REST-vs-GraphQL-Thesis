@@ -60,42 +60,46 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {4.1.2}Migrazione da REST a GraphQL}{34}{subsection.4.1.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.2}SushiLab}{34}{section.4.2}%
+\contentsline {paragraph}{GraphQL Schema}{34}{section*.76}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.2.1}Comprensione dell'applicativo}{34}{subsection.4.2.1}%
+\contentsline {paragraph}{Controller refactoring}{36}{section*.81}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Panoramica del backend}{34}{section*.77}%
+\contentsline {section}{\numberline {4.2}SushiLab}{37}{section.4.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Panoramica del frontend}{35}{section*.78}%
+\contentsline {subsection}{\numberline {4.2.1}Comprensione dell'applicativo}{37}{subsection.4.2.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.2.2}Migrazione del BE da REST a GraphQL}{35}{subsection.4.2.2}%
+\contentsline {subsubsection}{Panoramica del backend}{37}{section*.84}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.2.3}Migrazione del FE da REST a GraphQL}{35}{subsection.4.2.3}%
+\contentsline {subsubsection}{Panoramica del frontend}{38}{section*.85}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {5}Analisi comparativa dei protocolli REST e GraphQL}{37}{chapter.5}%
+\contentsline {subsection}{\numberline {4.2.2}Migrazione del BE da REST a GraphQL}{38}{subsection.4.2.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.1}Introduzione}{37}{section.5.1}%
+\contentsline {subsection}{\numberline {4.2.3}Migrazione del FE da REST a GraphQL}{38}{subsection.4.2.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.2}Analisi comparativa}{37}{section.5.2}%
+\contentsline {chapter}{\numberline {5}Analisi comparativa dei protocolli REST e GraphQL}{39}{chapter.5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.2.1}Endpoints}{37}{subsection.5.2.1}%
+\contentsline {section}{\numberline {5.1}Introduzione}{39}{section.5.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.2.2}Overfetching e Underfetching}{38}{subsection.5.2.2}%
+\contentsline {section}{\numberline {5.2}Analisi comparativa}{39}{section.5.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.3}Conclusioni}{38}{section.5.3}%
+\contentsline {subsection}{\numberline {5.2.1}Endpoints}{39}{subsection.5.2.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {6}Tecnologie utilizzate}{39}{chapter.6}%
+\contentsline {subsection}{\numberline {5.2.2}Overfetching e Underfetching}{40}{subsection.5.2.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {7}Conclusioni}{41}{chapter.7}%
+\contentsline {section}{\numberline {5.3}Conclusioni}{40}{section.5.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.1}Consuntivo finale}{41}{section.7.1}%
+\contentsline {chapter}{\numberline {6}Tecnologie utilizzate}{41}{chapter.6}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.2}Raggiungimento degli obiettivi}{41}{section.7.2}%
+\contentsline {chapter}{\numberline {7}Conclusioni}{43}{chapter.7}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.3}Conoscenze acquisite}{41}{section.7.3}%
+\contentsline {section}{\numberline {7.1}Consuntivo finale}{43}{section.7.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.4}Valutazione personale}{41}{section.7.4}%
+\contentsline {section}{\numberline {7.2}Raggiungimento degli obiettivi}{43}{section.7.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {A}Appendice A}{43}{appendix.Alph1}%
+\contentsline {section}{\numberline {7.3}Conoscenze acquisite}{43}{section.7.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{Bibliografia}{47}{appendix*.79}%
+\contentsline {section}{\numberline {7.4}Valutazione personale}{43}{section.7.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {A}Appendice A}{45}{appendix.Alph1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Bibliografia}{49}{appendix*.86}%
