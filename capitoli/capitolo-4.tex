@@ -306,7 +306,7 @@ La scelta dell'opzione get permette alla vista di invocare immediatamente il ser
 \label{employee-service}
 \end{figure}
 \FloatBarrier
-Il servizio realizzato per le chiamate alle REST API del backend, permette di essere invocato direttamente dalla vista alla selezione di un elemento HTML.\\\\
+Il servizio realizzato per le chiamate alle REST API del backend, permette di essere invocato direttamente dalla vista alla selezione di un elemento HTML. È inoltre presente una dipendenza con l'oggetto \textit{HttpClient}, il quale viene passato come parametro al costruttore ed è necessario per eseguire le chiamate alle API.\\\\
 Proseguendo vengono visualizzati ora i casi in cui si sceglie come operazione quella di modificare o aggiungere un nuovo impiegato. In figura \ref{post-employee} è possibile visualizzare la porzione di interfaccia grafica per l'inserimento o l'aggiornamento di un impiegato:
 \FloatBarrier
 \begin{figure}[!ht]
@@ -421,11 +421,12 @@ Infine, trattandosi di una particolare funzionalità disponibile esclusivamente 
 \FloatBarrier
 \begin{figure}[!ht]
 \centering
-\includegraphics[width=0.8\linewidth]{immagini/newEmployeeAdded.png}
+\includegraphics[width=1\linewidth]{immagini/newEmployeeAdded.png}
 \caption{Subscription \textit{newEmployeeAdded}.}
-\label{graphql-controller}
+\label{subscription-graphql}
 \end{figure}
 \FloatBarrier
+L'implementazione della subscription permette al subscriber, in questo caso il client, di ricevere la lista aggiornata appena viene aggiunto un nuovo impiegato. L'oggetto \textit{Publisher<>} permette di inviare la lista aggiornata  tutti i subscribers in maniera dinamica, così facendo il client non dovrà richiedere periodicamente la lista con la query \textit{allEmployee}, bensì riceverà automaticamente i nuovi impiegati.
 % Spiego come è stata realizzata la migrazione da REST a GraphQL. Partendo da backend, viene realizzata un'analisi sui tipi necessari da riportare nel GraphQL schema (tipi di input e tipi di ritorno). Sucessivamente vengono ristrutturate le API rese disponibili in REST (non sempre i metodi dei controller REST corrispondono a quelli GraphQL, oltre a differenze nelle annotazioni, ecc...). Vengono dunque implementati i metodi dei controller GraphQL, soffermarsi sulle difficoltà riscontrate nel mapping dei tipi GraphQL schema con i tipi corrispondenti del BE. Una volta ricostruito tutto il sistema di query GraphQL nel BE e testato, si può passare alla migrazione frontend. Volendo dividere il tutto in subsubsection:
 %\begin{itemize}
 %  \item analisi sui tipi;
@@ -433,7 +434,38 @@ Infine, trattandosi di una particolare funzionalità disponibile esclusivamente 
 %  \item realizzazione API con tool Spring GraphQL (e problemi mapping tipi);
 %  \item testing;
 %\end{itemize}
+\textcolor{red}{Mancano test in graphQL}
+\paragraph{GraphQL Server response structure & error handling}
+Come spiegato in precedenza
+Le risposte che il server GraphQL appena realizzato ritorna al client in seguito ad una query, mutation o subscription sono dei file JSON. Questi JSON possono contenere tre tipi di campi:
+\begin{itemize}
+  \item \textbf{Data}: il campo data viene ritornato nella risposta solo qualora la query abbia avuto successo anche solo parzialmente e vengono dunque ritornati al suo interno i dati richiesti;
+  \item \textbf{Errors}: il campo errors viene ritornato nel JSON solo ed esclusivamente quando si sono verificati degli errori prima o durante l'esecuzione della query, questo ritorna i vari errori presenti. Ogni errore ritornato nel campo \textit{errors} può contenere a sua volta altri campi che indicano la posizione dell'errore e/o un messaggio;
+  \item \textbf{Extensions}: si tratta di un campo aggiuntivo a disposizione degli sviluppatori, può essere utilizzato ad esempio per ritornare il timestamp dell'esecuzione della query.
+\end{itemize}
+Analizzando gli errori che si possono verificare durante l'esecuzione di una query, mutation o subscription nel server GraphQL, si possono raggruppare in tre categorie:
+\begin{itemize}
+  \item \textbf{Errori di sintassi}: si tratta di errori nella sintassi della query. Quando viene inviata una query sintatticamente scorretta viene ritornato un JSON contenente il campo "errors", il quale indica che si tratta di un "Syntax Error". In questo caso l'eseguzione della richiesta non parte nemmeno;
+  \item \textbf{Errori nei campi}: si verificano quando vengono specificati nella richiesta tipi o campi non presenti. In questo caso l'errore si verifica durante l'esecuzione, dunque a volte può essere ritornato sia il campo \textit{data}, contenente i dati che il server è riuscito a recuperare, che il campo \textit{errors} che indica la presenza di uno o più errrori di data fetching;
+  \item \textbf{Errori di }
+\end{itemize}
 \subsubsection*{Migrazione Frontend}
+La migrazione del frontend richiede uno sforzo minore rispetto al backend, infatti è sufficiente effettuare la migrazione esclusivamente dei servizi che si occupano dell'invocazione delle API.\\
+Il servizio visualizzato precedentemente in figura \ref{employee-service} \textit{EmployeeService}, non cambia la sua struttura, i metodi rimangono gli stessi, tuttavia l'implementazione del metodo deve cambiare. Oltre all'implementazione dei metodi cambia anche l'oggetto che permette il fetching dei dati dal server, infatti trattandosi ora di un GraphQL Server, sarà necessaria la dipendenza dall'oggetto \textit{Apollo} il quale permette il fetching dei dati da un server GraphQL.\\
+In figura \ref{employee-service-method-graphql} è possibile visualizzare l'implementazione del metodo  \textit{allEmployees} che si differenzia dal medesimo metodo ma per l'invocazione di REST API.
+\FloatBarrier
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=0.5\linewidth]{immagini/employeeServiceMethodGraphql.png}
+\caption{Metodo \textit{allEmployees()} della classe  \textit{EmployeeService}.}
+\label{employee-service-method-graphql}
+\end{figure}
+\FloatBarrier
+Attraverso il metodo \textit{watchQuery<>} dell'oggetto \textit{apollo} è possibile eseguire la query all'endopoint del server GraphQL. Il metodo ritorna un oggetto di tipo \textit{Observable}. La risposta che viene ricevuta dal client dopo la richiesta contiene un JSON con campi \textit{"data"} se la richiesta è andata a buon fine, altrimenti ritorna un campo \textit{"errors"} contenente l'errore, tuttavia possiamo trovarci in due casi:
+\begin{itemize}
+  \item \textbf{Errore nella formulazione della query}: i
+\end{itemize}
+
 %La migrazione su FE è molto più semplice rispetto al BE, infatti è sufficiente andare ad aggiornare lo strato di servizio, il quale si occupa della gestione della chiamate API al BE. Anche qui si possono riscontrare alcuni problemi per quanto riguarda la corrispondenza dei tipi (ma ho avuto più problemi in SushiLab, qui trascurabile dunque).
 %Volendo dividere il tutto in subsubsection:
 %\begin{itemize}
