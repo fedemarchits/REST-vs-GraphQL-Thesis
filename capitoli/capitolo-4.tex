@@ -10,7 +10,7 @@
 \intro{Illustrazione del prototipo realizzato, prime considerazioni su di esso.
         Successivamente caso d'uso di SushiLab, migrazione e considerazioni.}\\
 \subsection{Confronto con stakeholder}
-Parlo confronto stakeholder....
+Valuto se parlare del confronto con stakeholder...
 \section{Prototipo}
 \textcolor{red}{FORSE QUESTA PARTE VA SU UNO DEI PRIMI DUE CAPITOLI.... INTANTO LASCIO QUA.}\\\\
 Prima di procedere con la spiegazione nella progettazione, realizzazione e migrazione del prototipo vanno fatte delle premesse.\\
@@ -24,35 +24,39 @@ Per questi motivi si tratta di un prototipo specifico che mira alla realizzazion
 Il prototipo che è stato scelto di realizzare è un applicazione client-server con funzione di gestionale. Deve permettere di gestire gli impiegati e i progetti ai quali stanno lavorando, il tutto in diverse sedi con diversi dipartimenti.
 \subsection{Progettazione del prototipo}
 \subsubsection*{Architettura generale dell'applicativo}
-L'applicativo utilizza la classica architettura introdotta al punto \ref{client-server} con un backend sviluppato con Spring Boot e il frontend sviluppato con Angular. In figura \ref{prototype-architecture} è possibile visualizzare l'architettura del prototipo con API REST:
+L'applicativo seguie l' architettura raffigurata nell'immagine \ref{prototype-architecture}. Il backend del prototipo è stato realizzato con framework Spring Boot, mentre il frontend con framework Angular.
+\FloatBarrier
 \begin{figure}[!h]
 \centering
-\includegraphics[width=0.6\linewidth]{immagini/prototype_architecture.pdf}
+\includegraphics[width=1\linewidth]{immagini/prototypeArchitecture.pdf}
 \caption{Architettura del prototipo di Web Application.}
 \label{prototype-architecture}
 \end{figure}
-Verrà dunque realizzato un server con framework Spring Boot e la Web Application con framework Angular. Per maggiori informazioni riguardo alle tecnologie consultare il capitolo \ref{tecnologie}.
+\FloatBarrier
+L'architettura segue il modello server-client introdotto precedentemente. Le richieste effettuate dai servizi del client venggono mappate sul REST controller del server il quale, dopo la rielaborazione interna delle richiesta, ritorna la risposta al client; quest'ultimo può dunque aggiornare la vista visualizzata dall'utente. In seguito vengono affrontati più nel dettaglio i moduli interni sia per quanto riguarda il server che la Web Application.
 \subsubsection*{Architettura del server}
 % Qui devo parlare di:
 %   - pattern controller - service - repository;
 %   - architettura del backend con hibernate, postgreSQL.
 \paragraph{Controller - Service - Repository}
 È stato deciso di seguire il pattern controller - service - repository per la realizzazione del server del prototipo. Questa scelta è stata presa in quanto è consigliato nello sviluppo del backend con framework Spring Boot. Inoltre il pattern rispetta perfettamente il principio di "Separation Of Concerns".\\
+%%%% IMG
+\FloatBarrier
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.8\linewidth]{immagini/controllerServiceRepository.pdf}
+\caption{Architettura interna backend.}
+\label{controller-service-repository}
+\end{figure}
+\textcolor{red}{PARLARE E INSERIRE QUI DIAGRAMMA DI SEQUENZA}
+\FloatBarrier
+%%%% IMG
 Il pattern prevedere la gestione delle entità e delle chiamate alle API attraverso tre strati:
 \begin{itemize}
   \item \textbf{Controller layer}: si trova in cima all'immagine \ref{controller-service-repository}, è l'unico responsabile della interazione con entità esterne, inoltre gestisce le interfacce REST e invoca lo strato di servizio;
   \item \textbf{Service layer}: è lo strato tra controller e repository, si occupa della business logic e qualora sia necessario visualizzare, salvare, modificare o eliminare dati allora comunica con lo strato di persistenza;
   \item \textbf{Repository layer}: si tratta dello strato inferiore dell'architettura, si occupa della gestione dei dati e delle loro modifiche. Lo strato di repository inoltre si occupa della comunicazione e gestione del database.
 \end{itemize}
-%%%% IMG
-\begin{figure}[!h]
-\centering
-\includegraphics[width=0.8\linewidth]{immagini/controller_service_repository.pdf}
-\caption{Architettura interna backend.}
-\label{controller-service-repository}
-\end{figure}
-\textcolor{red}{PARLARE E INSERIRE QUI DIAGRAMMA DI SEQUENZA}
-%%%% IMG
 \paragraph{Entità e relazioni}
 \label{entity-relation}
 Trattandosi di un gestionale aziendale semplificato, sono previste solo quattro entità principali, queste sono:
@@ -162,7 +166,8 @@ Di seguito, in figura \ref{employeeServiceImpl}, viene riportato un esempio di s
 %%% IMG
 In figura \ref{employeeServiceImpl} è possibile notare come la classe sia caratterizzata dall'annotazione \textbf{@Service} la quale viene utilizzata per indicare classi che contengono la business logic e viene utilizzata dunque per marcare la classe come service provider.\\
 Continuando ed andando ad analizzare i campi dati è possibile visualizzare la dipendenza che la classe \textit{EmployeeServicImpl} ha con la repository \textit{EmployeeRepository}. In Spring questa dipendenza viene risolta con l'annotazione \textbf{@Autowired}, la quale permette di eseguire la dependency injection del bean \textit{employeeRepository}.\\
-Infine sono presenti tutti i metodi, ciascuno con annotazione \textbf{@Override} poiché sono stati dichiarati anche nell'interfaccia implementata da \textit{EmployeeServiceImpl}. Sono stati resi disponibili metodi semplici che vanno ad invocare, grazie alla dipendenza con la repository, le query già disponibili con la \textit{JPARepository<T, ID>} e la query vista precedenemente \textit{SelByBornInRage}.
+Infine sono presenti tutti i metodi, ciascuno con annotazione \textbf{@Override} poiché sono stati dichiarati anche nell'interfaccia implementata da \textit{EmployeeServiceImpl}. Sono stati resi disponibili metodi semplici che vanno ad invocare, grazie alla dipendenza con la repository, le query già disponibili con la \textit{JPARepository<T, ID>} e la query vista precedenemente \textit{SelByBornInRage}.\\
+Per concludere nello strato di servizio vengono sollevate eventuali eccezioni. La gestione delle eccezzioni è stata effettuata implementanto un gestore di eccezioni specifico attraverso l'estensione del gestore  \textit{HandlerExceptionResolver}. Questo è stato fatto al fine di eliminare il problema presente con il gestore di eccezioni di default, ovvero il \textit{DefaultHandlerExceptionResolver}, il quale non permette di impostare nulla nel body della risposta al client e quindi per alcune tipologie di errori potrebbe risultare complesso comprenderne la natura. Non verrà mostrata l'implementazione della ridefinizione del gestore di eccezioni per evitare di approfondire eccessivamente i dettagli prettamente tecnici.
 \paragraph{Controller}
 Infine troviamo i controller, ovvero l'ultimo strato che si occupa di gestire le richieste che il server riceve attraverso il protocollo HTTP, e di mapparle inoltre ai relativi metodi. In figura \ref{employeeController} il controller di Employee, ovvero la classe \textit{EmployeeController}:
 \FloatBarrier
@@ -196,7 +201,6 @@ Sono state rese dunque disponibili le seguenti query:
   \item \textbf{createEmployee}: aggiunta di un nuovo impiegato;
   \item \textbf{deleteEmployee}: rimozione di un impiegato.
 \end{itemize}
-\textcolor{red}{Parlare della gestione delle eccezioni con @ExceptionHandler, se ho tempo.}
 \paragraph{Testing API}
 Essendo un prototipo incentrato sulla realizzazione delle API, sono stati svolti in maniera semplice e veloce i test per gli strati di servizio e repository, dunque non verranno riportati. Per quanto riguarda i testi sui controller stati svolti dei test più approfonditi.\\
 Per eseguire i test sui metodi del controller è stato scelto di utilizzare il framework JUnit5 \textcolor{red}{(REINDIRIZZARE AL CAPITOLO TECNOLOGIE)}.\\
@@ -249,7 +253,7 @@ L'architettura della web application realizzata in Angular prevede l'utilizzo de
 \FloatBarrier
 \begin{figure}[!ht]
 \centering
-\includegraphics[width=1\linewidth]{immagini/angular_architecture.pdf}
+\includegraphics[width=1\linewidth]{immagini/angularArchitecture.pdf}
 \caption{Architettura della Web Application del prototipo.}
 \label{angular-architecture}
 \end{figure}
@@ -366,24 +370,24 @@ Partendo dunque dalle quattro entità, sarà necessario riportarle nel GraphQL S
 \end{figure}
 \FloatBarrier
 Come si può notare i due tipi \textit{Employee} e \textit{EmployeeInput} non corrispondono completamente. Infatti i campi \textit{projects} e \textit{department} di \textit{Employee} non sono presenti in \textit{EmployeeInput}, o  meglio sono presenti ma in diversa forma. Questo è dovuto al fatto che il tipo \textit{Employee} è un tipo che verrà ritornato al client su richiesta, dunque dovrà contenere le varie istanze dei progetti a cui un impiegato sta partecipando e anche l'oggetto dipartimento. Mentre per quanto riguarda il tipo \textit{EmployeeInput} che corrisponde al tipo di input per l'impiegato, qualora ad esempio il client volesse creare attraverso una mutation un nuovo impiegato, sarà sufficiente specificare l'id del dipartimento in cui lavora o gli id dei progetti ai quali sta partecipando, non serve passare l'interno oggetto Project o Department.\\
-Prima di passare alla dichiarazione di query, mutation e subscription, è necessario prima parlare dei tipi unione, utilizzati per gestire gli errori e poter ritornare al client un errore personalizzato ed evitare dunque che vengano ritornati gli errori incomprensibili dal GraphQL Server. Per far ciò è stato creato una interfaccia \textit{Message} e cinque tipi che la implementano e rappresentano i possibili errori o il caso di successo dell'operazione richiesta dal client, vedi figura \ref{message-interface}.
-\FloatBarrier
-\begin{figure}[!ht]
-\centering
-\includegraphics[width=0.6\linewidth]{immagini/messageInterface.png}
-\caption{Interfaccia \textit{Message} e definizione dei tipi che la implementano nel GraphQL Schema.}
-\label{message-interface}
-\end{figure}
-\FloatBarrier
-A questo punto vengono dichiarati i tipi di unione necesssari nella realizzazione delle query e mutation che verranno dichiarate in seguito. In figura \ref{union-types} è possibile visualizzare l'implementazione dei tipi unione.
-\FloatBarrier
-\begin{figure}[!ht]
-\centering
-\includegraphics[width=1\linewidth]{immagini/unionType.png}
-\caption{Interfaccia \textit{Message} e definizione dei tipi che la implementano nel GraphQL Schema.}
-\label{union-types}
-\end{figure}
-\FloatBarrier
+% Prima di passare alla dichiarazione di query, mutation e subscription, è necessario prima parlare dei tipi unione, utilizzati per gestire gli errori e poter ritornare al client un errore personalizzato ed evitare dunque che vengano ritornati gli errori incomprensibili dal GraphQL Server. Per far ciò è stato creato una interfaccia \textit{Message} e cinque tipi che la implementano e rappresentano i possibili errori o il caso di successo dell'operazione richiesta dal client, vedi figura \ref{message-interface}.
+%\FloatBarrier
+%\begin{figure}[!ht]
+%\centering
+%\includegraphics[width=0.6\linewidth]{immagini/messageInterface.png}
+%\caption{Interfaccia \textit{Message} e definizione dei tipi che la implementano nel GraphQL Schema.}
+%\label{message-interface}
+%\end{figure}
+%\FloatBarrier
+%A questo punto vengono dichiarati i tipi di unione necesssari nella realizzazione delle query e mutation che verranno dichiarate in seguito. In figura \ref{union-types} è possibile visualizzare l'implementazione dei tipi unione.
+%\FloatBarrier
+%\begin{figure}[!ht]
+%\centering
+%\includegraphics[width=1\linewidth]{immagini/unionType.png}
+%\caption{Interfaccia \textit{Message} e definizione dei tipi che la implementano nel GraphQL Schema.}
+%\label{union-types}
+%\end{figure}
+%\FloatBarrier
 A questo punto è possibile definire le query, le mutation ed eventualmente le subscription che si vogliono rendere disponibili al client. In figura \ref{query-employee} è possibile visualizzare la dichiarazione delle query, mutation e della subscription riguardanti l'entità Employee.
 \FloatBarrier
 \begin{figure}[!ht]
@@ -393,11 +397,11 @@ A questo punto è possibile definire le query, le mutation ed eventualmente le s
 \label{query-employee}
 \end{figure}
 \FloatBarrier
-Come è possibile notare sono state rese disponibili le medesime query e mutation rese disponibili nelle REST API. Il tipo di ritorno è il tipo unione \textit{EmployeePayload}, così facendo è possibile ritornare oltre che l'impiegato o gli impiegati richiesti, anche i messaggi d'errore specifici o di successo della richiesta.\\
+Come è possibile notare sono state rese disponibili le medesime query e mutation rese disponibili nelle REST API. Il tipo di ritorno è il tipo \textit{Employee} per tutte le query, mutation e subscription.\\
 È stata aggiunta inoltre una subscription per sfruttare a pieno le funzionalità di GraphQL. Questa subscription permette dunque, come spiegato nel capitolo \ref{protocolli-trasmissione-dati}, che il client riceva i nuovi impiegati aggiunti senza per forza richiederli.\\
 
 \paragraph{Controller refactoring}
-A questo punto resta solo la riscrittura dei controller, questo perché gli strati di servizio e repository durante la migrazione possono rimanere invariati, infatti le logiche del server e l'accesso e la gestione del database rimangono invariati. Tuttavia prima di analizzare l'implementazione del controller GraphQL, è necessario dichiarare le classi Java corrispondenti ad i vari errori ed ai tipi di input; questo è necessario poiché qualora dovessere essere ritornato un errore o dovesse essere ricevuto in input ad esempio il tipo dichiarato precedentemente \textit{EmployeeInput}, il quale non corrisponde al tipo Employee dichiarato in Java, si creerebbero degli errori durante il mapping tra i tipi Java e i tipi dichiarati nel GraphQL Schema. Per questo motivo è stato dichiarato un Java record per ciascun errore/successo, più le classi relative ai vari tipi di input.\\
+A questo punto resta solo la riscrittura dei controller, mentre lo strato di servizio e quello di repository rimangono invariati durante la migrazione, infatti le logiche del server e l'accesso e la gestione del database rimangono invariati. Tuttavia prima di analizzare l'implementazione del controller GraphQL, è necessario dichiarare le classi Java corrispondenti ad i vari errori ed ai tipi di input; questo è necessario poiché qualora dovessere essere ritornato un errore o dovesse essere ricevuto in input ad esempio il tipo dichiarato precedentemente \textit{EmployeeInput}, il quale non corrisponde al tipo Employee dichiarato in Java, si creerebbero degli errori durante il mapping tra i tipi Java e i tipi dichiarati nel GraphQL Schema. Per questo motivo è stato dichiarato un Java record per ciascun errore/successo, più le classi relative ai vari tipi di input.\\
 L'implementazione del controller risulta differente rispetto a quella vista con le REST API. Di seguito in figura \ref{graphql-controller} è possibile visualizzarne la struttura ed i metodi:
 \FloatBarrier
 \begin{figure}[!ht]
@@ -407,17 +411,17 @@ L'implementazione del controller risulta differente rispetto a quella vista con 
 \label{graphql-controller}
 \end{figure}
 \FloatBarrier
-Come si può notare in figura \ref{graphql-controller} si tratta di un controller differente rispetto al controller REST. Innanzitutto ha l'annotazione \textbf{@Controller} e non @RestController, poiché quest'ultima serve per indicare esclusivamente Spring Controller per REST API, mentre la prima è più generica ed indica esclusivamente che si tratta di un controller. Poi è possibile notare come le annotazioni sui metodi siano differenti, per le query si usa l'annotazione \textbf{@QueryMapping}, per le mutation l'annotazione \textbf{@MutationMapping}, mentre per le subscription l'annotazione \textbf{@SubscriptionMapping}, infine per gli argomenti dei metodi l'annotazione \textbf{@Argument}. Queste annotazioni sono fondamentali poiché permettono di effettuare il mapping tra i tipi, query, mutation o subscription definiti nel GraphQL Schema e quelli definiti nel controller. Per questo motivo il nome di ciascun metodo o tipo negli argomenti deve corrispondere esattamente al nome nel GraphQL Schema, altrimenti il mapping non andrà a buon fine e verranno generati degli errori.\\
-In figura \ref{employee-by-name-graphql} è possibile visualizzare un esempio di implementazione di un metodo del controller, in questo caso si tratta del metodo \textit{employeeByName} il quale ritorna un errore \textit{NotFoundError} nel caso non venisse trovato alcun impiegato con il nome specificato, oppure una lista di impiegati con quel determinato nome.
-\FloatBarrier
-\begin{figure}[!ht]
-\centering
-\includegraphics[width=0.8\linewidth]{immagini/employeeByNameGraphQL.png}
-\caption{Metodo \textit{employeeByName} del controller \textit{EmployeeController}.}
-\label{graphql-controller}
-\end{figure}
-\FloatBarrier
-Infine, trattandosi di una particolare funzionalità disponibile esclusivamente in GraphQL, in figura \ref{subscription-graphql} è possibile visualizzare l'implementazione della subscription \textit{newEmployeeAdded}:
+Come si può notare in figura \ref{graphql-controller} si tratta di un controller molto simile al medesimo controller in REST, ma con annotazioni differenti. Innanzitutto ha l'annotazione \textbf{@Controller} e non @RestController, poiché quest'ultima serve per indicare esclusivamente Spring Controller per REST API, mentre la prima è più generica ed indica esclusivamente che si tratta di un controller. Poi è possibile notare come le annotazioni sui metodi siano differenti, per le query si usa l'annotazione \textbf{@QueryMapping}, per le mutation l'annotazione \textbf{@MutationMapping}, mentre per le subscription l'annotazione \textbf{@SubscriptionMapping}, infine per gli argomenti dei metodi l'annotazione \textbf{@Argument}. Queste annotazioni sono fondamentali poiché permettono di effettuare il mapping tra i tipi, query, mutation o subscription definiti nel GraphQL Schema e quelli definiti nel controller. Per questo motivo il nome di ciascun metodo o tipo negli argomenti deve corrispondere esattamente al nome nel GraphQL Schema, altrimenti il mapping non andrà a buon fine e verranno generati degli errori.\\
+%In figura \ref{employee-by-name-graphql} è possibile visualizzare un esempio di implementazione di un metodo del controller, in questo caso si tratta del metodo \textit{employeeByName} il quale solleva un eccezione \textit{EmployeeNotFoundError} nel caso non venisse trovato alcun impiegato con il nome specificato, oppure una lista di impiegati con quel determinato nome.
+%\FloatBarrier
+%\begin{figure}[!ht]
+%\centering
+%\includegraphics[width=0.8\linewidth]{immagini/employeeByNameGraphQL.png}
+%\caption{Metodo \textit{employeeByName} del controller \textit{EmployeeController}.}
+%\label{employee-by-name-graphql}
+%\end{figure}
+%\FloatBarrier
+L'implementazione dei metodi del controller risulta identica a quella dei corrispettivi metodi nel REST controller. Tuttavia, trattandosi di una particolare funzionalità disponibile esclusivamente in GraphQL, in figura \ref{subscription-graphql} viene riportata l'implementazione della subscription \textit{newEmployeeAdded}:
 \FloatBarrier
 \begin{figure}[!ht]
 \centering
@@ -435,20 +439,30 @@ L'implementazione della subscription permette al subscriber, in questo caso il c
 %  \item testing;
 %\end{itemize}
 \textcolor{red}{Mancano test in graphQL}
-\paragraph{GraphQL Server response structure & error handling}
+\paragraph{Strutture delle risposte HTTP in GraphQL e gestione degli errori}
 Come spiegato in precedenza
 Le risposte che il server GraphQL appena realizzato ritorna al client in seguito ad una query, mutation o subscription sono dei file JSON. Questi JSON possono contenere tre tipi di campi:
 \begin{itemize}
-  \item \textbf{Data}: il campo data viene ritornato nella risposta solo qualora la query abbia avuto successo anche solo parzialmente e vengono dunque ritornati al suo interno i dati richiesti;
+  \item \textbf{Data}: il campo data viene ritornato nella risposta solo qualora la query abbia iniziato l'esecuzione, in caso si verifichino errori durante l'esecuzione possono essere ritornati dati parziali, oppure il campo \textit{Data} può essere ritornato con valore \textit{null};
   \item \textbf{Errors}: il campo errors viene ritornato nel JSON solo ed esclusivamente quando si sono verificati degli errori prima o durante l'esecuzione della query, questo ritorna i vari errori presenti. Ogni errore ritornato nel campo \textit{errors} può contenere a sua volta altri campi che indicano la posizione dell'errore e/o un messaggio;
   \item \textbf{Extensions}: si tratta di un campo aggiuntivo a disposizione degli sviluppatori, può essere utilizzato ad esempio per ritornare il timestamp dell'esecuzione della query.
 \end{itemize}
 Analizzando gli errori che si possono verificare durante l'esecuzione di una query, mutation o subscription nel server GraphQL, si possono raggruppare in tre categorie:
 \begin{itemize}
   \item \textbf{Errori di sintassi}: si tratta di errori nella sintassi della query. Quando viene inviata una query sintatticamente scorretta viene ritornato un JSON contenente il campo "errors", il quale indica che si tratta di un "Syntax Error". In questo caso l'eseguzione della richiesta non parte nemmeno;
-  \item \textbf{Errori nei campi}: si verificano quando vengono specificati nella richiesta tipi o campi non presenti. In questo caso l'errore si verifica durante l'esecuzione, dunque a volte può essere ritornato sia il campo \textit{data}, contenente i dati che il server è riuscito a recuperare, che il campo \textit{errors} che indica la presenza di uno o più errrori di data fetching;
-  \item \textbf{Errori di }
+  \item \textbf{Errori di validazione}: si verificano quando vengono specificati nella richiesta tipi o campi non presenti o non corretti. In questo caso l'errore si verifica durante l'esecuzione, dunque viene ritornato sia il campo \textit{data}, con valore null o con i dati parziali che il server è riuscito a recuperare, che il campo \textit{errors} che indica la presenza di uno o più errrori di data fetching;
+  \item \textbf{Errori nei resolver:} si verificano durante la risoluzione della query e non sono legate al fatto che la query sia formulata male o con tipi sbagliati. Questi errori devono essere gestiti lato server;
 \end{itemize}
+Mentre quando si verificano gli errori di sintassi o di validazione la risposta generata con l'errore è chiara riguardo la natura dell'errore, nel terzo caso il messaggio dell'errore ritornato è quasi sempre incomprensibile. Questo accade perché la gestione delle eccezzioni durante l'esecuzione di una richiesta è presa in carico dall'interfaccia predefinita \textit{DataFetcherExceptionHandler}, la quale permette la dichiarazione di più risolutori di eccezzioni detti \textit{DataFetcherExceptionResolver} che vengono invocati sequenzialmente qualora si presentasse un errore, fino a quando uno di questi non riesce a risolvere l'eccezzione, altrimenti viene ritornato un errore con messaggio incomprensibile e categoria \textit{"INTERNAL\_ERROR"}. Questo per uno sviluppatore può essere un problema poiché non è facile individuare la provenienza dell'errore. Per questo motivo sono stati creati differenti resolvers per le varie eccezioni che possono verificarsi. In figura \ref{resolver-example} l'esempio di implementazione di un resolver che riscrive il metodo di risoluzione delle eccezioni \textit{resolveToSingleError} al fine di risolvere l'eccezione \textit{EmployeeNotFound}.
+\FloatBarrier
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=0.8\linewidth]{immagini/resolverExample.png}
+\caption{Classe \textit{GraphQLExceptionResolver} con metodo \textit{resolveToSingleError} ridefinito per la risoluzione dell'eccezione \textit{EmployeeNotFoundError}.}
+\label{resolver-example}
+\end{figure}
+\FloatBarrier
+Com'è possibile notare viene ritornato un oggetto di tipo \textit{GraphQLError} con i campi impostati correttamente. Dunque quando viene sollevata l'eccezione, è ora possibile specificare il messaggio che il resolver andrà a ritornare nell'errore, oltre ad impostarne il tipo corretto dell'errore.
 \subsubsection*{Migrazione Frontend}
 La migrazione del frontend richiede uno sforzo minore rispetto al backend, infatti è sufficiente effettuare la migrazione esclusivamente dei servizi che si occupano dell'invocazione delle API.\\
 Il servizio visualizzato precedentemente in figura \ref{employee-service} \textit{EmployeeService}, non cambia la sua struttura, i metodi rimangono gli stessi, tuttavia l'implementazione del metodo deve cambiare. Oltre all'implementazione dei metodi cambia anche l'oggetto che permette il fetching dei dati dal server, infatti trattandosi ora di un GraphQL Server, sarà necessaria la dipendenza dall'oggetto \textit{Apollo} il quale permette il fetching dei dati da un server GraphQL.\\
@@ -461,10 +475,7 @@ In figura \ref{employee-service-method-graphql} è possibile visualizzare l'impl
 \label{employee-service-method-graphql}
 \end{figure}
 \FloatBarrier
-Attraverso il metodo \textit{watchQuery<>} dell'oggetto \textit{apollo} è possibile eseguire la query all'endopoint del server GraphQL. Il metodo ritorna un oggetto di tipo \textit{Observable}. La risposta che viene ricevuta dal client dopo la richiesta contiene un JSON con campi \textit{"data"} se la richiesta è andata a buon fine, altrimenti ritorna un campo \textit{"errors"} contenente l'errore, tuttavia possiamo trovarci in due casi:
-\begin{itemize}
-  \item \textbf{Errore nella formulazione della query}: i
-\end{itemize}
+Attraverso il metodo \textit{watchQuery<>} dell'oggetto \textit{apollo} è possibile eseguire la query all'endopoint del server GraphQL. Il metodo ritorna un oggetto di tipo \textit{Observable} ed il subscriber dovrà occuparsi di gestire quanto ritornato dal servizio, ovvero: nel caso in cui la query sia andata a buon fine, dovrà occuparsi di estrapolare i dati dal campo \textit{"data"} del file JSON ricevuto in risposta, altrimenti dovrà occuparsi di mostrare il messaggio ed il tipo dell'errore presente nel campo \textit{"errors"}.
 
 %La migrazione su FE è molto più semplice rispetto al BE, infatti è sufficiente andare ad aggiornare lo strato di servizio, il quale si occupa della gestione della chiamate API al BE. Anche qui si possono riscontrare alcuni problemi per quanto riguarda la corrispondenza dei tipi (ma ho avuto più problemi in SushiLab, qui trascurabile dunque).
 %Volendo dividere il tutto in subsubsection:

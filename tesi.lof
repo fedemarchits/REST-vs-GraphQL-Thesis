@@ -58,19 +58,15 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {figure}{\numberline {4.21}{\ignorespaces Tipi \textit {Employee} e \textit {EmployeeInput} nel GraphQL Schema.\relax }}{34}{figure.caption.77}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.22}{\ignorespaces Interfaccia \textit {Message} e definizione dei tipi che la implementano nel GraphQL Schema.\relax }}{35}{figure.caption.78}%
+\contentsline {figure}{\numberline {4.22}{\ignorespaces Implementazione delle query, mutation e subscription nel GraphQL Schema.\relax }}{35}{figure.caption.78}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.23}{\ignorespaces Interfaccia \textit {Message} e definizione dei tipi che la implementano nel GraphQL Schema.\relax }}{35}{figure.caption.79}%
+\contentsline {figure}{\numberline {4.23}{\ignorespaces Classe \textit {EmployeeController}.\relax }}{36}{figure.caption.80}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.24}{\ignorespaces Implementazione delle query, mutation e subscription nel GraphQL Schema.\relax }}{36}{figure.caption.80}%
+\contentsline {figure}{\numberline {4.24}{\ignorespaces Subscription \textit {newEmployeeAdded}.\relax }}{36}{figure.caption.81}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.25}{\ignorespaces Classe \textit {EmployeeController}.\relax }}{37}{figure.caption.82}%
+\contentsline {figure}{\numberline {4.25}{\ignorespaces Classe \textit {GraphQLExceptionResolver} con metodo \textit {resolveToSingleError} ridefinito per la risoluzione dell'eccezione \textit {EmployeeNotFoundError}.\relax }}{38}{figure.caption.83}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.26}{\ignorespaces Metodo \textit {employeeByName} del controller \textit {EmployeeController}.\relax }}{37}{figure.caption.83}%
-\defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.27}{\ignorespaces Subscription \textit {newEmployeeAdded}.\relax }}{38}{figure.caption.84}%
-\defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.28}{\ignorespaces Metodo \textit {allEmployees()} della classe \textit {EmployeeService}.\relax }}{39}{figure.caption.87}%
+\contentsline {figure}{\numberline {4.26}{\ignorespaces Metodo \textit {allEmployees()} della classe \textit {EmployeeService}.\relax }}{39}{figure.caption.85}%
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
