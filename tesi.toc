@@ -90,20 +90,36 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {paragraph}{Overfetching}{43}{section*.91}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.3}Conclusioni}{44}{section.5.3}%
+\contentsline {paragraph}{Underfetching}{44}{section*.92}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {6}Tecnologie utilizzate}{45}{chapter.6}%
+\contentsline {subsubsection}{Utilizzo del protocollo HTTP}{45}{section*.93}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {7}Conclusioni}{47}{chapter.7}%
+\contentsline {paragraph}{Metodi HTTP}{45}{section*.94}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.1}Consuntivo finale}{47}{section.7.1}%
+\contentsline {paragraph}{Codici di stato}{45}{section*.95}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.2}Raggiungimento degli obiettivi}{47}{section.7.2}%
+\contentsline {paragraph}{Caching}{45}{section*.96}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.3}Conoscenze acquisite}{47}{section.7.3}%
+\contentsline {subsubsection}{Altri aspetti comparativi}{46}{section*.97}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.4}Valutazione personale}{47}{section.7.4}%
+\contentsline {subsubsection}{Aspetti comparativi individuati durante la progettazione e la migrazione}{46}{section*.98}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {A}Appendice A}{49}{appendix.Alph1}%
+\contentsline {subsubsection}{Analisi comparativa prestazionale}{46}{section*.99}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{Bibliografia}{53}{appendix*.92}%
+\contentsline {section}{\numberline {5.3}Conclusioni}{46}{section.5.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {6}Tecnologie utilizzate}{47}{chapter.6}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {7}Conclusioni}{49}{chapter.7}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {7.1}Consuntivo finale}{49}{section.7.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {7.2}Raggiungimento degli obiettivi}{49}{section.7.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {7.3}Conoscenze acquisite}{49}{section.7.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {7.4}Valutazione personale}{49}{section.7.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {A}Appendice A}{51}{appendix.Alph1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Bibliografia}{55}{appendix*.100}%

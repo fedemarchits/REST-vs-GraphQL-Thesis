@@ -28,13 +28,13 @@ Come sottolineato in precedenza, GraphQL e REST hanno diversi aspetti che li dif
 Di seguito è presente un'analisi comparativa dettagliata per ciascun aspetto che differenzia i due protocolli di data fetching.
 \subsection{Endpoints}
 La prima grossa differenza tra i due protocolli riguarda gli endpoint.\\
-Lo stile REST prevede l'utilizzo di più endpoint, sfrutta infatti la molteplicità degli endpoint per differenziare le richieste possibili. Quando un client implementa una richiesta a delle REST API deve sapere esattamente a quale endpoint inviare la richiesta per ricevere i dati necessari. In figura \ref{REST-endpoints} viene rappresentato un REST server che fornisce diversi endpoint e il client, il quale invia diverse richieste a diversi endpoint.
+Lo stile REST prevede l'utilizzo di più endpoint, sfrutta infatti la molteplicità degli endpoint per differenziare le richieste possibili. Quando un client implementa una richiesta a delle REST API deve sapere esattamente a quale endpoint inviare la richiesta per ricevere i dati necessari. In figura \ref{REST-endpoints} viene rappresentato la struttura degli endpoint multipli di un REST server con il client che invia diverse richieste ai diversi endpoint.
 \FloatBarrier
 \begin{figure}[!ht]
 \centering
 \includegraphics[width=1\linewidth]{immagini/RESTEndpoints.pdf}
 \caption{Gli endpoints multipli in REST.}
-\label{graphQL-usage-chart}
+\label{REST-endpoints}
 \end{figure}
 \FloatBarrier
 Con GraphQL questo non avviene, infatti GraphQL prevede l'esposizione di un unico endpoint. A questo singolo endpoint possono essere inviate tutte le richieste inserendo nel body della richiesta la query, la mutation o la subscription. In figura \ref{GraphQL-endpoint} è possibile visualizzare come il GraphQL server fornisca un unico endpoint e come il client invii tutti i tipi di richieste allo stesso medesimo endpoint.
@@ -75,22 +75,63 @@ Quando si parla di overfetching si fa riferimento al fatto che vengano forniti p
   ]
 \end{verbatim}
 Si può subito notare come i campi \textit{surname}, \textit{salary} e \textit{birth} non siano necessari in quanto il client utilizza solo i campi \textit{id} e \textit{name}. Nel caso del prototipo si tratta di un problema irrisorio data la ridotta grandezza dei dati, tuttavia in applicativi a larga scala che richiedono grossi quantitativi di dati complessi può risultare un problema in termini di occupazione di rete e di rallentamenti dell'applicativo. Questo problema può essere risolto in un server con REST API fornendo endpoint specifici per ciascun tipo di richiesta, tuttavia questa soluzione rischia di introdurre confusione e nel tempo la manutenzione potrebbe risultare sempre più complessa.\\
-GraphQL risolve questo problema attribuendo al client la responsabilità di definire quali siano i campi di cui necessita. Questo è possibile specificando nella query i campi richiesti, di seguito l'esempio dell'invocazione contenente a sinistra la query \textit{allEmployee}, mentre a destra il JSON ricevuto in risposta:
+GraphQL risolve questo problema attribuendo al client la responsabilità di definire quali siano i campi di cui necessita. Questo è possibile specificando nella query i campi richiesti, di seguito l'esempio dell'invocazione contenente a sinistra la query \textit{allEmployees}, mentre a destra il JSON ricevuto in risposta:
 \begin{verbatim}
     QUERY                                     JSON RETURNED
 
-    query getAllEmployee{                 [
-      allEmployee {                         {
-        Employee {                              "id": "3AFASDF12F",
-          id                                    "name": "Matteo"
-          name                              },
-          }                                 {
-      }                                          "id": "GA14PL3FAV",
-    }                                            "name": "Marco"
-                                            }
-                                          ]
+    query {                              "data": {
+      allEmployees {                        "allEmployees": [
+          id                                  {
+          name                                   "id": "3AFASDF12F",
+          }                                      "name": "Matteo"
+        }                                     },
+      }                                       {
+                                                 "id": "GA14PL3FAV",
+                                                 "name": "Marco"
+                                              }
+                                            ]
+                                          }
 \end{verbatim}
-In GraphQL questo approcio permette di non sovraccaricare inutilmente la rete e di mantenere ordinato e di facile manutenzione la struttura API del server. Lato client è richiesto un maggior sforzo per nella specifica della query, ma d'altra parte si evitano problemi di rallentamento o errori dovuti al fetching di grossi quantitativi di dati inutili. 
+In GraphQL questo approcio permette di non sovraccaricare inutilmente la rete e di mantenere ordinato e di facile manutenzione la struttura API del server. Lato client è richiesto un maggior sforzo nella specifica della query, ma d'altra parte si evitano problemi di rallentamento o errori dovuti al fetching di grossi quantitativi di dati inutili.
+\paragraph{Underfetching}
+L'underfetching è il problema opposo all'overfetching, ovvero ciò accade quando il client dopo una richiesta alle REST API riceve solo una parte dei dati necessari. Questo implica che il client deve eseguire più chiamate per ottenere i dati completi.\\
+Riprendendo l'esempio precedente nel paragrafo riguardante l'overfetching, qualora il client desiderasse visualizzare i progetti ai quali sta lavorando un impiegato, dovrà prima ricevere la lista degli impiegati e, solo successivamente, ricercare i progetti con l'id dell'impiegato.\\
+La stessa medesima operazione utilizzando GraphQL è risolvibile in una sola richiesta:
+\begin{verbatim}
+  QUERY                                 JSON RETURNED
+
+  query {                           "data": {
+    allEmployees {                     "allEmployees": [
+      id                                 {
+      projects {                           "id": "3AFASDF12F",
+          id                               "projects": [
+          name                               {
+        }                                       "id": "7NFAISH280",
+      }                                         "name": "Progetto Beta"
+    }                                        },
+  }                                          {
+                                                "id": "N2A8F234SD",
+                                                "name": "Progetto Teta"
+                                            }
+                                           ]
+                                          }
+                                        ]
+                                      }
+\end{verbatim}
+A sinistra è possibile visualizzare la query \textit{allEmployees} nella quale viene specificato l'id di ciascun impiegato ed il campo \textit{projects}, il quale, a sua volta, ha specificato i campi \textit{id} e \textit{name}. A destra invece è visualizzato il JSON ritornato con l'impiegato e i due progetti ai quali sta partecipando.
+\subsubsection{Utilizzo del protocollo HTTP}
+I due protocolli comparati utilizzano il protocollo HTTP in maniera differente. Lo stile REST alla sua creazione è stato fortemente basato sul protocollo HTTP, per questo motivo ne sfrutta le convenzioni. GraphQL invece, per il modo in cui opera, sfrutta solo in parte ed in maniera "stupida" il protocollo HTTP.
+\paragraph{Metodi HTTP}
+Per metodi HTTP s'intendono le possibili operazioni che il protocollo HTTP prevede nella comunicazione tra due moduli di rete. Le API REST supportano i metodi POST, GET, PUT e DELETE per la gestione delle risorse sul server e nel caso della POST e della PUT è possibile specificare i dati all'interno del body della richiesta HTTP. GraphQL invece sfrutta solamente l'operazione POST e specifica nel body la query, la mutation o la subscription desiderata.
+\paragraph{Codici di stato}
+I codici di stato vengono utilizzati per dare informazioni sull'esito di una richiesta HTTP e risultano fondamentali nella comprensione degli errori. Mentre REST utilizza ampiamente i codici di stato nelle risposte, GraphQL ritorna esclusivamente il codice di stato 200 e specifica il problema nel JSON ritornato; talvolta in alcuni GraphQL server, qualora si dovessero verificare degli errori, può essere ritornato anche il codice di stato 500 riferito all'\textit{Internal Server Error}.
+\paragraph{Caching}
+Per caching s'intende il meccanismo attraverso il quale il browser, il client, i server proxy o altri moduli della rete utilizzano per archiviare localmente i dati a cui si accede frequentemente senza dover ogni volta mandare la medesima richiesta al server. Si tratta di fattore importante poiché, se utilizzato correttamente, permette di ridurre il traffico dati tra i moduli della rete e i tempi di latenza, i dati sono recuperabili molto più velocemente e questo è fondamentale per fornire velocemente i dati nei siti web, vengono eseguiti meno accessi al database lato server e le performance di conseguenza migliorano.\\
+Il caching è parte integrante del protocollo HTTP e viene ampiamente sfruttato in REST, infatti per il metodo GET e in parte anche per i metodi PUT e DELETE il caching, a meno di direttive specifiche, viene utilizzato di default. Per quanto riguarda i metodi POST il caching non viene utilizzato di default, ma con apposite direttive nell'header della risposta HTTP è possibile permetterlo.\\
+Per il modo in cui opera GraphQL, il caching previsto dal protocollo HTTP non viene sfruttato. Per questo motivo, anche nella documentazione GraphQL, viene specificato come sia un dovere del client quello di abilitare e gestire il caching. Alcune librerie permettono di risolvere questo problema, ad esempio il modulo \textit{Apollo} utilizzato per la realizzazione del frontend del prototipo e nella migrazione dell'applicativo SushiLab, include una implementazione del caching di default chiamata \textit{InMemoryCache}.
+\subsubsection{Altri aspetti comparativi}
+\subsubsection{Aspetti comparativi individuati durante la progettazione e la migrazione}
+\subsubsection{Analisi comparativa prestazionale}
 \section{Conclusioni}
 
 
@@ -99,10 +140,7 @@ In GraphQL questo approcio permette di non sovraccaricare inutilmente la rete e 
 
 % Spiegazione di cosa si intende per analisi comparativa teorica: analisi % comparativa che va a comparare gli aspetti prettamente teorici, come ad esempio:
 % \begin{itemize}
-%  \item overfetching e underfetching;
-%  \item un protocollo è una sorta di standard/stile architetturale (restfull api)     mentre l'altro un linguaggio di query fortemente tipizzato (REST invece non è safe dal punto di vista dei tipi);
-%  \item come sfruttano il protocollo http (stati risposte http, endpoint multipli vs singolo, ecc...);
-%  \item manuntenibilità nel tempo;
+%  \item versioni;
 %  \item documentazione (GraphQL si autodocumenta, REST no);
 %  \item meccanismo di caching integrato (mancante in GraphQL);
 %  \item formati output di risposta (GraphQL --> JSON, REST --> JSON, XML, YAML);
