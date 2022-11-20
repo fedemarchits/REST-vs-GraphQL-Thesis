@@ -82,26 +82,28 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {5.1}Introduzione}{41}{section.5.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.2}Analisi comparativa}{41}{section.5.2}%
+\contentsline {section}{\numberline {5.2}Analisi comparativa}{42}{section.5.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.2.1}Endpoints}{41}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.2.1}Endpoints}{42}{subsection.5.2.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.2.2}Overfetching e Underfetching}{42}{subsection.5.2.2}%
+\contentsline {subsection}{\numberline {5.2.2}Overfetching e Underfetching}{43}{subsection.5.2.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.3}Conclusioni}{42}{section.5.3}%
+\contentsline {paragraph}{Overfetching}{43}{section*.91}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {6}Tecnologie utilizzate}{43}{chapter.6}%
+\contentsline {section}{\numberline {5.3}Conclusioni}{44}{section.5.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {7}Conclusioni}{45}{chapter.7}%
+\contentsline {chapter}{\numberline {6}Tecnologie utilizzate}{45}{chapter.6}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.1}Consuntivo finale}{45}{section.7.1}%
+\contentsline {chapter}{\numberline {7}Conclusioni}{47}{chapter.7}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.2}Raggiungimento degli obiettivi}{45}{section.7.2}%
+\contentsline {section}{\numberline {7.1}Consuntivo finale}{47}{section.7.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.3}Conoscenze acquisite}{45}{section.7.3}%
+\contentsline {section}{\numberline {7.2}Raggiungimento degli obiettivi}{47}{section.7.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.4}Valutazione personale}{45}{section.7.4}%
+\contentsline {section}{\numberline {7.3}Conoscenze acquisite}{47}{section.7.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {A}Appendice A}{47}{appendix.Alph1}%
+\contentsline {section}{\numberline {7.4}Valutazione personale}{47}{section.7.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{Bibliografia}{51}{appendix*.88}%
+\contentsline {chapter}{\numberline {A}Appendice A}{49}{appendix.Alph1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Bibliografia}{53}{appendix*.92}%
