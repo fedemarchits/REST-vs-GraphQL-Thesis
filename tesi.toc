@@ -102,23 +102,23 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsubsection}{Altri aspetti comparativi}{46}{section*.97}%
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Sicurezza}{46}{section*.98}%
+\contentsline {paragraph}{Documentazione}{46}{section*.98}%
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Formati di dati supportati}{46}{section*.99}%
+\contentsline {paragraph}{Sicurezza}{46}{section*.99}%
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Versionamento}{46}{section*.100}%
+\contentsline {paragraph}{Formato dati supportati}{47}{section*.100}%
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Real Time Application}{46}{section*.101}%
+\contentsline {paragraph}{Versionamento ed evoluzione delle API}{47}{section*.101}%
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{File uploading}{46}{section*.102}%
+\contentsline {paragraph}{Trasmissione di dati in tempo reale}{47}{section*.102}%
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{N+1 problem}{46}{section*.103}%
+\contentsline {paragraph}{File uploading}{48}{section*.103}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Aspetti comparativi pratici individuati durante la progettazione e la migrazione}{46}{section*.104}%
+\contentsline {subsubsection}{Aspetti comparativi pratici}{48}{section*.104}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Analisi comparativa prestazionale}{47}{section*.105}%
+\contentsline {subsubsection}{Analisi comparativa prestazionale}{48}{section*.105}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.3}Conclusioni}{47}{section.5.3}%
+\contentsline {section}{\numberline {5.3}Conclusioni}{48}{section.5.3}%
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {6}Tecnologie utilizzate}{49}{chapter.6}%
 \defcounter {refsection}{0}\relax 

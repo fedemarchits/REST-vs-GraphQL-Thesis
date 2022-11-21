@@ -120,7 +120,8 @@ La stessa medesima operazione utilizzando GraphQL è risolvibile in una sola ric
 \end{verbatim}
 A sinistra è possibile visualizzare la query \textit{allEmployees} nella quale viene specificato l'id di ciascun impiegato ed il campo \textit{projects}, il quale, a sua volta, ha specificato i campi \textit{id} e \textit{name}. A destra invece è visualizzato il JSON ritornato con l'impiegato e i due progetti ai quali sta partecipando.
 \subsubsection{Utilizzo del protocollo HTTP}
-I due protocolli comparati utilizzano il protocollo HTTP in maniera differente. Lo stile REST alla sua creazione è stato fortemente basato sul protocollo HTTP, per questo motivo ne sfrutta le convenzioni. GraphQL invece, per il modo in cui opera, sfrutta solo in parte ed in maniera "stupida" il protocollo HTTP. Per questo motivo GraphQL viene spesso definito agnostico rispetto al protocollo di trasporto perché può funzianare su qualsiasi protocollo di trasporto affinché sia possibile trasposrtare query e dati.
+Nonostante entrambi i protocolli non richiedano per forza il protocollo HTTP per funzionare, entrambi nella maggior parte dei casi vengono utilizzati con esso. Per questo motivo viene eseguita un'analisi su come REST e GraphQL si comportano con il protocollo HTTP. \\
+I due protocolli comparati utilizzano il protocollo HTTP in maniera molto differente. Lo stile REST alla sua creazione è stato fortemente basato sul protocollo HTTP, per questo motivo lo sfrutta ampiamente. GraphQL invece, per il modo in cui opera, sfrutta solo in parte ed in maniera "stupida" il protocollo HTTP e per questo motivo GraphQL viene spesso definito agnostico rispetto al protocollo di trasporto.
 \paragraph{Metodi HTTP}
 Per metodi HTTP s'intendono le possibili operazioni che il protocollo HTTP prevede nella comunicazione tra due moduli di rete. Le API REST supportano i metodi POST, GET, PUT e DELETE per la gestione delle risorse sul server e nel caso della POST e della PUT è possibile specificare i dati all'interno del body della richiesta HTTP. GraphQL invece sfrutta solamente l'operazione POST e specifica nel body la query, la mutation o la subscription desiderata.
 \paragraph{Codici di stato}
@@ -131,25 +132,48 @@ Il caching è parte integrante del protocollo HTTP e viene ampiamente sfruttato 
 Per il modo in cui opera GraphQL, il caching previsto dal protocollo HTTP non viene sfruttato. Per questo motivo, anche nella documentazione GraphQL, viene specificato come sia un dovere del client quello di abilitare e gestire il caching. Alcune librerie permettono di risolvere questo problema, ad esempio il modulo \textit{Apollo} utilizzato per la realizzazione del frontend del prototipo e nella migrazione dell'applicativo SushiLab, include una implementazione del caching di default chiamata \textit{InMemoryCache}.
 \subsubsection{Altri aspetti comparativi}
 Sono presenti molti altri aspetti che differenziano i due protocolli analizzati. Di seguito vengono riporatati i più importanti.
+\paragraph{Documentazione}
+La documentazione delle API risulta fondamentale quando uno sviluppatore client necessita di utilizzare i servizi web resi disponibili da un server.\\
+Uno degli aspetti più interessanti di GraphQL è proprio quello che si autodocumenta durante la definizione del GraphQL Schema. Infatti definendo il GraphQL schema vengono dichiarati i tipi e la loro struttura campo per campo, le loro relazioni, le query, le mutation, le subscription ed eventuali altri tipi particolari come tipi unione ed enumerazioni. Inoltre il linguaggio SLD, utilizzato nella realizzazione dello schema GraphQL, supporta anche il linguaggio di markup \textit{Markdown} e dunque è possibile, direttamente dal GraphQL schema, specificare ulteriori informazioni su determinati elementi dello schema inserendo delle frasi.\\
+Lo sviluppatore client che desidera la documentazione su un determinato schema GraphQL, può facilmente recuperarla con un processo chiamato \texit{Introspection} per il quale è possibile effettuare una query sempre disponibile richiedendo il campo \textit{\_\_schema} e definendo ciò che vuole visualizzare dei tipi nello schema, così facendo può ottenere come risposta direttamente tutte le informazioni che più desidera. Ci sono inoltre dei tool che permettono di semplificare il processo di instrospezione, ad esempio usando il GraphQL playground.\\
+In REST non è previsto nessun modo per documentare le API se non affidandosi a servizi esterni, come ad esempio il noto toolset opensource \textit{Swagger}.
 \paragraph{Sicurezza}
 Si tratta di un fattore fondamentale per la trasmissione sicura di dati tra moduli sulla rete. Le REST API supportano i protocolli crittografici, ad esempio il Transfer Layer Security il quale assicura che i dati che vengono passati tra moduli della rete rimangano invariati e privati. Inoltre sono presenti moltpelici specifiche per garantire la sicurezza nello scambio di messaggi attraverso API REST, tra le quali: JWT, JWS, JWk, ecc...\\
 Anche GraphQL ha dei modi per l'autenticazione e l'autorizzazione le richieste del client, tuttavia risultano sicuramente meno sviluppati e consolidate rispetto a quelli disponibili con le REST API.\\
 Un altro punto critico di GraphQL legato alla sua flessibilità, ovvero al fatto che permetta di richiedere qualsiasi tipo di dato in qualsiasi forma, è quello che proprio per questa ragione sia possibile, se non vengono strutturate bene le risorse, essere vittime di attacchi DoS attraverso query annidate che vanno a sovraccaricare il database e il server. Questa parziale mancanza di GraphQL è dovuta probabilmente al fatto che si tratti di una tecnologia giovane, ma sono presenti sempre più modi per gestire la sicurezza ed evitare questo tipo di situazioni.
-\paragraph{Formati di dati supportati}
+\paragraph{Formato dati supportati}
 Le REST API supportano diversi tipi di dati come: JSON, XML e YAML. GraphQL dall'altra parte supporta solo il formato JSON.
-\paragraph{Versionamento}
-Le API devono essere flessibili e dunque poter evolvere o cambiare nel tempo. Inoltre deve essere tenuta in considerazione anche la retrocompatibilità, oppure il casi di un server che fornisce API per numerosi client differenti, con richieste differenti, per questo è necessario poter versionare le API.
-La maggior parte delle REST API basano
-\paragraph{Real Time Application}
+\paragraph{Versionamento ed evoluzione delle API}
+Il versionamento e l'evoluzione delle API sono argomenti molto dibattuti, ci sono diversi filoni di pensiero e diversi approci classici, alcuni prediligono l'evoluzione delle API, altri ritengono necessario versionarle.\\
+GraphQL predilige un approcio di evoluzione delle API, infatti è possibile evolvere le proprie GraphQL API introducendo nuovi campi nei tipi e preservando i vecchi campi così da mantenere la retrocompatibilità. A conferma di quanto appena affermato, di seguito viene riportato quanto scritto nella pagina riguardante le migliori pratiche nella documentazione GraphQL:
+\begin{quoting}
+  \textit{"While there’s nothing that prevents a GraphQL service from being versioned just like any other REST API, GraphQL takes a strong opinion on avoiding versioning by providing the tools for the continuous evolution of a GraphQL schema."}
+\end{quoting}
+Questo approcio inoltre può essere utilizzato anche con API REST.\\
+Per quanto riguarda però l'eliminazione di alcune funzionalità o campi dati, in GraphQL è possibile definire dei campi deprecati con apposite direttive e, quando gli sviluppatori frontend interrogano lo schema con l'introspezione, vengono scoraggiati dall'utilizzare quella determinata funzionalità o campo dati che verrà presto rimossa. A differenza degli schemi di versionamento come il \textit{Semantic Versioning}, in GraphQL non è possibile specificare quando verrà rimosso effettivamente il campo deprecato. Anche con le REST API può essere indicato un campo deprecato, ma questo è possibile specificarlo solo nella documentazione delle API.\\
+Dunque in accordo con quanto riportato precedentemente dalla documentazione GraphQL, nulla impedisce il versionamento in GraphQL, per questo sono stati ideati dei modi per versionare anche le GraphQL API, come ad esempio includere nei vari tipi dei campi versionamento e dunque in base alla versione trattare i vari campi in maniere differenti. In REST invece il versionamento avviene in maniera differente, infatti vengono utilizzati principalmente due approci, uno che prevede di realizzare più versioni di API e richiede però che venga specificato la versione nell'URI della chiamata; l'altro che invece richiede di specificare la versione includendola nell'header della richiesta HTTP.
+\paragraph{Trasmissione di dati in tempo reale}
+Nelle Real Time Application è necessario ricevere i dati dal server in tempo reale. Questo non è possibile se il server fornisce delle REST API, a meno che non vengano utilizzati degli escamotage come ad esempio il \textit{long pooling} secondo il quale il server, dopo aver ricevuto una richiesta dal client, mantiene aperta la connessione fino a che non arrivano dati in tempo reale e quel punto invia la risposta al client, il quale subito dopo invia una nuova richiesta al server per riaprire immediatamente la connessione.\\
+In GraphQL non serve utilizzare degli escamotage per permettere questo tipo di scambio dati in tempo reale, infatti è stato reso disponibile un tipo detto \textit{Subscription}, spiegato precedentemente nel capitolo \ref{casi-uso}, che permette al client di "iscriversi" ad un certo tipo di dati e, al verificarsi di un certo evento, il server invia direttamente i dati al client senza che il client li richieda. Il tutto è implementato con i WebSocket che permettono di mantenere la connessione server-client attraverso una connessione TCP. \\
+È possibile utilizzare in WebSocket anche con API REST, ma risulta essere comunque un adattamento guidato da esigenze di poter utilizzare connessioni bidirezionali, non come nel caso di GraphQL in cui si tratta proprio di una funzionalità prevista dal protocollo stesso.
 \paragraph{File uploading}
-\paragraph{N+1 problem}
-\subsubsection{Aspetti comparativi pratici individuati durante la progettazione e la migrazione}
-- Documentazione (introspection)
-- mapping e fortemente tipizzato
-  documentazione presente nei siti
-- usabilità
-- rapidità sviluppo backend
-- rapidità sviluppo frontend
+Spesso può essere necessario permettere al client di effettuare l'upload di file di vario genere sul server. In REST questa necessità viene soddisfatta pienamente, infatti è possibile passare il file inserendolo nel body della richiesta e impostanto alcune direttive nell'header. In GraphQL ciò non è previsto del protocollo, sono però presenti diverse soluzioni già implementate in molte librerie utilizzate.
+\subsubsection{Aspetti comparativi pratici}
+Durante la realiz
+
+
+
+
+
+
+
+
+%- Documentazione (introspection)
+%- mapping e fortemente tipizzato
+  %documentazione presente nei siti
+%- usabilità
+%- rapidità sviluppo backend
+%- rapidità sviluppo frontend
 \subsubsection{Analisi comparativa prestazionale}
 \section{Conclusioni}
 
