@@ -8,7 +8,7 @@
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Connessione one-to-one.\relax }}{11}{figure.caption.32}%
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Connessione one-to-one.\relax }}{12}{figure.caption.32}%
 \defcounter {refsection}{0}\relax 
 \contentsline {figure}{\numberline {3.2}{\ignorespaces Connessione one-to-many.\relax }}{12}{figure.caption.34}%
 \defcounter {refsection}{0}\relax 
@@ -56,25 +56,25 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {figure}{\numberline {4.20}{\ignorespaces Test sul metodo \textit {allEmployee()} di \textit {EmployeeService}.\relax }}{33}{figure.caption.74}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.21}{\ignorespaces Tipi \textit {Employee} e \textit {EmployeeInput} nel GraphQL Schema.\relax }}{34}{figure.caption.77}%
+\contentsline {figure}{\numberline {4.21}{\ignorespaces Tipi \textit {Employee} e \textit {EmployeeInput} nel GraphQL Schema.\relax }}{34}{figure.caption.76}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.22}{\ignorespaces Implementazione delle query, mutation e subscription nel GraphQL Schema.\relax }}{35}{figure.caption.78}%
+\contentsline {figure}{\numberline {4.22}{\ignorespaces Implementazione delle query, mutation e subscription nel GraphQL Schema.\relax }}{35}{figure.caption.77}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.23}{\ignorespaces Classe \textit {EmployeeController}.\relax }}{36}{figure.caption.80}%
+\contentsline {figure}{\numberline {4.23}{\ignorespaces Classe \textit {EmployeeController}.\relax }}{36}{figure.caption.79}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.24}{\ignorespaces Subscription \textit {newEmployeeAdded}.\relax }}{36}{figure.caption.81}%
+\contentsline {figure}{\numberline {4.24}{\ignorespaces Subscription \textit {newEmployeeAdded}.\relax }}{36}{figure.caption.80}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.25}{\ignorespaces Classe \textit {GraphQLExceptionResolver} con metodo \textit {resolveToSingleError} ridefinito per la risoluzione dell'eccezione \textit {EmployeeNotFoundError}.\relax }}{38}{figure.caption.83}%
+\contentsline {figure}{\numberline {4.25}{\ignorespaces Classe \textit {GraphQLExceptionResolver} con metodo \textit {resolveToSingleError} ridefinito per la risoluzione dell'eccezione \textit {EmployeeNotFoundError}.\relax }}{38}{figure.caption.82}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.26}{\ignorespaces Metodo \textit {allEmployees()} della classe \textit {EmployeeService}.\relax }}{39}{figure.caption.85}%
+\contentsline {figure}{\numberline {4.26}{\ignorespaces Metodo \textit {allEmployees()} della classe \textit {EmployeeService}.\relax }}{39}{figure.caption.84}%
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Grafico sull'utilizzo di GraphQL negli anni.\relax }}{41}{figure.caption.88}%
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Grafico sull'utilizzo di GraphQL negli anni.\relax }}{41}{figure.caption.87}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {5.2}{\ignorespaces Gli endpoints multipli in REST.\relax }}{42}{figure.caption.89}%
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Gli endpoints multipli in REST.\relax }}{42}{figure.caption.88}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {5.3}{\ignorespaces Il singolo endpoint GraphQL.\relax }}{42}{figure.caption.90}%
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Il singolo endpoint GraphQL.\relax }}{43}{figure.caption.89}%
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 

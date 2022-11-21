@@ -60,19 +60,17 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {4.1.2}Migrazione da REST a GraphQL}{34}{subsection.4.1.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{GraphQL Schema}{34}{section*.76}%
+\contentsline {paragraph}{Controller refactoring}{35}{section*.78}%
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Controller refactoring}{35}{section*.79}%
-\defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Strutture delle risposte HTTP in GraphQL e gestione degli errori}{37}{section*.82}%
+\contentsline {paragraph}{Strutture delle risposte HTTP in GraphQL e gestione degli errori}{37}{section*.81}%
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {4.2}SushiLab}{39}{section.4.2}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {4.2.1}Comprensione dell'applicativo}{39}{subsection.4.2.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Panoramica del backend}{39}{section*.86}%
+\contentsline {subsubsection}{Panoramica del backend}{39}{section*.85}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Panoramica del frontend}{39}{section*.87}%
+\contentsline {subsubsection}{Panoramica del frontend}{39}{section*.86}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {4.2.2}Migrazione del BE da REST a GraphQL}{39}{subsection.4.2.2}%
 \defcounter {refsection}{0}\relax 
@@ -88,50 +86,58 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {5.2.2}Overfetching e Underfetching}{43}{subsection.5.2.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Overfetching}{43}{section*.91}%
+\contentsline {paragraph}{Overfetching}{43}{section*.90}%
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Underfetching}{44}{section*.92}%
+\contentsline {paragraph}{Underfetching}{44}{section*.91}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Utilizzo del protocollo HTTP}{45}{section*.93}%
+\contentsline {subsubsection}{Utilizzo del protocollo HTTP}{45}{section*.92}%
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Metodi HTTP}{45}{section*.94}%
+\contentsline {paragraph}{Metodi HTTP}{45}{section*.93}%
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Codici di stato}{45}{section*.95}%
+\contentsline {paragraph}{Codici di stato}{45}{section*.94}%
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Caching}{45}{section*.96}%
+\contentsline {paragraph}{Caching}{46}{section*.95}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Altri aspetti comparativi}{46}{section*.97}%
+\contentsline {subsubsection}{Altri aspetti comparativi}{46}{section*.96}%
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Documentazione}{46}{section*.98}%
+\contentsline {paragraph}{Documentazione}{46}{section*.97}%
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Sicurezza}{46}{section*.99}%
+\contentsline {paragraph}{Sicurezza}{47}{section*.98}%
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Formato dati supportati}{47}{section*.100}%
+\contentsline {paragraph}{Formato dati supportati}{47}{section*.99}%
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Versionamento ed evoluzione delle API}{47}{section*.101}%
+\contentsline {paragraph}{Versionamento ed evoluzione delle API}{47}{section*.100}%
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Trasmissione di dati in tempo reale}{47}{section*.102}%
+\contentsline {paragraph}{Trasmissione di dati in tempo reale}{48}{section*.101}%
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{File uploading}{48}{section*.103}%
+\contentsline {paragraph}{File uploading}{48}{section*.102}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Aspetti comparativi pratici}{48}{section*.104}%
+\contentsline {subsubsection}{Aspetti comparativi pratici}{48}{section*.103}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Analisi comparativa prestazionale}{48}{section*.105}%
+\contentsline {paragraph}{Documentazione online}{48}{section*.104}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.3}Conclusioni}{48}{section.5.3}%
+\contentsline {paragraph}{Complessità nell'apprendimento di REST e GraphQL}{48}{section*.105}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {6}Tecnologie utilizzate}{49}{chapter.6}%
+\contentsline {paragraph}{Sviluppo e migrazione backend}{49}{section*.106}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {7}Conclusioni}{51}{chapter.7}%
+\contentsline {paragraph}{Sviluppo frontend}{49}{section*.107}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.1}Consuntivo finale}{51}{section.7.1}%
+\contentsline {subsubsection}{Analisi comparativa prestazionale}{49}{section*.108}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.2}Raggiungimento degli obiettivi}{51}{section.7.2}%
+\contentsline {section}{\numberline {5.3}Conclusioni}{49}{section.5.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.3}Conoscenze acquisite}{51}{section.7.3}%
+\contentsline {chapter}{\numberline {6}Tecnologie utilizzate}{51}{chapter.6}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.4}Valutazione personale}{51}{section.7.4}%
+\contentsline {chapter}{\numberline {7}Conclusioni}{53}{chapter.7}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {A}Appendice A}{53}{appendix.Alph1}%
+\contentsline {section}{\numberline {7.1}Consuntivo finale}{53}{section.7.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{Bibliografia}{57}{appendix*.106}%
+\contentsline {section}{\numberline {7.2}Raggiungimento degli obiettivi}{53}{section.7.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {7.3}Conoscenze acquisite}{53}{section.7.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {7.4}Valutazione personale}{53}{section.7.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {A}Appendice A}{55}{appendix.Alph1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Bibliografia}{59}{appendix*.109}%

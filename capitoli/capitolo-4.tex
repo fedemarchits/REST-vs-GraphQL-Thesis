@@ -356,10 +356,9 @@ Viene inizialmente creato un array di Employee che ci si aspetterà di ricevere 
 Nella seguente sottosezione verrà mostrato come è stato migrato sia il backend che il frontend del prototipo realizzato da REST API a GraphQL API.
 \subsubsection*{Migrazione Backend}
 Il backend realizzato in Spring Boot con l'aiuto del modulo Spring Data REST per la realizzazione dei controller di REST API, deve essere riscritto in parte utilizzando il modulo Spring GraphQL per la realizzazione dei controller in GraphQL.\\
-Seguendo la metodologia \textit{Schema First} la prima cosa che è stata creata è il GraphQL Schema.
-\paragraph{GraphQL Schema}
+Per la migrazione è stata seguita la tecniche \textit{Schema first} che prevede la realizzazione del GraphQL Schema prima di implementare i resolver delle API. Nonostante i resolver fossero già realizzati per il prototipo in REST, è comunque necessario adattarli all'utilizzo di questo nuovo protocollo, questo passaggio è stato eseguito solo successivamente alla realizzazione dello schema.\\
 Il GraphQL Schema è necessario al fine di definire i tipi, le query, le mutation e le subscription che il server GraphQL renderà disponibili al client.\\
-Inizialmente è necessario fare un'analisi sulle enetità presenti e comprendere quali entità riportare nel GraphQL Schema. Infatti non tutte le entità devono essere necessariamente riportate nel GraphQL Schema, ma andranno riportate solo le entità che verranno utilizzate API. Nel caso del prototipo le quattro entità presenti, ovvero Employee, Project, Department e Site devono essere riportate tutte nel GraphQL schema poiché sono tutte accessibili dal client.\\
+Inizialmente è necessario fare un'analisi sulle entità presenti e comprendere quali entità riportare nel GraphQL Schema. Infatti non tutte le entità devono essere necessariamente riportate nel GraphQL Schema, ma andranno riportate solo le entità che verranno utilizzate API. Nel caso del prototipo le quattro entità presenti, ovvero Employee, Project, Department e Site devono essere riportate tutte nel GraphQL schema poiché sono tutte accessibili dal client.\\
 Partendo dunque dalle quattro entità, sarà necessario riportarle nel GraphQL Schema, sia come entità di input che di output nelle query, questo è necessario poiché GraphQL distingue i due tipi. In figura \ref{employee-schema} è possibile visualizzare l'implementazione dell'entità \textit{Employee} e \textit{EmployeeInput}.
 \FloatBarrier
 \begin{figure}[!ht]
