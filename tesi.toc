@@ -102,24 +102,36 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsubsection}{Altri aspetti comparativi}{46}{section*.97}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Aspetti comparativi individuati durante la progettazione e la migrazione}{46}{section*.98}%
+\contentsline {paragraph}{Sicurezza}{46}{section*.98}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Analisi comparativa prestazionale}{46}{section*.99}%
+\contentsline {paragraph}{Formati di dati supportati}{46}{section*.99}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.3}Conclusioni}{46}{section.5.3}%
+\contentsline {paragraph}{Versionamento}{46}{section*.100}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {6}Tecnologie utilizzate}{47}{chapter.6}%
+\contentsline {paragraph}{Real Time Application}{46}{section*.101}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {7}Conclusioni}{49}{chapter.7}%
+\contentsline {paragraph}{File uploading}{46}{section*.102}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.1}Consuntivo finale}{49}{section.7.1}%
+\contentsline {paragraph}{N+1 problem}{46}{section*.103}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.2}Raggiungimento degli obiettivi}{49}{section.7.2}%
+\contentsline {subsubsection}{Aspetti comparativi pratici individuati durante la progettazione e la migrazione}{46}{section*.104}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.3}Conoscenze acquisite}{49}{section.7.3}%
+\contentsline {subsubsection}{Analisi comparativa prestazionale}{47}{section*.105}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.4}Valutazione personale}{49}{section.7.4}%
+\contentsline {section}{\numberline {5.3}Conclusioni}{47}{section.5.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {A}Appendice A}{51}{appendix.Alph1}%
+\contentsline {chapter}{\numberline {6}Tecnologie utilizzate}{49}{chapter.6}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{Bibliografia}{55}{appendix*.100}%
+\contentsline {chapter}{\numberline {7}Conclusioni}{51}{chapter.7}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {7.1}Consuntivo finale}{51}{section.7.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {7.2}Raggiungimento degli obiettivi}{51}{section.7.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {7.3}Conoscenze acquisite}{51}{section.7.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {7.4}Valutazione personale}{51}{section.7.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {A}Appendice A}{53}{appendix.Alph1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Bibliografia}{57}{appendix*.106}%

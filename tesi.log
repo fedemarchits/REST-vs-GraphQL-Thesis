@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.12.10)  20 NOV 2022 19:22
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.12.10)  21 NOV 2022 10:59
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1804,26 +1804,26 @@ Overfull \hbox (10.23804pt too wide) has occurred while \output is active
 \T1/cmr/m/n/10 46 \T1/cmr/m/sl/10 CAPITOLO 5.  ANALISI COMPARATIVA DEI PROTOCOLLI REST E GRAPHQL
  []
 
-[46]
-Capitolo 6.
-) (./capitoli/capitolo-7.tex [47
+[46] [47] [48
 
-] [48
+]
+Capitolo 6.
+) (./capitoli/capitolo-7.tex [49] [50
 
 ]
 Capitolo 7.
-) (./capitoli/capitolo-A.tex [49] [50
+) (./capitoli/capitolo-A.tex [51] [52
 
 ]
 Appendice A.
-) [51] [52
+) [53] [54
 
 ]
 No file tesi.acr.
 No file tesi.gls.
-(./inizio-fine/bibliografia.tex [53] [54
+(./inizio-fine/bibliografia.tex [55] [56
 
-]) [55
+]) [57
 
 ] (./tesi.aux)
 
@@ -1834,10 +1834,10 @@ Package logreq Info: Writing requests to 'tesi.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 37366 strings out of 478994
- 639049 string characters out of 5858183
- 1473700 words of memory out of 5000000
- 53583 multiletter control sequences out of 15000+600000
+ 37376 strings out of 478994
+ 639163 string characters out of 5858183
+ 1473706 words of memory out of 5000000
+ 53585 multiletter control sequences out of 15000+600000
  441016 words of font info for 235 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
  102i,8n,125p,1289b,2994s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1846,10 +1846,10 @@ pdfTeX warning (dest): name{glo:api} has been referenced but does not exist, rep
 {/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfbx0900.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfbx1728.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfbx2074.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfbx2488.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfcc1000.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfcc1200.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfcc1440.p
 fb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm0600.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm0700.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm0800.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm0900.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfsi1000.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfsl1000.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfsl1200.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfti0800.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfti0900.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfti1000.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfti1200.
 pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sftt1000.pfb>
-Output written on tesi.pdf (67 pages, 2270550 bytes).
+Output written on tesi.pdf (69 pages, 2273857 bytes).
 PDF statistics:
- 1214 PDF objects out of 1440 (max. 8388607)
- 991 compressed objects within 10 object streams
- 218 named destinations out of 1000 (max. 500000)
+ 1230 PDF objects out of 1440 (max. 8388607)
+ 1004 compressed objects within 11 object streams
+ 226 named destinations out of 1000 (max. 500000)
  70658 words of extra memory for PDF output out of 74296 (max. 10000000)
 

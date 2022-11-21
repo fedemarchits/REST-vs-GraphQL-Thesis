@@ -12,7 +12,7 @@
 %\label{sec:analisi-comparativa-teorica}
 %Per analisi comparativa teoria s'intende tutti quegli aspetti che differenziano i due protocolli GraphQL e REST
 \section{Introduzione}
-REST è stato ed è tutt'oggi lo standard più seguito per la realizzazione delle Web API, tuttavia dopo l'uscita di GraphQL il suo monopolio è stato messo in crisi. Infatti GraphQL ha portato con se delle interessanti soluzioni per molti dei problemi e dei vincoli dello stile architetturale REST.\\
+REST è stato ed è tutt'oggi lo standard più seguito per la realizzazione delle Web API, tuttavia dopo l'uscita di GraphQL gli sviluppatori hanno iniziato ad utilizzare sempre di più la nuova tecnologia. Infatti GraphQL ha portato con se delle interessanti soluzioni per molti dei problemi e dei vincoli dello stile architetturale REST.\\
 L'innovazione portata da GraphQL è stata apprezzata in larga scala tra gli sviluppatori, a conferma di ciò è possibile visualizzare nell'immagine \ref{graphQL-usage-chart} l'aumento nell'utilizzo di questa tecnologia con il passare degli anni.
 \FloatBarrier
 \begin{figure}[!ht]
@@ -120,17 +120,36 @@ La stessa medesima operazione utilizzando GraphQL è risolvibile in una sola ric
 \end{verbatim}
 A sinistra è possibile visualizzare la query \textit{allEmployees} nella quale viene specificato l'id di ciascun impiegato ed il campo \textit{projects}, il quale, a sua volta, ha specificato i campi \textit{id} e \textit{name}. A destra invece è visualizzato il JSON ritornato con l'impiegato e i due progetti ai quali sta partecipando.
 \subsubsection{Utilizzo del protocollo HTTP}
-I due protocolli comparati utilizzano il protocollo HTTP in maniera differente. Lo stile REST alla sua creazione è stato fortemente basato sul protocollo HTTP, per questo motivo ne sfrutta le convenzioni. GraphQL invece, per il modo in cui opera, sfrutta solo in parte ed in maniera "stupida" il protocollo HTTP.
+I due protocolli comparati utilizzano il protocollo HTTP in maniera differente. Lo stile REST alla sua creazione è stato fortemente basato sul protocollo HTTP, per questo motivo ne sfrutta le convenzioni. GraphQL invece, per il modo in cui opera, sfrutta solo in parte ed in maniera "stupida" il protocollo HTTP. Per questo motivo GraphQL viene spesso definito agnostico rispetto al protocollo di trasporto perché può funzianare su qualsiasi protocollo di trasporto affinché sia possibile trasposrtare query e dati.
 \paragraph{Metodi HTTP}
 Per metodi HTTP s'intendono le possibili operazioni che il protocollo HTTP prevede nella comunicazione tra due moduli di rete. Le API REST supportano i metodi POST, GET, PUT e DELETE per la gestione delle risorse sul server e nel caso della POST e della PUT è possibile specificare i dati all'interno del body della richiesta HTTP. GraphQL invece sfrutta solamente l'operazione POST e specifica nel body la query, la mutation o la subscription desiderata.
 \paragraph{Codici di stato}
 I codici di stato vengono utilizzati per dare informazioni sull'esito di una richiesta HTTP e risultano fondamentali nella comprensione degli errori. Mentre REST utilizza ampiamente i codici di stato nelle risposte, GraphQL ritorna esclusivamente il codice di stato 200 e specifica il problema nel JSON ritornato; talvolta in alcuni GraphQL server, qualora si dovessero verificare degli errori, può essere ritornato anche il codice di stato 500 riferito all'\textit{Internal Server Error}.
 \paragraph{Caching}
-Per caching s'intende il meccanismo attraverso il quale il browser, il client, i server proxy o altri moduli della rete utilizzano per archiviare localmente i dati a cui si accede frequentemente senza dover ogni volta mandare la medesima richiesta al server. Si tratta di fattore importante poiché, se utilizzato correttamente, permette di ridurre il traffico dati tra i moduli della rete e i tempi di latenza, i dati sono recuperabili molto più velocemente e questo è fondamentale per fornire velocemente i dati nei siti web, vengono eseguiti meno accessi al database lato server e le performance di conseguenza migliorano.\\
-Il caching è parte integrante del protocollo HTTP e viene ampiamente sfruttato in REST, infatti per il metodo GET e in parte anche per i metodi PUT e DELETE il caching, a meno di direttive specifiche, viene utilizzato di default. Per quanto riguarda i metodi POST il caching non viene utilizzato di default, ma con apposite direttive nell'header della risposta HTTP è possibile permetterlo.\\
+Per caching s'intende il meccanismo attraverso il quale il browser, il client, i server proxy o altri moduli della rete riescono ad archiviare localmente i dati a cui si accede frequentemente senza dover ogni volta mandare la medesima richiesta al server. Si tratta di fattore importante poiché, se utilizzato correttamente, permette di ridurre il traffico dati tra i moduli della rete e i tempi di latenza, i dati sono recuperabili molto più velocemente e questo è fondamentale per fornire velocemente i dati nei siti web, vengono eseguiti meno accessi al database lato server e le performance di conseguenza migliorano.\\
+Il caching è parte integrante del protocollo HTTP e viene ampiamente sfruttato in REST, infatti per il metodo GET e in parte anche per i metodi PUT e DELETE il caching, a meno di direttive specifiche, viene utilizzato di default. Per quanto riguarda il metodo POST il caching non viene utilizzato di default, ma con apposite direttive nell'header della risposta HTTP è possibile permetterlo.\\
 Per il modo in cui opera GraphQL, il caching previsto dal protocollo HTTP non viene sfruttato. Per questo motivo, anche nella documentazione GraphQL, viene specificato come sia un dovere del client quello di abilitare e gestire il caching. Alcune librerie permettono di risolvere questo problema, ad esempio il modulo \textit{Apollo} utilizzato per la realizzazione del frontend del prototipo e nella migrazione dell'applicativo SushiLab, include una implementazione del caching di default chiamata \textit{InMemoryCache}.
 \subsubsection{Altri aspetti comparativi}
-\subsubsection{Aspetti comparativi individuati durante la progettazione e la migrazione}
+Sono presenti molti altri aspetti che differenziano i due protocolli analizzati. Di seguito vengono riporatati i più importanti.
+\paragraph{Sicurezza}
+Si tratta di un fattore fondamentale per la trasmissione sicura di dati tra moduli sulla rete. Le REST API supportano i protocolli crittografici, ad esempio il Transfer Layer Security il quale assicura che i dati che vengono passati tra moduli della rete rimangano invariati e privati. Inoltre sono presenti moltpelici specifiche per garantire la sicurezza nello scambio di messaggi attraverso API REST, tra le quali: JWT, JWS, JWk, ecc...\\
+Anche GraphQL ha dei modi per l'autenticazione e l'autorizzazione le richieste del client, tuttavia risultano sicuramente meno sviluppati e consolidate rispetto a quelli disponibili con le REST API.\\
+Un altro punto critico di GraphQL legato alla sua flessibilità, ovvero al fatto che permetta di richiedere qualsiasi tipo di dato in qualsiasi forma, è quello che proprio per questa ragione sia possibile, se non vengono strutturate bene le risorse, essere vittime di attacchi DoS attraverso query annidate che vanno a sovraccaricare il database e il server. Questa parziale mancanza di GraphQL è dovuta probabilmente al fatto che si tratti di una tecnologia giovane, ma sono presenti sempre più modi per gestire la sicurezza ed evitare questo tipo di situazioni.
+\paragraph{Formati di dati supportati}
+Le REST API supportano diversi tipi di dati come: JSON, XML e YAML. GraphQL dall'altra parte supporta solo il formato JSON.
+\paragraph{Versionamento}
+Le API devono essere flessibili e dunque poter evolvere o cambiare nel tempo. Inoltre deve essere tenuta in considerazione anche la retrocompatibilità, oppure il casi di un server che fornisce API per numerosi client differenti, con richieste differenti, per questo è necessario poter versionare le API.
+La maggior parte delle REST API basano
+\paragraph{Real Time Application}
+\paragraph{File uploading}
+\paragraph{N+1 problem}
+\subsubsection{Aspetti comparativi pratici individuati durante la progettazione e la migrazione}
+- Documentazione (introspection)
+- mapping e fortemente tipizzato
+  documentazione presente nei siti
+- usabilità
+- rapidità sviluppo backend
+- rapidità sviluppo frontend
 \subsubsection{Analisi comparativa prestazionale}
 \section{Conclusioni}
 
@@ -142,7 +161,6 @@ Per il modo in cui opera GraphQL, il caching previsto dal protocollo HTTP non vi
 % \begin{itemize}
 %  \item versioni;
 %  \item documentazione (GraphQL si autodocumenta, REST no);
-%  \item meccanismo di caching integrato (mancante in GraphQL);
 %  \item formati output di risposta (GraphQL --> JSON, REST --> JSON, XML, YAML);
 % \end{itemize}
 % \section{Analisi comparativa sui casi d'uso}
