@@ -171,21 +171,8 @@ Queste problematiche non sono presenti in REST il quale risulta molto più sempl
 Un altro aspetto che sicuramente ha reso più complessa la realizzazione del server di backend in GraphQL rispetto a REST è stata la gestione degli errori. Come spiegato precedentemente la compatibilità di REST con il protocollo HTTP, il quale è stato utilizzato per la comunicazione tra server e client, ha permesso una più facile e veloce gestione degli errori, in quanto a parte qualche specifica necessaria, risultano essere già chiari e significativi. L'uso improprio che GraphQL fa del protocollo HTTP si riflette anche nella gestione degli errori i quali, se non trattati approfonditamente, rischiano di essere totalmente inespressivi.
 \paragraph{Sviluppo e migrazione frontend}
 Per quanto riguarda lo sviluppo del frontend con i due protocolli di data fetching non sono state riscontrate considerevoli differenze e criticità con un protocollo piuttosto che con l'altro. L'unico aspetto che è importante riportare è la questione legata all'overfetching e underfetching; principalmente per questo motivo lo sviluppo del frontend con protocollo REST risulta essere leggermente più complesso rispetto allo sviluppo del medesimo frontend in GraphQL. Infatti nel caso dell'underfetching è necessario un maggior lavoro lato frontend nella gestione dei dati i quali, dopo aver inviato più richieste, devono essere fatti combaciare per estrarne la forma richiesta per i propri scopi. Per quanto riguarda l'overfetching invece sarà necessario estrapolare dai dati ricevuti, in una forma più estesa di quanto richiesto, i campi necessari. In GraphQL questo non accade poiché nella query può essere direttamente specificato il tipo e la forma dei dati che si desidera ricevere. Il frontend in REST dunque risulta molto più limitato rispetto al medesimo in GraphQL poiché deve accontentarsi delle API fornite dal backend lottando con problemi di overfetching e underfetching o, in casi estremi, richiedere l'implementazione di API specifiche.
-
-
-
-
-
-
-
-
-%- Documentazione (introspection)
-%- mapping e fortemente tipizzato
-  %documentazione presente nei siti
-%- usabilità
-%- rapidità sviluppo backend
-%- rapidità sviluppo frontend
 \subsubsection{Analisi comparativa prestazionale}
+Fare fiferimento al documento B4.
 \section{Conclusioni}
 L'analisi comparativa effettuata ha mostrato come entrambi i protocolli di data fetching REST e GraphQL abbiamo vantaggi e svantaggi. In questa sezione si vuole definire quale sia il miglior approccio a seconda dell'applicativo che si vuole realizzare. Sicuramente non c'è un protocollo che può essere ritenuto migliore rispetto all'altro in maniera assoluta, infatti è necessario analizzare bene il caso d'uso e comprendere quando sia preferibile uno piuttosto che l'altro. Si tratta principalmente di una scelta che deve essere fatta lato backend, questo perché è nel server di backend che c'è l'impatto maggiore.
 \subsection{Linee guida prima di intraprendere uno sviluppo o la migrazione di un applicativo da/in REST VS GraphQL}
@@ -212,18 +199,19 @@ Per lo sviluppatore backend la questione è ben differente. Sviluppare un backen
 \end{itemize}
 In quasi tutti gli altri casi intraprendere lo sviluppo di un backend in GraphQL può risultare svantaggioso e dispendioso in fatti seguire lo stile architetturale REST per la realizzazione delle proprie API ancora oggi risulta essere vincente in una gran parte di applicativi.
 \paragraph{Migrazione}
-Intraprendere una migrazione da REST API a GraphQL API è una soluzione che richiede una grossa riflessione prima di essere effettuata. Si tratta innanzitutto di un'operazione molto dispendiosa e deve avere alla base forti motivazioni. Ci sono molti aspetti che disincentivano la migrazione, in primis il fatto che servizi terzi, tool vari e librerie che permettono uno sviluppo veloce in REST non sono presenti in GraphQL e dunque realizzare le medesime funzionalità può risultare dispendioso. La sicurezza è un altro aspetto da considerare insieme al caching e la gestione degli errori, anche questi sono aspetti che richiedono molto più tempo in GraphQL per essere implementati. Inoltre molte compagnie evitano di intraprendere questo percorso, anche se magari può risultare vantaggioso a lungo termine, perché i clienti per i quali forniscono le API non sono pronti a spostarsi in GraphQL.\\
-Sono presenti però diverse soluzioni ibride che permettono di usufuire di alcuni aspetti convenienti di GraphQL manendo le proprie REST API. 
-
-
-
- il primo tra tutti è che diversi servizi, tool e librerie che ci vengono in aiuto quando sviluppiamo delle REST API, non sono presenti in GraphQL.
-Clienti devono rimanere e se svilupop graphql li perdo.
-
-\paragraph{Frasi varie}
-REST è buono nel 90 per cento delle nuove API. È facile da implementare, ampiamente utilizzato e compreso e ottimo per accedere alla maggior parte dei set di dati "piatti" e semplici, quali sono la maggior parte dei set di dati.
-
-GraphQL, d'altra parte, richiede un po' di riflessione. Devi non solo prendere in considerazione ciò che memorizzerai, ma pensare più profondamente a chi e cosa consumerà la tua API e cosa puoi offrire loro per semplificargli la vita.
+Intraprendere una migrazione da REST API a GraphQL API è una soluzione che richiede una grossa riflessione prima di essere effettuata. Si tratta innanzitutto di un'operazione molto dispendiosa e deve avere forti e valide motivazioni alla base. Ci sono molti aspetti che disincentivano la migrazione, in primis il fatto che servizi terzi, tool vari e librerie che permettono uno sviluppo veloce in REST non sono presenti in GraphQL e dunque realizzare le medesime funzionalità può risultare dispendioso. La sicurezza è un altro aspetto da considerare insieme al caching e la gestione degli errori, anche questi sono aspetti che richiedono molto più tempo in GraphQL per essere implementati. Inoltre molte compagnie evitano di intraprendere questo percorso, anche se magari può risultare vantaggioso a lungo termine, perché i clienti per i quali forniscono le API non sono pronti a migrare in GraphQL.\\
+Negli utlimi anni si stanno realizzando delle soluzioni ibride per andare in contro ai bisogni di tutti, come mostrato in figura \ref{ibrid-solution}
+\FloatBarrier
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=0.8\linewidth]{immagini/ibridSolution.pdf}
+\caption{Soluzione ibrida mantenendo sia REST API che GraphQL API.}
+\label{ibrid-solution}
+\end{figure}
+\FloatBarrier
+Questa soluzione prevede di mantenere le vecchie REST API e aggiungere un GraphQL Schema con nuovi resolver che, possono avere implmentazioni differenti o, invocare a loro volta i resolver delle REST API. Questa soluzione permette di fornire ai clienti sia REST API che GraphQL API o, in caso sia un obbiettivo degli sviluppatori backend, realizzare una migrazione da REST a GraphQL uno step alla volta.
+\newpage
+\subsection{Tabella di comparazione riassuntiva}
 \FloatBarrier
 \begin{table}[h!]
 \renewcommand{\arraystretch}{1.5}

@@ -485,9 +485,24 @@ Attraverso il metodo \textit{watchQuery<>} dell'oggetto \textit{apollo} è possi
 
 \section{SushiLab}
 \label{sushi-lab}
-\subsection{Comprensione dell'applicativo}
-Breve panoramica su SushiLab, ambito d'uso, funzionalità, ecc...
+\subsection{Confronto con stakeholder}
+Circa dopo un mese dall'inizio dello stage è stato realizzato un confronto con gli stakeholder. Con il tutor interno dell'azienda SyncLab, ovvero Fabio Pallaro sono stati valutati alcuni applicativi già implementati che seguissero l'architettura server - client per effettuarne la migrazione da REST API a GraphQL API.\\
+Tra tutti l'applicativo selezionato è stato \textbf{SushiLab}, il quale è stato realizzato da alcuni stagisti nei mesi precedenti. Il motivo che ci ha portato a concordare questa scelta è stato principalmente il fatto che fosse un applicativo con una struttura API sviluppata.
+\subsection{Comprensione dell'applicativo e obbiettivi}
+SushiLab è un applicativo che mira ad automatizzare il processo di tracciamento degli ordini nei ristoranti di sushi all you can eat. Si tratta da un applicativo composto da:
+\begin{itemize}
+  \item \textbf{Backend}: realizzato un backend in Java con il framework Spring Boot, gestisce un inoltre database PostgreSQL;
+  \item \textbf{Frontend}: realizzato in Typescript con il framework Angular;
+  \item \textbf{Componente di Machine Learning}: utilizzata per il riconoscimento dei piatti tramite la fotocamera del telefono;
+  \item \textbf{Applicativo mobile}: la versione mobile della web app sotto forma di applicazione.
+\end{itemize}
+Il mio intervento sull'applicativo prevede di lavorare sulla comunicazione tra backend e frontend, effettuando una migrazione completa delle REST API sviluppate portandole a GraphQL API, esattamente come è stato fatto per il prototipo.\\\\
+Di seguito nelle sottosezioni verranno analizzate le strutture del backend e del frontend, tralasciando gli aspetti implementativi specifici già visualizzati per il prototipo e concentrandosi principalmente sulla parte di comunicazione tramite API.
 \subsubsection{Panoramica del backend}
+Il backend sviluppato in Java con il framework Spring Boot segue l'architettura proposta per il prototipo, ovvero il pattern repository - service - controller. Di seguito verranno analizzate e descritte brevemente le componenti principali degli strati di persistenza e di business logic, mentre verrà approfondito lo strato di controller.
+\paragraph{Repository}
+Sono state definite diverse entità, per ciascuna di queste è stata realizzata la corrispettiva repository estendendo l'interfaccia \textit{JPARepository<T, ID>} per la gestione dei dati e delle risorse nel database. Le entità presenti vengono riportate nella seguente tabella:
+
 Panoramica su architettura del backend (sviluppato in Spring), entità e relazioni, business logic, strato di persistenza, test, \textbf{API} (Parte preponderante della panoramica sul backend).
 \subsubsection{Panoramica del frontend}
 Panoramica su architettura del frontend (sviluppato in Angular), principali components, \textbf{strato di servizio} (parte preponderante perché gestisce le chiamate alle API del backend).

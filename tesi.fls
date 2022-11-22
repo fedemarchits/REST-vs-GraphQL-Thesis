@@ -1857,7 +1857,6 @@ INPUT ./inizio-fine/ringraziamenti.tex
 INPUT ./inizio-fine/ringraziamenti.tex
 INPUT ./inizio-fine/ringraziamenti.tex
 INPUT inizio-fine/ringraziamenti.tex
-INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/jknappen/ec/ecsl1000.tfm
 INPUT ./inizio-fine/indici.tex
 INPUT ./inizio-fine/indici.tex
 INPUT ./inizio-fine/indici.tex
@@ -1876,6 +1875,7 @@ INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/jknappen/ec/ecbx1000.tfm
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
 OUTPUT tesi.toc
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/jknappen/ec/ecsl1000.tfm
 INPUT ./tesi.lof
 INPUT tesi.lof
 INPUT tesi.lof
@@ -1944,6 +1944,7 @@ INPUT ./capitoli/capitolo-3.tex
 INPUT capitoli/capitolo-3.tex
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/jknappen/ec/ecbx1200.tfm
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/jknappen/ec/ecrm0900.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/jknappen/ec/ecti0900.tfm
 INPUT ./immagini/one_to_one.pdf
 INPUT ./immagini/one_to_one.pdf
 INPUT immagini/one_to_one.pdf
@@ -2016,7 +2017,6 @@ INPUT ./immagini/SmokeTest.png
 INPUT immagini/SmokeTest.png
 INPUT ./immagini/SmokeTest.png
 INPUT ./immagini/SmokeTest.png
-INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/jknappen/ec/ecti0900.tfm
 INPUT ./immagini/EmployeeControllerTest.pdf
 INPUT ./immagini/EmployeeControllerTest.pdf
 INPUT immagini/EmployeeControllerTest.pdf
@@ -2128,6 +2128,11 @@ INPUT ./immagini/GraphQLEndpoint.pdf
 INPUT immagini/GraphQLEndpoint.pdf
 INPUT ./immagini/GraphQLEndpoint.pdf
 INPUT ./immagini/GraphQLEndpoint.pdf
+INPUT ./immagini/ibridSolution.pdf
+INPUT ./immagini/ibridSolution.pdf
+INPUT immagini/ibridSolution.pdf
+INPUT ./immagini/ibridSolution.pdf
+INPUT ./immagini/ibridSolution.pdf
 INPUT ./capitoli/capitolo-6.tex
 INPUT ./capitoli/capitolo-6.tex
 INPUT ./capitoli/capitolo-6.tex
