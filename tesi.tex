@@ -35,6 +35,7 @@
                openright,               % inizio capitoli a destra
                english,
                italian,
+               "xcolor=table"
                ]{book}
 
 %**************************************************************
@@ -109,6 +110,8 @@
                                         % 4. compilare due volte tesi.tex.
 
 \usepackage[backend=biber,style=verbose-ibid,hyperref,backref]{biblatex}
+\usepackage{colortbl}
+\usepackage{array,booktabs}
                                         % eccellente pacchetto per la bibliografia;
                                         % produce uno stile di citazione autore-anno;
                                         % lo stile "numeric-comp" produce riferimenti numerici
@@ -119,6 +122,9 @@
 
 \input{tesi-config}                     % file con le impostazioni personali
 
+\definecolor{mygrey1}{HTML}{BCBCBC}
+\definecolor{mygrey2}{HTML}{CFCFCF}
+%\newcommand{\centered}[1]{\begin{tabular}{l} #1 \end{tabular}}
 \begin{document}
 %**************************************************************
 % Materiale iniziale
