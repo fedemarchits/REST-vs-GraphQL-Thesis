@@ -110,14 +110,14 @@ Le annotazioni applicate agli attributi della classe sono:
   \item \textbf{@JsonBackReference}: associato al campo \textit{department}, permette di dare una direzionalità alla relazione molti a uno con Department, fondamentale per evitare il problema della ricorsione infinita.
 \end{itemize}
 Analogamente sono state realizzate le classi corrispondenti alle entità Project, Department e Site.\\\\
-A questo punto si procede con la realizzazione delle classi repository: ciascuna entità ha una propria repository corrispondente. Dunque viene estesa l'interfaccia \textbf{JPArepository<T, ID>} con T il tipo della entità che si vuole gestire, mentre ID è il tipo della chiave primaria dell'entità T. La repository JPA deriva da diverse interfacce, tra le quali:
+A questo punto si procede con la realizzazione delle classi repository: ciascuna entità ha una propria repository corrispondente. Viene estesa l'interfaccia \textbf{JPArepository<T, ID>} con T il tipo della entità che si vuole gestire, mentre ID è il tipo della chiave primaria dell'entità T. La repository JPA estende le seguenti interfacce:
 \begin{itemize}
-  \item \textbf{CrudRepository<T, ID>}: la quale contiene le API per gestire le classiche operazioni CRUD;
-  \item \textbf{PagingAndSortingRepository<T, ID>}: la quale contiene le API per gestire la pagination e il sorting;
+  \item \textbf{CrudRepository<T, ID>}: contiene i metodi per gestire le classiche operazioni CRUD;
+  \item \textbf{PagingAndSortingRepository<T, ID>}: contiene i metodi per gestire la paginazione e l'ordinamento;
 \end{itemize}
-Dunque estendendo la JPARepository per ciascun tipo è possibile avere a disposizione diversi metodi per eseguire operazioni già implementate come: findAll, count, existById, SaveAndFlush, ecc...\\
-Qualora invece si volesse rendere disponibili nuovi metodi è possibile dichiararli nell'estensione della repository, senza necessariamente implementarli, poiché è sufficiente attribuire il nome corretto al metodo. Più specificatamente il nome del metodo corrispondente alla query che si vuole render disponibile è composto da un introducer che può essere uno tra: \textit{find}, \textit{read}, \textit{query}, \textit{count} o \textit{get}, e successivamente il criterio seguito dalla keywork \textit{By}, quindi ad esempio se si volesse fare una ricerca per salario, è sufficiente dichiarare un metodo chiamato \textit{findBySalary}. \\
-Infine ritroviamo il caso in qui si vuole realizzare una query complessa o personalizzata, in questo caso ci viene in aiuto la annotazione \textbf{@Query} alla quale è possibile passare come attributo la query che desideriamo in linguaggio JPQL. Di seguito è possibile visualizzare quanto spiegato nell'implementazione della \textbf{EmployeeRepository} in figura \ref{employee-repository}:
+Estendendo la JPARepository per ciascun tipo è possibile avere a disposizione diversi metodi per eseguire operazioni già implementate come: findAll, count, existById, SaveAndFlush, ecc...\\
+Per realizzare ulteriori metodi è sufficiente rispettare le corretta sintassi del nome del metodo affinché Spring si occupi in automatico della sua implementazione.\\
+Nel caso in cui si voglia realizzare una query personalizzata si utilizza l'annotazione \textbf{@Query} alla quale è possibile passare come attributo la query che desideriamo in linguaggio JPQL. In figura \ref{employee-repository} un esempio di quanto appena detto:
 %%% IMG
 \FloatBarrier
 \begin{figure}[!ht]
@@ -128,12 +128,12 @@ Infine ritroviamo il caso in qui si vuole realizzare una query complessa o perso
 \end{figure}
 \FloatBarrier
 %%% IMG
-Dunque oltre ai classici metodi di ricerca disponibili già dopo l'estensione dell'interfaccia JPARepository<T, ID>, sono stati realizzati alcuni metodi per la ricerca di impiegati per nome, per cognome e per id di dipartimento in cui lavorano. Infine è stata realizzata una query personalizzata per la ricerca di impiegati nati in un range di date.\\
-Infine è possibile notare in figura \ref{employee-repository} l'annotazione \textbf{@Repository} attribuita alla'interfaccia, fondamentale al fine di indicare che la classe fornisce meccanismi per modellare i dati dell'applicativo.
+Oltre ai classici metodi di ricerca disponibili sono stati realizzati alcuni metodi per la ricerca di impiegati per nome, per cognome e per id di dipartimento in cui lavorano. Infine è stata realizzata una query personalizzata per la ricerca di impiegati nati in un range di date.\\
+Da evidenziare l'uso dell'annotazione \textbf{@Repository} attribuita alla'interfaccia, fondamentale al fine di indicare che la classe fornisce meccanismi per modellare i dati del database.
 \subsubsection*{Service}
-Lo strato di servizio è lo strato che si trova tra lo strato di controller e quello di repository, il suo compito è facilitare la comunicazione tra controller e repository e inoltre contiene la business logic dell'applicativo.
+Il compito dello strato di servizio è facilitare la comunicazione tra controller e repository oltre a realizzare la business logic dell'applicativo.\\
 Per ciascun repository, dunque per ciascuna entità, è stato realizzato un servizio specifico per gestirne le logiche.\\
-Al fine di rispettare i principi SOLID della programmazione, per questioni di loose coupling e semplicità nel testing, è stato scelto di implementare il pattern secondo il quale per ogni entità viene realizzata una interfaccia del servizio ed la sua implementazione, come mostrato in figura \ref{service-serviceImpl} nel caso del servizio per l'entità Employee.
+Al fine di rispettare i principi SOLID della programmazione, per questioni di loose coupling, IoC e semplicità nel testing, è stato scelto di implementare il pattern secondo il quale per ogni entità viene realizzata una interfaccia del corrispondente servizio e sua relativa implementazione. In figura \ref{service-serviceImpl} relativo all'entità Employee.
 %%% IMG
 \FloatBarrier
 \begin{figure}[!ht]
@@ -144,7 +144,7 @@ Al fine di rispettare i principi SOLID della programmazione, per questioni di lo
 \end{figure}
 \FloatBarrier
 %%% IMG
-Di seguito, in figura \ref{employeeServiceImpl}, viene riportato un esempio di servizio implementato, in questo caso si tratta dell'implementazione del servizio per l'Employee, ovvero della classe \textbf{EmployeeServiceImpl}.
+Di seguito (fig. \ref{employeeServiceImpl}) viene riportato l'esempio dell'implementazione del servizio \textbf{EmployeeServiceImpl}.
 %%% IMG
 \FloatBarrier
 \begin{figure}[!ht]
@@ -157,12 +157,16 @@ Di seguito, in figura \ref{employeeServiceImpl}, viene riportato un esempio di s
 \end{figure}
 \FloatBarrier
 %%% IMG
-In figura \ref{employeeServiceImpl} è possibile notare come la classe sia caratterizzata dall'annotazione \textbf{@Service} la quale viene utilizzata per indicare classi che contengono la business logic e viene utilizzata dunque per marcare la classe come service provider.\\
-Continuando ed andando ad analizzare i campi dati è possibile visualizzare la dipendenza che la classe \textit{EmployeeServicImpl} ha con la repository \textit{EmployeeRepository}. In Spring questa dipendenza viene risolta con l'annotazione \textbf{@Autowired}, la quale permette di eseguire la dependency injection del bean \textit{employeeRepository}.\\
-Infine sono presenti tutti i metodi, ciascuno con annotazione \textbf{@Override} poiché sono stati dichiarati anche nell'interfaccia implementata da \textit{EmployeeServiceImpl}. Sono stati resi disponibili metodi semplici che vanno ad invocare, grazie alla dipendenza con la repository, le query già disponibili con la \textit{JPARepository<T, ID>} e la query vista precedenemente \textit{SelByBornInRage}.\\
-Per concludere nello strato di servizio vengono sollevate eventuali eccezioni. La gestione delle eccezzioni è stata effettuata implementanto un gestore di eccezioni specifico attraverso l'estensione del gestore  \textit{HandlerExceptionResolver}. Questo è stato fatto al fine di eliminare il problema presente con il gestore di eccezioni di default, ovvero il \textit{DefaultHandlerExceptionResolver}, il quale non permette di impostare nulla nel body della risposta al client e quindi per alcune tipologie di errori potrebbe risultare complesso comprenderne la natura. Non verrà mostrata l'implementazione della ridefinizione del gestore di eccezioni per evitare di approfondire eccessivamente i dettagli prettamente tecnici.
+In figura \ref{employeeServiceImpl} è possibile notare come la classe sia caratterizzata dall'annotazione \textbf{@Service} la quale viene utilizzata per indicare classi che contengono la business logic e per marcare la classe come service provider.\\\\
+Le annotazioni utilizzate sono:
+\begin{itemize}
+  \item \textbf{@Autowired}: attribuita al campo \textit{employeeRepository} produce la dependency injection della repository \textit{EmployeeRepository} nel servizio;
+  \item \textbf{@Override}: utilizzata da tutti i metodi, avverte che i metodi dichiarati nell'interfaccia vengono implementati;
+\end{itemize}
+Sono stati resi disponibili metodi semplici che vanno ad invocare, grazie alla dipendenza con la repository, le query già disponibili con la \textit{JPARepository<T, ID>} e la query vista precedenemente \textit{SelByBornInRage}.\\
+Lo strato di servizio si incarica della gestione delle eccezioni estendendo il gestore  \textit{HandlerExceptionResolver}; in questo modo si migliora il comportamento di default che non sempre fornisce informazioni comprensibili sulla natura dell'errore.
 \subsubsection*{Controller}
-Infine troviamo i controller, ovvero l'ultimo strato che si occupa di gestire le richieste che il server riceve attraverso il protocollo HTTP, e di mapparle inoltre ai relativi metodi. In figura \ref{employeeController} il controller di Employee, ovvero la classe \textit{EmployeeController}:
+Lo strato di controller si occupa di gestire le richieste che il server riceve attraverso il protocollo HTTP e di mapparle inoltre sui metodi corrispondenti. In figura \ref{employeeController} il controller di Employee, ovvero la classe \textit{EmployeeController}:
 \FloatBarrier
 \begin{figure}[!ht]
 \begin{mdframed}
@@ -173,32 +177,35 @@ Infine troviamo i controller, ovvero l'ultimo strato che si occupa di gestire le
 \label{employeeController}
 \end{figure}
 \FloatBarrier
-Questa classe permette di gestire e mappare le richieste a seconda dell'url dal quale proviene la richiesta. In figura \ref{employeeController} è possibile visualizzare due annotazioni associate alla classe, l'annotazione \textbf{@RestController}, utilizzata per definire la classe come un controller di tipo REST, mentre l'annotazione \textbf{@RequestMapping} indica l'url al quale il client dovrà mandare le richieste per quello specifico controller.\\
-Proseguendo è possibile indivudare una dipendenza della classe con lo strato di servizio, infatti con l'annotazione \textbf{@Autowired} e dunque con la dependency injection viene risolta la dipendenza. La classe \textit{EmployeeController} necessita una dipendenza con la classe \textit{EmployeeServiceImpl} poiché dovrà andare ad invocarne i metodi.\\
-Dunque proseguendo è possibile visualizzare i vari metodi, tutti hanno una annotazione che può essere :
+Questa classe permette di gestire e mappare le richieste a seconda dell'url dal quale proviene la richiesta. Di seguito le annotazioni associate alla classe:
+\begin{itemize}
+  \item \textbf{@RestController}: definisce la classe come controller di tipo REST;
+  \item \textbf{@RequestMapping}: indica l'url al quale il client dovrà mandare le richieste per quello specifico controller.
+\end{itemize}
+Il controller ha una dipendenza con il servizio \textit{EmployeeService}, necessaria per l'invocazione dei suoi metodi. Le annotazioni associate ai metodi del controller sono:
 \begin{itemize}
   \item \textbf{@GetMapping}: indica che si tratta di un metodo per la risoluzione di una richiesta GET; specifica l'url al quale ricevere la richiesta e ciò che viene ritornato, ovvero un file JSON;
   \item \textbf{@PostMapping}: indica che si tratta di un metodo per la risoluzione di una richiesta POST, specifica l'url al quale ricevere la richiesta e ciò che richiede in input, ovvero un file JSON passato attraverso il body della richiesta HTTP;
   \item  \textbf{@DeleteMapping}: indica che si tratta di un metodo per la risoluzione di una richiesta DELETE, specifica l'url al quale ricevere la richiesta;
   \item \textbf{@PutMapping}: indica che si tratta di un metodo per la risoluzione di una richieste PUT, specifica l'url al quale ricevere la richiesta e ciò che richiede in input, ovvero un file JSON passato attraverso il body della richiesta HTTP;
 \end{itemize}
-Oltre alle annotazioni sopra riportate, sono presenti tra gli argomenti le annotazione \textbf{@PathVariable} la quale vuole indicare che si tratta di una variabile che verrà fornita nell'url nel posto definito dal nome specificato, \textbf{@RequestBody} ovvero un argomento che verrà fornito nel body della chiamata HTTP e infine \textbf{@DateTimeFormat} per specificare il formato del tipo di dato \textit{Date} che verrà passato dal client nell'url della richiesta.
-Sono state rese dunque disponibili le seguenti query:
+Oltre alle annotazioni sopra riportate sono presenti tra gli argomenti le annotazioni \textbf{@PathVariable} per indicare che si tratta di una variabile che verrà fornita nell'url nel posto definito dal nome specificato, \textbf{@RequestBody} ovvero un argomento che verrà fornito nel body della chiamata HTTP e infine \textbf{@DateTimeFormat} per specificare il formato del tipo di dato \textit{Date} che verrà passato dal client nell'url della richiesta.\\
+Si rendono disponibili i seguenti metodi:
 \begin{itemize}
   \item \textbf{listAllEmployee}: ritorna tutti gli impiegati presenti;
   \item \textbf{listEmployeeByName}: ritorna tutti gli impiegati con una determinato nome;
   \item \textbf{listEmployeeBySurname}: ritorna tutti gli impiegati con un determinato cognome;
   \item \textbf{listEmployeeByDepartment}: ritorna tutti gli impiegati di un dipartimento;
   \item \textbf{listEmployeeByBornInDataRange}: ritorna tutti gli impiegati nati in un determinato range di date;
-  \item \textbf{updateEmployee}: vengono aggiornati i campi dati di un impiegato;
-  \item \textbf{createEmployee}: aggiunta di un nuovo impiegato;
-  \item \textbf{deleteEmployee}: rimozione di un impiegato.
+  \item \textbf{updateEmployee}: consente l'aggiornamento dei campi dati di un impiegato;
+  \item \textbf{createEmployee}: aggiunge un nuovo impiegato;
+  \item \textbf{deleteEmployee}: rimuove un impiegato.
 \end{itemize}
 \subsubsection*{Testing API}
-Essendo un prototipo incentrato sulla realizzazione delle API, sono stati svolti in maniera semplice e veloce i test per gli strati di servizio e repository, dunque non verranno riportati. Per quanto riguarda i testi sui controller stati svolti dei test più approfonditi.\\
-Per eseguire i test sui metodi del controller è stato scelto di utilizzare il framework JUnit5 \textcolor{red}{(REINDIRIZZARE AL CAPITOLO TECNOLOGIE)}.\\
-Il primo test realizzato è uno \textit{SmokeTest} e da qui il nome della classe realizzata per testare che il contesto Spring abbia effettivamente creato i controller dell'applicazione. In figura \ref{smoke-test} la classe \textit{SmokeTest} con una dipendenza per ciascun controller risolta con la dependency injection grazie all'annotazione \textbf{@Autowired}. Sono poi presenti quattro metodi, uno per controller, per verificarne se sono stati creati nel contesto. Infine ciascun metodo deve essere annotato con \textbf{@Test} per indicare al framework JUnit5 che si tratta di un metodo di test.\\
-Come possiamo notare sempre nell'immagine \ref{smoke-test} è presente l'annotazione \textbf{@SpringBootTest}, necessaria per indicare a Spring Boot dove si trova la principale classe di configurazione, e dunque avviare il contesto Spring. Da notare inoltre che ciascun metodo è dichiarato in maniera da poter sollevare eccezzioni se necessario.
+Essendo un prototipo incentrato sulla realizzazione delle API sono stati svolti in maniera semplice e veloce i test per gli strati di servizio e repository, essi non verranno riportati. Per quanto riguarda i test sui controller sono stati svolti test più approfonditi.\\
+Per eseguire i test sui metodi del controller è stato scelto di utilizzare il framework JUnit5.\\
+Il primo test realizzato è uno \textit{Smoke Test} che si incarica di verificare che il contesto Spring abbia effettivamente creato i controller dell'applicazione. In figura \ref{smoke-test} la classe \textit{SmokeTest} con una dipendenza per ciascun controller risolta con la dependency injection grazie all'annotazione \textbf{@Autowired}. Per ciascun controller è presente il relativo metodo di verifica, ciascuno annotato con \textbf{@Test} per indicare a JUnit5 che si tratta di un metodo di test.\\
+Come possiamo notare sempre nell'immagine \ref{smoke-test} è presente l'annotazione \textbf{@SpringBootTest}, necessaria per indicare a Spring Boot dove si trova la principale classe di configurazione e dunque avviare il contesto Spring. Da notare inoltre che ciascun metodo è dichiarato in maniera da poter sollevare eccezioni se necessario.
 \FloatBarrier
 \begin{figure}[!ht]
 \begin{mdframed}
@@ -209,7 +216,7 @@ Come possiamo notare sempre nell'immagine \ref{smoke-test} è presente l'annotaz
 \label{smoke-test}
 \end{figure}
 \FloatBarrier
-Passiamo ora ai test metodi del controller \textit{EmployeeController}. Nell'immagine \ref{employee-controller-test} è raffigurata la classe \textit{EmployeeControllerTest} con metodi i vari test da effettuare sul controller.
+Passiamo ora ai test sui metodi del controller \textit{EmployeeController}. Nell'immagine \ref{employee-controller-test} è raffigurata la classe \textit{EmployeeControllerTest} con i vari test da effettuare sul controller.
 \FloatBarrier
 \begin{figure}[!ht]
 \begin{mdframed}
@@ -220,14 +227,14 @@ Passiamo ora ai test metodi del controller \textit{EmployeeController}. Nell'imm
 \label{employee-controller-test}
 \end{figure}
 \FloatBarrier
-Nell'immagine \ref{employee-controller-test} la classe \textit{EmployeeControllerTest} ha due annotazioni: la prima è \textbf{@WebMvcTest}, utile poiché permette di caricare nel contesto di test esclusivamente il controller di Employee e inoltre permette di tralsciare tutte le configurazioni classiche per lasciar spazio alle configurazioni di test, mentre \textbf{@ExtendWhit} permette di integrare nel contesto di test la \textit{SpringExtension} utile poiché fornisce supporto per il testing \textcolor{red}{(Non necessaria qui forse...)}.\\
-Nella classe di test \textit{EmployeeControllerTest} sono dichiarate tre dipendenze fondamentali:
+La classe \textit{EmployeeControllerTest} utilizza l'annotazione \textbf{@WebMvcTest} per caricare nel contesto di test esclusivamente il controller testato.\\
+Nella classe di test \textit{EmployeeControllerTest} sono dichiarate tre dipendenze fondamentali risolte con la dependency injection:
 \begin{itemize}
-  \item \textbf{MockMvc}: dipendenza risolta cona la dependency injection, viene utilizzata sucessivamente per simulare chiamate HTTP e verificarne la risposta;
-  \item \textbf{ObjectMapper}: dipendenza risolta con la dependency injection, oggetto utilizzato nei test per la serializzazione e deserializzazione degli oggetti JSON in oggetti java e viceversa;
-  \item \textbf{EmployeeService}: servizio che viene utilizzato nei test, per questo motivo ha l'annotazione \textbf{@MockBean}, la quale permette di aggiungere un mock dell'oggetto \textit{EmployeeService}.
+  \item \textbf{MockMvc}: ogetto utilizzato per la simulazione di chiamate HTTP e la verifica della risposta;
+  \item \textbf{ObjectMapper}: oggetto utilizzato nei test per la serializzazione e deserializzazione degli oggetti JSON in oggetti java e viceversa;
+  \item \textbf{EmployeeService}: servizio che viene utilizzato nei test che usa l'annotazione \textbf{@MockBean} per aggiungere un mock dell'oggetto \textit{EmployeeService}.
 \end{itemize}
-Per finire la sezione sulle REST API viene di seguito riportato in figura \ref{create-employee} l'implementazione nel dettaglio del metodo di test \textit{createEmployee} seguendo il pattern \textit{Arrange - Act - Assert}.
+Infine si riporta in figura \ref{create-employee} l'implementazione dettagliata del metodo di test \textit{createEmployee} seguendo il pattern \textit{Arrange - Act - Assert}.
 \FloatBarrier
 \begin{figure}[!ht]
 \begin{mdframed}
@@ -238,11 +245,11 @@ Per finire la sezione sulle REST API viene di seguito riportato in figura \ref{c
 \label{create-employee}
 \end{figure}
 \FloatBarrier
-Nella prima parte (arrange) viene creato un nuovo Employee e gli viene assegnato un nome, un cognome e una data di nascita, successivamente nella fase successiva (act), viene eseguita la chiamata GET utilizzando l'oggetto \textit{MockMvc} e passando nel body della richiesta HTTP l'oggetto Java Employee trasformato in JSON grazie all'\textit{ObjectMapper}. Infine nella fase finale (Assert), si verifica che lo stato di ritorno sia \textit{created}, in caso contrario il test fallisce.
+Nella prima parte (arrange) viene creato un nuovo Employee e gli viene assegnato un nome, un cognome e una data di nascita; successivamente (act) si esegue la chiamata GET utilizzando l'oggetto \textit{MockMvc} e passando nel body della richiesta HTTP l'oggetto Java Employee trasformato in JSON grazie all'\textit{ObjectMapper}. Per ultima la fase finale (assert) in cui si verifica che lo stato di ritorno sia \textit{created}, in caso contrario il test fallisce.
 \subsection{Progettazione e realizzazione frontend}
-Per quanto riguarda il frontend dell'applicativo è stato utilizzato il framework Angular per realizzare una single-page application. Si tratta di un frontend minimale, realizzato con il solo scopo di comprendere e sviluppare la parte di comunicazione con il server utilizzando al massimo le REST API disponibili. Per questo motivo non è stata effettuata alcuna analisi sull' utenza e sono stati tralascati completamente aspetti quali estetica grafica, accessibilità e responsive design.\\
+Per quanto riguarda il frontend dell'applicativo è stato utilizzato il framework Angular per realizzare una Single-Page Application. Si tratta di un frontend minimale, realizzato con il solo scopo di comprendere e sviluppare la parte di comunicazione con il server utilizzando al massimo le REST API disponibili. Per questo motivo non è stata effettuata alcuna considerazione sull'utenza e sono stati tralascati completamente aspetti quali estetica grafica, accessibilità e responsive design.\\
 \subsubsection*{Architettura}
-L'architettura della web application realizzata in Angular prevede l'utilizzo del pattern Model-View-Controller:
+\textcolor{red}{L'architettura del frontend prevede l'utilizzo del pattern Model-View-Controller:}
 \FloatBarrier
 \begin{figure}[!ht]
 \centering
@@ -251,19 +258,18 @@ L'architettura della web application realizzata in Angular prevede l'utilizzo de
 \label{angular-architecture}
 \end{figure}
 \FloatBarrier
-Come visibile in figura \ref{angular-architecture} l'utente interagisce con la user interface (View) e ne modifica lo stato. Le resources (Model) vengono modificate dai services (Controller) anche su invocazione dei servizi da parte della user interface. I services sono coloro che si occupano della comunicazione con il server di backend attraverso le richiesta e risposte HTTP.
+\textcolor{red}{Come visibile in figura \ref{angular-architecture} l'utente interagisce con la user interface (View) e ne modifica lo stato. Le resources (Model) vengono modificate dai services (Controller) anche su invocazione dei servizi da parte della user interface. I services sono coloro che si occupano della comunicazione con il server di backend attraverso le richiesta e risposte HTTP.}
 \subsubsection*{Funzionalità}
-Per le ragioni spiegate precedentemente saranno rese disponibili nell'interfaccia grafica quelle funzionalita che andranno a permettere il massimo utilizzo delle richieste API al backend.\\
-Come fatto in precedenza, verrà mostrata e spiegata esclusivamente la parte riguardante l'entità Employee per questioni di praticità, questo perché le altre entità sono state trattate in maniera analoga.\\
-Dunque, in linea con le query rese disponibili dal backend riportate sulla sezione riguardante i controller, devono essere presenti le seguenti funzionalità:
+Di seguito si approfondisce la parte riguardante l'entità Employee, le altre entità sono state trattate in maniera analoga.\\
+In linea con le query rese disponibili dal backend, devono essere presenti le seguenti funzionalità:
 \begin{itemize}
-  \item \textbf{Visualizzazione degli Employee}: devono poter essere visualizzati gli impiegati in lista, o ricercati attraverso i campi: nome, cognome, data di nascita o dipartimento di appartenenza;
+  \item \textbf{Visualizzazione degli Employee}: devono poter essere visualizzata la lista degli impiegati permettendo la ricerca per: nome, cognome, data di nascita o dipartimento di appartenenza;
   \item \textbf{Aggiunta di un Employee}: deve essere possibile aggiungere un nuovo impiegato potendone specificare: nome, cognome, salario, data di nascita, dipartimento di appartenenza e infine i progetti che segue;
   \item \textbf{Aggiornamento di un Employee}: deve essere possibile aggiornare i campi dati di un impiegato specificandone l'id e il/gli campo/i da modificare;
   \item \textbf{Eliminazione di un Employee}: deve essere possibile eliminare un impiegato specificandone l'id.
 \end{itemize}
-Nel paragrafo sucessivo verrà mostrato come sono state implementate le funzionalità appena introdotte.
-\subsubsection*{Implementazione FE}
+Nel sezione sucessiva verrà mostrato come sono state implementate le funzionalità appena introdotte.
+\subsubsection*{Realizzazione}
 Inizialmente sono state create le interfacce per poter creare gli oggetti corrispondenti alle quattro entità del prototipo. Di seguito in figura \ref{employee-interface} l'esempio della dichiarazione della interfaccia dell'entità Employee:
 \FloatBarrier
 \begin{figure}[!ht]
@@ -273,8 +279,7 @@ Inizialmente sono state create le interfacce per poter creare gli oggetti corris
 \label{employee-interface}
 \end{figure}
 \FloatBarrier
-Analogamente sono state create le interfacce delle altre entità.\\
-Proseguendo, è stata realizzata la realizzazione dell'interaccia grafica inserendo nella pagina iniziale la possibilità di effettuare due scelte: la prima scelta riguarda l'entità, mentre la seconda riguarda l'operazione che si vuole eseguire sull'entità selezionata. In figura \ref{first-page} è possibile visualizzare la prima pagina:
+A seguire è stata implementata l'interaccia grafica inserendo nella pagina iniziale la possibilità di effettuare due scelte: la prima scelta riguarda l'entità, mentre la seconda riguarda l'operazione che si vuole eseguire sull'entità selezionata. In figura \ref{first-page} è possibile visualizzare le scelte:
 \FloatBarrier
 \begin{figure}[!ht]
 \centering
@@ -283,8 +288,8 @@ Proseguendo, è stata realizzata la realizzazione dell'interaccia grafica insere
 \label{first-page}
 \end{figure}
 \FloatBarrier
-Una volta selezionate le due opzioni viene aggiunta dinamicamente la possibilità di specificare i dettagli della richiesta. Considerando solo l'entità Employee per le ragioni spiegate precedentemente, vengono di seguito mostrate le diverse interfacce che variano al variare della scelta selezionata e il servizio che permette di eseguire la chiamata alle API del backend.\\
-In figura \ref{get-employee}abbiamo il caso in cui è stato selezionata l'entità Employee con operazione GET:
+Una volta selezionate le due opzioni viene aggiunta dinamicamente la possibilità di specificare i dettagli della richiesta. Vengono di seguito mostrate le diverse interfacce che variano al variare della scelta selezionata e il servizio che permette di eseguire la chiamata alle API del backend.\\
+In figura \ref{get-employee} abbiamo il caso in cui è stata selezionata l'entità Employee con operazione GET:
 \FloatBarrier
 \begin{figure}[!ht]
 \centering
@@ -293,8 +298,8 @@ In figura \ref{get-employee}abbiamo il caso in cui è stato selezionata l'entit�
 \label{get-employee}
 \end{figure}
 \FloatBarrier
-Viene dunque visualizzata immediatamente una lista contenente tutti gli impiegati, per ciascun impiegato vengono mostrati id, nome e cognome, salario e data di nascita. Successivamnete viene visualizzata la scelta riguardante il campo per il quale eseguire la ricerca, in questo caso è stato scelto il nome, dunque inserendo nell'apposito campo di input il nome e selezionendo il bottone è possibile effettuare la ricerca per nome.\\
-La scelta dell'opzione get permette alla vista di invocare immediatamente il servizio che esegue una chiamata alle REST API del backend per ricevere la lista di tutti gli employee, stessa cosa accade anche quando premiamo il bottone "Esegui ricerca " dopo aver inserito il nome. Il servizio in questione si chiama \textit{EmployeeService} e di seguito in figura \ref{employee-service} ne è riportata l'implementazione:
+Viene dunque esposta una lista contenente tutti gli impiegati, per ciascun impiegato vengono mostrati id, nome e cognome, salario e data di nascita. Successivamente viene visualizzata la scelta riguardante il campo per il quale eseguire la ricerca, in questo caso è stato scelto il nome, dunque inserendo nell'apposito campo di input il nome e selezionendo il bottone è possibile effettuare la ricerca per nome.\\
+La scelta dell'opzione GET permette alla vista di invocare immediatamente il servizio che esegue una chiamata alle REST API del backend per ricevere la lista di tutti gli employee, stessa cosa accade anche quando premiamo il bottone "Esegui ricerca " dopo aver inserito il nome. Il servizio in questione si chiama \textit{EmployeeService} e di seguito in figura \ref{employee-service} ne è riportata l'implementazione:
 \FloatBarrier
 \begin{figure}[!ht]
 \centering
@@ -303,27 +308,27 @@ La scelta dell'opzione get permette alla vista di invocare immediatamente il ser
 \label{employee-service}
 \end{figure}
 \FloatBarrier
-Il servizio realizzato per le chiamate alle REST API del backend, permette di essere invocato direttamente dalla vista alla selezione di un elemento HTML. È inoltre presente una dipendenza con l'oggetto \textit{HttpClient}, il quale viene passato come parametro al costruttore ed è necessario per eseguire le chiamate alle API.\\\\
+Il servizio realizzato per le chiamate alle REST API del backend permette di essere invocato direttamente dalla vista alla selezione di un elemento HTML. È inoltre presente una dipendenza con l'oggetto \textit{HttpClient}, il quale viene passato come parametro al costruttore ed è necessario per eseguire le chiamate alle API.\\\\
 Proseguendo vengono visualizzati ora i casi in cui si sceglie come operazione quella di modificare o aggiungere un nuovo impiegato. In figura \ref{post-employee} è possibile visualizzare la porzione di interfaccia grafica per l'inserimento o l'aggiornamento di un impiegato:
 \FloatBarrier
 \begin{figure}[!ht]
 \centering
 \includegraphics[width=0.3\linewidth]{immagini/postEmployee.png}
-\caption{Opzioni disponibili con operazione Insert/Update selezionata.}
+\caption{Opzioni disponibili con operazione INSERT/UPDATE selezionata.}
 \label{post-employee}
 \end{figure}
 \FloatBarrier
-Dunque una volta inseriti tutti i valori per ciascun campo, tranne il campo ID che viene generato automaticamente, è possibile aggiungere un nuovo impiegato. Qualora invece si specificasse anche l'id, allora si tratterebbe di una modifica di un employee già esistente, questo solo se l'id inserito corrisponde veramente all'id di un employee. Anche in questo caso selezionando il bottone "Insert or update Employee!" viene invocato il metodo del servizio riportato in figura \ref{employee-service}.\\
-Per finire in figura \ref{delete-employee} il caso in cui venga selezionata l'opzione delete:
+Una volta inseriti tutti i valori per ciascun campo, tranne il campo ID che viene generato automaticamente, è possibile aggiungere un nuovo impiegato. Qualora invece si specificasse anche l'id, allora si tratterebbe di una modifica di un impiegato già esistente, questo solo se l'id inserito corrisponde veramente all'id di un employee. Anche in questo caso selezionando il bottone "Insert or update Employee!" viene invocato il metodo del servizio riportato in figura \ref{employee-service}.\\
+Per finire in figura \ref{delete-employee} il caso in cui venga selezionata l'opzione DELETE:
 \FloatBarrier
 \begin{figure}[!ht]
 \centering
 \includegraphics[width=0.3\linewidth]{immagini/deleteEmployee.png}
-\caption{Opzioni disponibili con operazione Delete selezionata.}
+\caption{Opzioni disponibili con operazione DELETE selezionata.}
 \label{delete-employee}
 \end{figure}
 \FloatBarrier
-\subsubsection*{Testing FE}
+\subsubsection*{Testing}
 I test di unità sono stati implementati seguendo il pattern \textit{Arrange - Act - Assert} sui metodi del servizio riportato in figura \ref{employee-service}. Di seguito nell'immagine \ref{employee-service-tests} è possibile visualizzare la funzione \textit{describe} la quale viene utilizzata per raggruppare un insieme di test:
 \FloatBarrier
 \begin{figure}[!ht]
@@ -333,7 +338,7 @@ I test di unità sono stati implementati seguendo il pattern \textit{Arrange - A
 \label{employee-service-tests}
 \end{figure}
 \FloatBarrier
-Viene utilizzato il modulo Angular \textit{HttpClientTestModule}, necessario al fine di importare il servizio inettabile \textit{HttpTestingController}, utilizzato per il mocking e il flushing per eliminare le microtasks in sospeso. Sono inoltre presenti le funzioni \textit{BeforeEach()} utilizzata per configurare l'ambiente di test, dunque importare i moduli necessari e risolvere le dipendenze, e la funzione \textit{afterEach()} utilizzata per controllare, dopo l'esecuzion di ciascun test, che non siano rimaste richieste in sospeso. Infine, con la funzione \textit{it()} viene definito un titolo per ciascun test e viene implementato il test.\\
+Viene utilizzato il modulo Angular \textit{HttpClientTestModule}, necessario al fine di importare il servizio iniettabile \textit{HttpTestingController} utilizzato per il mocking e il flushing per eliminare le microtasks in sospeso. Sono inoltre presenti le funzioni \textit{BeforeEach} utilizzata per configurare l'ambiente di test, dunque importare i moduli necessari e risolvere le dipendenze e la funzione \textit{afterEach} utilizzata per controllare, dopo l'esecuzion di ciascun test, che non siano rimaste richieste in sospeso. Infine, con la funzione \textit{it} viene definito un titolo per ciascun test e viene implementato il test.\\
 Più nello specifico in figura \ref{get-all-test} si può visualizzare l'implementazione di un test per il metodo \textit{allEmployee} del servizio \textit{EmployeeService}:
 \FloatBarrier
 \begin{figure}[!ht]
@@ -343,16 +348,13 @@ Più nello specifico in figura \ref{get-all-test} si può visualizzare l'impleme
 \label{get-all-test}
 \end{figure}
 \FloatBarrier
-Viene inizialmente creato un array di Employee che ci si aspetterà di ricevere dalla chiamata, e sucessivamente viene controllato un test per verificare che ciò accada effettivamente con la funzione \textit{expect()}. Infine viene controllato che l'url sia corretto, che venga effettuata una sola chiamata GET e che si tratti effettivamente di una richiesta GET.
-
+Viene inizialmente creato un array di Employee che ci si aspetterà di ricevere dalla chiamata e sucessivamente si verifica il risultato atteso tramite la funzione \textit{expect}.Per finire si controlla che l'url sia corretto, che venga effettuata una sola chiamata GET e che si tratti effettivamente di una richiesta GET.
 \subsection{Migrazione da REST a GraphQL}
-Nella seguente sottosezione verrà mostrato come è stato migrato sia il backend che il frontend del prototipo realizzato da REST API a GraphQL API.
+In questa sezione si affronta la migrazione sia del backend che del frontend da REST API a GraphQL API.
 \subsubsection*{Migrazione Backend}
-Il backend realizzato in Spring Boot con l'aiuto del modulo Spring Data REST per la realizzazione dei controller di REST API, deve essere riscritto in parte utilizzando il modulo Spring GraphQL per la realizzazione dei controller in GraphQL.\\
-Per la migrazione è stata seguita la tecniche \textit{Schema first} che prevede la realizzazione del GraphQL Schema prima di implementare i resolver delle API. Nonostante i resolver fossero già realizzati per il prototipo in REST, è comunque necessario adattarli all'utilizzo di questo nuovo protocollo, questo passaggio è stato eseguito solo successivamente alla realizzazione dello schema.\\
-Il GraphQL Schema è necessario al fine di definire i tipi, le query, le mutation e le subscription che il server GraphQL renderà disponibili al client.\\
-Inizialmente è necessario fare un'analisi sulle entità presenti e comprendere quali entità riportare nel GraphQL Schema. Infatti non tutte le entità devono essere necessariamente riportate nel GraphQL Schema, ma andranno riportate solo le entità che verranno utilizzate API. Nel caso del prototipo le quattro entità presenti, ovvero Employee, Project, Department e Site devono essere riportate tutte nel GraphQL schema poiché sono tutte accessibili dal client.\\
-Partendo dunque dalle quattro entità, sarà necessario riportarle nel GraphQL Schema, sia come entità di input che di output nelle query, questo è necessario poiché GraphQL distingue i due tipi. In figura \ref{employee-schema} è possibile visualizzare l'implementazione dell'entità \textit{Employee} e \textit{EmployeeInput}.
+Il backend realizzato in Spring Boot con l'aiuto del modulo Spring Data REST per la realizzazione dei controller di REST API deve essere riscritto in parte utilizzando il modulo Spring GraphQL per la realizzazione dei controller in GraphQL.\\
+É stata adottata la tecnica \textit{Schema First} che prevede la costruzione del GraphQL Schema ed, a seguire, l'implementazione dei resolver delle API. Nonostante i resolver fossero già realizzati per il prototipo in REST è comunque necessario adattarli all'utilizzo di questo nuovo protocollo.\\
+Le quattro entità presenti, ovvero Employee, Project, Department e Site devono essere riportate tutte nel GraphQL schema poiché sono tutte accessibili dal client; esse saranno definite sia come entità di input che di output poiché GraphQL differenzia i due tipi nelle query, mutation e subscription. In figura \ref{employee-schema} è possibile visualizzare l'implementazione dei tipi \textit{Employee} e \textit{EmployeeInput}.
 \FloatBarrier
 \begin{figure}[!ht]
 \centering
@@ -361,25 +363,11 @@ Partendo dunque dalle quattro entità, sarà necessario riportarle nel GraphQL S
 \label{employee-schema}
 \end{figure}
 \FloatBarrier
-Come si può notare i due tipi \textit{Employee} e \textit{EmployeeInput} non corrispondono completamente. Infatti i campi \textit{projects} e \textit{department} di \textit{Employee} non sono presenti in \textit{EmployeeInput}, o  meglio sono presenti ma in diversa forma. Questo è dovuto al fatto che il tipo \textit{Employee} è un tipo che verrà ritornato al client su richiesta, dunque dovrà contenere le varie istanze dei progetti a cui un impiegato sta partecipando e anche l'oggetto dipartimento. Mentre per quanto riguarda il tipo \textit{EmployeeInput} che corrisponde al tipo di input per l'impiegato, qualora ad esempio il client volesse creare attraverso una mutation un nuovo impiegato, sarà sufficiente specificare l'id del dipartimento in cui lavora o gli id dei progetti ai quali sta partecipando, non serve passare l'interno oggetto Project o Department.\\
-% Prima di passare alla dichiarazione di query, mutation e subscription, è necessario prima parlare dei tipi unione, utilizzati per gestire gli errori e poter ritornare al client un errore personalizzato ed evitare dunque che vengano ritornati gli errori incomprensibili dal GraphQL Server. Per far ciò è stato creato una interfaccia \textit{Message} e cinque tipi che la implementano e rappresentano i possibili errori o il caso di successo dell'operazione richiesta dal client, vedi figura \ref{message-interface}.
-%\FloatBarrier
-%\begin{figure}[!ht]
-%\centering
-%\includegraphics[width=0.6\linewidth]{immagini/messageInterface.png}
-%\caption{Interfaccia \textit{Message} e definizione dei tipi che la implementano nel GraphQL Schema.}
-%\label{message-interface}
-%\end{figure}
-%\FloatBarrier
-%A questo punto vengono dichiarati i tipi di unione necesssari nella realizzazione delle query e mutation che verranno dichiarate in seguito. In figura \ref{union-types} è possibile visualizzare l'implementazione dei tipi unione.
-%\FloatBarrier
-%\begin{figure}[!ht]
-%\centering
-%\includegraphics[width=1\linewidth]{immagini/unionType.png}
-%\caption{Interfaccia \textit{Message} e definizione dei tipi che la implementano nel GraphQL Schema.}
-%\label{union-types}
-%\end{figure}
-%\FloatBarrier
+Come si può notare i due tipi \textit{Employee} e \textit{EmployeeInput} non corrispondono completamente: i campi \textit{projects} e \textit{department} di \textit{Employee} non sono presenti in \textit{EmployeeInput}, o  meglio sono presenti ma in diversa forma. Il motivo di tale differenza si può sintetizzare in questo modo:
+\begin{itemize}
+  \item il tipo \textit{Employee} verrà ritornato al client su richiesta; dovrà contenere le varie istanze dei progetti a cui un impiegato sta partecipando come pure l'oggetto dipartimento;
+  \item il tipo \textit{EmployeeInput} indica come fornire i dati necessari all'aggiunta/aggiornamento dell'impiegato; è sufficiente dunque passare gli id dei progetti coinvolti come pure l'id del dipartimento dell'impiegato.
+\end{itemize}
 A questo punto è possibile definire le query, le mutation ed eventualmente le subscription che si vogliono rendere disponibili al client. In figura \ref{query-employee} è possibile visualizzare la dichiarazione delle query, mutation e della subscription riguardanti l'entità Employee.
 \FloatBarrier
 \begin{figure}[!ht]
@@ -389,11 +377,11 @@ A questo punto è possibile definire le query, le mutation ed eventualmente le s
 \label{query-employee}
 \end{figure}
 \FloatBarrier
-Come è possibile notare sono state rese disponibili le medesime query e mutation rese disponibili nelle REST API. Il tipo di ritorno è il tipo \textit{Employee} per tutte le query, mutation e subscription.\\
-È stata aggiunta inoltre una subscription per sfruttare a pieno le funzionalità di GraphQL. Questa subscription permette dunque, come spiegato nel capitolo \ref{protocolli-trasmissione-dati}, che il client riceva i nuovi impiegati aggiunti senza per forza richiederli.\\
-
-\paragraph{Controller refactoring}
-A questo punto resta solo la riscrittura dei controller, mentre lo strato di servizio e quello di repository rimangono invariati durante la migrazione, infatti le logiche del server e l'accesso e la gestione del database rimangono invariati. Tuttavia prima di analizzare l'implementazione del controller GraphQL, è necessario dichiarare le classi Java corrispondenti ad i vari errori ed ai tipi di input; questo è necessario poiché qualora dovessere essere ritornato un errore o dovesse essere ricevuto in input ad esempio il tipo dichiarato precedentemente \textit{EmployeeInput}, il quale non corrisponde al tipo Employee dichiarato in Java, si creerebbero degli errori durante il mapping tra i tipi Java e i tipi dichiarati nel GraphQL Schema. Per questo motivo è stato dichiarato un Java record per ciascun errore/successo, più le classi relative ai vari tipi di input.\\
+Il dato ritornato è di tipo \textit{Employee} per tutte le operazioni mentre quello di input è \textit{EmployeeInput}.\\
+È stata aggiunta inoltre una subscription per sfruttare a pieno le funzionalità di GraphQL. Questa subscription permette al client di ricevere i nuovi impiegati aggiunti senza per forza richiederli.
+\paragraph{Migrazione dei controller}
+La migrazione non coinvolge gli strati di servizio e repository in quanto non è necessario apportare modifiche alle logiche e alla gestione del database. L'unico strato da riscrivere parzialmente è lo strato del controller.\\
+Come prima cosa si realizzano le classi Java corrispondenti ai tipi di input; questo è necessario poiché nei metodi del controller è previsto come parametro di input la versione di input dell'impiegato.\\
 L'implementazione del controller risulta differente rispetto a quella vista con le REST API. Di seguito in figura \ref{graphql-controller} è possibile visualizzarne la struttura ed i metodi:
 \FloatBarrier
 \begin{figure}[!ht]
@@ -403,17 +391,16 @@ L'implementazione del controller risulta differente rispetto a quella vista con 
 \label{graphql-controller}
 \end{figure}
 \FloatBarrier
-Come si può notare in figura \ref{graphql-controller} si tratta di un controller molto simile al medesimo controller in REST, ma con annotazioni differenti. Innanzitutto ha l'annotazione \textbf{@Controller} e non @RestController, poiché quest'ultima serve per indicare esclusivamente Spring Controller per REST API, mentre la prima è più generica ed indica esclusivamente che si tratta di un controller. Poi è possibile notare come le annotazioni sui metodi siano differenti, per le query si usa l'annotazione \textbf{@QueryMapping}, per le mutation l'annotazione \textbf{@MutationMapping}, mentre per le subscription l'annotazione \textbf{@SubscriptionMapping}, infine per gli argomenti dei metodi l'annotazione \textbf{@Argument}. Queste annotazioni sono fondamentali poiché permettono di effettuare il mapping tra i tipi, query, mutation o subscription definiti nel GraphQL Schema e quelli definiti nel controller. Per questo motivo il nome di ciascun metodo o tipo negli argomenti deve corrispondere esattamente al nome nel GraphQL Schema, altrimenti il mapping non andrà a buon fine e verranno generati degli errori.\\
-%In figura \ref{employee-by-name-graphql} è possibile visualizzare un esempio di implementazione di un metodo del controller, in questo caso si tratta del metodo \textit{employeeByName} il quale solleva un eccezione \textit{EmployeeNotFoundError} nel caso non venisse trovato alcun impiegato con il nome specificato, oppure una lista di impiegati con quel determinato nome.
-%\FloatBarrier
-%\begin{figure}[!ht]
-%\centering
-%\includegraphics[width=0.8\linewidth]{immagini/employeeByNameGraphQL.png}
-%\caption{Metodo \textit{employeeByName} del controller \textit{EmployeeController}.}
-%\label{employee-by-name-graphql}
-%\end{figure}
-%\FloatBarrier
-L'implementazione dei metodi del controller risulta identica a quella dei corrispettivi metodi nel REST controller. Tuttavia, trattandosi di una particolare funzionalità disponibile esclusivamente in GraphQL, in figura \ref{subscription-graphql} viene riportata l'implementazione della subscription \textit{newEmployeeAdded}:
+Come si può notare si tratta di un controller simile a quello REST nei metodi, tuttavia le annotazioni e alcune implementazioni differiscono. Vengono utilizzate le annotazioni:
+\begin{itemize}
+  \item \textbf{@Controller}: indica che si tratta di un generico controller (non più REST controller);
+  \item \textbf{@QueryMapping}: attribuito ai metodi che risolvono le query;
+  \item \textbf{@MutationMapping}: attribuito ai metodi che risolvono le mutation;
+  \item \textbf{@SubscriptioMapping}: attribuito al metodo che risolve la subscription;
+  \item \textbf{@Argument}: utilizzato per specificare gli argomenti.
+\end{itemize}
+Queste annotazioni sono fondamentali poiché permettono di effettuare il mapping tra i tipi, le query, le mutation e le subscription definiti nel GraphQL Schema e quelli definiti nel controller. Per questo motivo il nome di ciascun metodo o tipo negli argomenti deve corrispondere esattamente al nome nel GraphQL Schema, altrimenti il mapping non andrà a buon fine e verranno generati degli errori.\\
+L'implementazione dei metodi del controller risulta simile a quella dei corrispettivi metodi nel REST controller. Tuttavia, trattandosi di una particolare funzionalità disponibile esclusivamente in GraphQL, in figura \ref{subscription-graphql} viene riportata l'implementazione della subscription \textit{newEmployeeAdded}:
 \FloatBarrier
 \begin{figure}[!ht]
 \centering
@@ -422,30 +409,22 @@ L'implementazione dei metodi del controller risulta identica a quella dei corris
 \label{subscription-graphql}
 \end{figure}
 \FloatBarrier
-L'implementazione della subscription permette al subscriber, in questo caso il client, di ricevere la lista aggiornata appena viene aggiunto un nuovo impiegato. L'oggetto \textit{Publisher<>} permette di inviare la lista aggiornata  tutti i subscribers in maniera dinamica, così facendo il client non dovrà richiedere periodicamente la lista con la query \textit{allEmployee}, bensì riceverà automaticamente i nuovi impiegati.
-% Spiego come è stata realizzata la migrazione da REST a GraphQL. Partendo da backend, viene realizzata un'analisi sui tipi necessari da riportare nel GraphQL schema (tipi di input e tipi di ritorno). Sucessivamente vengono ristrutturate le API rese disponibili in REST (non sempre i metodi dei controller REST corrispondono a quelli GraphQL, oltre a differenze nelle annotazioni, ecc...). Vengono dunque implementati i metodi dei controller GraphQL, soffermarsi sulle difficoltà riscontrate nel mapping dei tipi GraphQL schema con i tipi corrispondenti del BE. Una volta ricostruito tutto il sistema di query GraphQL nel BE e testato, si può passare alla migrazione frontend. Volendo dividere il tutto in subsubsection:
-%\begin{itemize}
-%  \item analisi sui tipi;
-%  \item ristrutturazione API secondo principi GraphQL;
-%  \item realizzazione API con tool Spring GraphQL (e problemi mapping tipi);
-%  \item testing;
-%\end{itemize}
+L'implementazione della subscription permette al subscriber, in questo caso il client, di ricevere la lista aggiornata al verificarsi di un evento. L'oggetto \textit{Publisher<>} permette di inviare la lista aggiornata a tutti i subscribers in tempo reale, così facendo il client non dovrà richiedere periodicamente la lista con la query \textit{allEmployee}.
 \textcolor{red}{Mancano test in graphQL}
 \paragraph{Strutture delle risposte HTTP in GraphQL e gestione degli errori}
-Come spiegato in precedenza
-Le risposte che il server GraphQL appena realizzato ritorna al client in seguito ad una query, mutation o subscription sono dei file JSON. Questi JSON possono contenere tre tipi di campi:
+Le risposte che il server GraphQL ritorna al client in seguito ad una query, mutation o subscription sono dei file JSON. Questi JSON possono contenere tre tipi di campi:
 \begin{itemize}
-  \item \textbf{Data}: il campo data viene ritornato nella risposta solo qualora la query abbia iniziato l'esecuzione, in caso si verifichino errori durante l'esecuzione possono essere ritornati dati parziali, oppure il campo \textit{Data} può essere ritornato con valore \textit{null};
-  \item \textbf{Errors}: il campo errors viene ritornato nel JSON solo ed esclusivamente quando si sono verificati degli errori prima o durante l'esecuzione della query, questo ritorna i vari errori presenti. Ogni errore ritornato nel campo \textit{errors} può contenere a sua volta altri campi che indicano la posizione dell'errore e/o un messaggio;
-  \item \textbf{Extensions}: si tratta di un campo aggiuntivo a disposizione degli sviluppatori, può essere utilizzato ad esempio per ritornare il timestamp dell'esecuzione della query.
+  \item \textbf{Data}: ritornato nella risposta solo in caso di successo, assume valore \textit{null} al presentarsi di un errore;
+  \item \textbf{Errors}: ritornato solo ed esclusivamente al verificarsi di uno o più errori, contiene le informazioni necessarie all'interpretazione dell'anomalia;
+  \item \textbf{Extensions}: campo facoltativo a disposizione degli sviluppatori di backend, può essere utilizzato ad esempio per ritornare il timestamp dell'esecuzione della query.
 \end{itemize}
-Analizzando gli errori che si possono verificare durante l'esecuzione di una query, mutation o subscription nel server GraphQL, si possono raggruppare in tre categorie:
+Analizzando gli errori che si possono verificare durante l'esecuzione di una query, mutation o subscription nel server GraphQL, si individuano tre categorie:
 \begin{itemize}
-  \item \textbf{Errori di sintassi}: si tratta di errori nella sintassi della query. Quando viene inviata una query sintatticamente scorretta viene ritornato un JSON contenente il campo "errors", il quale indica che si tratta di un "Syntax Error". In questo caso l'eseguzione della richiesta non parte nemmeno;
-  \item \textbf{Errori di validazione}: si verificano quando vengono specificati nella richiesta tipi o campi non presenti o non corretti. In questo caso l'errore si verifica durante l'esecuzione, dunque viene ritornato sia il campo \textit{data}, con valore null o con i dati parziali che il server è riuscito a recuperare, che il campo \textit{errors} che indica la presenza di uno o più errrori di data fetching;
-  \item \textbf{Errori nei resolver:} si verificano durante la risoluzione della query e non sono legate al fatto che la query sia formulata male o con tipi sbagliati. Questi errori devono essere gestiti lato server;
+  \item \textbf{Errori di sintassi}: si tratta di errori nella sintassi della query. Se la query è sintatticamente scorretta l'errore sarà di tipo "Syntax Error"; in questo caso l'esecuzione della query non parte nemmeno;
+  \item \textbf{Errori di validazione}: si verificano quando vengono specificati nella richiesta tipi non coerenti con lo schema. In questo caso l'errore si verifica durante l'esecuzione, dunque viene ritornato sia il campo \textit{data}, con valore null o con i dati parziali che il server è riuscito a recuperare, che il campo \textit{errors} che indica la presenza di uno o più errori di data fetching;
+  \item \textbf{Errori nei resolver:} si verificano durante la risoluzione della query e non sono legati al fatto che la query sia formulata male o con tipi sbagliati. Questi errori devono essere gestiti lato server;
 \end{itemize}
-Mentre quando si verificano gli errori di sintassi o di validazione la risposta generata con l'errore è chiara riguardo la natura dell'errore, nel terzo caso il messaggio dell'errore ritornato è quasi sempre incomprensibile. Questo accade perché la gestione delle eccezzioni durante l'esecuzione di una richiesta è presa in carico dall'interfaccia predefinita \textit{DataFetcherExceptionHandler}, la quale permette la dichiarazione di più risolutori di eccezzioni detti \textit{DataFetcherExceptionResolver} che vengono invocati sequenzialmente qualora si presentasse un errore, fino a quando uno di questi non riesce a risolvere l'eccezzione, altrimenti viene ritornato un errore con messaggio incomprensibile e categoria \textit{"INTERNAL\_ERROR"}. Questo per uno sviluppatore può essere un problema poiché non è facile individuare la provenienza dell'errore. Per questo motivo sono stati creati differenti resolvers per le varie eccezioni che possono verificarsi. In figura \ref{resolver-example} l'esempio di implementazione di un resolver che riscrive il metodo di risoluzione delle eccezioni \textit{resolveToSingleError} al fine di risolvere l'eccezione \textit{EmployeeNotFound}.
+Quando si verificano errori di sintassi o validazione la risposta l'errore ritornato indica perfettamente la natura dell'errore. La terza tipologia di errore quasi sempre risulta incomprensibile dal client. Questo accade perché la gestione delle eccezioni durante l'esecuzione di una richiesta è presa in carico dall'interfaccia predefinita \textit{DataFetcherExceptionHandler} la quale permette la dichiarazione di più risolutori di eccezioni detti \textit{DataFetcherExceptionResolver}. Questi ultimi vengono invocati sequenzialmente fino a quando uno di essi è in grado di risolvere l'eccezione; in caso contrario viene ritornata una informazione di errore incomprensibile con categoria \textit{"INTERNAL\_ERROR"}. Questo per uno sviluppatore può essere un problema poiché non è facile individuare la provenienza dell'errore. Per questo motivo sono stati creati differenti resolvers per le varie eccezioni che possono verificarsi. In figura \ref{resolver-example} l'esempio di implementazione di un resolver che riscrive il metodo di risoluzione delle eccezioni \textit{resolveToSingleError} al fine di risolvere l'eccezione \textit{EmployeeNotFound}.
 \FloatBarrier
 \begin{figure}[!ht]
 \centering
@@ -454,11 +433,11 @@ Mentre quando si verificano gli errori di sintassi o di validazione la risposta 
 \label{resolver-example}
 \end{figure}
 \FloatBarrier
-Com'è possibile notare viene ritornato un oggetto di tipo \textit{GraphQLError} con i campi impostati correttamente. Dunque quando viene sollevata l'eccezione, è ora possibile specificare il messaggio che il resolver andrà a ritornare nell'errore, oltre ad impostarne il tipo corretto dell'errore.
+Com'è possibile notare viene ritornato un oggetto di tipo \textit{GraphQLError} con i campi impostati correttamente. Al presentarsi dell'eccezione il client sarà ora in grado di comprendere il motivo di errore.
 \subsubsection*{Migrazione Frontend}
 La migrazione del frontend richiede uno sforzo minore rispetto al backend, infatti è sufficiente effettuare la migrazione esclusivamente dei servizi che si occupano dell'invocazione delle API.\\
-Il servizio visualizzato precedentemente in figura \ref{employee-service} \textit{EmployeeService}, non cambia la sua struttura, i metodi rimangono gli stessi, tuttavia l'implementazione del metodo deve cambiare. Oltre all'implementazione dei metodi cambia anche l'oggetto che permette il fetching dei dati dal server, infatti trattandosi ora di un GraphQL Server, sarà necessaria la dipendenza dall'oggetto \textit{Apollo} il quale permette il fetching dei dati da un server GraphQL.\\
-In figura \ref{employee-service-method-graphql} è possibile visualizzare l'implementazione del metodo  \textit{allEmployees} che si differenzia dal medesimo metodo ma per l'invocazione di REST API.
+Il servizio visualizzato precedentemente in figura \ref{employee-service} \textit{EmployeeService} non cambia la sua struttura; i metodi rimangono gli stessi, tuttavia l'implementazione del metodo deve cambiare. Oltre all'implementazione dei metodi cambia anche l'oggetto che permette il fetching dei dati dal server, infatti trattandosi ora di un GraphQL Server, sarà necessaria la dipendenza dall'oggetto \textit{Apollo} utilizzato nel fetching dei dati da un server GraphQL.\\
+In figura \ref{employee-service-method-graphql} è possibile visualizzare l'implementazione del metodo  \textit{allEmployees}.
 \FloatBarrier
 \begin{figure}[!ht]
 \centering
@@ -467,15 +446,7 @@ In figura \ref{employee-service-method-graphql} è possibile visualizzare l'impl
 \label{employee-service-method-graphql}
 \end{figure}
 \FloatBarrier
-Attraverso il metodo \textit{watchQuery<>} dell'oggetto \textit{apollo} è possibile eseguire la query all'endopoint del server GraphQL. Il metodo ritorna un oggetto di tipo \textit{Observable} ed il subscriber dovrà occuparsi di gestire quanto ritornato dal servizio, ovvero: nel caso in cui la query sia andata a buon fine, dovrà occuparsi di estrapolare i dati dal campo \textit{"data"} del file JSON ricevuto in risposta, altrimenti dovrà occuparsi di mostrare il messaggio ed il tipo dell'errore presente nel campo \textit{"errors"}.
-
-%La migrazione su FE è molto più semplice rispetto al BE, infatti è sufficiente andare ad aggiornare lo strato di servizio, il quale si occupa della gestione della chiamate API al BE. Anche qui si possono riscontrare alcuni problemi per quanto riguarda la corrispondenza dei tipi (ma ho avuto più problemi in SushiLab, qui trascurabile dunque).
-%Volendo dividere il tutto in subsubsection:
-%\begin{itemize}
-%  \item aggiornamento strato servizio con modulo apollo;
-%\end{itemize}
-%Questo capitoletto conterrebbe tutto, da come costruire la query a seconda di ciò che è necessario, all'eliminazione della parte di gestione delle risorse nel protitipo REST (per questioni di under e overfetching).
-
+Attraverso il metodo \textit{watchQuery<>} dell'oggetto \textit{apollo} è possibile eseguire la query all'endopoint del server GraphQL. Il metodo ritorna un oggetto di tipo \textit{Observable} ed il subscriber dovrà occuparsi di gestire quanto ritornato dal servizio. Nel caso in cui la query sia andata a buon fine dovrà leggere le informazioni presenti nel campo \textit{"data"}; nel caso contrario dovrà occuparsi di mostrare il messaggio ed il tipo dell'errore presente nel campo \textit{"errors"}.
 \section{SushiLab}
 \label{sushi-lab}
 \subsection{Confronto con stakeholder}
