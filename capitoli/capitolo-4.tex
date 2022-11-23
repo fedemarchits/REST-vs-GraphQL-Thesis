@@ -69,9 +69,17 @@ Ciascuna entità è caratterizzata dai campi presenti in figura \ref{ER-prototyp
 \caption{Architettura interna backend.}
 \label{controller-service-repository}
 \end{figure}
-\textcolor{red}{PARLARE E INSERIRE QUI DIAGRAMMA DI SEQUENZA}
 \FloatBarrier
 %%%% IMG
+Nell'immagine \ref{sequence-diagram} è possibile visualizzare il diagramma di sequenza di una richiesta GET al server da parte del client. La richiesta in questo caso è andata a buon fine ritornando al client i dati richiesti.
+\FloatBarrier
+\begin{figure}[!h]
+\centering
+\includegraphics[width=1\linewidth]{immagini/getRequestFromClient.pdf}
+\caption{Diagramma di sequenza di una richiesta GET elaborata dal server.}
+\label{sequence-diagram}
+\end{figure}
+\FloatBarrier
 Il pattern prevedere la gestione delle entità e delle chiamate alle API attraverso tre strati:
 \begin{itemize}
   \item \textbf{Controller layer}: è l'unico responsabile della comunicazione con i client, inoltre gestisce le interfacce REST e invoca lo strato di servizio;
@@ -249,7 +257,7 @@ Nella prima parte (arrange) viene creato un nuovo Employee e gli viene assegnato
 \subsection{Progettazione e realizzazione frontend}
 Per quanto riguarda il frontend dell'applicativo è stato utilizzato il framework Angular per realizzare una Single-Page Application. Si tratta di un frontend minimale, realizzato con il solo scopo di comprendere e sviluppare la parte di comunicazione con il server utilizzando al massimo le REST API disponibili. Per questo motivo non è stata effettuata alcuna considerazione sull'utenza e sono stati tralascati completamente aspetti quali estetica grafica, accessibilità e responsive design.\\
 \subsubsection*{Architettura}
-\textcolor{red}{L'architettura del frontend prevede l'utilizzo del pattern Model-View-Controller:}
+Angular segue un'architettura ben precisa, in figura \ref{angular-architecture} è possibile visualizzarne la struttura:
 \FloatBarrier
 \begin{figure}[!ht]
 \centering
@@ -258,7 +266,8 @@ Per quanto riguarda il frontend dell'applicativo è stato utilizzato il framewor
 \label{angular-architecture}
 \end{figure}
 \FloatBarrier
-\textcolor{red}{Come visibile in figura \ref{angular-architecture} l'utente interagisce con la user interface (View) e ne modifica lo stato. Le resources (Model) vengono modificate dai services (Controller) anche su invocazione dei servizi da parte della user interface. I services sono coloro che si occupano della comunicazione con il server di backend attraverso le richiesta e risposte HTTP.}
+Si tratta di una piattaforma modulare che basa la sua struttura sulla divisione in moduli. Ciascun modulo è composto da una componente ed una viste o template; questi comunicano tra loro attraverso i metadati: l'utente che interagisce con la vista può attivare l'inizio di un procedura sulla componente. La componente spesso per l'esecuzione di alcune procedure invoca in suo aiuto i servizi iniettati nella componente stessa. \\\\
+Nel corso della tesi quando si tratta il frontend verranno principalmente considerati i servizi; infatti quest'ultimi si incaricano della comunicazione con li server attraverso le API.
 \subsubsection*{Funzionalità}
 Di seguito si approfondisce la parte riguardante l'entità Employee, le altre entità sono state trattate in maniera analoga.\\
 In linea con le query rese disponibili dal backend, devono essere presenti le seguenti funzionalità:
@@ -308,7 +317,7 @@ La scelta dell'opzione GET permette alla vista di invocare immediatamente il ser
 \label{employee-service}
 \end{figure}
 \FloatBarrier
-Il servizio realizzato per le chiamate alle REST API del backend permette di essere invocato direttamente dalla vista alla selezione di un elemento HTML. È inoltre presente una dipendenza con l'oggetto \textit{HttpClient}, il quale viene passato come parametro al costruttore ed è necessario per eseguire le chiamate alle API.\\\\
+Il servizio realizzato per le chiamate alle REST API del backend permette di essere invocato direttamente dalla componenta relativa alla vista sulla quale è stata eseguita la selezione di un elemento HTML da parte dell'utente. È inoltre presente una dipendenza con l'oggetto \textit{HttpClient}, il quale viene iniettato nel servizio venendo passato come parametro al costruttore; la sua funzionalità è quella di permettere l'esecuzione delle chiamate alle API sul backend.\\\\
 Proseguendo vengono visualizzati ora i casi in cui si sceglie come operazione quella di modificare o aggiungere un nuovo impiegato. In figura \ref{post-employee} è possibile visualizzare la porzione di interfaccia grafica per l'inserimento o l'aggiornamento di un impiegato:
 \FloatBarrier
 \begin{figure}[!ht]
@@ -338,7 +347,7 @@ I test di unità sono stati implementati seguendo il pattern \textit{Arrange - A
 \label{employee-service-tests}
 \end{figure}
 \FloatBarrier
-Viene utilizzato il modulo Angular \textit{HttpClientTestModule}, necessario al fine di importare il servizio iniettabile \textit{HttpTestingController} utilizzato per il mocking e il flushing per eliminare le microtasks in sospeso. Sono inoltre presenti le funzioni \textit{BeforeEach} utilizzata per configurare l'ambiente di test, dunque importare i moduli necessari e risolvere le dipendenze e la funzione \textit{afterEach} utilizzata per controllare, dopo l'esecuzion di ciascun test, che non siano rimaste richieste in sospeso. Infine, con la funzione \textit{it} viene definito un titolo per ciascun test e viene implementato il test.\\
+Viene incluso il modulo Angular \textit{HttpClientTestModule}, necessario al fine di importare il servizio iniettabile \textit{HttpTestingController} utilizzato per il mocking e il flushing e dunque per eliminare le microtask in sospeso. Sono inoltre presenti le funzioni \textit{BeforeEach} utilizzata per configurare l'ambiente di test, dunque importare i moduli necessari e risolvere le dipendenze e la funzione \textit{afterEach} utilizzata per controllare, dopo l'esecuzion di ciascun test, che non siano rimaste richieste in sospeso. Infine, con la funzione \textit{it} viene definito un titolo per ciascun test e implementato il test stesso.\\
 Più nello specifico in figura \ref{get-all-test} si può visualizzare l'implementazione di un test per il metodo \textit{allEmployee} del servizio \textit{EmployeeService}:
 \FloatBarrier
 \begin{figure}[!ht]
@@ -516,7 +525,7 @@ Il seguente controller dichiara una dipendenza con il servizio \textit{ClientSer
 %//////////////////////// INIZIO TABELLA ////////////////////////
 %//////////////////////// INIZIO TABELLA ////////////////////////
 \begin{table}[!h]
-\renewcommand{\arraystretch}{1.5}
+\renewcommand{\arraystretch}{1.1}
 \centering
 \begin{tabular}{|c|c|c|l|}
 \hline
@@ -533,7 +542,7 @@ Questo controller dichiara una dipendenza con il servizio \textit{ClientService}
 %//////////////////////// INIZIO TABELLA ////////////////////////
 %//////////////////////// INIZIO TABELLA ////////////////////////
 \begin{table}[!h]
-\renewcommand{\arraystretch}{1.5}
+\renewcommand{\arraystretch}{1.2}
 \begin{tabular}{|c|c|c|c|}
 \hline
 \rowcolor[HTML]{C0C0C0}
@@ -541,15 +550,15 @@ Questo controller dichiara una dipendenza con il servizio \textit{ClientService}
 {\color[HTML]{000000} \textbf{ottieniUtente}}          & {\color[HTML]{000000} String idPersona}                                                                                & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Ricerca un utente\\ per id\end{tabular}}                                                                  & {\color[HTML]{000000} GET}             \\ \hline
 \rowcolor[HTML]{EFEFEF}
 {\color[HTML]{000000} \textbf{registraUtente}}         & {\color[HTML]{000000} Utente utente}                                                                                   & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Aggiunge un nuovo\\ utente\end{tabular}}                                                                  & {\color[HTML]{000000} POST}            \\ \hline
-{\color[HTML]{000000} \textbf{modificaStatoPreferiti}} & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}String idPersona\\ \\ String idPiatto\end{tabular}}                   & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Modifica i preferiti\\ di un utente,  con gli \\ dei piatti\end{tabular}}                                 & {\color[HTML]{000000} POST}            \\ \hline
+{\color[HTML]{000000} \textbf{modificaStatoPreferiti}} & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}String idPersona\\ String idPiatto\end{tabular}}                   & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Modifica i preferiti\\ di un utente,  con gli \\ dei piatti\end{tabular}}                                 & {\color[HTML]{000000} POST}            \\ \hline
 \rowcolor[HTML]{EFEFEF}
-{\color[HTML]{000000} \textbf{modificaValutazione}}    & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}String idPersona\\ \\ String idPiatto\\ \\ String param\end{tabular}} & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Modifica la \\ valutazione di una \\ persona rispetto ad \\ un piatto con nuovi\\ parametri\end{tabular}} & {\color[HTML]{000000} POST}            \\ \hline
+{\color[HTML]{000000} \textbf{modificaValutazione}}    & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}String idPersona\\ String idPiatto\\ String param\end{tabular}} & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Modifica la \\ valutazione di una \\ persona rispetto ad \\ un piatto con nuovi\\ parametri\end{tabular}} & {\color[HTML]{000000} POST}            \\ \hline
 {\color[HTML]{000000} \textbf{recuperoPassword}}       & {\color[HTML]{000000} String param}                                                                                    & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Ritorna la password\\ recuperata se vengono\\ forniti i parametri\\ necessari\end{tabular}}               & {\color[HTML]{000000} POST}            \\ \hline
 \rowcolor[HTML]{EFEFEF}
 {\color[HTML]{000000} \textbf{verificaCodice}}         & {\color[HTML]{000000} String param}                                                                                    & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Verifica il codice\\ di recupero password\end{tabular}}                                                   & {\color[HTML]{000000} POST}            \\ \hline
 {\color[HTML]{000000} \textbf{reimpostaPassword}}      & {\color[HTML]{000000} String param}                                                                                    & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Imposta una nuova \\ password per un utente\end{tabular}}                                                 & {\color[HTML]{000000} POST}            \\ \hline
 \rowcolor[HTML]{EFEFEF}
-{\color[HTML]{000000} \textbf{aggiornaBlacklist}}      & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}String idPersona\\ \\ Ingredienti ingredienti\end{tabular}}           & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Aggiorna la blacklist \\ di una persona con i \\ nuovi ingredienti\end{tabular}}                          & {\color[HTML]{000000} POST}            \\ \hline
+{\color[HTML]{000000} \textbf{aggiornaBlacklist}}      & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}String idPersona\\ Ingredienti ingredienti\end{tabular}}           & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Aggiorna la blacklist \\ di una persona con i \\ nuovi ingredienti\end{tabular}}                          & {\color[HTML]{000000} POST}            \\ \hline
 {\color[HTML]{000000} \textbf{ottieniBlacklist}}       & {\color[HTML]{000000} String idPersona}                                                                                & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Ritorna la lista di \\ ingredienti nella \\ blacklist di un utente\end{tabular}}                          & {\color[HTML]{000000} GET}             \\ \hline
 \end{tabular}
 \caption{Metodi del controller \textit{UtenteController}.}
@@ -565,7 +574,7 @@ Anche il seguente controller dichiara una dipendenza con \textit{ClientService} 
 % \usepackage[table,xcdraw]{xcolor}
 % If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
 \begin{table}[!h]
-\renewcommand{\arraystretch}{1.5}
+\renewcommand{\arraystretch}{1.2}
 \begin{tabular}{|c|c|c|c|}
 \hline
 \rowcolor[HTML]{C0C0C0}
@@ -575,25 +584,84 @@ Anche il seguente controller dichiara una dipendenza con \textit{ClientService} 
 {\color[HTML]{000000} \textbf{ottieniSessione}}          & {\color[HTML]{000000} String idTavolo}                                                               & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Ritorna la sessione \\ attiva in un determinato\\ tavolo\end{tabular}}                        & {\color[HTML]{000000} GET}             \\ \hline
 {\color[HTML]{000000} \textbf{chiudiSessione}}           & {\color[HTML]{000000} String idTavolo}                                                               & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Chiude la sessione in un\\ determinato tavolo\end{tabular}}                                   & {\color[HTML]{000000} DELETE}          \\ \hline
 \rowcolor[HTML]{EFEFEF}
-{\color[HTML]{000000} \textbf{ottieniOrdiniPersona}}     & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}String idTavolo\\ \\ String idPersona\end{tabular}} & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Ritorna gli ordini di \\ una persona in uno\\ specifico tavolo\end{tabular}}                  & {\color[HTML]{000000} GET}             \\ \hline
-{\color[HTML]{000000} \textbf{modificaOrdiniPersona}}    & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}String idTavolo\\ \\ String idPersona\end{tabular}} & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Modifica gli ordini di \\ una persona in uno \\ specifico tavolo\end{tabular}}                & {\color[HTML]{000000} POST}            \\ \hline
+{\color[HTML]{000000} \textbf{ottieniOrdiniPersona}}     & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}String idTavolo\\ String idPersona\end{tabular}} & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Ritorna gli ordini di \\ una persona in uno\\ specifico tavolo\end{tabular}}                  & {\color[HTML]{000000} GET}             \\ \hline
+{\color[HTML]{000000} \textbf{modificaOrdiniPersona}}    & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}String idTavolo\\ String idPersona\end{tabular}} & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Modifica gli ordini di \\ una persona in uno \\ specifico tavolo\end{tabular}}                & {\color[HTML]{000000} POST}            \\ \hline
 \rowcolor[HTML]{EFEFEF}
-{\color[HTML]{000000} \textbf{ottieniOrdiniTavolo}}      & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}String idTavolo\\ \\ String idPersona\end{tabular}} & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Ritorna tutti gli ordini\\ effettuati dalle persone \\ di un determinato tavolo\end{tabular}} & {\color[HTML]{000000} GET}             \\ \hline
-{\color[HTML]{000000} \textbf{ottieniGliOrdiniInArrivo}} & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}String idTavolo\\ \\ String idPersona\end{tabular}} & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Ritorna gli ordini che\\ sono quasi pronti per \\ essere consegnati\end{tabular}}             & {\color[HTML]{000000} GET}             \\ \hline
+{\color[HTML]{000000} \textbf{ottieniOrdiniTavolo}}      & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}String idTavolo\\ String idPersona\end{tabular}} & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Ritorna tutti gli ordini\\ effettuati dalle persone \\ di un determinato tavolo\end{tabular}} & {\color[HTML]{000000} GET}             \\ \hline
+{\color[HTML]{000000} \textbf{ottieniGliOrdiniInArrivo}} & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}String idTavolo\\ String idPersona\end{tabular}} & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Ritorna gli ordini che\\ sono quasi pronti per \\ essere consegnati\end{tabular}}             & {\color[HTML]{000000} GET}             \\ \hline
 \rowcolor[HTML]{EFEFEF}
-{\color[HTML]{000000} \textbf{spostaGliOrdiniInArrivo}}  & {\color[HTML]{000000} String idTavolo}                                                               & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Imposta come in arrivo\\ gli ordini di un \\ determinato tavolo\end{tabular}}                 & {\color[HTML]{000000} POST}            \\ \hline
+{\color[HTML]{000000} \textbf{spostaGliOrdiniInArrivo}}  & {\color[HTML]{000000} String idTavolo}                                                               & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Imposta come "in arrivo"\\ gli ordini di un \\ determinato tavolo\end{tabular}}                 & {\color[HTML]{000000} POST}            \\ \hline
 \end{tabular}
+\caption{Metodi del controller \textit{TavoloController}.}
 \end{table}
+%//////////////////////// FINE TABELLA ////////////////////////
+%//////////////////////// FINE TABELLA ////////////////////////
+%//////////////////////// INIZIO TABELLA ////////////////////////
+%//////////////////////// INIZIO TABELLA ////////////////////////
+\paragraph{MenuController}
+Il \textit{MenuController} richiede la dipendenza con il servizio \textit{ClientService}. Ha i seguenti metodi:
+\begin{table}[!h]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|c|c|c|c|}
+\hline
+\rowcolor[HTML]{C0C0C0}
+{\color[HTML]{000000} \textbf{Metodo}}                   & {\color[HTML]{000000} \textbf{Parametri}}                                                            & {\color[HTML]{000000} \textbf{Descrizione}}                                                                                                    & {\color[HTML]{000000} \textbf{Azione}} \\ \hline
+{\color[HTML]{000000} \textbf{ottieniMenu}}              & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}int idMenu\\ String idPersona\end{tabular}}         & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Ritorna il menu \\ ricercato per id\end{tabular}}                                             & {\color[HTML]{000000} GET}             \\ \hline
+\rowcolor[HTML]{EFEFEF}
+{\color[HTML]{000000} \textbf{ottieniListaFasce}}        & {\color[HTML]{000000} int idMenu}                                                                    & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Ritorna le fasce orarie\\ di un certo menu\end{tabular}}                                      & {\color[HTML]{000000} GET}             \\ \hline
+{\color[HTML]{000000} \textbf{ottieniListaPreferiti}}    & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}int idMenu\\ String idPersona\end{tabular}}         & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Ritorna la lista dei\\ piatti preferiti di una \\ persona\end{tabular}}                       & {\color[HTML]{000000} GET}             \\ \hline
+\end{tabular}
+\caption{Metodi del controller \textit{TavoloController}.}
+\end{table}
+%//////////////////////// FINE TABELLA ////////////////////////
+%//////////////////////// FINE TABELLA ////////////////////////
+\paragraph{GestoreController}
+Infine è presente il \textit{GesoreController} con dipendenza dal servizio \textit{GestoreService}. I metodi che lo caratterizzano sono:
+%//////////////////////// INIZIO TABELLA ////////////////////////
+%//////////////////////// INIZIO TABELLA ////////////////////////
+% Please add the following required packages to your document preamble:
+% \usepackage[table,xcdraw]{xcolor}
+% If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
+\begin{table}[!h]
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|c|c|c|c|}
+\hline
+\rowcolor[HTML]{C0C0C0}
+{\color[HTML]{000000} \textbf{Metodo}}             & {\color[HTML]{000000} \textbf{Parametri}}                                                                               & {\color[HTML]{000000} \textbf{Descrizione}}                                                                          & {\color[HTML]{000000} \textbf{Azione}} \\ \hline
+{\color[HTML]{000000} \textbf{ottieniListaPiatti}} & {\color[HTML]{000000} String idPersona}                                                                                 & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Ritorna la lista di \\ piatti di una persona\end{tabular}}          & {\color[HTML]{000000} GET}             \\ \hline
+\rowcolor[HTML]{EFEFEF}
+{\color[HTML]{000000} \textbf{nuovoPiatto}}        & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}PiattoUpload piatto\\ String idPersona\end{tabular}}                   & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Aggiunge un nuovo\\ piatto\end{tabular}}                            & {\color[HTML]{000000} POST}            \\ \hline
+{\color[HTML]{000000} \textbf{ottieniPiatto}}      & {\color[HTML]{000000} String idPiatto}                                                                                  & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Ritorna un piatto\\ per id\end{tabular}}                            & {\color[HTML]{000000} POST}            \\ \hline
+\rowcolor[HTML]{EFEFEF}
+{\color[HTML]{000000} \textbf{eliminaPiatto}}      & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}String idPersona\\ String idPiatto\end{tabular}}                       & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Elimina un piatto\\ per id\end{tabular}}                            & {\color[HTML]{000000} DELETE}          \\ \hline
+{\color[HTML]{000000} \textbf{aggiornaPiatto}}     & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}String idPiatto\\ String idPersona\\ PiattoUpload piatto\end{tabular}} & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Aggiorna un nuovo\\ piatto con i campi \\ specificati\end{tabular}} & {\color[HTML]{000000} PUT}             \\ \hline
+\rowcolor[HTML]{EFEFEF}
+{\color[HTML]{000000} \textbf{ottieniListaMenu}}   & {\color[HTML]{000000} String idPersona}                                                                                 & {\color[HTML]{000000} Ritorna la lista dei menu}                                                                     & {\color[HTML]{000000} GET}             \\ \hline
+{\color[HTML]{000000} \textbf{nuovoMenu}}          & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}String idPersona\\ Menu menu\end{tabular}}                             & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Aggiunge un nuovo\\ menu\end{tabular}}                              & {\color[HTML]{000000} POST}            \\ \hline
+\rowcolor[HTML]{EFEFEF}
+{\color[HTML]{000000} \textbf{ottieniMenu}}        & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}String idPersona\\ String idMenu\end{tabular}}                         & {\color[HTML]{000000} Ritorna un menu per id}                                                                        & {\color[HTML]{000000} GET}             \\ \hline
+{\color[HTML]{000000} \textbf{aggiornaMenu}}       & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}String idPersona\\ String idMenu\\ Menu menu\end{tabular}}             & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Aggiorna un \\ determinato menu\end{tabular}}                       & {\color[HTML]{000000} PUT}             \\ \hline
+\rowcolor[HTML]{EFEFEF}
+{\color[HTML]{000000} \textbf{eliminaMenu}}        & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}String idPersona\\ String idMenu\end{tabular}}                         & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Elimina un \\ determinato menu\end{tabular}}                        & {\color[HTML]{000000} DELETE}          \\ \hline
+\end{tabular}
+\caption{Metodi del controller \textit{GestoreController}.}
+\end{table}
+%//////////////////////// FINE TABELLA ////////////////////////
+%//////////////////////// FINE TABELLA ////////////////////////
+\newpage
+\subsubsection{Panoramica del frontend}
+\paragraph{Architettura}
+L'applicativo è stato realizzato in Angular e dunque è composta da:
 \begin{itemize}
-  \item \textbf{UtenteController}: espone le API per la gestione degli utenti;
-  \item \textbf{TavoloController}: espone le API per la gestione delle sessioni nei tavoli e dunque degli ordini;
-  \item \textbf{MenuController}: espone le API per la visualizzazione dei menù
-  \item \textbf{LoginController}: espone le API per il login;
-  \item \textbf{GestoreController}: espone le API per tutte quelle funzionalità disponibili al gestore;
+  \item \textbf{Moduli}: l'applicativo è stato suddiviso in moduli come il menu di navigazione, uan sezione ordini, una per la guida, una per il gestore e molti altri;
+  \item \textbf{Servizi}: sono presenti diversi servizi per la gestione della comunicazione con il backend, questo è lo strato in cui avverrà la migrazione;
+  \item \textbf{Interceptor}: necessari per intercettare le chiamate HTTP e gestire il token di autenticazione;
+  \item \textbf{Guardie}: permettono di bloccare l'accesso ad alcune funzionalità secondo diverse logiche, come ad esempio evitare di mostrare ad un utente che non è un gestore la pagina di gestione del menù;
+  \item \textbf{Components}: previsti da Angular sono necessari per gestire le viste.
 \end{itemize}
 
-\subsubsection{Panoramica del frontend}
-Panoramica su architettura del frontend (sviluppato in Angular), principali components, \textbf{strato di servizio} (parte preponderante perché gestisce le chiamate alle API del backend).
+Sono presenti due attori principali
 \subsection{Migrazione del BE da REST a GraphQL}
 Molto simile a quanto scritto per il prototipo nella parte di migrazione adattato alle API specifiche di SushiLab.
 \subsection{Migrazione del FE da REST a GraphQL}
