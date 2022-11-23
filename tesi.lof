@@ -8,75 +8,77 @@
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Connessione one-to-one.\relax }}{11}{figure.caption.31}%
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Connessione one-to-one.\relax }}{11}{figure.caption.22}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Connessione one-to-many.\relax }}{12}{figure.caption.33}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Connessione one-to-many.\relax }}{12}{figure.caption.24}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Connessione many-to-many.\relax }}{12}{figure.caption.35}%
-\defcounter {refsection}{0}\relax 
-\addvspace {10\p@ }
-\defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Architettura del prototipo di Web Application.\relax }}{18}{figure.caption.41}%
-\defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Architettura interna backend.\relax }}{19}{figure.caption.44}%
-\defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Diagramma ER del prototipo.\relax }}{20}{figure.caption.46}%
-\defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.4}{\ignorespaces Esempio di implementazione dell'entità Employee in Spring Boot.\relax }}{21}{figure.caption.49}%
-\defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.5}{\ignorespaces Esempio di implementazione della repository di Employee in Spring Boot.\relax }}{23}{figure.caption.50}%
-\defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.6}{\ignorespaces Esempio di implementazione dell'interfaccia EmployeeService.\relax }}{23}{figure.caption.52}%
-\defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.7}{\ignorespaces Classe EmployeeServiceImpl.\relax }}{24}{figure.caption.53}%
-\defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.8}{\ignorespaces Classe EmployeeController.\relax }}{25}{figure.caption.55}%
-\defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.9}{\ignorespaces Classe \textit {SmokeTest} sulla creazione dei controller.\relax }}{27}{figure.caption.57}%
-\defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.10}{\ignorespaces Classe \textit {EmployeeControllerTest}.\relax }}{27}{figure.caption.58}%
-\defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.11}{\ignorespaces Metodo di test \textit {createEmployee} della classe \textit {EmployeeControllerTest}.\relax }}{28}{figure.caption.59}%
-\defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.12}{\ignorespaces Architettura della Web Application del prototipo.\relax }}{29}{figure.caption.62}%
-\defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.13}{\ignorespaces Interfaccia di Employee.\relax }}{30}{figure.caption.65}%
-\defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.14}{\ignorespaces Prima pagina della Web Application.\relax }}{30}{figure.caption.66}%
-\defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.15}{\ignorespaces Opzioni disponibili con operazione GET selezionata.\relax }}{31}{figure.caption.67}%
-\defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.16}{\ignorespaces Classe \textit {EmployeeService}.\relax }}{31}{figure.caption.68}%
-\defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.17}{\ignorespaces Opzioni disponibili con operazione Insert/Update selezionata.\relax }}{32}{figure.caption.69}%
-\defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.18}{\ignorespaces Opzioni disponibili con operazione Delete selezionata.\relax }}{32}{figure.caption.70}%
-\defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.19}{\ignorespaces Test per i metodi del servizio \textit {EmployeeService}.\relax }}{33}{figure.caption.72}%
-\defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.20}{\ignorespaces Test sul metodo \textit {allEmployee()} di \textit {EmployeeService}.\relax }}{33}{figure.caption.73}%
-\defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.21}{\ignorespaces Tipi \textit {Employee} e \textit {EmployeeInput} nel GraphQL Schema.\relax }}{34}{figure.caption.75}%
-\defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.22}{\ignorespaces Implementazione delle query, mutation e subscription nel GraphQL Schema.\relax }}{35}{figure.caption.76}%
-\defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.23}{\ignorespaces Classe \textit {EmployeeController}.\relax }}{36}{figure.caption.78}%
-\defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.24}{\ignorespaces Subscription \textit {newEmployeeAdded}.\relax }}{36}{figure.caption.79}%
-\defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.25}{\ignorespaces Classe \textit {GraphQLExceptionResolver} con metodo \textit {resolveToSingleError} ridefinito per la risoluzione dell'eccezione \textit {EmployeeNotFoundError}.\relax }}{38}{figure.caption.81}%
-\defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.26}{\ignorespaces Metodo \textit {allEmployees()} della classe \textit {EmployeeService}.\relax }}{39}{figure.caption.83}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Connessione many-to-many.\relax }}{12}{figure.caption.26}%
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Grafico sull'utilizzo di GraphQL negli anni.\relax }}{41}{figure.caption.87}%
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Architettura del prototipo di Web Application.\relax }}{16}{figure.caption.32}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {5.2}{\ignorespaces Gli endpoints multipli in REST.\relax }}{42}{figure.caption.88}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Schema ER delle entità del prototipo.\relax }}{17}{figure.caption.34}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {5.3}{\ignorespaces Il singolo endpoint GraphQL.\relax }}{43}{figure.caption.89}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Architettura interna backend.\relax }}{17}{figure.caption.36}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {5.4}{\ignorespaces Soluzione ibrida mantenendo sia REST API che GraphQL API.\relax }}{52}{figure.caption.112}%
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Esempio di implementazione dell'entità Employee in Spring Boot.\relax }}{18}{figure.caption.38}%
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Esempio di implementazione della repository di Employee in Spring Boot.\relax }}{20}{figure.caption.39}%
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Esempio di implementazione dell'interfaccia EmployeeService.\relax }}{21}{figure.caption.41}%
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {4.7}{\ignorespaces Classe EmployeeServiceImpl.\relax }}{22}{figure.caption.42}%
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {4.8}{\ignorespaces Classe EmployeeController.\relax }}{23}{figure.caption.44}%
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {4.9}{\ignorespaces Classe \textit {SmokeTest} sulla creazione dei controller.\relax }}{25}{figure.caption.46}%
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {4.10}{\ignorespaces Classe \textit {EmployeeControllerTest}.\relax }}{25}{figure.caption.47}%
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {4.11}{\ignorespaces Metodo di test \textit {createEmployee} della classe \textit {EmployeeControllerTest}.\relax }}{26}{figure.caption.48}%
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {4.12}{\ignorespaces Architettura della Web Application del prototipo.\relax }}{27}{figure.caption.50}%
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {4.13}{\ignorespaces Interfaccia di Employee.\relax }}{28}{figure.caption.53}%
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {4.14}{\ignorespaces Prima pagina della Web Application.\relax }}{28}{figure.caption.54}%
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {4.15}{\ignorespaces Opzioni disponibili con operazione GET selezionata.\relax }}{29}{figure.caption.55}%
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {4.16}{\ignorespaces Classe \textit {EmployeeService}.\relax }}{29}{figure.caption.56}%
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {4.17}{\ignorespaces Opzioni disponibili con operazione Insert/Update selezionata.\relax }}{30}{figure.caption.57}%
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {4.18}{\ignorespaces Opzioni disponibili con operazione Delete selezionata.\relax }}{30}{figure.caption.58}%
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {4.19}{\ignorespaces Test per i metodi del servizio \textit {EmployeeService}.\relax }}{31}{figure.caption.60}%
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {4.20}{\ignorespaces Test sul metodo \textit {allEmployee()} di \textit {EmployeeService}.\relax }}{31}{figure.caption.61}%
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {4.21}{\ignorespaces Tipi \textit {Employee} e \textit {EmployeeInput} nel GraphQL Schema.\relax }}{32}{figure.caption.63}%
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {4.22}{\ignorespaces Implementazione delle query, mutation e subscription nel GraphQL Schema.\relax }}{33}{figure.caption.64}%
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {4.23}{\ignorespaces Classe \textit {EmployeeController}.\relax }}{34}{figure.caption.66}%
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {4.24}{\ignorespaces Subscription \textit {newEmployeeAdded}.\relax }}{34}{figure.caption.67}%
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {4.25}{\ignorespaces Classe \textit {GraphQLExceptionResolver} con metodo \textit {resolveToSingleError} ridefinito per la risoluzione dell'eccezione \textit {EmployeeNotFoundError}.\relax }}{36}{figure.caption.69}%
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {4.26}{\ignorespaces Metodo \textit {allEmployees()} della classe \textit {EmployeeService}.\relax }}{37}{figure.caption.71}%
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {4.27}{\ignorespaces Diagramma ER di \textit {SushiLab}.\relax }}{38}{figure.caption.73}%
+\defcounter {refsection}{0}\relax 
+\addvspace {10\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Grafico sull'utilizzo di GraphQL negli anni.\relax }}{43}{figure.caption.85}%
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Gli endpoints multipli in REST.\relax }}{44}{figure.caption.86}%
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Il singolo endpoint GraphQL.\relax }}{45}{figure.caption.87}%
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Soluzione ibrida mantenendo sia REST API che GraphQL API.\relax }}{54}{figure.caption.110}%
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 

@@ -7,24 +7,20 @@
 \label{cap:casi-uso}
 %**************************************************************
 
-\intro{Illustrazione del prototipo realizzato, prime considerazioni su di esso.
-        Successivamente caso d'uso di SushiLab, migrazione e considerazioni.}\\
-\subsection{Confronto con stakeholder}
-Valuto se parlare del confronto con stakeholder...
+\intro{Il capitolo descrive in dettaglio il prototipo realizzato e la sua migrazione da REST a GraphQL. A seguire si illustrerà una ulteriore migrazione realizzata sull'applicativo aziendale SushiLab.}\\
+%\subsection{Confronto con stakeholder}
 \section{Prototipo}
-\textcolor{red}{FORSE QUESTA PARTE VA SU UNO DEI PRIMI DUE CAPITOLI.... INTANTO LASCIO QUA.}\\\\
-Prima di procedere con la spiegazione nella progettazione, realizzazione e migrazione del prototipo vanno fatte delle premesse.\\
-Si tratta di un prototipo realizzato al fine di:
+\subsection{Introduzione}
+Il prototipo è stato realizzato avendo presente i seguenti obbiettivi:
 \begin{itemize}
-  \item familiarizzare con le tecnologie Spring e Angular per la realizzazione rispettivamente di backend e frontend, il tutto in preparazione alla migrazione dell'applicativo aziendale riportato al punto \ref{sushi-lab};
-  \item familiarizzare con la realizzazione delle API sia con lo stile architetturale REST, che con il linguaggio di query GraphQL;
+  \item familiarizzare con le tecnologie Spring e Angular per la realizzazione rispettivamente di backend e frontend;
+  \item familiarizzare con la realizzazione delle API sia con lo stile architetturale REST che con il linguaggio di query GraphQL;
   \item avere un caso d'uso ulteriore a conferma delle analisi che verranno poi ricavate dalla migrazione dell'applicativo SushiLab;
 \end{itemize}
-Per questi motivi si tratta di un prototipo specifico che mira alla realizzazione delle API e al loro massimo utilizzo.\\\\
-Il prototipo che è stato scelto di realizzare è un applicazione client-server con funzione di gestionale. Deve permettere di gestire gli impiegati e i progetti ai quali stanno lavorando, il tutto in diverse sedi con diversi dipartimenti.
-\subsection{Progettazione del prototipo}
+Si è scelto di realizzare un gestionale server - client in grado di gestire un insieme di impiegati. Ogni impiegato può lavorare in un dipartimento e può dividere il suo tempo su uno o più progetti. Una sede aziendale può contenere uno o più dipartimenti.
+\subsection{Architettura ed entità}
 \subsubsection*{Architettura generale dell'applicativo}
-L'applicativo seguie l' architettura raffigurata nell'immagine \ref{prototype-architecture}. Il backend del prototipo è stato realizzato con framework Spring Boot, mentre il frontend con framework Angular.
+L'applicativo segue l' architettura raffigurata nell'immagine \ref{prototype-architecture}. Il backend del prototipo è stato realizzato con framework Spring Boot mentre il frontend con framework Angular.
 \FloatBarrier
 \begin{figure}[!h]
 \centering
@@ -33,13 +29,38 @@ L'applicativo seguie l' architettura raffigurata nell'immagine \ref{prototype-ar
 \label{prototype-architecture}
 \end{figure}
 \FloatBarrier
-L'architettura segue il modello server-client introdotto precedentemente. Le richieste effettuate dai servizi del client venggono mappate sul REST controller del server il quale, dopo la rielaborazione interna delle richiesta, ritorna la risposta al client; quest'ultimo può dunque aggiornare la vista visualizzata dall'utente. In seguito vengono affrontati più nel dettaglio i moduli interni sia per quanto riguarda il server che la Web Application.
-\subsubsection*{Architettura del server}
-% Qui devo parlare di:
-%   - pattern controller - service - repository;
-%   - architettura del backend con hibernate, postgreSQL.
-\paragraph{Controller - Service - Repository}
-È stato deciso di seguire il pattern controller - service - repository per la realizzazione del server del prototipo. Questa scelta è stata presa in quanto è consigliato nello sviluppo del backend con framework Spring Boot. Inoltre il pattern rispetta perfettamente il principio di "Separation Of Concerns".\\
+Le richieste effettuate dai servizi del client vengono mappate sul REST controller del server il quale, dopo la rielaborazione interna delle richiesta, ritorna la risposta al client; quest'ultimo può dunque aggiornare la vista visualizzata dall'utente. In seguito vengono affrontati più nel dettaglio i moduli interni sia per quanto riguarda il server che il client.
+\subsubsection*{Entità e relazioni}
+\label{entity-relation}
+Trattandosi di un gestionale aziendale semplificato si prevedono solo quattro entità principali:
+\begin{itemize}
+  \item \textbf{Employee}: l'impiegato che può lavorare ad uno o più progetti e in un dipartimento;
+  \item \textbf{Project}: un progetto aziendale a cui partecipano più impiegati;
+  \item \textbf{Site}: la sede aziendale, può avere più dipartimenti;
+  \item \textbf{Department}: un dipartimento che appartiene ad una sede.
+\end{itemize}
+Ciascuna entità è caratterizzata dai campi presenti in figura \ref{ER-prototype}. I campi in grassetto rappresentano la chiave primaria, quelli sottolineati le chiavi esterne. Le relazioni presenti tra le varie entità sono:
+\begin{itemize}
+  \item \textbf{many to many}: è presente tra Employee e Project, infatti ciascun impiegato può lavorare a più progetti e ciascun progetto può avere più impiegati; viene scomposta in due relazioni \textit{one-to-many} con la tabella \textit{Employees\_Projects};
+  \item \textbf{one to many}: è presente in due situazioni:
+  \begin{itemize}
+    \item tra Employee e Department, infatti ciascun impiegato deve lavorare almeno in un dipartimento, mentre ciascun dipartimento può ospitare più impiegati;
+    \item tra Department e Site, ciascun dipartimento può appartenere esclusivamente ad una sede, mentre ciascuna sede può esser composta da più dipartimenti.
+  \end{itemize}
+\end{itemize}
+%%% IMG
+\FloatBarrier
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=1\linewidth]{immagini/ER_prototype.pdf}
+\caption{Schema ER delle entità del prototipo.}
+\label{ER-prototype}
+\end{figure}
+\FloatBarrier
+%%% IMG
+\subsection{Progettazione e realizzazione backend}
+\subsubsection*{Architettura backend}
+È stato deciso di seguire il pattern \textbf{controller - service - repository} per la realizzazione del server del prototipo.  Il pattern rispetta perfettamente il principio di "Separation Of Concerns". Di seguito in figura \ref{controller-service-repository} è possibile visualizzare l'architettura del backend.
 %%%% IMG
 \FloatBarrier
 \begin{figure}[!h]
@@ -53,44 +74,15 @@ L'architettura segue il modello server-client introdotto precedentemente. Le ric
 %%%% IMG
 Il pattern prevedere la gestione delle entità e delle chiamate alle API attraverso tre strati:
 \begin{itemize}
-  \item \textbf{Controller layer}: si trova in cima all'immagine \ref{controller-service-repository}, è l'unico responsabile della interazione con entità esterne, inoltre gestisce le interfacce REST e invoca lo strato di servizio;
+  \item \textbf{Controller layer}: è l'unico responsabile della comunicazione con i client, inoltre gestisce le interfacce REST e invoca lo strato di servizio;
   \item \textbf{Service layer}: è lo strato tra controller e repository, si occupa della business logic e qualora sia necessario visualizzare, salvare, modificare o eliminare dati allora comunica con lo strato di persistenza;
-  \item \textbf{Repository layer}: si tratta dello strato inferiore dell'architettura, si occupa della gestione dei dati e delle loro modifiche. Lo strato di repository inoltre si occupa della comunicazione e gestione del database.
+  \item \textbf{Repository layer}: si tratta dello strato inferiore dell'architettura, si occupa della gestione dei dati e delle loro modifiche nonché della gestione del database.
 \end{itemize}
-\paragraph{Entità e relazioni}
-\label{entity-relation}
-Trattandosi di un gestionale aziendale semplificato, sono previste solo quattro entità principali, queste sono:
-\begin{itemize}
-  \item \textbf{Employee}: l'impiegato che può lavorare ad uno o più progetti e in un dipartimento;
-  \item \textbf{Project}: un progetto aziendale a cui partecipano più impiegati;
-  \item \textbf{Site}: si tratta di una sede aziendale, può avere più dipartimenti;
-  \item \textbf{Department}: un dipartimento che appartiene ad una sede.
-\end{itemize}
-%%% IMG
-\FloatBarrier
-\begin{figure}[!ht]
-\centering
-\includegraphics[width=0.8\linewidth]{immagini/ER_prototype.pdf}
-\caption{Diagramma ER del prototipo.}
-\label{ER-prototype}
-\end{figure}
-\FloatBarrier
-%%% IMG
-Ciascuna entità è caratterizzata da i campi presenti in figura \ref{ER-prototype} dove è stato utilizzato il linguaggio UML. Le relazioni presenti tra le varie entità sono:
-\begin{itemize}
-  \item \textbf{many to many}: è presente tra Employee e Project, infatti ciascun impiegato può lavorare a più progetti e ciascun progetto può avere più impiegati al quale ci lavorano;
-  \item \textbf{one to many}: è presente tra due coppie di entità:
-    \begin{itemize}
-      \item tra Employee e Department, infatti ciascun impiegato può lavorare in uno o nessun dipartimento, mentre ciascun dipartimento può ospitare più impiegati;
-      \item tra Department e Site, ciascun dipartimento può appartenere esclusivamente ad una sede, mentre ciascuna sede può esser composta da più dipartimenti.
-    \end{itemize}
-\end{itemize}
-\subsubsection*{Realizzazione e testing server}
-Durante la realizzazione viene seguito il percorso inverso rispetto a quanto visto nell'immagine \ref{controller-service-repository}, infatti la realizzazione avviene partendo dallo strato di persistenza, dunque dalla creazione delle entità e delle repositoryes.
-\paragraph{Entità e repository}
-A ciascun entità nel database viene fatta corrispondere una classe in Java. Per questo devono essere realizzate 4 classi rappresentanti le entità Employee, Project, Department e Site.\\
-Ciascuna classe entità implementa la classe \textit{Serializable}, così facendo è possibile serializzare i dati in flussi di byte. La serializzazione viene utilizzata poiché si tratta di dati che dovranno essere memorizzati nel database, dunque è necessario serializzarli poiché abbandonano la Java Virtual Machine. Viene inoltre utilizzato un \textit{serialVersionUID} per attribuire una versione a ciascuna classe di entità serializzabile, necessario per riconoscere quando nella comunicazione con il database o con altri moduli esterni la versione dell'entità risulta differente, si tratta dunque di entità che non corrispondono totalmente, in quel caso viene ritornato un erorre \textit{InvalidClassException}.\\
-Le quattro entità descritte quindi nel capitolo \ref{entity-relation} dovranno essere implementate come classi, segue l'esempio dell'implementazione della classe Employee:
+Durante la realizzazione viene seguito il percorso inverso rispetto a quanto visto nell'immagine \ref{controller-service-repository}: la realizzazione avviene partendo dallo strato di persistenza, dunque dalla creazione delle entità e del livello di repository.
+\subsubsection*{Entità e repository}
+A ciascuna entità del database viene fatta corrispondere una classe in Java quindi sono state realizzate quattro classi rappresentanti le entità Employee, Project, Department e Site.\\
+Ciascuna classe implementa la classe \textit{Serializable}, così facendo è possibile serializzare i dati in flussi di byte. La serializzazione viene utilizzata poiché si tratta di dati che dovranno essere memorizzati nel database, è necessario serializzarli poiché abbandonano la Java Virtual Machine. Viene inoltre utilizzato un \textit{serialVersionUID} per attribuire una versione a ciascuna classe serializzabile in modo da garantire la consistenza delle classi memorizzate in banca dati.\\
+Di seguito l'esempio dell'implementazione della classe Employee:
 %%% IMG
 \FloatBarrier
 \begin{figure}[!ht]
@@ -103,18 +95,19 @@ Le quattro entità descritte quindi nel capitolo \ref{entity-relation} dovranno 
 %%% IMG
 Vengono attribuite alla classe Employee diverse annotazioni Spring, tra queste:
 \begin{itemize}
-  \item \textbf{@Entity}: si tratta dell'annotazione che permette di mappare la classe Employee come una corrispondente tabella nel database. Questa annotazione è resa disponibile dal modulo Spring Data JPA il quale implementa la specifica delle Java Persistence API attraverso Hibernate ORM e permette dunque il mapping della classi con corrispettive entità nel database;
-  \item \textbf{@Table}: questa annotazione permette di specificare il  nome della tabella generata o presente nel database durante la sua creazione o aggiornamento;
-  \item \textbf{@Data}: grazie alla libreria \textit{lombok} è possibile, attribuendo alla classe questa annotazione, generare automaticamente tutti i metodi get e set per tutti i campi della classe;
-  \item \textbf{@NoArgConstructor e @AllArgConstructor}: permettono di generare tutti le combinazioni di costruttori con parametri e quello senza parametri.
+  \item \textbf{@Entity}: si tratta dell'annotazione che permette di mappare la classe Employee come tabella nel database. Questa annotazione è resa disponibile dal modulo Spring Data JPA il quale implementa la specifica delle Java Persistence API attraverso Hibernate ORM e permette dunque il mapping della classi con corrispettive entità nel database;
+  \item \textbf{@Table}: questa annotazione permette di specificare il nome della tabella generata o presente nel database durante la sua creazione o aggiornamento;
+  \item \textbf{@Data}: grazie alla libreria \textit{lombok} è possibile, attribuendo alla classe questa annotazione, generare automaticamente tutti i metodi get e set per ciascun campo della classe;
+  \item \textbf{@NoArgConstructor e @AllArgConstructor}: permettono di generare tutte le combinazioni di costruttori con e senza parametri.
 \end{itemize}
-Spostando invece il focus sui campi della classe Employee in figura \ref{employee-entity-definition}, possiamo notare che il campo \textit{id} ha due annotazioni associate. La annotazione \textbf{@Id} permette di specificare nel mapping che si tratta della chiave primaria, mentre l'annotazione \textbf{@GeneratedValue} permette di specificare che quando una nuova istanza di una entità viene creata, deve essere generato un nuovo id randomico.\\\\
-Proseguendo sono presenti tutte le dichiarazioni dei vari campi dati dell'entità Employee e infine, troviamo le relazioni che Employee ha con le enetità Project e Department. Anche in questo caso le annotazioni fornite dalla specifica JPA permettono di specificare nel dettaglio le varie relazioni. Sono dunque presenti le annotazioni:
+Le annotazioni applicate agli attributi della classe sono:
 \begin{itemize}
+  \item \textbf{@Id}: associato al campo \textit{id}, specifica durante il mapping che si tratta della chiave primaria;
+  \item \textbf{@GeneratedValue}: associato al campo \textit{id}, specifica che quando una nuova istanza dell'entità viene creata, deve essere generato un nuovo id randomico;
   \item \textbf{@ManyToMany} e \textbf{@ManyToOne}: queste specificano il tipo di relazione che è presente con le altre entità, sono rispettivamente associate ai campi \textit{projects}, con il quale Employee ha una relazione molti a molti e infine al campo \textit{department}, con il quale Employee ha una relazione molti a uno;
-  \item \textbf{@JoinTable}: è associata al campo \textit{projects}, e poiché le relazioni molti a molti necessitano di una ulteriore tabella per la memorizzazione di tutte le associazioni, questa annotazione permette di specificarne il nome, ovvero \textit{EMPLOYEE-PROJECTS} e i nomi delle due colonne, ovvero \textit{EMPLOYEE-ID} e \textit{PROJECT-ID};
-  \item \textbf{@JsonIgnore}: associato al campo \textit{projects}, permette di escluderlo dalla serlizzazione;
-  \item \textbf{@JsonBackReference}: associato al campo \textit{department}, permette di dare una direzionalità alla relazione molti a uno con Department, fondamentale per evitare il problema della ricorsione infinita \textcolor{red}{(QUI NON SO SE SPIEGARE)}.
+  \item \textbf{@JoinTable}: è associata al campo \textit{projects}, e poiché le relazioni molti a molti necessitano di una ulteriore tabella per la memorizzazione di tutte le associazioni, questa annotazione permette di specificarne il nome, ovvero \textit{EMPLOYEE\_PROJECTS} e i nomi delle due colonne, ovvero \textit{EMPLOYEE-ID} e \textit{PROJECT-ID};
+  \item \textbf{@JsonIgnore}: associato al campo \textit{projects}, permette di escluderlo dalla serializzazione;
+  \item \textbf{@JsonBackReference}: associato al campo \textit{department}, permette di dare una direzionalità alla relazione molti a uno con Department, fondamentale per evitare il problema della ricorsione infinita.
 \end{itemize}
 Analogamente sono state realizzate le classi corrispondenti alle entità Project, Department e Site.\\\\
 A questo punto si procede con la realizzazione delle classi repository: ciascuna entità ha una propria repository corrispondente. Dunque viene estesa l'interfaccia \textbf{JPArepository<T, ID>} con T il tipo della entità che si vuole gestire, mentre ID è il tipo della chiave primaria dell'entità T. La repository JPA deriva da diverse interfacce, tra le quali:
@@ -137,7 +130,7 @@ Infine ritroviamo il caso in qui si vuole realizzare una query complessa o perso
 %%% IMG
 Dunque oltre ai classici metodi di ricerca disponibili già dopo l'estensione dell'interfaccia JPARepository<T, ID>, sono stati realizzati alcuni metodi per la ricerca di impiegati per nome, per cognome e per id di dipartimento in cui lavorano. Infine è stata realizzata una query personalizzata per la ricerca di impiegati nati in un range di date.\\
 Infine è possibile notare in figura \ref{employee-repository} l'annotazione \textbf{@Repository} attribuita alla'interfaccia, fondamentale al fine di indicare che la classe fornisce meccanismi per modellare i dati dell'applicativo.
-\paragraph{Service}
+\subsubsection*{Service}
 Lo strato di servizio è lo strato che si trova tra lo strato di controller e quello di repository, il suo compito è facilitare la comunicazione tra controller e repository e inoltre contiene la business logic dell'applicativo.
 Per ciascun repository, dunque per ciascuna entità, è stato realizzato un servizio specifico per gestirne le logiche.\\
 Al fine di rispettare i principi SOLID della programmazione, per questioni di loose coupling e semplicità nel testing, è stato scelto di implementare il pattern secondo il quale per ogni entità viene realizzata una interfaccia del servizio ed la sua implementazione, come mostrato in figura \ref{service-serviceImpl} nel caso del servizio per l'entità Employee.
@@ -168,7 +161,7 @@ In figura \ref{employeeServiceImpl} è possibile notare come la classe sia carat
 Continuando ed andando ad analizzare i campi dati è possibile visualizzare la dipendenza che la classe \textit{EmployeeServicImpl} ha con la repository \textit{EmployeeRepository}. In Spring questa dipendenza viene risolta con l'annotazione \textbf{@Autowired}, la quale permette di eseguire la dependency injection del bean \textit{employeeRepository}.\\
 Infine sono presenti tutti i metodi, ciascuno con annotazione \textbf{@Override} poiché sono stati dichiarati anche nell'interfaccia implementata da \textit{EmployeeServiceImpl}. Sono stati resi disponibili metodi semplici che vanno ad invocare, grazie alla dipendenza con la repository, le query già disponibili con la \textit{JPARepository<T, ID>} e la query vista precedenemente \textit{SelByBornInRage}.\\
 Per concludere nello strato di servizio vengono sollevate eventuali eccezioni. La gestione delle eccezzioni è stata effettuata implementanto un gestore di eccezioni specifico attraverso l'estensione del gestore  \textit{HandlerExceptionResolver}. Questo è stato fatto al fine di eliminare il problema presente con il gestore di eccezioni di default, ovvero il \textit{DefaultHandlerExceptionResolver}, il quale non permette di impostare nulla nel body della risposta al client e quindi per alcune tipologie di errori potrebbe risultare complesso comprenderne la natura. Non verrà mostrata l'implementazione della ridefinizione del gestore di eccezioni per evitare di approfondire eccessivamente i dettagli prettamente tecnici.
-\paragraph{Controller}
+\subsubsection*{Controller}
 Infine troviamo i controller, ovvero l'ultimo strato che si occupa di gestire le richieste che il server riceve attraverso il protocollo HTTP, e di mapparle inoltre ai relativi metodi. In figura \ref{employeeController} il controller di Employee, ovvero la classe \textit{EmployeeController}:
 \FloatBarrier
 \begin{figure}[!ht]
@@ -201,7 +194,7 @@ Sono state rese dunque disponibili le seguenti query:
   \item \textbf{createEmployee}: aggiunta di un nuovo impiegato;
   \item \textbf{deleteEmployee}: rimozione di un impiegato.
 \end{itemize}
-\paragraph{Testing API}
+\subsubsection*{Testing API}
 Essendo un prototipo incentrato sulla realizzazione delle API, sono stati svolti in maniera semplice e veloce i test per gli strati di servizio e repository, dunque non verranno riportati. Per quanto riguarda i testi sui controller stati svolti dei test più approfonditi.\\
 Per eseguire i test sui metodi del controller è stato scelto di utilizzare il framework JUnit5 \textcolor{red}{(REINDIRIZZARE AL CAPITOLO TECNOLOGIE)}.\\
 Il primo test realizzato è uno \textit{SmokeTest} e da qui il nome della classe realizzata per testare che il contesto Spring abbia effettivamente creato i controller dell'applicazione. In figura \ref{smoke-test} la classe \textit{SmokeTest} con una dipendenza per ciascun controller risolta con la dependency injection grazie all'annotazione \textbf{@Autowired}. Sono poi presenti quattro metodi, uno per controller, per verificarne se sono stati creati nel contesto. Infine ciascun metodo deve essere annotato con \textbf{@Test} per indicare al framework JUnit5 che si tratta di un metodo di test.\\
@@ -246,9 +239,9 @@ Per finire la sezione sulle REST API viene di seguito riportato in figura \ref{c
 \end{figure}
 \FloatBarrier
 Nella prima parte (arrange) viene creato un nuovo Employee e gli viene assegnato un nome, un cognome e una data di nascita, successivamente nella fase successiva (act), viene eseguita la chiamata GET utilizzando l'oggetto \textit{MockMvc} e passando nel body della richiesta HTTP l'oggetto Java Employee trasformato in JSON grazie all'\textit{ObjectMapper}. Infine nella fase finale (Assert), si verifica che lo stato di ritorno sia \textit{created}, in caso contrario il test fallisce.
-\subsubsection*{Frontend}
+\subsection{Progettazione e realizzazione frontend}
 Per quanto riguarda il frontend dell'applicativo è stato utilizzato il framework Angular per realizzare una single-page application. Si tratta di un frontend minimale, realizzato con il solo scopo di comprendere e sviluppare la parte di comunicazione con il server utilizzando al massimo le REST API disponibili. Per questo motivo non è stata effettuata alcuna analisi sull' utenza e sono stati tralascati completamente aspetti quali estetica grafica, accessibilità e responsive design.\\
-\paragraph{Architettura}
+\subsubsection*{Architettura}
 L'architettura della web application realizzata in Angular prevede l'utilizzo del pattern Model-View-Controller:
 \FloatBarrier
 \begin{figure}[!ht]
@@ -259,7 +252,7 @@ L'architettura della web application realizzata in Angular prevede l'utilizzo de
 \end{figure}
 \FloatBarrier
 Come visibile in figura \ref{angular-architecture} l'utente interagisce con la user interface (View) e ne modifica lo stato. Le resources (Model) vengono modificate dai services (Controller) anche su invocazione dei servizi da parte della user interface. I services sono coloro che si occupano della comunicazione con il server di backend attraverso le richiesta e risposte HTTP.
-\paragraph{Funzionalità}
+\subsubsection*{Funzionalità}
 Per le ragioni spiegate precedentemente saranno rese disponibili nell'interfaccia grafica quelle funzionalita che andranno a permettere il massimo utilizzo delle richieste API al backend.\\
 Come fatto in precedenza, verrà mostrata e spiegata esclusivamente la parte riguardante l'entità Employee per questioni di praticità, questo perché le altre entità sono state trattate in maniera analoga.\\
 Dunque, in linea con le query rese disponibili dal backend riportate sulla sezione riguardante i controller, devono essere presenti le seguenti funzionalità:
@@ -270,7 +263,7 @@ Dunque, in linea con le query rese disponibili dal backend riportate sulla sezio
   \item \textbf{Eliminazione di un Employee}: deve essere possibile eliminare un impiegato specificandone l'id.
 \end{itemize}
 Nel paragrafo sucessivo verrà mostrato come sono state implementate le funzionalità appena introdotte.
-\paragraph{Implementazione FE}
+\subsubsection*{Implementazione FE}
 Inizialmente sono state create le interfacce per poter creare gli oggetti corrispondenti alle quattro entità del prototipo. Di seguito in figura \ref{employee-interface} l'esempio della dichiarazione della interfaccia dell'entità Employee:
 \FloatBarrier
 \begin{figure}[!ht]
@@ -330,7 +323,7 @@ Per finire in figura \ref{delete-employee} il caso in cui venga selezionata l'op
 \label{delete-employee}
 \end{figure}
 \FloatBarrier
-\paragraph{Testing FE}
+\subsubsection*{Testing FE}
 I test di unità sono stati implementati seguendo il pattern \textit{Arrange - Act - Assert} sui metodi del servizio riportato in figura \ref{employee-service}. Di seguito nell'immagine \ref{employee-service-tests} è possibile visualizzare la funzione \textit{describe} la quale viene utilizzata per raggruppare un insieme di test:
 \FloatBarrier
 \begin{figure}[!ht]
@@ -498,12 +491,136 @@ SushiLab è un applicativo che mira ad automatizzare il processo di tracciamento
 \end{itemize}
 Il mio intervento sull'applicativo prevede di lavorare sulla comunicazione tra backend e frontend, effettuando una migrazione completa delle REST API sviluppate portandole a GraphQL API, esattamente come è stato fatto per il prototipo.\\\\
 Di seguito nelle sottosezioni verranno analizzate le strutture del backend e del frontend, tralasciando gli aspetti implementativi specifici già visualizzati per il prototipo e concentrandosi principalmente sulla parte di comunicazione tramite API.
-\subsubsection{Panoramica del backend}
+\subsection{Panoramica del backend}
 Il backend sviluppato in Java con il framework Spring Boot segue l'architettura proposta per il prototipo, ovvero il pattern repository - service - controller. Di seguito verranno analizzate e descritte brevemente le componenti principali degli strati di persistenza e di business logic, mentre verrà approfondito lo strato di controller.
-\paragraph{Repository}
-Sono state definite diverse entità, per ciascuna di queste è stata realizzata la corrispettiva repository estendendo l'interfaccia \textit{JPARepository<T, ID>} per la gestione dei dati e delle risorse nel database. Le entità presenti vengono riportate nella seguente tabella:
+\subsubsection{Entità}
+In figura \ref{ER-sushilab} è possibile visualizzare lo schema ER delle entità presenti e le relazioni che intercorrono. Vengono tralasciati i campi per non entrare eccessivamente nel dettaglio.
+\FloatBarrier
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=1\linewidth]{immagini/ER_sushilab.pdf}
+\caption{Diagramma ER di \textit{SushiLab}.}
+\label{ER-sushilab}
+\end{figure}
+\FloatBarrier
+Sono dunque presenti le entità:
+\begin{itemize}
+  \item \textbf{PiattoUpload}: una tipo di piatto con allergeni e ingredienti;
+  \item \textbf{PiattoPreview}: l'anteprima di piatto associata ad un \textit{PiattoUpload};
+  \item \textbf{SezionePreview}: un insieme di piatti di una particolare categoria;
+  \item \textbf{Menù}: un insieme di sezioni di piatti, si tratta del menù di un ristorante;
+  \item \textbf{Utente}: l'utente registrato, può anche essere un gestore e dunque essere il proprietario del ristorante e dunque poter apportare delle modifiche ai menù, ai piatti, ecc..;
+  \item \textbf{FasciaOraria}: una fascia oraria in cui può essere disponibile un Menù;
+  \item \textbf{InformazioniPiatto}: le caratteristiche di un singolo utente riguardo ingredienti che non può mangiare, se gli è piaciuto un piatto specifico o se ha preferenze per particolari tipi di menù;
+  \item \textbf{Blacklist}: l'insieme di ingredienti che un cliente preferisce non mangiare;
+  \item \textbf{IdToken}: un token identificativo associato ad un utente quando partecipa ad un tavolo;
+  \item \textbf{Session}: la situazione di un singolo tavolo in un determinato momento con determinati clienti, quando un cliente si siede ad un tavolo può aprire una sessione e invitare gli amici allo stesso tavolo;
+  \item \textbf{Ordine}: gli ordini effettuati in una specifica sessione o da una specifica persona;
+  \item \textbf{Allergeni}: le sostanze che tipicamente possono causare allergie;
+  \item \textbf{Ingredienti}: i possibili ingredienti nei vari piatti;
+\end{itemize}
+Ciascuna di queste entità ha la corrispettiva classe Java nel backend. Per ciascuna entità è stata realizzata la corrispettiva repository estendendo l'interfaccia \textit{JPARepository<T, ID>} per la gestione dei dati e delle risorse nel database.
+\subsubsection*{Servizi}
+Lo strato di servizio presente prevede la definizione di solo due classi per la gestione delle logiche del backend. Di seguito vengono elencate le funzioni dei due servizi.
+\paragraph{ClientService}
+Il primo servizio gestisce le logiche delle possibili richieste del client. Questo servizio permette la gestione di:
+\begin{itemize}
+  \item \textbf{Utenti}: permette tutte le operazioni di login, registrazione di un nuovo utente, aggiunta dell'IdToken ad un utente all'apertura di una nuova sessione ad un tavolo e infine il recupero e modifica della password;
+  \item \textbf{Preferenze Utente}: permette di modificare le preferenze di un utente e modificare, aggiungere o eliminare le valutazioni attribuite ai piatti; inoltre permette di visualizzare gli ingredienti nella blacklist di uno specifico utente;
+  \item \textbf{Sessioni}: permette di craere ed eliminare le sessioni;
+  \item \textbf{Ordini}: permette la gestione degli ordini da parte di un utente, di aggiungerne di nuovi o di visualizzarli;
+  \item \textbf{Gestore}: permette di verificare che un utente corrispondi o meno al gestore;
+  \item \textbf{Menu}: permette di visualizzare il menù di un ristorante.
+\end{itemize}
+\paragraph{GestoreService}
+Il servizio \textit{GestoreService} gestisce le logiche riguardanti le operazioni realizzabili da un utente gestore, dunque permette:
+\begin{itemize}
+  \item \textbf{Piatti}: la gestione dei piatti, è possibile visualizzarli, eliminarli, modificarli e aggiungerne di nuovi;
+  \item \textbf{Menu}: la gestione del menù, è possibile riorganizzarlo diversamente e attribuirgli differenti fasce orarie di disponibilità.
+\end{itemize}
+\subsubsection*{Controller}
+Infine abbiamo lo strato più importante per gli scopi della tesi. Si tratta dello strato di controller il quale prevede cinque controller principali, di seguito verranno analizzati tutti i metodi di ciascun controller tralasciandone gli aspetti implementativi.
+\paragraph{LoginController}
+Il seguente controller dichiara una dipendenza con il servizio \textit{ClientService}. Di seguito la tabella dei metodi:
+%//////////////////////// INIZIO TABELLA ////////////////////////
+%//////////////////////// INIZIO TABELLA ////////////////////////
+\begin{table}[!h]
+\renewcommand{\arraystretch}{1.5}
+\centering
+\begin{tabular}{|c|c|c|l|}
+\hline
+\rowcolor[HTML]{C0C0C0}
+{\color[HTML]{000000} \textbf{Metodo}} & {\color[HTML]{000000} \textbf{Parametri}} & {\color[HTML]{000000} \textbf{Descrizione}}                                           & {\color[HTML]{000000} \textbf{Azione}} \\ \hline
+\textbf{eseguiLogin}                   & Utente utente             & \begin{tabular}[c]{@{}c@{}}Controlla ed effettua\\ il login di un utente\end{tabular} & POST                           \\ \hline
+\end{tabular}
+\caption{Metodi del controller \textit{LoginController}.}
+\end{table}
+%//////////////////////// FINE TABELLA ////////////////////////
+%//////////////////////// FINE TABELLA ////////////////////////
+\paragraph{UtenteController}
+Questo controller dichiara una dipendenza con il servizio \textit{ClientService} ed è composto dai metodi nella specificati nella seguente tabella:
+%//////////////////////// INIZIO TABELLA ////////////////////////
+%//////////////////////// INIZIO TABELLA ////////////////////////
+\begin{table}[!h]
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{|c|c|c|c|}
+\hline
+\rowcolor[HTML]{C0C0C0}
+{\color[HTML]{000000} \textbf{Metodo}}        & {\color[HTML]{000000} \textbf{Parametri}}                                                                              & {\color[HTML]{000000} \textbf{Descrizione}}                                                                                                                & {\color[HTML]{000000} \textbf{Azione}} \\ \hline
+{\color[HTML]{000000} \textbf{ottieniUtente}}          & {\color[HTML]{000000} String idPersona}                                                                                & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Ricerca un utente\\ per id\end{tabular}}                                                                  & {\color[HTML]{000000} GET}             \\ \hline
+\rowcolor[HTML]{EFEFEF}
+{\color[HTML]{000000} \textbf{registraUtente}}         & {\color[HTML]{000000} Utente utente}                                                                                   & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Aggiunge un nuovo\\ utente\end{tabular}}                                                                  & {\color[HTML]{000000} POST}            \\ \hline
+{\color[HTML]{000000} \textbf{modificaStatoPreferiti}} & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}String idPersona\\ \\ String idPiatto\end{tabular}}                   & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Modifica i preferiti\\ di un utente,  con gli \\ dei piatti\end{tabular}}                                 & {\color[HTML]{000000} POST}            \\ \hline
+\rowcolor[HTML]{EFEFEF}
+{\color[HTML]{000000} \textbf{modificaValutazione}}    & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}String idPersona\\ \\ String idPiatto\\ \\ String param\end{tabular}} & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Modifica la \\ valutazione di una \\ persona rispetto ad \\ un piatto con nuovi\\ parametri\end{tabular}} & {\color[HTML]{000000} POST}            \\ \hline
+{\color[HTML]{000000} \textbf{recuperoPassword}}       & {\color[HTML]{000000} String param}                                                                                    & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Ritorna la password\\ recuperata se vengono\\ forniti i parametri\\ necessari\end{tabular}}               & {\color[HTML]{000000} POST}            \\ \hline
+\rowcolor[HTML]{EFEFEF}
+{\color[HTML]{000000} \textbf{verificaCodice}}         & {\color[HTML]{000000} String param}                                                                                    & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Verifica il codice\\ di recupero password\end{tabular}}                                                   & {\color[HTML]{000000} POST}            \\ \hline
+{\color[HTML]{000000} \textbf{reimpostaPassword}}      & {\color[HTML]{000000} String param}                                                                                    & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Imposta una nuova \\ password per un utente\end{tabular}}                                                 & {\color[HTML]{000000} POST}            \\ \hline
+\rowcolor[HTML]{EFEFEF}
+{\color[HTML]{000000} \textbf{aggiornaBlacklist}}      & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}String idPersona\\ \\ Ingredienti ingredienti\end{tabular}}           & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Aggiorna la blacklist \\ di una persona con i \\ nuovi ingredienti\end{tabular}}                          & {\color[HTML]{000000} POST}            \\ \hline
+{\color[HTML]{000000} \textbf{ottieniBlacklist}}       & {\color[HTML]{000000} String idPersona}                                                                                & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Ritorna la lista di \\ ingredienti nella \\ blacklist di un utente\end{tabular}}                          & {\color[HTML]{000000} GET}             \\ \hline
+\end{tabular}
+\caption{Metodi del controller \textit{UtenteController}.}
+\end{table}
+%//////////////////////// FINE TABELLA ////////////////////////
+%//////////////////////// FINE TABELLA ////////////////////////
+\paragraph{TavoloController}
+Anche il seguente controller dichiara una dipendenza con \textit{ClientService} e i suoi metodi gestiscono gli utenti, gli ordini ed i tavoli.
+% Please add the following required packages to your document preamble:
+% \usepackage[table,xcdraw]{xcolor}
+% If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
+% Please add the following required packages to your document preamble:
+% \usepackage[table,xcdraw]{xcolor}
+% If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
+\begin{table}[!h]
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{|c|c|c|c|}
+\hline
+\rowcolor[HTML]{C0C0C0}
+{\color[HTML]{000000} \textbf{Metodo}}                   & {\color[HTML]{000000} \textbf{Parametri}}                                                            & {\color[HTML]{000000} \textbf{Descrizione}}                                                                                                    & {\color[HTML]{000000} \textbf{Azione}} \\ \hline
+{\color[HTML]{000000} \textbf{creaSessione}}             & {\color[HTML]{000000} String idPersona}                                                              & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Permette la \\ creazione di una sessione\\  da parte di una persona\end{tabular}}             & {\color[HTML]{000000} POST}            \\ \hline
+\rowcolor[HTML]{EFEFEF}
+{\color[HTML]{000000} \textbf{ottieniSessione}}          & {\color[HTML]{000000} String idTavolo}                                                               & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Ritorna la sessione \\ attiva in un determinato\\ tavolo\end{tabular}}                        & {\color[HTML]{000000} GET}             \\ \hline
+{\color[HTML]{000000} \textbf{chiudiSessione}}           & {\color[HTML]{000000} String idTavolo}                                                               & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Chiude la sessione in un\\ determinato tavolo\end{tabular}}                                   & {\color[HTML]{000000} DELETE}          \\ \hline
+\rowcolor[HTML]{EFEFEF}
+{\color[HTML]{000000} \textbf{ottieniOrdiniPersona}}     & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}String idTavolo\\ \\ String idPersona\end{tabular}} & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Ritorna gli ordini di \\ una persona in uno\\ specifico tavolo\end{tabular}}                  & {\color[HTML]{000000} GET}             \\ \hline
+{\color[HTML]{000000} \textbf{modificaOrdiniPersona}}    & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}String idTavolo\\ \\ String idPersona\end{tabular}} & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Modifica gli ordini di \\ una persona in uno \\ specifico tavolo\end{tabular}}                & {\color[HTML]{000000} POST}            \\ \hline
+\rowcolor[HTML]{EFEFEF}
+{\color[HTML]{000000} \textbf{ottieniOrdiniTavolo}}      & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}String idTavolo\\ \\ String idPersona\end{tabular}} & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Ritorna tutti gli ordini\\ effettuati dalle persone \\ di un determinato tavolo\end{tabular}} & {\color[HTML]{000000} GET}             \\ \hline
+{\color[HTML]{000000} \textbf{ottieniGliOrdiniInArrivo}} & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}String idTavolo\\ \\ String idPersona\end{tabular}} & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Ritorna gli ordini che\\ sono quasi pronti per \\ essere consegnati\end{tabular}}             & {\color[HTML]{000000} GET}             \\ \hline
+\rowcolor[HTML]{EFEFEF}
+{\color[HTML]{000000} \textbf{spostaGliOrdiniInArrivo}}  & {\color[HTML]{000000} String idTavolo}                                                               & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Imposta come in arrivo\\ gli ordini di un \\ determinato tavolo\end{tabular}}                 & {\color[HTML]{000000} POST}            \\ \hline
+\end{tabular}
+\end{table}
+\begin{itemize}
+  \item \textbf{UtenteController}: espone le API per la gestione degli utenti;
+  \item \textbf{TavoloController}: espone le API per la gestione delle sessioni nei tavoli e dunque degli ordini;
+  \item \textbf{MenuController}: espone le API per la visualizzazione dei menù
+  \item \textbf{LoginController}: espone le API per il login;
+  \item \textbf{GestoreController}: espone le API per tutte quelle funzionalità disponibili al gestore;
+\end{itemize}
 
-Panoramica su architettura del backend (sviluppato in Spring), entità e relazioni, business logic, strato di persistenza, test, \textbf{API} (Parte preponderante della panoramica sul backend).
 \subsubsection{Panoramica del frontend}
 Panoramica su architettura del frontend (sviluppato in Angular), principali components, \textbf{strato di servizio} (parte preponderante perché gestisce le chiamate alle API del backend).
 \subsection{Migrazione del BE da REST a GraphQL}
