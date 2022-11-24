@@ -117,9 +117,9 @@ In questo caso il tipo Employee è composto dai campi:
 I tipi \textit{Department}, \textit{Badge} e \textit{Project} devono essere necessariamente definiti all'interno dello stesso GraphQL schema di Employee.\\
 I built-in type che GraphQL mette a disposizione vengono detti \textbf{scalar-type} e sono: \textit{Int}, \textit{String}, \textit{Boolean}, \textit{ID}, \textit{Float}.\\
 È possibile inoltre dichiarare anche degli scalar-type personalizzati con la keyword "\textit{scalar}", oppure delle enumerazioni attraverso l'utilizzo della keyword "\textit{enum}". Infine è prevista anche l'unione tra più tipi tramite la kewyword "\textit{union}" come segue:
-\begin{verbatim}
+\begin{lstlisting}[language=GraphQL,]
   union worker = Employee | Manager | Chief
-\end{verbatim}
+\end{lstlisting}
 In questo caso sono stati uniti in un unico tipo \textit{worker} i tipi \textit{Employee}, \textit{Manager} e infine \textit{Chief}.
 3ex{Connessioni tra tipi}
 GraphQL è cosi denominato perché oltre ad essere un Query Language come suggeriscono le ultime due lettere del nome, permette di definire connessioni di vario genere tra i tipi definiti nello schema, queste connessioni vanno di fatto a creare uno grafo composto da tipi interconnessioni, da questo deriva il prefisso \textit{Graph}.
@@ -136,13 +136,13 @@ Nelle relazioni one-to-one ad un tipo viene associata una sola istanza di un alt
 \end{figure}
 \\ \\
 Come mostrato in figura \ref{one-to-one} il collegamento tra i due tipi è definito come "owns" se si legge nel verso che parte da Employee per raggiungere Badge e fa riferimento all'omonimo campo di Employee. Se altrimenti la connessione si percorre nel verso opposto viene definita "isOwned", come l'omonimo campo di Badge, riportato in seguito:
-\begin{verbatim}
+\begin{lstlisting}[language=GraphQL,]
   type Badge {
     id: ID
     isOwned: Employee
     ...
   }
-\end{verbatim}
+\end{lstlisting}
 \subsubsection*{Connessione one-to-many}
 In questo caso bisogna focalizzarsi sul campo \textit{worksIn} di Employee. Questo campo definisce la connessione con un elemento di tipo \textit{Department}, dunque a ciascun impiegato corrisponde un dipartimento nel quale lavora. Tuttavia pensando alla connessione in senso opposto a ciascun dipartimento possono corrispondere più impiegati. Segue dunque la rappresentazione della connessione nel grafo:\\
 
@@ -154,14 +154,14 @@ In questo caso bisogna focalizzarsi sul campo \textit{worksIn} di Employee. Ques
 \end{figure}
 \mbox{}\\
 Come mostrato in figura \ref{one-to-many} il collegamento tra il dipartimento e i vari impiegati viene chiamato "employees" se si considera il verso che parte da Department per raggiungere Employee e corrisponde all'omonimo campo di Department. Volendo è possibile attribuire doppia direzionalità alla relazione. Di seguito il tipo Department con il campo "employees":
-\begin{verbatim}
+\begin{lstlisting}[language=GraphQL,]
   type Department {
     id: ID
     name: String!
     address: String!
     employees: [Employee]
   }
-\end{verbatim}
+\end{lstlisting}
 \subsubsection*{Connessione many-to-many}
 Consideriamo ora il campo \textit{worksOn} di Employee che collega ciascun impiegato con una lista di progetti ai quali sta lavorando. In questo caso considerando il collegamento nel verso opposto anche ciascun progetto può avere più impiegati che ci lavorano. In questo caso si tratta di una relazione many-to-many e segue la rappresentazione nel grafo:
 \begin{figure}[!h]
@@ -172,26 +172,26 @@ Consideriamo ora il campo \textit{worksOn} di Employee che collega ciascun impie
 \end{figure}
 Le relazioni many-to-many non sono altro che l'unione di due relazioni one-to-many.
 La connessione in questo caso, come nei casi precedenti, a seconda del verso in cui viene percorsa può esser definita come "worksOn" o "employees" come mostrato in figura \ref{many-to-many}. Di seguito la rappresentazione del tipo Project:
-\begin{verbatim}
+\begin{lstlisting}[language=GraphQL,]
   type Project {
     id: ID
     name: String
     employees: [Employee]
   }
-\end{verbatim}
+\end{lstlisting}
 \subsection*{Operazioni sui dati}
 Ci sono tre tipi di operazioni che possono essere eseguite sui dati: \textit{Query}, \textit{Mutation} e \textit{Subscription}.
 \subsubsection{Query}
 L'operazione di query viene utilizzata per richiedere dati da una determinata API ed equivale alla GET nel protocollo REST. È necessario dichiarare nel GraphQL Schema la query che il programmatore backend desidera rendere disponibile, così facendo vengono dichiarati anche i tipi che possono eventualmente essere passati come argomenti e quelli che verranno ritornati dalla query.\\
 Un esempio di dichiarazione di query che ritorna una lista di tutti gli oggetti di tipo Employee presenti in un determinato Department può essere:
-\begin{verbatim}
+\begin{lstlisting}[language=GraphQL,]
   type query {
     employeesInDepartment(departmentId: ID!): [Employee]
   }
-\end{verbatim}
+\end{lstlisting}
 In questo caso invocando la query \textit{employeesInDepartment} e passando come argomento l'id del dipartimento riceveremo come risposta un JSON contenente un campo "\textit{data}" che presenterà al suo interno la lista di impiegati. In caso di insuccesso verrà ritornato un JSON con un campo "\textit{error}" contenente la descrizione dell'errore.\\
 Se il client desiderasse invocare la query definita, dovrebbe invocarla nel seguente modo:
-\begin{verbatim}
+\begin{lstlisting}[language=GraphQL,]
   query {
     employeesInDepartment(id: "2BR4S") {
       id
@@ -202,19 +202,19 @@ Se il client desiderasse invocare la query definita, dovrebbe invocarla nel segu
       }
     }
   }
-\end{verbatim}
+\end{lstlisting}
 In caso di successo verrà ritornata una lista di impiegati per ognuno dei quali compariranno i campi specificati nella query: \textit{id}, \textit{name}, \textit{worksOn}. \textit{worksOn} contiene la lista di progetti per ognuno dei quali verranno indicati esclusivamente i campi: \textit{id}, \textit{name}.\\
 La tecnica \textit{data paging} consente di realizzare meccanismi personalizzati di paginazione specificando la numerosità delle ricorrenze desiderate tramite appositi parametri previsti nella query.
 \subsubsection*{Mutation}
 L'operazione di mutation viene utilizzata per eseguire modifiche sui dati. Equivale all'unione delle operazioni POST, DELETE e PUT utilizzate in REST. Come per le query è necessario dichiarare le mutation che si vogliono rendere disponibili al client.\\
 Un esempio di mutation può essere:
-\begin{verbatim}
+\begin{lstlisting}[language=GraphQL,]
   type mutation {
     addNewEmployee(employee: Employee!): Employee
   }
-\end{verbatim}
+\end{lstlisting}
 In questo caso la mutation \textit{addNewEmployee} andrà ad aggiungere un nuovo impiegato nell'archivio dell'applicativo. Il client per invocare questa mutation dovrà strutturare la richiesta come segue:
-\begin{verbatim}
+\begin{lstlisting}[language=GraphQL,]
   mutation {
     addNewEmployee(employee: {
       name: "Mario"
@@ -222,24 +222,24 @@ In questo caso la mutation \textit{addNewEmployee} andrà ad aggiungere un nuovo
       id
     }
   }
-\end{verbatim}
+\end{lstlisting}
 In questa mutation è stato passato come argomento un oggetto di tipo Employee di cui è stato specificato esclusivamente il nome. La definizione della mutation prevede il ritorno di un oggetto di tipo Employee. In questo caso il client dichiara di essere interessato esclusivamente all'id dell'impiegato appena creato.
 \subsubsection*{Subscription}
 L'ultimo tipo si chiama Subscription e si tratta di una funzione particolare resa disponibile in GraphQL. Grazie a questa funzione i client possono dichiarare il loro interessa ad una subscription; il client non è costretto ad eseguire polling poiché, al verificarsi della condizione, sarà il server ad avvertire il client.\\
 Un esempio di definizione di una Subscription può essere:
-\begin{verbatim}
+\begin{lstlisting}[language=GraphQL,]
   type subscription {
     newEmployeeAdded: Employee!
   }
-\end{verbatim}
+\end{lstlisting}
 Il client che desidera sottoscriversi alla subscription \textit{newEmployeeAdded} dovrà mandare una richiesta strutturata come segue:
-\begin{verbatim}
+\begin{lstlisting}[language=GraphQL,]
   subscription {
     newEmployeeAdded {
       id
       name
     }
   }
-\end{verbatim}
+\end{lstlisting}
 Così facendo il server, appena viene aggiunto un nuovo impiegato, invierà direttamente al client i dati che il client ha specificato nella sottoscrizione, in questo caso \textit{id} e \textit{name} dell'impiegato.\\
 Essendo il server a dover inviare i dati al client e non viceversa, non sarà utilizzato il protocollo HTTP per la comunicazione server - client bensì il protocollo WebSocket che aprirà un canale di comunicazione a doppia via sopra un socket TCP.\

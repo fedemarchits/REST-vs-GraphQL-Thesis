@@ -113,6 +113,17 @@
 \usepackage{colortbl}
 \usepackage{array,booktabs}
 \usepackage{listings}
+\lstdefinelanguage{GraphQL}{
+  keywords = {Query, Mutation, Subscription, union, mutation, subscriptio, query, String, Date, number, },
+  keywordstyle = \color{DarkOrchid}\bfseries,
+  ndkeywords = {type, gigi},
+  ndkeywordstyle = \color{BlueViolet}\bfseries,
+  comment=[l]{#},
+  commentstyle=\color{Gray}\ttfamily,
+  stringstyle=\color{Mahogany}\ttfamily,
+  morestring=[b]',
+  morestring=[b]"
+}
 \lstdefinelanguage{JavaScript}{
   %keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break},
   %keywordstyle=\color{blue}\bfseries,
@@ -143,7 +154,7 @@
    showtabs=false,
    captionpos=b
 }
-
+\lstset{escapeinside={<@}{@>}
                                         % eccellente pacchetto per la bibliografia;
                                         % produce uno stile di citazione autore-anno;
                                         % lo stile "numeric-comp" produce riferimenti numerici

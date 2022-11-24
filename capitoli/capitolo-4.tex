@@ -4,7 +4,7 @@
 
 %**************************************************************
 \chapter{Introduzione ai casi d'uso per l'analisi comparativa}
-\label{cap:casi-uso}
+\label{casi-uso}
 %**************************************************************
 
 \intro{Il capitolo descrive in dettaglio il prototipo realizzato e la sua migrazione da REST a GraphQL. A seguire si illustrerà una ulteriore migrazione realizzata sull'applicativo aziendale SushiLab.}\\
@@ -673,7 +673,7 @@ In figura \ref{ER-sushilab} è possibile visualizzare lo schema ER delle entità
 Sono dunque presenti le entità:
 \begin{itemize}
   \item \textbf{PiattoUpload}: una tipo di piatto con allergeni e ingredienti;
-  \item \textbf{PiattoPreview}: l'anteprima di piatto associata ad un \textit{PiattoUpload};
+  \item \textbf{PiattoPreview}: l'anteprima di un piatto associata ad un \textit{PiattoUpload};
   \item \textbf{SezionePreview}: un insieme di piatti di una particolare categoria;
   \item \textbf{Menù}: un insieme di sezioni di piatti, si tratta del menù di un ristorante;
   \item \textbf{Utente}: l'utente registrato, può anche essere un gestore e dunque essere il proprietario del ristorante e dunque poter apportare delle modifiche ai menù, ai piatti, ecc..;
@@ -737,10 +737,10 @@ Questo controller dichiara una dipendenza con il servizio \textit{ClientService}
 {\color[HTML]{000000} \textbf{ottieniUtente}}          & {\color[HTML]{000000} String idPersona}                                                                                & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Ricerca un utente\\ per id\end{tabular}}                                                                  & {\color[HTML]{000000} GET}             \\ \hline
 \rowcolor[HTML]{EFEFEF}
 {\color[HTML]{000000} \textbf{registraUtente}}         & {\color[HTML]{000000} Utente utente}                                                                                   & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Aggiunge un nuovo\\ utente\end{tabular}}                                                                  & {\color[HTML]{000000} POST}            \\ \hline
-{\color[HTML]{000000} \textbf{modificaStatoPreferiti}} & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}String idPersona\\ String idPiatto\end{tabular}}                   & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Modifica i preferiti\\ di un utente,  con gli \\ dei piatti\end{tabular}}                                 & {\color[HTML]{000000} POST}            \\ \hline
+{\color[HTML]{000000} \textbf{modificaStatoPreferiti}} & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}String idPersona\\ String idPiatto \\ String Param\end{tabular}}                   & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Modifica i preferiti\\ di un utente,  con dei \\  nuovi piatti\end{tabular}}                                 & {\color[HTML]{000000} POST}            \\ \hline
 \rowcolor[HTML]{EFEFEF}
 {\color[HTML]{000000} \textbf{modificaValutazione}}    & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}String idPersona\\ String idPiatto\\ String param\end{tabular}} & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Modifica la \\ valutazione di una \\ persona rispetto ad \\ un piatto con nuovi\\ parametri\end{tabular}} & {\color[HTML]{000000} POST}            \\ \hline
-{\color[HTML]{000000} \textbf{recuperoPassword}}       & {\color[HTML]{000000} String param}                                                                                    & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Ritorna la password\\ recuperata se vengono\\ forniti i parametri\\ necessari\end{tabular}}               & {\color[HTML]{000000} POST}            \\ \hline
+{\color[HTML]{000000} \textbf{recuperoPassword}}       & {\color[HTML]{000000} String param}                                                                                    & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Invia un codice alla \\ mail del cliente per il\\ recupero password\end{tabular}}               & {\color[HTML]{000000} POST}            \\ \hline
 \rowcolor[HTML]{EFEFEF}
 {\color[HTML]{000000} \textbf{verificaCodice}}         & {\color[HTML]{000000} String param}                                                                                    & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Verifica il codice\\ di recupero password\end{tabular}}                                                   & {\color[HTML]{000000} POST}            \\ \hline
 {\color[HTML]{000000} \textbf{reimpostaPassword}}      & {\color[HTML]{000000} String param}                                                                                    & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Imposta una nuova \\ password per un utente\end{tabular}}                                                 & {\color[HTML]{000000} POST}            \\ \hline
@@ -772,7 +772,7 @@ Anche il seguente controller dichiara una dipendenza con \textit{ClientService} 
 {\color[HTML]{000000} \textbf{chiudiSessione}}           & {\color[HTML]{000000} String idTavolo}                                                               & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Chiude la sessione in un\\ determinato tavolo\end{tabular}}                                   & {\color[HTML]{000000} DELETE}          \\ \hline
 \rowcolor[HTML]{EFEFEF}
 {\color[HTML]{000000} \textbf{ottieniOrdiniPersona}}     & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}String idTavolo\\ String idPersona\end{tabular}} & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Ritorna gli ordini di \\ una persona in uno\\ specifico tavolo\end{tabular}}                  & {\color[HTML]{000000} GET}             \\ \hline
-{\color[HTML]{000000} \textbf{modificaOrdiniPersona}}    & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}String idTavolo\\ String idPersona\end{tabular}} & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Modifica gli ordini di \\ una persona in uno \\ specifico tavolo\end{tabular}}                & {\color[HTML]{000000} POST}            \\ \hline
+{\color[HTML]{000000} \textbf{modificaOrdiniPersona}}    & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}String idTavolo\\ String idPersona \\ ListaOrdini ordini\end{tabular}} & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Modifica gli ordini di \\ una persona in uno \\ specifico tavolo\end{tabular}}                & {\color[HTML]{000000} POST}            \\ \hline
 \rowcolor[HTML]{EFEFEF}
 {\color[HTML]{000000} \textbf{ottieniOrdiniTavolo}}      & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}String idTavolo\\ String idPersona\end{tabular}} & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Ritorna tutti gli ordini\\ effettuati dalle persone \\ di un determinato tavolo\end{tabular}} & {\color[HTML]{000000} GET}             \\ \hline
 {\color[HTML]{000000} \textbf{ottieniGliOrdiniInArrivo}} & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}String idTavolo\\ String idPersona\end{tabular}} & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Ritorna gli ordini che\\ sono quasi pronti per \\ essere consegnati\end{tabular}}             & {\color[HTML]{000000} GET}             \\ \hline
@@ -865,7 +865,7 @@ Nella seguente sezione verranno illustrati brevemente i principali attori e i lo
 \subsection{Migrazione del backend da REST a Graphql}
 La migrazione del backend applica la tecnica \textit{Schema First}. È stata suddivisa in tre parti principali:
 \begin{itemize}
-  \item \textbf{Analisi sui tipi e creazione GraphQL Schema}: in questa prima fase si analizzano i tipi che devono essere esposti al client, dunque si procede con la scrittura del GraphQL Schema definendo i tipi;
+  \item \textbf{Analisi sui tipi}: in questa prima fase si analizzano i tipi che devono essere esposti al client, dunque si procede con la scrittura del GraphQL Schema definendo i tipi;
   \item \textbf{Analisi sulle API}: sono state analizzate le API che si vuole migrare e successivamente sono state dichiarate nel GraphQL Schema;
   \item \textbf{Migrazione dei controller}: è stato adattato il codice del controller a GraphQL;
 \end{itemize}
@@ -874,80 +874,118 @@ La migrazione del backend applica la tecnica \textit{Schema First}. È stata sud
 \begin{itemize}
   \item \textbf{Tipi di output}: sono i tipi che verranno ritornati al client, tra questi troviamo:
   \begin{itemize}
-    \item \textit{Piatto}: per ritornare uno o più piatti;
     \item \textit{Menu}: per ritornare il menu;
     \item \textit{FasciaOraria}: per ritornare le fasce orarie riguardo la disponibilità di un menù;
-    \item \textit{PiattoPreferito}: si differenzia dal tipo \textit{Piatto} in quanto deve specificare le preferenze dell'utente, eventuali valutazioni, ecc...;
+    \item \textit{Piatto}: per ritornare uno o più piatti; nella versione erano presenti due diverse rappresentazioni di piatto, qui ne sono stati uniti i campi sotto un unico tipo, così facendo backend e frontend potranno decidere quali campi sfruttare e quali no a seconda dell'utilizzo che devono fare di questo oggetto;
+    \item \textit{PiattoPreferito}: si differenzia dal tipo \textit{Piatto} in quanto deve specificare le preferenze dell'utente e le sue valutazioni riguardo ad uno specifico piatto;
     \item \textit{LoginSession}: per ritornare i dati di login, comprende una stringa per il token della sessione di login e la durata in secondi;
     \item \textit{Ordine}: si tratta di un oggetto che specifica un piatto, la quantità ordinata e infine una eventuale nota;
     \item \textit{Utente}: per creare un nuovo utente o effettuare il login;
+    \item \textit{Blacklist}: per ritornare la blacklist di un utente;
+    \item \textit{Sessione}: per ritornare la sessione atti va in un determinato tavolo;
   \end{itemize}
   \item \textbf{Tipi di input}: sono i tipi che verranno ricevuti in input dal client, tra questi troviamo:
   \begin{itemize}
     \item \textit{PiattoInput}: per aggiunta e modifica di uno o più piatti che si ricevono in input dal client;
     \item \textit{MenuInput}: per aggiunta e modifica di uno o più menu;
     \item \textit{OrdineInput}: per aggiunta di un ordine, specifica il piatto, la sua quantità ed eventuali note da parte del cliente;
-    \item \textit{UtenteOutput}: per ritornare un utente e i suoi dati;
+    \item \textit{UtenteInput}: per creare un nuovo utente o per effettuare il login;
   \end{itemize}
 \end{itemize}
 I tipi elencati sono esclusivamente quelli necessari per la definizione delle query, mutation e subscription. Verranno poi realizzato il tipo \textit{OperationSuccess} che viene ritornato, in caso di successo, per tutte quelle mutation che eseguono un'operazione e non ritornano dati. Questo tipo è comoposto da un solo campo String contenente un eventuale messaggio.\\ \\
 A questo punto sono stati creati in Java le classi corrispondenti a tutti i tipi di input poiché sono composti da campi dati in forma differente rispetto alle entità nel server. Per i tipi di output questa operazione non è necessaria poiché i loro campi corrispondono alle entità in Java. Fanno eccezzione i tipi \textit{Piatto}, \textit{PiattoPreferito} e \textit{LoginSession} poiché si differenziano leggermente dalle classi Java corrispondenti.
-\paragraph{Analisi sulle API}
-A questo punto sono state ristrutturate in maniera lieve le API presenti nel server REST. Questo è stato fatto per due principali motivi: il primo riguarda il fatto che il backend REST non aveva delle API ben strutturate, il secondo riguarda il fatto che in GraphQL si sfrutta il tipo subscription.
-%Tavolo controller:
-%Return [Integer] menu compatto (ha anche id menu) BOHHH
-%Utente controller:
-%Da capire .... Return [preferiti]
-%[Ingredienti] Input
-
-
-
-
+\subsubsection*{Analisi sulle API e loro definizione}
+Questa fase prevede la dichiarazione delle query, mutation e subscription nel GraphQL Schema. Si tratta di una fase fondamentale in quanto permette di definire i tipi di input e di output di ciascuna operazione possibile.
+Inoltre sono state aggiunte anche delle subscription. Di seguito è possibile visualizzare le query, le mutation e le subscription per ciascuno dei cinque controller presenti.\\
+Le query rese disponibili sono:
+\begin{lstlisting}[language=GraphQL]
+type Query {
+  ##############UtenteController##############
+  ottieniUtente(idPersona: String!): Utente
+  ottieniBlacklist(idPersona: String!): blacklist
+  ##############TavoloController##############
+  ottieniSessione(idTavolo: String!): Sessione
+  ottieniOrdiniPersona(idTavolo: String!, idPersona: String!): [Ordine]
+  ottieniOrdiniTavolo(idTavolo: String!, idPersona: String!): [Ordine]
+  ottieniGliOrdiniInArrivo(idTavolo: String!, idPersona: String!): [Ordine]
+  ##############MenuController##############
+  ottieniMenu(idMenu: String!, idPersona: String!): Menu
+  ottieniListaFasce(idMenu: String!): [FasciaOraria]
+  ottieniListaPreferiti(idMenu: String!, idPersona: String!): [Piatto]
+  ##############GestoreController##############
+  ottieniListaPiatti(idPersona: String!): [Piatto]
+  ottieniListaMenu(idPersona: String!): [Menu]
+  ottieniMenu(idPersona: String!, idMenu: String!): Menu
+}
+\end{lstlisting}
+Le mutation realizzate sono:
+\begin{lstlisting}[language=GraphQL]
+type Mutation {
+  ##############LoginController##############
+  eseguiLogin(utente: UtenteInput!): LoginSession
+  ##############UtenteController##############
+  registraUtente(utente: UtenteInput!): OperationSuccess
+  modificaStatoPreferiti(idPersona: String!, idPiatto: String!, piatti: [PiattoInput!]!): OperationSuccess
+  modificaValutazione(idPersona: String!, idPiatto: String!, piatti: PiattoPreferito!): OperationSuccess
+  recuperoPassword(mail: String!): OperationSuccess
+  verificaCodice(codice: String!): OperationSuccess
+  reimpostaPassword(password: String!): OperationSuccess
+  aggiornaBlackList(idPersona: String!, ingredienti: [String!]!): OperationSuccess
+  ##############TavoloController##############
+  creaSessione(idPersona: String!): Sessione
+  chiudiSessione(idTavolo: String!): OperationSuccess
+  modificaOrdiniPersona(idPersona: String!, idTavolo: String!, ordini: [OrdineInput!]!): OperationSuccess
+  spostaGliOrdiniInArrivo(idTavolo: String!): OperationSuccess
+  ##############GestoreController##############
+  nuovoPiatto(idPersona: String!, piatto: PiattoInput!): Piatto
+  eliminaPiatto(idPersona: String!, idPiatto: String!): OperationSuccess
+  aggiornaPiatto(idPersona: String!, idPiatto: String!, piatto: PiattoInput!): OperationSuccess
+  nuovoMenu(idPersona: String!, menu: MenuInput!): Menu
+  aggiornaMenu(idPersona: String!, menu: MenuInput!): OperationSuccess
+  eliminaMenu(idPersona: String!, idMenu: String!): OperationSuccess
+}
+\end{lstlisting}
+Sono state introdotte infine le nuove seguenti subscription:
+\begin{lstlisting}[language=GraphQL]
+type Subscription {
+  ordiniTavoliRealTime(): [Ordine]
+  visualizzaSezioniRealTime(): [Sessione]
+}
+\end{lstlisting}
+Queste subscription permettono al client di ricevere in tempo reale i nuovi ordini effettuati in qualsiasi tavolo e quando vengono occupati nuovi tavoli.
+\subsubsection*{Migrazione dei controller}
+L'ultimo step per completare la migrazione del backend prevede la riscrittura dei controller. Per effettuare questo passaggio sono stati seguiti i seguenti punti:
+\begin{itemize}
+  \item \textbf{Cambio tipi}: sono stati cambiati i tipi negli argomenti, negli oggetti di ritorno e nell'implementazione dei vari resolver; questo è stato fatto perché sono stati introdotti alcuni nuovi tipi ed è dunque necessario rispettare il mapping tra le dichiarazioni delle query, mutation e subscription nel GraphQL Schema e i corrispettivi resolver nei controller;
+  \item \textbf{Cambio annotazioni}: sono state sostituite le annotazioni REST con quelle GraphQL;
+  \item \textbf{Cambio struttura controller}: sono stati uniti i controller: \textit{LoginController}, \textit{UtenteController}, \textit{MenuController} e \textit{TavoloController} in un unico controller; questo è stato fatto perché non è più necessario suddividere in endpoint multipli le richieste e perché tutti i controller elencati dichiaravano la stessa dipendenza dal servizio \textit{ClientService}.
+  \item \textbf{Riscrittura del codice dei resolver}: sono stati riscritte le logiche dei vari resolver seguendo la struttura implementativa precedente; questo è stato fatto perché dopo aver apportato delle modifiche ai tipi in Java è stato necessario di conseguenza modificare alcune logiche;
+  \item \textbf{Aggiunta subscription}: essendo state aggiunte due subscription è stato necessario implementare i resolver da associargli.
+\end{itemize}
 \subsection{Migrazione del frontend da REST a GraphQL}
-
-
-% \subsection{Progettazione }
-% Tecnologie scelte per lo sviluppo del protitipo (poi espresse meglio in capitoli successivi).
-% Viene spiegata l'architettura del software che si vuole realizzare (diviso per BE e FE), le entità e relative relazioni.
-% \subsection{Business logic - BE}
-
-
-% \subsection{Sviluppo API}
-% Panoramica su quali api vengono rese disponibili da BE.
-% \subsubsection{Sviluppo REST API}
-% Come vengono implementate con protocollo REST.
-% \subsubsection{Sviluppo GraphQL API}
-% Come vengono implementate con protocollo GraphQL.
-% \subsection{Comparazione dei due protocolli}
-% Illustrazione delle differenze (con vantaggi e svantaggi) individuate nelle varie fasi di realizazzione del
-% prototipo (analisi, progettazione, sviluppo, testing, ...). Si tratta di:
-% \begin{itemize}
-%         \item differenze architetturali del prototipo (dunque come sono strutturati BE e FE a seconda della tecnologia utilizzata, differenze lievi ma presenti);
-%         \item differenze legate alla natura dei protocolli (ad es. che GraphQL non usa i codici di stato http classici),dunque come si rispecchiano queste differenze nel concreto (ad es. gestione differente degli errori) ;
-%         \item differenze negli strumenti utilizzati (ad es. differenti librerie).
-% \end{itemize}
-% \section{SushiLab}
-% \subsection{Comprensione della struttura e delle logiche della webapp}
-% Descrizione di BE e FE della webapp, sue entità, relazioni e logica di base.
-% \subsection{Migrazione BE da REST a GraphQL}
-% \subsubsection{Analisi delle componenti da modificare}
-% Ad esempio i metodi i controller.
-% \subsubsection{Realizzazione della migrazione}
-% Come ogni componente varia durante tutta la migrazione.
-% \subsubsection{Difficoltà riscontrate durante la migrazione}
-% Problemi riscontrati nel passaggio da REST a GraphQL (ad es. problemi legati alla forte tipizzazione di GraphQl).
-% \subsection{Migrazione FE da REST a GraphQL}
-% Stessa cosa del BE, probabilmente sarà molto più breve.
-% \subsubsection{Analisi delle componenti da modificare}
-% \subsubsection{Realizzazione della migrazione}
-% \subsubsection{Difficoltà riscontrate durante la migrazione}
-% \subsection{Analisi comparativa}
-% Analisi comparativa della webapp nelle due versioni. Vantaggi e svantaggi della webapp due versioni sotto tutti i punti di vista:
-% \begin{itemize}
-%         \item complessità dei protocolli e dunque i costi per la realizzazione di una versione rispetto all'altra;
-% \end{itemize}
-
-
-% Volendo aggiungo anche un analisi prestazionale riportando i risultati del load testing.
-% \subsection{Considerazioni finali}
-% Perché in questo caso d'uso specifico ha più senso utilizzare un protocollo rispetto che l'altro.
+La migrazione del frontend è stata più semplice e ha seguito le seguenti fasi:
+\begin{itemize}
+  \item \textbf{Creazione interfacce dei tipi}: sono state create le interfacce per i nuovi tipi strutturati diversamente durante la migrazione del backend;
+  \item \textbf{Migrazione dei servizi}: è stata effettuata la riscrittura dei servizi in quanto quest'utlimi si incaricano delle chiamate al GraphQL Server e non più al REST Server;
+  \item \textbf{Migrazione dell'interceptor}: l'interceptor è stato riscritto per l'intercettazione delle chiamate GraphQL e non più REST;
+\end{itemize}
+\subsubsection*{Interfacce dei tipi}
+Le interfacce dei tipi sono necessarie per poter creare l'oggetto ricevuto dal backend nel'ambiente di frontend. Sono state dunque aggiunte le seguenti interfacce non presenti precedentemente:
+\begin{itemize}
+  \item \textit{LoginSession}: precedentemente venivano estrapolati i dati riguardanti l'idToken e la scadenza direttamente dal JSON, ora viene ritornato questo oggetto contenente i medesimi dati;
+  \item \textit{OperationSuccess}: precedentemente il codice di stato della risposta HTTP era sufficiente per saperne l'esito; questo in GraphQL non accade, dunque viene ritornato appositamente questo oggetto;
+  \item \textit{Sessione}: precedentemente veniva direttamente estrapolato dal JSON l'id della sessione, ora viene ritornato questo oggetto dal backend;
+\end{itemize}
+\subsubsection{Migrazione dei servizi}
+I servizi si occupano della comunicazione con il backend per questo motivo sono stati riscritti utilizzando al posto dell'oggetto \textit{HttpClient} per costruire chiamate REST, l'oggetto \textit{Apollo} per costruire quelle GraphQL.
+I servizi che sono stati migrati sono:
+\begin{itemize}
+  \item \textbf{MenuService}: utilizzato per la gestione dei menu;
+  \item \textbf{ordiniService}: utilizzato per la gestione degli ordini;
+  \item \textbf{authService}: utilizzato per la gestione e verifica dei login;
+  \item \textbf{tavoloService}: utilizzato per la gestione delle sessioni nei tavoli;
+\end{itemize}
+Gli altri servizi presenti non sono stati modificati in quanto non gestivano alcun tipo di comunicazione con il backend.
+\subsubsection*{Migrazione dell'interceptor}
+L'interceptor di Angular viene creato attraverso l'implementazione dell'interfaccia \textit{HttpInterceptor} ed è stato utilizzato nel frontend dell'applicativo per l'aggiunta nell'header della chiamata del token di identificazione. Il token di identificazione viene ritornato al client dopo il login di un utente e sarà necessario in seguito per identificare le azioni dell'utente loggato.\\ \\
+É necessario dunque apportare una modifica all'interceptor realizzato precedentemente poiché non sono più presenti endpoints multipli, ma dopo la migrazione in GraphQL è sufficiente controllare e dunque intercettare le chiamate indirizzate ad un solo endpoint.

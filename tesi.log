@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.12.10)  24 NOV 2022 13:07
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.12.10)  24 NOV 2022 18:21
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1012,7 +1012,28 @@ File: biblatex.cfg
 Package: colortbl 2020/01/04 v1.0e Color table columns (DPC)
 \everycr=\toks42
 \minrowclearance=\skip176
-) (./tesi-config.tex
+)
+./tesi.tex:126: Illegal parameter number in definition of \lstlang@graphql$.
+<to be read again> 
+                   }
+l.126 }
+       
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+Runaway argument?
+{escapeinside={<@}{@>} 
+./tesi.tex:165: Paragraph ended before \lstset@ was complete.
+<to be read again> 
+                   \par 
+l.165 
+      
+I suspect you've forgotten a `}', causing me to apply this
+control sequence to too much text. How can we recover?
+My plan is to forget the whole thing and hope for the best.
+
+(./tesi-config.tex
 \glswrite=\write5
 \glo@main@file=\write6
 \openout6 = `tesi.glo'.
@@ -1092,24 +1113,24 @@ LaTeX Warning: Unused global option(s):
 (./tesi.aux)
 \openout1 = `tesi.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 160.
-LaTeX Font Info:    ... okay on input line 160.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 160.
-LaTeX Font Info:    ... okay on input line 160.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 160.
-LaTeX Font Info:    ... okay on input line 160.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 160.
-LaTeX Font Info:    ... okay on input line 160.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 160.
-LaTeX Font Info:    ... okay on input line 160.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 160.
-LaTeX Font Info:    ... okay on input line 160.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 160.
-LaTeX Font Info:    ... okay on input line 160.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 160.
-LaTeX Font Info:    ... okay on input line 160.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 160.
-LaTeX Font Info:    ... okay on input line 160.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 171.
+LaTeX Font Info:    ... okay on input line 171.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 171.
+LaTeX Font Info:    ... okay on input line 171.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 171.
+LaTeX Font Info:    ... okay on input line 171.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 171.
+LaTeX Font Info:    ... okay on input line 171.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 171.
+LaTeX Font Info:    ... okay on input line 171.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 171.
+LaTeX Font Info:    ... okay on input line 171.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 171.
+LaTeX Font Info:    ... okay on input line 171.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 171.
+LaTeX Font Info:    ... okay on input line 171.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 171.
+LaTeX Font Info:    ... okay on input line 171.
  (/usr/local/texlive/2021/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count486
@@ -1129,13 +1150,13 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
  (/usr/local/texlive/2021/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-Package hyperref Info: Link coloring ON on input line 160.
-LaTeX Info: Redefining \ref on input line 160.
-LaTeX Info: Redefining \pageref on input line 160.
-LaTeX Info: Redefining \nameref on input line 160.
-LaTeX Info: Redefining \Ref on input line 160.
-LaTeX Info: Redefining \it@ocap on input line 160.
-LaTeX Info: Redefining \it@ccap on input line 160.
+Package hyperref Info: Link coloring ON on input line 171.
+LaTeX Info: Redefining \ref on input line 171.
+LaTeX Info: Redefining \pageref on input line 171.
+LaTeX Info: Redefining \nameref on input line 171.
+LaTeX Info: Redefining \Ref on input line 171.
+LaTeX Info: Redefining \it@ocap on input line 171.
+LaTeX Info: Redefining \it@ccap on input line 171.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: subfig package v1.3 is loaded.
 Package caption Info: listings package is loaded.
@@ -1182,14 +1203,14 @@ Package caption Info: End \AtBeginDocument code.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 \c@lstlisting=\count492
-LaTeX Info: Redefining \microtypecontext on input line 160.
+LaTeX Info: Redefining \microtypecontext on input line 171.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
 Package microtype Info: Automatic font expansion enabled (level 2),
 (microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
 Package microtype Info: Using default expansion set `alltext-nott'.
-LaTeX Info: Redefining \showhyphens on input line 160.
+LaTeX Info: Redefining \showhyphens on input line 171.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
@@ -1222,8 +1243,8 @@ Package: blx-case-expl3 2020/12/31 v3.16 expl3 case changing code for biblatex
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'tesi.bbl' found.
  (./tesi.bbl)
-Package biblatex Info: Reference section=0 on input line 160.
-Package biblatex Info: Reference segment=0 on input line 160.
+Package biblatex Info: Reference section=0 on input line 171.
+Package biblatex Info: Reference segment=0 on input line 171.
  (./inizio-fine/frontespizio.tex
 <immagini//logo-unipd.png, id=5, 943.525pt x 949.5475pt>
 File: immagini//logo-unipd.png Graphic file (type png)
@@ -1369,13 +1390,16 @@ I suspect you've forgotten a `}', causing me to apply this
 control sequence to too much text. How can we recover?
 My plan is to forget the whole thing and hope for the best.
 
-./capitoli/capitolo-3.tex:4: Too many }'s.
+./capitoli/capitolo-3.tex:4: Extra }, or forgotten \endgroup.
 \@xdblarg #1#2->#1[{#2}
                        ]{#2}
 l.4 
     
-You've closed more groups than you opened.
-Such booboos are generally harmless, so keep going.
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
 
 [3
 
@@ -1399,6 +1423,27 @@ Underfull \hbox (badness 10000) in paragraph at lines 19--22
  []
 
 [5] [6] [7] [8] [9]
+./capitoli/capitolo-3.tex:120: Illegal parameter number in definition of \reserved@a.
+<to be read again> 
+                   \@nil 
+l.120 \begin{lstlisting}[language=GraphQL,]
+                                           
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+./capitoli/capitolo-3.tex:120: Illegal parameter number in definition of \reserved@b.
+<to be read again> 
+                   \@nil 
+l.120 \begin{lstlisting}[language=GraphQL,]
+                                           
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <9> not available
+(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 121.
+
 Overfull \hbox (3.78238pt too wide) has occurred while \output is active
 \T1/cmr/m/n/10 10 \T1/cmr/m/sl/10 CAPITOLO 3.  PROTOCOLLI DI MODELLAZIONE E TRASFERIMENTO DATI
  []
@@ -1406,11 +1451,38 @@ Overfull \hbox (3.78238pt too wide) has occurred while \output is active
 [10]
 
 pdfTeX warning: pdflatex (file ./immagini/one_to_one.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<immagini/one_to_one.pdf, id=324, 274.12413pt x 107.90312pt>
+<immagini/one_to_one.pdf, id=334, 274.12413pt x 107.90312pt>
 File: immagini/one_to_one.pdf Graphic file (type pdf)
 <use immagini/one_to_one.pdf>
 Package pdftex.def Info: immagini/one_to_one.pdf  used on input line 133.
 (pdftex.def)             Requested size: 186.0pt x 73.21837pt.
+./capitoli/capitolo-3.tex:139: Illegal parameter number in definition of \reserved@a.
+<to be read again> 
+                   \@nil 
+l.139 \begin{lstlisting}[language at most version <1.5> allowed
+<immagini/one_to_one.pdf, id=333, 274.12413pt x 107.90312pt>
+File: immagini/one_to_one.pdf Graphic file (type pdf)
+<use immagini/one_to_one.pdf>
+Package pdftex.def Info: immagini/one_to_one.pdf  used on input line 133.
+(pdftex.def)             Requested size: 186.0pt x 73.21837pt.
+./capitoli/capitolo-3.tex:139: Illegal parameter number in definition of \reserved@a.
+<to be read again> 
+                   \@nil 
+l.139 \begin{lstlisting}[language=GraphQL,]
+                                           
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+./capitoli/capitolo-3.tex:139: Illegal parameter number in definition of \reserved@b.
+<to be read again> 
+                   \@nil 
+l.139 \begin{lstlisting}[language=GraphQL,]
+                                           
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
 
 Underfull \hbox (badness 10000) in paragraph at lines 130--139
 
@@ -1424,7 +1496,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 147--148
 
 
 pdfTeX warning: pdflatex (file ./immagini/one_to_many.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<immagini/one_to_many.pdf, id=326, 290.88673pt x 263.28362pt>
+<immagini/one_to_many.pdf, id=335, 290.88673pt x 263.28362pt>
 File: immagini/one_to_many.pdf Graphic file (type pdf)
 <use immagini/one_to_many.pdf>
 Package pdftex.def Info: immagini/one_to_many.pdf  used on input line 151.
@@ -1432,20 +1504,155 @@ Package pdftex.def Info: immagini/one_to_many.pdf  used on input line 151.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
+./capitoli/capitolo-3.tex:157: Illegal parameter number in definition of \reserved@a.
+<to be read again> 
+                   \@nil 
+l.157 \begin{lstlisting}[language=GraphQL,]
+                                           
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+./capitoli/capitolo-3.tex:157: Illegal parameter number in definition of \reserved@b.
+<to be read again> 
+                   \@nil 
+l.157 \begin{lstlisting}[language=GraphQL,]
+                                           
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
 [11 <./immagini/one_to_one.pdf>]
 
 pdfTeX warning: pdflatex (file ./immagini/many_to_many.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<immagini/many_to_many.pdf, id=351, 311.66437pt x 300.322pt>
+<immagini/many_to_many.pdf, id=366, 311.66437pt x 300.322pt>
 File: immagini/many_to_many.pdf Graphic file (type pdf)
 <use immagini/many_to_many.pdf>
 Package pdftex.def Info: immagini/many_to_many.pdf  used on input line 169.
 (pdftex.def)             Requested size: 148.79773pt x 143.38306pt.
+./capitoli/capitolo-3.tex:175: Illegal parameter number in definition of \reserved@a.
+<to be read again> 
+                   \@nil 
+l.175 \begin{lstlisting}[language=GraphQL,]
+                                           
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+./capitoli/capitolo-3.tex:175: Illegal parameter number in definition of \reserved@b.
+<to be read again> 
+                   \@nil 
+l.175 \begin{lstlisting}[language=GraphQL,]
+                                           
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
 
 Overfull \hbox (3.78238pt too wide) has occurred while \output is active
 \T1/cmr/m/n/10 12 \T1/cmr/m/sl/10 CAPITOLO 3.  PROTOCOLLI DI MODELLAZIONE E TRASFERIMENTO DATI
  []
 
-[12 <./immagini/one_to_many.pdf> <./immagini/many_to_many.pdf>] [13]) (./capitoli/capitolo-4.tex
+[12 <./immagini/one_to_many.pdf> <./immagini/many_to_many.pdf>]
+./capitoli/capitolo-3.tex:187: Illegal parameter number in definition of \reserved@a.
+<to be read again> 
+                   \@nil 
+l.187 \begin{lstlisting}[language=GraphQL,]
+          ten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+./capitoli/capitolo-3.tex:194: Illegal parameter number in definition of \reserved@a.
+<to be read again> 
+                   \@nil 
+l.194 \begin{lstlisting}[language=GraphQL,]
+                                           
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+./capitoli/capitolo-3.tex:194: Illegal parameter number in definition of \reserved@b.
+<to be read again> 
+                   \@nil 
+l.194 \begin{lstlisting}[language=GraphQL,]
+                                           
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+./capitoli/capitolo-3.tex:211: Illegal parameter number in definition of \reserved@a.
+<to be read again> 
+                   \@nil 
+l.211 \begin{lstlisting}[language=GraphQL,]
+                                           
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+./capitoli/capitolo-3.tex:211: Illegal parameter number in definition of \reserved@b.
+<to be read again> 
+                   \@nil 
+l.211 \begin{lstlisting}[language=GraphQL,]
+                                           
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+[13]
+./capitoli/capitolo-3.tex:217: Illegal parameter number in definition of \reserved@a.
+<to be read again> 
+                   \@nil 
+l.217 \begin{lstlisting}[language=GraphQL,]
+                                           
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+./capitoli/capitolo-3.tex:217: Illegal parameter number in definition of \reserved@b.
+<to be read again> 
+                   \@nil 
+l.217 \begin{lstlisting}[language=GraphQL,]
+                                           
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+./capitoli/capitolo-3.tex:230: Illegal parameter number in definition of \reserved@a.
+<to be read again> 
+                   \@nil 
+l.230 \begin{lstlisting}[language=GraphQL,]
+                                           
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+./capitoli/capitolo-3.tex:230: Illegal parameter number in definition of \reserved@b.
+<to be read again> 
+                   \@nil 
+l.230 \begin{lstlisting}[language=GraphQL,]
+                                           
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+./capitoli/capitolo-3.tex:236: Illegal parameter number in definition of \reserved@a.
+<to be read again> 
+                   \@nil 
+l.236 \begin{lstlisting}[language=GraphQL,]
+                                           
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+./capitoli/capitolo-3.tex:236: Illegal parameter number in definition of \reserved@b.
+<to be read again> 
+                   \@nil 
+l.236 \begin{lstlisting}[language=GraphQL,]
+                                           
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+) (./capitoli/capitolo-4.tex
 Overfull \hbox (3.78238pt too wide) has occurred while \output is active
 \T1/cmr/m/n/10 14 \T1/cmr/m/sl/10 CAPITOLO 3.  PROTOCOLLI DI MODELLAZIONE E TRASFERIMENTO DATI
  []
@@ -1460,7 +1667,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 10--12
 
 
 pdfTeX warning: pdflatex (file ./immagini/prototypeArchitecture.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<immagini/prototypeArchitecture.pdf, id=419, 544.73514pt x 217.71336pt>
+<immagini/prototypeArchitecture.pdf, id=487, 544.73514pt x 217.71336pt>
 File: immagini/prototypeArchitecture.pdf Graphic file (type pdf)
 <use immagini/prototypeArchitecture.pdf>
 Package pdftex.def Info: immagini/prototypeArchitecture.pdf  used on input line 27.
@@ -1473,7 +1680,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 ]
 
 pdfTeX warning: pdflatex (file ./immagini/ER_prototype.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<immagini/ER_prototype.pdf, id=426, 509.905pt x 226.74712pt>
+<immagini/ER_prototype.pdf, id=494, 509.905pt x 226.74712pt>
 File: immagini/ER_prototype.pdf Graphic file (type pdf)
 <use immagini/ER_prototype.pdf>
 Package pdftex.def Info: immagini/ER_prototype.pdf  used on input line 55.
@@ -1486,7 +1693,7 @@ Overfull \hbox (16.00052pt too wide) has occurred while \output is active
 [16 <./immagini/prototypeArchitecture.pdf>]
 
 pdfTeX warning: pdflatex (file ./immagini/controllerServiceRepository.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<immagini/controllerServiceRepository.pdf, id=478, 326.11836pt x 233.97414pt>
+<immagini/controllerServiceRepository.pdf, id=546, 326.11836pt x 233.97414pt>
 File: immagini/controllerServiceRepository.pdf Graphic file (type pdf)
 <use immagini/controllerServiceRepository.pdf>
 Package pdftex.def Info: immagini/controllerServiceRepository.pdf  used on input line 68.
@@ -1494,7 +1701,7 @@ Package pdftex.def Info: immagini/controllerServiceRepository.pdf  used on input
 
 
 pdfTeX warning: pdflatex (file ./immagini/getRequestFromClient.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<immagini/getRequestFromClient.pdf, id=480, 563.70598pt x 324.71312pt>
+<immagini/getRequestFromClient.pdf, id=548, 563.70598pt x 324.71312pt>
 File: immagini/getRequestFromClient.pdf Graphic file (type pdf)
 <use immagini/getRequestFromClient.pdf>
 Package pdftex.def Info: immagini/getRequestFromClient.pdf  used on input line 78.
@@ -1525,7 +1732,7 @@ Overfull \hbox (16.00052pt too wide) has occurred while \output is active
 [20]
 
 pdfTeX warning: pdflatex (file ./immagini/service_serviceImpl.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<immagini/service_serviceImpl.pdf, id=603, 191.01363pt x 198.7425pt>
+<immagini/service_serviceImpl.pdf, id=669, 191.01363pt x 198.7425pt>
 File: immagini/service_serviceImpl.pdf Graphic file (type pdf)
 <use immagini/service_serviceImpl.pdf>
 Package pdftex.def Info: immagini/service_serviceImpl.pdf  used on input line 184.
@@ -1563,7 +1770,7 @@ Package mdframed Info: mdframed works in twoside mode on input line 353.
 
 
 pdfTeX warning: pdflatex (file ./immagini/EmployeeControllerTest.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<immagini/EmployeeControllerTest.pdf, id=710, 1218.5525pt x 560.49402pt>
+<immagini/EmployeeControllerTest.pdf, id=776, 1218.5525pt x 560.49402pt>
 File: immagini/EmployeeControllerTest.pdf Graphic file (type pdf)
 <use immagini/EmployeeControllerTest.pdf>
 Package pdftex.def Info: immagini/EmployeeControllerTest.pdf  used on input line 354.
@@ -1573,7 +1780,7 @@ Package mdframed Info: mdframed inside float
 Package mdframed Info: mdframed inside a box 
  mdframed uses option nobreak mdframed on input line 355.
 Package mdframed Info: mdframed works in twoside mode on input line 371.
-<immagini/createEmployee.png, id=712, 808.01875pt x 286.57062pt>
+<immagini/createEmployee.png, id=778, 808.01875pt x 286.57062pt>
 File: immagini/createEmployee.png Graphic file (type png)
 <use immagini/createEmployee.png>
 Package pdftex.def Info: immagini/createEmployee.png  used on input line 372.
@@ -1590,7 +1797,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 380--381
 
 
 pdfTeX warning: pdflatex (file ./immagini/angularArchitecture.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<immagini/angularArchitecture.pdf, id=739, 417.35924pt x 219.92163pt>
+<immagini/angularArchitecture.pdf, id=805, 417.35924pt x 219.92163pt>
 File: immagini/angularArchitecture.pdf Graphic file (type pdf)
 <use immagini/angularArchitecture.pdf>
 Package pdftex.def Info: immagini/angularArchitecture.pdf  used on input line 386.
@@ -1609,14 +1816,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 391--393
 
 LaTeX Warning: Reference `employee-interface' on page 28 undefined on input line 404.
 
-LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <9> not available
-(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 406.
-<immagini/firstPage.png, id=796, 560.0925pt x 296.10625pt>
+<immagini/firstPage.png, id=861, 560.0925pt x 296.10625pt>
 File: immagini/firstPage.png Graphic file (type png)
 <use immagini/firstPage.png>
 Package pdftex.def Info: immagini/firstPage.png  used on input line 428.
 (pdftex.def)             Requested size: 260.39886pt x 137.6699pt.
-<immagini/getEmployee.png, id=798, 556.0775pt x 291.0875pt>
+<immagini/getEmployee.png, id=863, 556.0775pt x 291.0875pt>
 File: immagini/getEmployee.png Graphic file (type png)
 <use immagini/getEmployee.png>
 Package pdftex.def Info: immagini/getEmployee.png  used on input line 438.
@@ -1635,7 +1840,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 471--473
 
  []
 
-<immagini/postEmployee.png, id=816, 161.60374pt x 337.26pt>
+<immagini/postEmployee.png, id=882, 161.60374pt x 337.26pt>
 File: immagini/postEmployee.png Graphic file (type png)
 <use immagini/postEmployee.png>
 Package pdftex.def Info: immagini/postEmployee.png  used on input line 476.
@@ -1644,7 +1849,7 @@ Package pdftex.def Info: immagini/postEmployee.png  used on input line 476.
 
 LaTeX Warning: Reference `employee-service' on page 30 undefined on input line 481.
 
-<immagini/deleteEmployee.png, id=840, 145.54375pt x 74.2775pt>
+<immagini/deleteEmployee.png, id=906, 145.54375pt x 74.2775pt>
 File: immagini/deleteEmployee.png Graphic file (type png)
 <use immagini/deleteEmployee.png>
 Package pdftex.def Info: immagini/deleteEmployee.png  used on input line 486.
@@ -1667,12 +1872,12 @@ LaTeX Warning: Reference `get-all-test' on page 31 undefined on input line 518.
 [31]
 
 pdfTeX warning: pdflatex (file ./immagini/employeeSchema.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<immagini/employeeSchema.pdf, id=897, 490.03076pt x 242.50601pt>
+<immagini/employeeSchema.pdf, id=962, 490.03076pt x 242.50601pt>
 File: immagini/employeeSchema.pdf Graphic file (type pdf)
 <use immagini/employeeSchema.pdf>
 Package pdftex.def Info: immagini/employeeSchema.pdf  used on input line 557.
 (pdftex.def)             Requested size: 297.60114pt x 147.28459pt.
-<immagini/queryEmployee.png, id=899, 500.87125pt x 330.23375pt>
+<immagini/queryEmployee.png, id=964, 500.87125pt x 330.23375pt>
 File: immagini/queryEmployee.png Graphic file (type png)
 <use immagini/queryEmployee.png>
 Package pdftex.def Info: immagini/queryEmployee.png  used on input line 571.
@@ -1683,13 +1888,13 @@ Overfull \hbox (16.00052pt too wide) has occurred while \output is active
  []
 
 [32 <./immagini/employeeSchema.pdf>]
-<immagini/graphQLEmployeeController.png, id=917, 658.46pt x 530.98375pt>
+<immagini/graphQLEmployeeController.png, id=982, 658.46pt x 530.98375pt>
 File: immagini/graphQLEmployeeController.png Graphic file (type png)
 <use immagini/graphQLEmployeeController.png>
 Package pdftex.def Info: immagini/graphQLEmployeeController.png  used on input line 585.
 (pdftex.def)             Requested size: 297.60114pt x 239.99374pt.
  [33 <./immagini/queryEmployee.png>]
-<immagini/newEmployeeAdded.png, id=925, 844.15375pt x 158.5925pt>
+<immagini/newEmployeeAdded.png, id=991, 844.15375pt x 158.5925pt>
 File: immagini/newEmployeeAdded.png Graphic file (type png)
 <use immagini/newEmployeeAdded.png>
 Package pdftex.def Info: immagini/newEmployeeAdded.png  used on input line 603.
@@ -1700,7 +1905,7 @@ Overfull \hbox (16.00052pt too wide) has occurred while \output is active
  []
 
 [34 <./immagini/graphQLEmployeeController.png>] [35 <./immagini/newEmployeeAdded.png>]
-<immagini/resolverExample.png, id=938, 746.79pt x 355.3275pt>
+<immagini/resolverExample.png, id=1004, 746.79pt x 355.3275pt>
 File: immagini/resolverExample.png Graphic file (type png)
 <use immagini/resolverExample.png>
 Package pdftex.def Info: immagini/resolverExample.png  used on input line 627.
@@ -1709,7 +1914,7 @@ Package pdftex.def Info: immagini/resolverExample.png  used on input line 627.
 
 LaTeX Warning: Reference `employee-service' on page 36 undefined on input line 635.
 
-<immagini/employeeServiceMethodGraphql.png, id=940, 291.0875pt x 261.97874pt>
+<immagini/employeeServiceMethodGraphql.png, id=1006, 291.0875pt x 261.97874pt>
 File: immagini/employeeServiceMethodGraphql.png Graphic file (type png)
 <use immagini/employeeServiceMethodGraphql.png>
 Package pdftex.def Info: immagini/employeeServiceMethodGraphql.png  used on input line 640.
@@ -1727,7 +1932,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 659--661
 [37 <./immagini/employeeServiceMethodGraphql.png>]
 
 pdfTeX warning: pdflatex (file ./immagini/ER_sushilab.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<immagini/ER_sushilab.pdf, id=954, 691.4834pt x 208.67963pt>
+<immagini/ER_sushilab.pdf, id=1020, 691.4834pt x 208.67963pt>
 File: immagini/ER_sushilab.pdf Graphic file (type pdf)
 <use immagini/ER_sushilab.pdf>
 Package pdftex.def Info: immagini/ER_sushilab.pdf  used on input line 668.
@@ -1743,9 +1948,12 @@ Overfull \hbox (23.24205pt too wide) in paragraph at lines 733--751
  []
 
 
-Overfull \hbox (28.29637pt too wide) in paragraph at lines 765--782
+Overfull \hbox (34.6837pt too wide) in paragraph at lines 765--782
 [][] 
  []
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
 Overfull \hbox (16.00052pt too wide) has occurred while \output is active
@@ -1753,115 +1961,151 @@ Overfull \hbox (16.00052pt too wide) has occurred while \output is active
  []
 
 [40]
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
 Overfull \hbox (3.26915pt too wide) in paragraph at lines 815--835
 [][] 
  []
 
 
-LaTeX Warning: `!h' float specifier changed to `!ht'.
+Underfull \vbox (badness 5741) has occurred while \output is active []
 
-[41]
+ [41]
 Overfull \hbox (16.00052pt too wide) has occurred while \output is active
 \T1/cmr/m/n/10 42 \T1/cmr/m/sl/10 CAPITOLO 4.  INTRODUZIONE AI CASI D'USO PER L'ANALISI COMPARATIVA
  []
 
 [42] [43]
-Underfull \hbox (badness 10000) in paragraph at lines 893--895
+Underfull \hbox (badness 10000) in paragraph at lines 895--897
 
  []
 
-) (./capitoli/capitolo-5.tex
+./capitoli/capitolo-4.tex:901: Illegal parameter number in definition of \reserved@a.
+<to be read again> 
+                   \@nil 
+l.901 \begin{lstlisting}[language=GraphQL]
+                                          
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+./capitoli/capitolo-4.tex:901: Illegal parameter number in definition of \reserved@b.
+<to be read again> 
+                   \@nil 
+l.901 \begin{lstlisting}[language=GraphQL]
+                                          
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+
 Overfull \hbox (16.00052pt too wide) has occurred while \output is active
 \T1/cmr/m/n/10 44 \T1/cmr/m/sl/10 CAPITOLO 4.  INTRODUZIONE AI CASI D'USO PER L'ANALISI COMPARATIVA
  []
 
 [44]
+./capitoli/capitolo-4.tex:922: Illegal parameter number in definition of \reserved@a.
+<to be read again> 
+                   \@nil 
+l.922 \begin{lstlisting}[language=GraphQL]
+                                          
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+./capitoli/capitolo-4.tex:922: Illegal parameter number in definition of \reserved@b.
+<to be read again> 
+                   \@nil 
+l.922 \begin{lstlisting}[language=GraphQL]
+                                          
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+[45]
+./capitoli/capitolo-4.tex:949: Illegal parameter number in definition of \reserved@a.
+<to be read again> 
+                   \@nil 
+l.949 \begin{lstlisting}[language=GraphQL]
+                                          
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+./capitoli/capitolo-4.tex:949: Illegal parameter number in definition of \reserved@b.
+<to be read again> 
+                   \@nil 
+l.949 \begin{lstlisting}[language=GraphQL]
+                                          
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+
+Overfull \hbox (16.00052pt too wide) has occurred while \output is active
+\T1/cmr/m/n/10 46 \T1/cmr/m/sl/10 CAPITOLO 4.  INTRODUZIONE AI CASI D'USO PER L'ANALISI COMPARATIVA
+ []
+
+[46]) (./capitoli/capitolo-5.tex
+Underfull \hbox (badness 10000) in paragraph at lines 990--4
+
+ []
+
+[47] [48
+
+]
 Capitolo 5.
 
 Underfull \hbox (badness 10000) in paragraph at lines 9--14
 
  []
 
-<immagini/GraphQLUsageChart.png, id=1039, 928.46875pt x 292.09125pt>
+<immagini/GraphQLUsageChart.png, id=1174, 928.46875pt x 292.09125pt>
 File: immagini/GraphQLUsageChart.png Graphic file (type png)
 <use immagini/GraphQLUsageChart.png>
 Package pdftex.def Info: immagini/GraphQLUsageChart.png  used on input line 20.
 (pdftex.def)             Requested size: 372.0pt x 117.03052pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 27--29
-
- []
-
-
 Underfull \vbox (badness 1546) has occurred while \output is active []
 
- [45
-
- <./immagini/GraphQLUsageChart.png>]
+ [49 <./immagini/GraphQLUsageChart.png>]
 
 pdfTeX warning: pdflatex (file ./immagini/RESTEndpoints.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<immagini/RESTEndpoints.pdf, id=1047, 454.79913pt x 163.00899pt>
+<immagini/RESTEndpoints.pdf, id=1183, 454.79913pt x 163.00899pt>
 File: immagini/RESTEndpoints.pdf Graphic file (type pdf)
 <use immagini/RESTEndpoints.pdf>
-Package pdftex.def Info: immagini/RESTEndpoints.pdf  used on input line 35.
+Package pdftex.def Info: immagini/RESTEndpoints.pdf  used on input line 39.
 (pdftex.def)             Requested size: 372.0pt x 133.33492pt.
 
 
 pdfTeX warning: pdflatex (file ./immagini/GraphQLEndpoint.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<immagini/GraphQLEndpoint.pdf, id=1049, 465.23813pt x 113.32338pt>
+<immagini/GraphQLEndpoint.pdf, id=1185, 465.23813pt x 113.32338pt>
 File: immagini/GraphQLEndpoint.pdf Graphic file (type pdf)
 <use immagini/GraphQLEndpoint.pdf>
-Package pdftex.def Info: immagini/GraphQLEndpoint.pdf  used on input line 44.
+Package pdftex.def Info: immagini/GraphQLEndpoint.pdf  used on input line 48.
 (pdftex.def)             Requested size: 372.0pt x 90.61559pt.
 
-Overfull \hbox (10.23804pt too wide) has occurred while \output is active
-\T1/cmr/m/n/10 46 \T1/cmr/m/sl/10 CAPITOLO 5.  ANALISI COMPARATIVA DEI PROTOCOLLI REST E GRAPHQL
- []
-
-[46 <./immagini/RESTEndpoints.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 55--58
-
- []
-
-
-LaTeX Warning: Reference `casi-uso' on page 47 undefined on input line 59.
-
-[47 <./immagini/GraphQLEndpoint.pdf>]
-Overfull \hbox (10.23804pt too wide) has occurred while \output is active
-\T1/cmr/m/n/10 48 \T1/cmr/m/sl/10 CAPITOLO 5.  ANALISI COMPARATIVA DEI PROTOCOLLI REST E GRAPHQL
- []
-
-[48]
-Overfull \hbox (0.659pt too wide) in paragraph at lines 121--121
-[]      \T1/cmtt/m/n/10 }                                         "name": "Progetto Beta"[] 
- []
-
-
-Overfull \hbox (0.659pt too wide) in paragraph at lines 121--121
-[]                                                \T1/cmtt/m/n/10 "name": "Progetto Teta"[] 
- []
-
-[49]
 Overfull \hbox (10.23804pt too wide) has occurred while \output is active
 \T1/cmr/m/n/10 50 \T1/cmr/m/sl/10 CAPITOLO 5.  ANALISI COMPARATIVA DEI PROTOCOLLI REST E GRAPHQL
  []
 
-[50]
+[50 <./immagini/RESTEndpoints.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 59--62
 
-LaTeX Warning: Reference `casi-uso' on page 51 undefined on input line 158.
+ []
 
-[51]
+[51 <./immagini/GraphQLEndpoint.pdf>]
 Overfull \hbox (10.23804pt too wide) has occurred while \output is active
 \T1/cmr/m/n/10 52 \T1/cmr/m/sl/10 CAPITOLO 5.  ANALISI COMPARATIVA DEI PROTOCOLLI REST E GRAPHQL
  []
 
 [52]
+Overfull \hbox (0.659pt too wide) in paragraph at lines 125--125
+[]      \T1/cmtt/m/n/10 }                                         "name": "Progetto Beta"[] 
+ []
 
-LaTeX Warning: Reference `casi-uso' on page 53 undefined on input line 169.
+
+Overfull \hbox (0.659pt too wide) in paragraph at lines 125--125
+[]                                                \T1/cmtt/m/n/10 "name": "Progetto Teta"[] 
+ []
 
 [53]
 Overfull \hbox (10.23804pt too wide) has occurred while \output is active
@@ -1869,69 +2113,100 @@ Overfull \hbox (10.23804pt too wide) has occurred while \output is active
  []
 
 [54] [55]
-
-pdfTeX warning: pdflatex (file ./immagini/ibridSolution.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<immagini/ibridSolution.pdf, id=1191, 442.65375pt x 225.84375pt>
-File: immagini/ibridSolution.pdf Graphic file (type pdf)
-<use immagini/ibridSolution.pdf>
-Package pdftex.def Info: immagini/ibridSolution.pdf  used on input line 207.
-(pdftex.def)             Requested size: 297.60114pt x 151.84521pt.
-
 Overfull \hbox (10.23804pt too wide) has occurred while \output is active
 \T1/cmr/m/n/10 56 \T1/cmr/m/sl/10 CAPITOLO 5.  ANALISI COMPARATIVA DEI PROTOCOLLI REST E GRAPHQL
  []
 
-[56 <./immagini/ibridSolution.pdf>]
-Overfull \hbox (28.51515pt too wide) in paragraph at lines 218--252
+[56] [57]
+Overfull \hbox (10.23804pt too wide) has occurred while \output is active
+\T1/cmr/m/n/10 58 \T1/cmr/m/sl/10 CAPITOLO 5.  ANALISI COMPARATIVA DEI PROTOCOLLI REST E GRAPHQL
+ []
+
+[58] [59]
+
+pdfTeX warning: pdflatex (file ./immagini/ibridSolution.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
+<immagini/ibridSolution.pdf, id=1325, 442.65375pt x 225.84375pt>
+File: immagini/ibridSolution.pdf Graphic file (type pdf)
+<use immagini/ibridSolution.pdf>
+Package pdftex.def Info: immagini/ibridSolution.pdf  used on input line 210.
+(pdftex.def)             Requested size: 297.60114pt x 151.84521pt.
+
+Overfull \hbox (10.23804pt too wide) has occurred while \output is active
+\T1/cmr/m/n/10 60 \T1/cmr/m/sl/10 CAPITOLO 5.  ANALISI COMPARATIVA DEI PROTOCOLLI REST E GRAPHQL
+ []
+
+[60 <./immagini/ibridSolution.pdf>] [61]
+Overfull \hbox (28.51515pt too wide) in paragraph at lines 221--255
 [][] 
  []
 
-) (./capitoli/capitolo-6.tex [57] [58
+) (./capitoli/capitolo-6.tex
+Overfull \hbox (10.23804pt too wide) has occurred while \output is active
+\T1/cmr/m/n/10 62 \T1/cmr/m/sl/10 CAPITOLO 5.  ANALISI COMPARATIVA DEI PROTOCOLLI REST E GRAPHQL
+ []
 
-]
+[62]
 Capitolo 6.
-) (./capitoli/capitolo-7.tex [59] [60
+) (./capitoli/capitolo-7.tex [63
+
+] [64
 
 ]
 Capitolo 7.
-) (./capitoli/capitolo-A.tex [61] [62
+) (./capitoli/capitolo-A.tex [65] [66
 
 ]
 Appendice A.
-) [63] [64
+) [67] [68
 
 ]
 No file tesi.acr.
 No file tesi.gls.
-(./inizio-fine/bibliografia.tex [65] [66
+(./inizio-fine/bibliografia.tex [69] [70
 
-]) [67
+]) [71
 
 ] (./tesi.aux)
 
 LaTeX Warning: There were undefined references.
 
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
 Package logreq Info: Writing requests to 'tesi.run.xml'.
 \openout1 = `tesi.run.xml'.
 
- ) 
+ )
+(\end occurred inside a group at level 1)
+
+### semi simple group (level 1) entered at line 157 (\begingroup)
+### bottom level 
 Here is how much of TeX's memory you used:
- 38271 strings out of 478994
- 649414 string characters out of 5858183
- 1795211 words of memory out of 5000000
- 54255 multiletter control sequences out of 15000+600000
- 441900 words of font info for 241 fonts, out of 8000000 for 9000
+ 38554 strings out of 478994
+ 654081 string characters out of 5858183
+ 1820731 words of memory out of 5000000
+ 54422 multiletter control sequences out of 15000+600000
+ 441996 words of font info for 241 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
- 102i,17n,125p,1362b,3549s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 102i,17n,125p,1342b,6334s stack positions out of 5000i,500n,10000p,200000b,80000s
 pdfTeX warning (dest): name{glo:api} has been referenced but does not exist, replaced by a fixed one
 
 {/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/latxfont/lcircle1.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfbx0900.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfbx1728.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfbx2074.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfbx2488.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfcc1000.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/s
 fcc1200.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfcc1440.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm0600.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm0700.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm0800.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm0900.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfsi1000.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfsl1000.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfsl1200.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfti0800.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfti0900.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/
 sfti1000.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sftt0900.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sftt1000.pfb>
-Output written on tesi.pdf (79 pages, 1686492 bytes).
+Output written on tesi.pdf (83 pages, 1702774 bytes).
 PDF statistics:
- 1691 PDF objects out of 1728 (max. 8388607)
- 1457 compressed objects within 15 object streams
- 442 named destinations out of 1000 (max. 500000)
- 71252 words of extra memory for PDF output out of 74296 (max. 10000000)
+ 1856 PDF objects out of 2073 (max. 8388607)
+ 1616 compressed objects within 17 object streams
+ 558 named destinations out of 1000 (max. 500000)
+ 71276 words of extra memory for PDF output out of 74296 (max. 10000000)
+
+ti0800.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfti0900.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/
+sfti1000.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sftt0900.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sftt1000.pfb>
+Output written on tesi.pdf (83 pages, 1702699 bytes).
+PDF statistics:
+ 1855 PDF objects out of 2073 (max. 8388607)
+ 1615 compressed objects within 17 object streams
+ 558 named destinations out of 1000 (max. 500000)
+ 71276 words of extra memory for PDF output out of 74296 (max. 10000000)
 
