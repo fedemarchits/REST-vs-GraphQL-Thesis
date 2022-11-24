@@ -100,9 +100,11 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsubsection}{Casi d'uso o Funzionalità}{43}{section*.82}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.2.4}Migrazione del BE da REST a GraphQL}{43}{subsection.4.2.4}%
+\contentsline {subsection}{\numberline {4.2.4}Migrazione del backend da REST a Graphql}{43}{subsection.4.2.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.2.5}Migrazione del FE da REST a GraphQL}{43}{subsection.4.2.5}%
+\contentsline {paragraph}{Analisi sulle API}{44}{section*.84}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.2.5}Migrazione del frontend da REST a GraphQL}{44}{subsection.4.2.5}%
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {5}Analisi comparativa dei protocolli REST e GraphQL}{45}{chapter.5}%
 \defcounter {refsection}{0}\relax 
@@ -114,53 +116,53 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {5.2.2}Overfetching e Underfetching}{47}{subsection.5.2.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Overfetching}{47}{section*.86}%
+\contentsline {paragraph}{Overfetching}{47}{section*.88}%
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Underfetching}{48}{section*.87}%
+\contentsline {paragraph}{Underfetching}{48}{section*.89}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Utilizzo del protocollo HTTP}{49}{section*.88}%
+\contentsline {subsubsection}{Utilizzo del protocollo HTTP}{49}{section*.90}%
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Metodi HTTP}{49}{section*.89}%
+\contentsline {paragraph}{Metodi HTTP}{49}{section*.91}%
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Codici di stato}{49}{section*.90}%
+\contentsline {paragraph}{Codici di stato}{49}{section*.92}%
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Caching}{50}{section*.91}%
+\contentsline {paragraph}{Caching}{50}{section*.93}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Altri aspetti comparativi}{50}{section*.92}%
+\contentsline {subsubsection}{Altri aspetti comparativi}{50}{section*.94}%
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Documentazione}{50}{section*.93}%
+\contentsline {paragraph}{Documentazione}{50}{section*.95}%
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Sicurezza}{51}{section*.94}%
+\contentsline {paragraph}{Sicurezza}{51}{section*.96}%
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Formato dati supportati}{51}{section*.95}%
+\contentsline {paragraph}{Formato dati supportati}{51}{section*.97}%
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Versionamento ed evoluzione delle API}{51}{section*.96}%
+\contentsline {paragraph}{Versionamento ed evoluzione delle API}{51}{section*.98}%
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Trasmissione di dati in tempo reale}{52}{section*.97}%
+\contentsline {paragraph}{Trasmissione di dati in tempo reale}{52}{section*.99}%
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{File uploading}{52}{section*.98}%
+\contentsline {paragraph}{File uploading}{52}{section*.100}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Aspetti comparativi pratici}{52}{section*.99}%
+\contentsline {subsubsection}{Aspetti comparativi pratici}{52}{section*.101}%
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Documentazione online}{52}{section*.100}%
+\contentsline {paragraph}{Documentazione online}{52}{section*.102}%
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Complessità nell'apprendimento di REST e GraphQL}{52}{section*.101}%
+\contentsline {paragraph}{Complessità nell'apprendimento di REST e GraphQL}{52}{section*.103}%
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Sviluppo e migrazione backend}{53}{section*.102}%
+\contentsline {paragraph}{Sviluppo e migrazione backend}{53}{section*.104}%
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Sviluppo e migrazione frontend}{53}{section*.103}%
+\contentsline {paragraph}{Sviluppo e migrazione frontend}{53}{section*.105}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Analisi comparativa prestazionale}{54}{section*.104}%
+\contentsline {subsubsection}{Analisi comparativa prestazionale}{54}{section*.106}%
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {5.3}Conclusioni}{54}{section.5.3}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {5.3.1}Linee guida prima di intraprendere uno sviluppo o la migrazione di un applicativo da/in REST VS GraphQL}{54}{subsection.5.3.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Analisi dal punto di vista di uno sviluppatore frontend}{54}{section*.105}%
+\contentsline {paragraph}{Analisi dal punto di vista di uno sviluppatore frontend}{54}{section*.107}%
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Analisi dal punto di vista di uno sviluppatore backend}{55}{section*.106}%
+\contentsline {paragraph}{Analisi dal punto di vista di uno sviluppatore backend}{55}{section*.108}%
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Migrazione}{56}{section*.107}%
+\contentsline {paragraph}{Migrazione}{56}{section*.109}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {5.3.2}Tabella di comparazione riassuntiva}{57}{subsection.5.3.2}%
 \defcounter {refsection}{0}\relax 
@@ -178,4 +180,4 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {A}Appendice A}{63}{appendix.Alph1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{Bibliografia}{67}{appendix*.110}%
+\contentsline {chapter}{Bibliografia}{67}{appendix*.112}%

@@ -848,25 +848,62 @@ L'applicativo è stato realizzato in Angular e dunque è composto da:
   \item \textbf{Components}: previsti da Angular sono necessari per gestire le viste.
 \end{itemize}
 \subsubsection{Casi d'uso o Funzionalità}
-Sono presenti due attori principali:
+Nella seguente sezione verranno illustrati brevemente i principali attori e i loro casi d'uso. Sono presenti due attori principali:
 \begin{itemize}
-  \item \textbf{Cliente}: si tratta del cliente del ristorante che utilizza l'applicazione web; a sua volta si suddivide in:
+  \item \textbf{Cliente}: si tratta del cliente del ristorante; a sua volta si suddivide in:
     \begin{itemize}
-      \item \textit{Cliente non riconosciuto}: cliente non loggato;
-      \item \textit{Cliente riconosciuto}: cliente loggato;
-      \item \textit{Cameriere}: colui che prende le ordinazioni;
+      \item \textit{Cliente non riconosciuto}: cliente non loggato; può effettuare tutte le azioni di consultazione del menu e dei piatti, ordinare i piatti, unirsi ad un tavolo, generare una sessione, ricercare i ristoranti e infine tutte le azioni riguardanti il login o registrazione;
+      \item \textit{Cliente riconosciuto}: cliente loggato; estende il cliente non riconosciuto; potrà gestire i preferiti, comporre la propria blacklist, valutare i piatti o eseguire il logout;
     \end{itemize}
-  \item \textbf{Gestore}: rappresenta il gestore di un ristorante che utilizza l'applicativo; a sua volta si suddivide in:
+  \item \textbf{Gestore}: rappresenta il gestore di un ristorante; a sua volta si suddivide in:
     \begin{itemize}
-      \item \textit{Gestore riconosciuto}: gestore loggato con account da gestore;
-      \item \textit{Gestore non riconosciuto}: gestore non loggato;
+      \item \textit{Gestore non riconosciuto}: gestore non loggato; può registrarsi o effettuare il login;
+      \item \textit{Gestore riconosciuto}: gestore loggato con account da gestore; può effettuare il logout, visualizzare i clienti e i loro dati, attribuire punti o sottrarne ai clienti, confermare gli ordini, modificare e aggiungere piatti, menù e relative fasce orarie;
+      \item \textit{Cameriere}: cameriere del ristorante; può visualizzare le ordinazioni di un determinato tavolo;
     \end{itemize}
 \end{itemize}
+\subsection{Migrazione del backend da REST a Graphql}
+La migrazione del backend applica la tecnica \textit{Schema First}. È stata suddivisa in tre parti principali:
+\begin{itemize}
+  \item \textbf{Analisi sui tipi e creazione GraphQL Schema}: in questa prima fase si analizzano i tipi che devono essere esposti al client, dunque si procede con la scrittura del GraphQL Schema definendo i tipi;
+  \item \textbf{Analisi sulle API}: sono state analizzate le API che si vuole migrare e successivamente sono state dichiarate nel GraphQL Schema;
+  \item \textbf{Migrazione dei controller}: è stato adattato il codice del controller a GraphQL;
+\end{itemize}
+\subsubsection*{Analisi sui tipi e loro definizione}
+É necessario analizzare e dunque riportare solo le entità che devono essere esposti al client. Oltre a questi è necessario anche definire nuovi tipi a seconda delle necessità. Di seguito vengono esposti i tipi che è stato scelto di dichiarare nel GraphQL Schema:
+\begin{itemize}
+  \item \textbf{Tipi di output}: sono i tipi che verranno ritornati al client, tra questi troviamo:
+  \begin{itemize}
+    \item \textit{Piatto}: per ritornare uno o più piatti;
+    \item \textit{Menu}: per ritornare il menu;
+    \item \textit{FasciaOraria}: per ritornare le fasce orarie riguardo la disponibilità di un menù;
+    \item \textit{PiattoPreferito}: si differenzia dal tipo \textit{Piatto} in quanto deve specificare le preferenze dell'utente, eventuali valutazioni, ecc...;
+    \item \textit{LoginSession}: per ritornare i dati di login, comprende una stringa per il token della sessione di login e la durata in secondi;
+    \item \textit{Ordine}: si tratta di un oggetto che specifica un piatto, la quantità ordinata e infine una eventuale nota;
+    \item \textit{Utente}: per creare un nuovo utente o effettuare il login;
+  \end{itemize}
+  \item \textbf{Tipi di input}: sono i tipi che verranno ricevuti in input dal client, tra questi troviamo:
+  \begin{itemize}
+    \item \textit{PiattoInput}: per aggiunta e modifica di uno o più piatti che si ricevono in input dal client;
+    \item \textit{MenuInput}: per aggiunta e modifica di uno o più menu;
+    \item \textit{OrdineInput}: per aggiunta di un ordine, specifica il piatto, la sua quantità ed eventuali note da parte del cliente;
+    \item \textit{UtenteOutput}: per ritornare un utente e i suoi dati;
+  \end{itemize}
+\end{itemize}
+I tipi elencati sono esclusivamente quelli necessari per la definizione delle query, mutation e subscription. Verranno poi realizzato il tipo \textit{OperationSuccess} che viene ritornato, in caso di successo, per tutte quelle mutation che eseguono un'operazione e non ritornano dati. Questo tipo è comoposto da un solo campo String contenente un eventuale messaggio.\\ \\
+A questo punto sono stati creati in Java le classi corrispondenti a tutti i tipi di input poiché sono composti da campi dati in forma differente rispetto alle entità nel server. Per i tipi di output questa operazione non è necessaria poiché i loro campi corrispondono alle entità in Java. Fanno eccezzione i tipi \textit{Piatto}, \textit{PiattoPreferito} e \textit{LoginSession} poiché si differenziano leggermente dalle classi Java corrispondenti.
+\paragraph{Analisi sulle API}
+A questo punto sono state ristrutturate in maniera lieve le API presenti nel server REST. Questo è stato fatto per due principali motivi: il primo riguarda il fatto che il backend REST non aveva delle API ben strutturate, il secondo riguarda il fatto che in GraphQL si sfrutta il tipo subscription.
+%Tavolo controller:
+%Return [Integer] menu compatto (ha anche id menu) BOHHH
+%Utente controller:
+%Da capire .... Return [preferiti]
+%[Ingredienti] Input
 
-Sono presenti due attori principali
-\subsection{Migrazione del BE da REST a GraphQL}
-Molto simile a quanto scritto per il prototipo nella parte di migrazione adattato alle API specifiche di SushiLab.
-\subsection{Migrazione del FE da REST a GraphQL}
+
+
+
+\subsection{Migrazione del frontend da REST a GraphQL}
 
 
 % \subsection{Progettazione }
