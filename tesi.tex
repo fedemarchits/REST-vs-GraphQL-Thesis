@@ -112,6 +112,38 @@
 \usepackage[backend=biber,style=verbose-ibid,hyperref,backref]{biblatex}
 \usepackage{colortbl}
 \usepackage{array,booktabs}
+\usepackage{listings}
+\lstdefinelanguage{JavaScript}{
+  %keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break},
+  %keywordstyle=\color{blue}\bfseries,
+  keywords={string, number, Date, typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break, let},
+  keywordstyle=\color{Plum}\bfseries,
+  ndkeywords={class, export, boolean, throw, implements, import, this, interface, describe, it},
+  ndkeywordstyle=\color{NavyBlue}\bfseries,
+  %skewywords={string, numer, Date},
+  sensitive=false,
+  comment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  commentstyle=\color{purple}\ttfamily,
+  stringstyle=\color{red}\ttfamily,
+  morestring=[b]',
+  morestring=[b]"
+}
+\lstset{
+   language=JavaScript,
+   extendedchars=true,
+   basicstyle=\footnotesize\ttfamily,
+   showstringspaces=false,
+   showspaces=false,
+   numbers=left,
+   numberstyle=\footnotesize,
+   numbersep=9pt,
+   tabsize=2,
+   breaklines=true,
+   showtabs=false,
+   captionpos=b
+}
+
                                         % eccellente pacchetto per la bibliografia;
                                         % produce uno stile di citazione autore-anno;
                                         % lo stile "numeric-comp" produce riferimenti numerici

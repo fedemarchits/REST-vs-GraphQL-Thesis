@@ -1,15 +1,15 @@
 [0] Config.pm:311> INFO - This is Biber 2.16
-[1] Config.pm:314> INFO - Logfile is 'tesi.blg'
-[92] biber-darwin:340> INFO - === Wed Nov 23, 2022, 16:31:58
-[109] Biber.pm:415> INFO - Reading 'tesi.bcf'
-[243] Biber.pm:949> INFO - Using all citekeys in bib section 0
-[260] Biber.pm:4340> INFO - Processing section 0
-[277] Biber.pm:4531> INFO - Looking for bibtex format file 'bibliografia.bib' for section 0
-[279] bibtex.pm:1689> INFO - LaTeX decoding ...
-[284] bibtex.pm:1494> INFO - Found BibTeX data source 'bibliografia.bib'
-[325] UCollate.pm:68> INFO - Overriding locale 'it-IT' defaults 'variable = shifted' with 'variable = non-ignorable'
-[325] UCollate.pm:68> INFO - Overriding locale 'it-IT' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[325] Biber.pm:4168> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'it-IT'
-[326] Biber.pm:4174> INFO - No sort tailoring available for locale 'it-IT'
-[335] bbl.pm:654> INFO - Writing 'tesi.bbl' with encoding 'UTF-8'
-[336] bbl.pm:757> INFO - Output to tesi.bbl
+[0] Config.pm:314> INFO - Logfile is 'tesi.blg'
+[96] biber-darwin:340> INFO - === Thu Nov 24, 2022, 11:12:57
+[132] Biber.pm:415> INFO - Reading 'tesi.bcf'
+[255] Biber.pm:949> INFO - Using all citekeys in bib section 0
+[283] Biber.pm:4340> INFO - Processing section 0
+[297] Biber.pm:4531> INFO - Looking for bibtex format file 'bibliografia.bib' for section 0
+[299] bibtex.pm:1689> INFO - LaTeX decoding ...
+[304] bibtex.pm:1494> INFO - Found BibTeX data source 'bibliografia.bib'
+[358] UCollate.pm:68> INFO - Overriding locale 'it-IT' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[369] UCollate.pm:68> INFO - Overriding locale 'it-IT' defaults 'variable = shifted' with 'variable = non-ignorable'
+[370] Biber.pm:4168> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'it-IT'
+[370] Biber.pm:4174> INFO - No sort tailoring available for locale 'it-IT'
+[388] bbl.pm:654> INFO - Writing 'tesi.bbl' with encoding 'UTF-8'
+[390] bbl.pm:757> INFO - Output to tesi.bbl

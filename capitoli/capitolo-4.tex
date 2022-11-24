@@ -92,14 +92,39 @@ A ciascuna entità del database viene fatta corrispondere una classe in Java qui
 Ciascuna classe implementa la classe \textit{Serializable}, così facendo è possibile serializzare i dati in flussi di byte. La serializzazione viene utilizzata poiché si tratta di dati che dovranno essere memorizzati nel database, è necessario serializzarli poiché abbandonano la Java Virtual Machine. Viene inoltre utilizzato un \textit{serialVersionUID} per attribuire una versione a ciascuna classe serializzabile in modo da garantire la consistenza delle classi memorizzate in banca dati.\\
 Di seguito l'esempio dell'implementazione della classe Employee:
 %%% IMG
-\FloatBarrier
-\begin{figure}[!ht]
-\centering
-\includegraphics[width=0.9\linewidth]{immagini/employee_entity.png}
-\caption{Esempio di implementazione dell'entità Employee in Spring Boot.}
-\label{employee-entity-definition}
-\end{figure}
-\FloatBarrier
+\begin{lstlisting}[language=Java, morecomment={[s][\color{DarkOrchid}]{\@}{\ }}, morecomment={[s][\color{OliveGreen}]{"}{"}},]
+@Entity
+@Table (name = "EMPLOYEE")
+@Data
+@NoArgsConstructor ()
+@AllArgsConstructor ()
+public class Employee implements Serializable {
+    private static final long serialVersionUID = 8452515756703751450L;
+    @Id
+    @Column (name = "ID")
+    private String id;
+    private String name;
+    private String surname;
+    private Long salary;
+    private Date birth;
+    @ManyToMany
+    @JoinTable (name = "EMPLOYEE_PROJECTS", joinColumns = { @JoinColumn (name = "EMPLOYEE_ID")},
+            inverseJoinColumns = { @JoinColumn (name = "PROJECT_ID")})
+    @JsonIgnore
+    private Set<Project> projects = new HashSet<>();
+    @ManyToOne
+    @JsonBackReference(value = "employee_department")
+    private Department department;
+}
+\end{lstlisting}
+%\FloatBarrier
+%\begin{figure}[!ht]
+%\centering
+%\includegraphics[width=0.9\linewidth]{immagini/employee_entity.png}
+%\caption{Esempio di implementazione dell'entità Employee in Spring Boot.}
+%\label{employee-entity-definition}
+%\end{figure}
+%\FloatBarrier
 %%% IMG
 Vengono attribuite alla classe Employee diverse annotazioni Spring, tra queste:
 \begin{itemize}
@@ -126,15 +151,25 @@ A questo punto si procede con la realizzazione delle classi repository: ciascuna
 Estendendo la JPARepository per ciascun tipo è possibile avere a disposizione diversi metodi per eseguire operazioni già implementate come: findAll, count, existById, SaveAndFlush, ecc...\\
 Per realizzare ulteriori metodi è sufficiente rispettare le corretta sintassi del nome del metodo affinché Spring si occupi in automatico della sua implementazione.\\
 Nel caso in cui si voglia realizzare una query personalizzata si utilizza l'annotazione \textbf{@Query} alla quale è possibile passare come attributo la query che desideriamo in linguaggio JPQL. In figura \ref{employee-repository} un esempio di quanto appena detto:
+\begin{lstlisting}[language=Java, morecomment={[s][\color{DarkOrchid}]{@}{\ }},  morecomment={[s][\color{OliveGreen}]{"}{"}},]
+@Repository ()
+public interface EmployeeRepository extends JpaRepository<Employee, String> {
+    List<Employee> findByName(String name);
+    List<Employee> findBySurname(String surname);
+    List<Employee> findByDepartment_id(Long id);
+    @Query ("SELECT DISTINCT e FROM Employee e WHERE e.birth BETWEEN ?1 AND ?2")
+    List<Employee> findByBornDateRange(@Param ("from") Date from, @Param ("to") Date to);
+}
+\end{lstlisting}
 %%% IMG
-\FloatBarrier
-\begin{figure}[!ht]
-\centering
-\includegraphics[width=1\linewidth]{immagini/employee_repository.png}
-\caption{Esempio di implementazione della repository di Employee in Spring Boot.}
-\label{employee-repository}
-\end{figure}
-\FloatBarrier
+%\FloatBarrier
+%\begin{figure}[!ht]
+%\centering
+%\includegraphics[width=1\linewidth]{immagini/employee_repository.png}
+%\caption{Esempio di implementazione della repository di Employee in Spring Boot.}
+%\label{employee-repository}
+%\end{figure}
+%\FloatBarrier
 %%% IMG
 Oltre ai classici metodi di ricerca disponibili sono stati realizzati alcuni metodi per la ricerca di impiegati per nome, per cognome e per id di dipartimento in cui lavorano. Infine è stata realizzata una query personalizzata per la ricerca di impiegati nati in un range di date.\\
 Da evidenziare l'uso dell'annotazione \textbf{@Repository} attribuita alla'interfaccia, fondamentale al fine di indicare che la classe fornisce meccanismi per modellare i dati del database.
@@ -153,17 +188,40 @@ Al fine di rispettare i principi SOLID della programmazione, per questioni di lo
 \FloatBarrier
 %%% IMG
 Di seguito (fig. \ref{employeeServiceImpl}) viene riportato l'esempio dell'implementazione del servizio \textbf{EmployeeServiceImpl}.
+\begin{lstlisting}[language=Java, morecomment={[s][\color{DarkOrchid}]{@}{\ }},  morecomment={[s][\color{OliveGreen}]{"}{"}},]
+@Service ()
+public class EmployeeServiceImpl implements EmployeeService{
+    @Autowired
+    private EmployeeRepository employeeRepository;
+    @Override
+    public List<Employee> SelAll() { ... }
+    @Override
+    public Optional<Employee> SelById(String id){ ... }
+    @Override
+    public List<Employee> SelByName(String name){ ... }
+    @Override
+    public List<Employee> SelBySurname(String surname){ ... }
+    @Override
+    public List<Employee> SelByDepartment(Long id){ ... }
+    @Override
+    public List<Employee> SelByBornInRange(Date from, Date to){ ... }
+    @Override
+    public void InsEmployee(Employee employee){ ... }
+    @Override
+    public void DelEmployee(Employee employee){ ... }
+}
+\end{lstlisting}
 %%% IMG
-\FloatBarrier
-\begin{figure}[!ht]
-\begin{mdframed}
-\centering
-\includegraphics[width=1\linewidth]{immagini/employeeServiceImpl.png}
-\end{mdframed}
-\caption{Classe EmployeeServiceImpl.}
-\label{employeeServiceImpl}
-\end{figure}
-\FloatBarrier
+%\FloatBarrier
+%\begin{figure}[!ht]
+%\begin{mdframed}
+%\centering
+%\includegraphics[width=1\linewidth]{immagini/employeeServiceImpl.png}
+%\end{mdframed}
+%\caption{Classe EmployeeServiceImpl.}
+%\label{employeeServiceImpl}
+%\end{figure}
+%\FloatBarrier
 %%% IMG
 In figura \ref{employeeServiceImpl} è possibile notare come la classe sia caratterizzata dall'annotazione \textbf{@Service} la quale viene utilizzata per indicare classi che contengono la business logic e per marcare la classe come service provider.\\\\
 Le annotazioni utilizzate sono:
@@ -174,23 +232,58 @@ Le annotazioni utilizzate sono:
 Sono stati resi disponibili metodi semplici che vanno ad invocare, grazie alla dipendenza con la repository, le query già disponibili con la \textit{JPARepository<T, ID>} e la query vista precedenemente \textit{SelByBornInRage}.\\
 Lo strato di servizio si incarica della gestione delle eccezioni estendendo il gestore  \textit{HandlerExceptionResolver}; in questo modo si migliora il comportamento di default che non sempre fornisce informazioni comprensibili sulla natura dell'errore.
 \subsubsection*{Controller}
-Lo strato di controller si occupa di gestire le richieste che il server riceve attraverso il protocollo HTTP e di mapparle inoltre sui metodi corrispondenti. In figura \ref{employeeController} il controller di Employee, ovvero la classe \textit{EmployeeController}:
-\FloatBarrier
-\begin{figure}[!ht]
-\begin{mdframed}
-\centering
-\includegraphics[width=1\linewidth]{immagini/EmployeeController.png}
-\end{mdframed}
-\caption{Classe EmployeeController.}
-\label{employeeController}
-\end{figure}
-\FloatBarrier
+Lo strato di controller si occupa di gestire le richieste che il server riceve attraverso il protocollo HTTP e di mapparle inoltre sui metodi corrispondenti. Di seguito il codice del controller \ref{emp-controller}:
+\begin{lstlisting}[title={EmployeeController.class}, label={emp-controller}, language=Java, morecomment={[s][\color{DarkOrchid}]{@}{\ }},  morecomment={[s][\color{OliveGreen}]{"}{"}},]
+@RestController
+@RequestMapping (value = "api/employee")
+public class EmployeeController {
+
+    @Autowired ()
+    private EmployeeService employeeService;
+
+    @CrossOrigin
+    @GetMapping (value = "/all", produces = "application/json")
+    public ResponseEntity<List<Employee>> listAllEmployee(){ ... }
+
+    @GetMapping (value = "name/{name}", produces = "application/json")
+    public ResponseEntity<List<Employee>> listEmployeeByName(@PathVariable("name") String name){ ... }
+
+    @GetMapping(value = "surname/{surname}", produces = "application/json")
+    public ResponseEntity<List<Employee>> listEmployeeBySurname(@PathVariable("surname") String surname){ ... }
+
+    @GetMapping (value = "department/{department_id}", produces = "application/json")
+    public ResponseEntity<List<Employee>> listEmployeeByDepartment(@PathVariable("department_id") Long id){ ... }
+
+    @GetMapping (value = "born/{from}/{to}", produces = "application/json")
+    public ResponseEntity<List<Employee>> listEmployeeBornInDateRange(@PathVariable("from")
+            @DateTimeFormat (pattern="yyyy-MM-dd") Date from, @PathVariable ("to") @DateTimeFormat  (pattern="yyyy-MM-dd") Date to){ ... }
+
+    @PostMapping (value = "/insert", consumes = "application/json")
+    public ResponseEntity<Employee> createEmployee(@RequestBody Employee employee){ ... }
+
+    @DeleteMapping(value = "/delete/{id}")
+    public ResponseEntity<?> deleteEmployee(@PathVariable ("id") String id){ ... }
+
+    @PutMapping (value = "/update/{id}", consumes = "application/json")
+    public ResponseEntity<?> updateEmployee(@PathVariable("id") String id, @RequestBody Employee employee){ ... }
+}
+\end{lstlisting}
+%\FloatBarrier
+%\begin{figure}[!ht]
+%\begin{mdframed}
+%\centering
+%\includegraphics[width=1\linewidth]{immagini/EmployeeController.png}
+%\end{mdframed}
+%\caption{Classe EmployeeController.}
+%\label{employeeController}
+%\end{figure}
+%\FloatBarrier
 Questa classe permette di gestire e mappare le richieste a seconda dell'url dal quale proviene la richiesta. Di seguito le annotazioni associate alla classe:
 \begin{itemize}
   \item \textbf{@RestController}: definisce la classe come controller di tipo REST;
   \item \textbf{@RequestMapping}: indica l'url al quale il client dovrà mandare le richieste per quello specifico controller.
 \end{itemize}
-Il controller ha una dipendenza con il servizio \textit{EmployeeService}, necessaria per l'invocazione dei suoi metodi. Le annotazioni associate ai metodi del controller sono:
+Il controller ha una dipendenza con il servizio \textit{EmployeeService}, necessaria per l'invocazione dei suoi metodi. Ciascun metodo ritorna l'oggetto \textit{ResponseEntity<>} e consiste in una risposta HTTP alla quale viene modificato l'header e aggiunto il JSON nel body prima di essere ritornato. Le annotazioni associate ai metodi del controller sono:
 \begin{itemize}
   \item \textbf{@GetMapping}: indica che si tratta di un metodo per la risoluzione di una richiesta GET; specifica l'url al quale ricevere la richiesta e ciò che viene ritornato, ovvero un file JSON;
   \item \textbf{@PostMapping}: indica che si tratta di un metodo per la risoluzione di una richiesta POST, specifica l'url al quale ricevere la richiesta e ciò che richiede in input, ovvero un file JSON passato attraverso il body della richiesta HTTP;
@@ -214,16 +307,45 @@ Essendo un prototipo incentrato sulla realizzazione delle API sono stati svolti 
 Per eseguire i test sui metodi del controller è stato scelto di utilizzare il framework JUnit5.\\
 Il primo test realizzato è uno \textit{Smoke Test} che si incarica di verificare che il contesto Spring abbia effettivamente creato i controller dell'applicazione. In figura \ref{smoke-test} la classe \textit{SmokeTest} con una dipendenza per ciascun controller risolta con la dependency injection grazie all'annotazione \textbf{@Autowired}. Per ciascun controller è presente il relativo metodo di verifica, ciascuno annotato con \textbf{@Test} per indicare a JUnit5 che si tratta di un metodo di test.\\
 Come possiamo notare sempre nell'immagine \ref{smoke-test} è presente l'annotazione \textbf{@SpringBootTest}, necessaria per indicare a Spring Boot dove si trova la principale classe di configurazione e dunque avviare il contesto Spring. Da notare inoltre che ciascun metodo è dichiarato in maniera da poter sollevare eccezioni se necessario.
-\FloatBarrier
-\begin{figure}[!ht]
-\begin{mdframed}
-\centering
-\includegraphics[width=0.7\linewidth]{immagini/SmokeTest.png}
-\end{mdframed}
-\caption{Classe \textit{SmokeTest} sulla creazione dei controller.}
-\label{smoke-test}
-\end{figure}
-\FloatBarrier
+\begin{lstlisting}[language=Java, morecomment={[s][\color{DarkOrchid}]{@}{\ }},  morecomment={[s][\color{OliveGreen}]{"}{"}},]
+@SpringBootTest (classes = PrototypeManagerApplication.class)
+public class SmokeTest {
+    @Autowired
+    private EmployeeController employeeController;
+    @Autowired
+    private ProjectController projectController;
+    @Autowired
+    private DepartmentController departmentController;
+    @Autowired
+    private SiteController siteController;
+    @Test
+    public void contextLoadsEmployee() throws Exception {
+        assertThat(employeeController).isNotNull();
+    }
+    @Test
+    public void contextLoadsDepartment() throws Exception {
+        assertThat(departmentController).isNotNull();
+    }
+    @Test
+    public void contextLoadsProject() throws Exception {
+        assertThat(projectController).isNotNull();
+    }
+    @Test
+    public void contextLoadsSite() throws Exception {
+        assertThat(siteController).isNotNull();
+    }
+}
+\end{lstlisting}
+%\FloatBarrier
+%\begin{figure}[!ht]
+%\begin{mdframed}
+%\centering
+%\includegraphics[width=0.7\linewidth]{immagini/SmokeTest.png}
+%\end{mdframed}
+%\caption{Classe \textit{SmokeTest} sulla creazione dei controller.}
+%\label{smoke-test}
+%\end{figure}
+%\FloatBarrier
 Passiamo ora ai test sui metodi del controller \textit{EmployeeController}. Nell'immagine \ref{employee-controller-test} è raffigurata la classe \textit{EmployeeControllerTest} con i vari test da effettuare sul controller.
 \FloatBarrier
 \begin{figure}[!ht]
@@ -266,8 +388,8 @@ Angular segue un'architettura ben precisa, in figura \ref{angular-architecture} 
 \label{angular-architecture}
 \end{figure}
 \FloatBarrier
-Si tratta di una piattaforma modulare che basa la sua struttura sulla divisione in moduli. Ciascun modulo è composto da una componente ed una viste o template; questi comunicano tra loro attraverso i metadati: l'utente che interagisce con la vista può attivare l'inizio di un procedura sulla componente. La componente spesso per l'esecuzione di alcune procedure invoca in suo aiuto i servizi iniettati nella componente stessa. \\\\
-Nel corso della tesi quando si tratta il frontend verranno principalmente considerati i servizi; infatti quest'ultimi si incaricano della comunicazione con li server attraverso le API.
+Si tratta di una piattaforma modulare che basa la sua struttura sulla divisione in moduli. Ciascun modulo è composto da una componente ed un template detto anche vista; questi comunicano tra loro attraverso i metadati: l'utente che interagisce con la vista può attivare l'inizio di un procedura sulla componente. La componente spesso per l'esecuzione di alcune procedure invoca in suo aiuto i servizi iniettati nella componente stessa. \\\\
+Nel corso della tesi quando si tratta il frontend verranno principalmente considerati i servizi; infatti quest'ultimi si incaricano della comunicazione con il server attraverso le API.
 \subsubsection*{Funzionalità}
 Di seguito si approfondisce la parte riguardante l'entità Employee, le altre entità sono state trattate in maniera analoga.\\
 In linea con le query rese disponibili dal backend, devono essere presenti le seguenti funzionalità:
@@ -280,14 +402,25 @@ In linea con le query rese disponibili dal backend, devono essere presenti le se
 Nel sezione sucessiva verrà mostrato come sono state implementate le funzionalità appena introdotte.
 \subsubsection*{Realizzazione}
 Inizialmente sono state create le interfacce per poter creare gli oggetti corrispondenti alle quattro entità del prototipo. Di seguito in figura \ref{employee-interface} l'esempio della dichiarazione della interfaccia dell'entità Employee:
-\FloatBarrier
-\begin{figure}[!ht]
-\centering
-\includegraphics[width=0.3\linewidth]{immagini/employeeInterface.png}
-\caption{Interfaccia di Employee.}
-\label{employee-interface}
-\end{figure}
-\FloatBarrier
+\begin{lstlisting}[language=JavaScript]
+export interface Employee {
+  id: string;
+  name: string;
+  surname : string;
+  salary: number;
+  birth: Date;
+  department: Department;
+  project: [Project];
+}
+\end{lstlisting}
+%\FloatBarrier
+%\begin{figure}[!ht]
+%\centering
+%\includegraphics[width=0.3\linewidth]{immagini/employeeInterface.png}
+%\caption{Interfaccia di Employee.}
+%\label{employee-interface}
+%\end{figure}
+%\FloatBarrier
 A seguire è stata implementata l'interaccia grafica inserendo nella pagina iniziale la possibilità di effettuare due scelte: la prima scelta riguarda l'entità, mentre la seconda riguarda l'operazione che si vuole eseguire sull'entità selezionata. In figura \ref{first-page} è possibile visualizzare le scelte:
 \FloatBarrier
 \begin{figure}[!ht]
@@ -309,14 +442,32 @@ In figura \ref{get-employee} abbiamo il caso in cui è stata selezionata l'entit
 \FloatBarrier
 Viene dunque esposta una lista contenente tutti gli impiegati, per ciascun impiegato vengono mostrati id, nome e cognome, salario e data di nascita. Successivamente viene visualizzata la scelta riguardante il campo per il quale eseguire la ricerca, in questo caso è stato scelto il nome, dunque inserendo nell'apposito campo di input il nome e selezionendo il bottone è possibile effettuare la ricerca per nome.\\
 La scelta dell'opzione GET permette alla vista di invocare immediatamente il servizio che esegue una chiamata alle REST API del backend per ricevere la lista di tutti gli employee, stessa cosa accade anche quando premiamo il bottone "Esegui ricerca " dopo aver inserito il nome. Il servizio in questione si chiama \textit{EmployeeService} e di seguito in figura \ref{employee-service} ne è riportata l'implementazione:
-\FloatBarrier
-\begin{figure}[!ht]
-\centering
-\includegraphics[width=0.6\linewidth]{immagini/employeeService.png}
-\caption{Classe \textit{EmployeeService}.}
-\label{employee-service}
-\end{figure}
-\FloatBarrier
+\begin{lstlisting}[language=JavaScript]
+export class EmployeeService {
+
+  url: String = 'http://localhost:8080/api/employee/';
+
+  constructor(private http: HttpClient) { }
+
+  allEmployees(){
+    return this.http.get(this.url + "all")
+    }
+  employeeByName(name: String){ ... }
+  employeeBySurname(surname: String){ ... }
+  employeeByDepartment(id: String){ ... }
+  employeeByBornInDateRange(from: Date, to: Date){ ... }
+  createOrUpdateEmployee(employee: Employee){ ... }
+  deleteEmployee(id: String){ ... }
+}
+\end{lstlisting}
+%\FloatBarrier
+%\begin{figure}[!ht]
+%\centering
+%\includegraphics[width=0.6\linewidth]{immagini/employeeService.png}
+%\caption{Classe \textit{EmployeeService}.}
+%\label{employee-service}
+%\end{figure}
+%\FloatBarrier
 Il servizio realizzato per le chiamate alle REST API del backend permette di essere invocato direttamente dalla componenta relativa alla vista sulla quale è stata eseguita la selezione di un elemento HTML da parte dell'utente. È inoltre presente una dipendenza con l'oggetto \textit{HttpClient}, il quale viene iniettato nel servizio venendo passato come parametro al costruttore; la sua funzionalità è quella di permettere l'esecuzione delle chiamate alle API sul backend.\\\\
 Proseguendo vengono visualizzati ora i casi in cui si sceglie come operazione quella di modificare o aggiungere un nuovo impiegato. In figura \ref{post-employee} è possibile visualizzare la porzione di interfaccia grafica per l'inserimento o l'aggiornamento di un impiegato:
 \FloatBarrier
@@ -339,24 +490,60 @@ Per finire in figura \ref{delete-employee} il caso in cui venga selezionata l'op
 \FloatBarrier
 \subsubsection*{Testing}
 I test di unità sono stati implementati seguendo il pattern \textit{Arrange - Act - Assert} sui metodi del servizio riportato in figura \ref{employee-service}. Di seguito nell'immagine \ref{employee-service-tests} è possibile visualizzare la funzione \textit{describe} la quale viene utilizzata per raggruppare un insieme di test:
-\FloatBarrier
-\begin{figure}[!ht]
-\centering
-\includegraphics[width=0.6\linewidth]{immagini/employeeServiceTest.png}
-\caption{Test per i metodi del servizio \textit{EmployeeService}.}
-\label{employee-service-tests}
-\end{figure}
-\FloatBarrier
+\begin{lstlisting}[language=JavaScript]
+describe('EmployeeService', () => {
+  let service: EmployeeService;
+  let httpMock: HttpTestingController;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule],
+      providers: [EmployeeService],
+    });
+    service = TestBed.inject(EmployeeService);
+    httpMock = TestBed.inject(HttpTestingController);
+  });
+  afterEach(() => {
+    httpMock.verify();
+  });
+  it('should retrieve all employees'), () => { ... }
+  it('should retrive all employees by name'), () => { ... }
+  it('should retrive all employees by surname'), () => { ... }
+  it('should retrive all employees by department'), () => { ... }
+  it('should create one employee'), () => { ... }
+  it('should update one employee'), () => { ... }
+  it('should delete one employee'), () => { ... }
+\end{lstlisting}
 Viene incluso il modulo Angular \textit{HttpClientTestModule}, necessario al fine di importare il servizio iniettabile \textit{HttpTestingController} utilizzato per il mocking e il flushing e dunque per eliminare le microtask in sospeso. Sono inoltre presenti le funzioni \textit{BeforeEach} utilizzata per configurare l'ambiente di test, dunque importare i moduli necessari e risolvere le dipendenze e la funzione \textit{afterEach} utilizzata per controllare, dopo l'esecuzion di ciascun test, che non siano rimaste richieste in sospeso. Infine, con la funzione \textit{it} viene definito un titolo per ciascun test e implementato il test stesso.\\
 Più nello specifico in figura \ref{get-all-test} si può visualizzare l'implementazione di un test per il metodo \textit{allEmployee} del servizio \textit{EmployeeService}:
-\FloatBarrier
-\begin{figure}[!ht]
-\centering
-\includegraphics[width=0.8\linewidth]{immagini/allEmployeeTest.png}
-\caption{Test sul metodo \textit{allEmployee()} di \textit{EmployeeService}.}
-\label{get-all-test}
-\end{figure}
-\FloatBarrier
+\begin{lstlisting}[language=JavaScript]
+it('should retrieve all employees'), () => {
+  //Arrange
+  const employeesList: Employee[] = [
+    {id: "F3BASD", name: "Mario", surname: "Rossi", salary: 1500, birth: new Date("05/04/1999")},
+    {id: "AIF07S", name: "Giulio", surname: "Gialli", salary: 1500, birth: new Date("02/01/1988")},
+    {id: "LOSF2D", name: "Serafino", surname: "Bianchi", salary: 1500, birth: new Date("22/11/1979")},
+    {id: "PIFA2A", name: "Marta", surname: "Verdi", salary: 1500, birth: new Date("30/01/1995")},
+  ];
+  //Act & Assert
+  service.allEmployees().subscribe(employees => {
+    expect(employees).toBe(employeesList);
+  })
+
+  const request = httpMock.expectOne(`${service.url}/all`);
+  request.flush(employeesList);
+  expect(request.request.method).toBe('GET');
+
+}
+\end{lstlisting}
+%\FloatBarrier
+%\begin{figure}[!ht]
+%\centering
+%\includegraphics[width=0.8\linewidth]{immagini/allEmployeeTest.png}
+%\caption{Test sul metodo \textit{allEmployee()} di \textit{EmployeeService}.}
+%\label{get-all-test}
+%\end{figure}
+%\FloatBarrier
 Viene inizialmente creato un array di Employee che ci si aspetterà di ricevere dalla chiamata e sucessivamente si verifica il risultato atteso tramite la funzione \textit{expect}.Per finire si controlla che l'url sia corretto, che venga effettuata una sola chiamata GET e che si tratti effettivamente di una richiesta GET.
 \subsection{Migrazione da REST a GraphQL}
 In questa sezione si affronta la migrazione sia del backend che del frontend da REST API a GraphQL API.
@@ -652,13 +839,28 @@ Infine è presente il \textit{GesoreController} con dipendenza dal servizio \tex
 \newpage
 \subsubsection{Panoramica del frontend}
 \paragraph{Architettura}
-L'applicativo è stato realizzato in Angular e dunque è composta da:
+L'applicativo è stato realizzato in Angular e dunque è composto da:
 \begin{itemize}
-  \item \textbf{Moduli}: l'applicativo è stato suddiviso in moduli come il menu di navigazione, uan sezione ordini, una per la guida, una per il gestore e molti altri;
+  \item \textbf{Moduli}: utili per la separazione delle logiche; sono presenti diversi moduli come: il menu di navigazione, uan sezione ordini, una per la guida, una per il gestore altri ancora;
   \item \textbf{Servizi}: sono presenti diversi servizi per la gestione della comunicazione con il backend, questo è lo strato in cui avverrà la migrazione;
   \item \textbf{Interceptor}: necessari per intercettare le chiamate HTTP e gestire il token di autenticazione;
   \item \textbf{Guardie}: permettono di bloccare l'accesso ad alcune funzionalità secondo diverse logiche, come ad esempio evitare di mostrare ad un utente che non è un gestore la pagina di gestione del menù;
   \item \textbf{Components}: previsti da Angular sono necessari per gestire le viste.
+\end{itemize}
+\subsubsection{Casi d'uso o Funzionalità}
+Sono presenti due attori principali:
+\begin{itemize}
+  \item \textbf{Cliente}: si tratta del cliente del ristorante che utilizza l'applicazione web; a sua volta si suddivide in:
+    \begin{itemize}
+      \item \textit{Cliente non riconosciuto}: cliente non loggato;
+      \item \textit{Cliente riconosciuto}: cliente loggato;
+      \item \textit{Cameriere}: colui che prende le ordinazioni;
+    \end{itemize}
+  \item \textbf{Gestore}: rappresenta il gestore di un ristorante che utilizza l'applicativo; a sua volta si suddivide in:
+    \begin{itemize}
+      \item \textit{Gestore riconosciuto}: gestore loggato con account da gestore;
+      \item \textit{Gestore non riconosciuto}: gestore non loggato;
+    \end{itemize}
 \end{itemize}
 
 Sono presenti due attori principali
