@@ -25,7 +25,7 @@ L'applicativo segue l' architettura raffigurata nell'immagine \ref{prototype-arc
 \begin{figure}[!h]
 \centering
 \includegraphics[width=1\linewidth]{immagini/prototypeArchitecture.pdf}
-\caption{Architettura del prototipo di Web Application.}
+\caption{Architettura del prototipo}
 \label{prototype-architecture}
 \end{figure}
 \FloatBarrier
@@ -53,7 +53,7 @@ Ciascuna entità è caratterizzata dai campi presenti in figura \ref{ER-prototyp
 \begin{figure}[!ht]
 \centering
 \includegraphics[width=1\linewidth]{immagini/ER_prototype.pdf}
-\caption{Schema ER delle entità del prototipo.}
+\caption{Schema ER delle entità}
 \label{ER-prototype}
 \end{figure}
 \FloatBarrier
@@ -66,7 +66,7 @@ Ciascuna entità è caratterizzata dai campi presenti in figura \ref{ER-prototyp
 \begin{figure}[!h]
 \centering
 \includegraphics[width=0.8\linewidth]{immagini/controllerServiceRepository.pdf}
-\caption{Architettura interna backend.}
+\caption{Architettura interna backend}
 \label{controller-service-repository}
 \end{figure}
 \FloatBarrier
@@ -76,7 +76,7 @@ Nell'immagine \ref{sequence-diagram} è possibile visualizzare il diagramma di s
 \begin{figure}[!h]
 \centering
 \includegraphics[width=1\linewidth]{immagini/getRequestFromClient.pdf}
-\caption{Diagramma di sequenza di una richiesta GET elaborata dal server.}
+\caption{Diagramma di sequenza di una richiesta GET elaborata dal server}
 \label{sequence-diagram}
 \end{figure}
 \FloatBarrier
@@ -92,7 +92,7 @@ A ciascuna entità del database viene fatta corrispondere una classe in Java qui
 Ciascuna classe implementa la classe \textit{Serializable}, così facendo è possibile serializzare i dati in flussi di byte. La serializzazione viene utilizzata poiché si tratta di dati che dovranno essere memorizzati nel database, è necessario serializzarli poiché abbandonano la Java Virtual Machine. Viene inoltre utilizzato un \textit{serialVersionUID} per attribuire una versione a ciascuna classe serializzabile in modo da garantire la consistenza delle classi memorizzate in banca dati.\\
 Di seguito l'esempio dell'implementazione della classe Employee:
 %%% IMG
-\begin{lstlisting}[language=Java, morecomment={[s][\color{DarkOrchid}]{\@}{\ }}, morecomment={[s][\color{OliveGreen}]{"}{"}},]
+\begin{lstlisting}[language=Java, title={Employee.java}, morecomment={[s][\color{DarkOrchid}]{\@}{\ }}, morecomment={[s][\color{OliveGreen}]{"}{"}},]
 @Entity
 @Table (name = "EMPLOYEE")
 @Data
@@ -150,8 +150,8 @@ A questo punto si procede con la realizzazione delle classi repository: ciascuna
 \end{itemize}
 Estendendo la JPARepository per ciascun tipo è possibile avere a disposizione diversi metodi per eseguire operazioni già implementate come: findAll, count, existById, SaveAndFlush, ecc...\\
 Per realizzare ulteriori metodi è sufficiente rispettare le corretta sintassi del nome del metodo affinché Spring si occupi in automatico della sua implementazione.\\
-Nel caso in cui si voglia realizzare una query personalizzata si utilizza l'annotazione \textbf{@Query} alla quale è possibile passare come attributo la query che desideriamo in linguaggio JPQL. In figura \ref{employee-repository} un esempio di quanto appena detto:
-\begin{lstlisting}[language=Java, morecomment={[s][\color{DarkOrchid}]{@}{\ }},  morecomment={[s][\color{OliveGreen}]{"}{"}},]
+Nel caso in cui si voglia realizzare una query personalizzata si utilizza l'annotazione \textbf{@Query} alla quale è possibile passare come attributo la query che desideriamo in linguaggio JPQL. Di seguito un esempio di quanto appena detto:
+\begin{lstlisting}[language=Java, title={EmployeeRepository.java}, morecomment={[s][\color{DarkOrchid}]{@}{\ }},  morecomment={[s][\color{OliveGreen}]{"}{"}},]
 @Repository ()
 public interface EmployeeRepository extends JpaRepository<Employee, String> {
     List<Employee> findByName(String name);
@@ -181,14 +181,14 @@ Al fine di rispettare i principi SOLID della programmazione, per questioni di lo
 \FloatBarrier
 \begin{figure}[!ht]
 \centering
-\includegraphics[width=0.3\linewidth]{immagini/service_serviceImpl.pdf}
-\caption{Esempio di implementazione dell'interfaccia EmployeeService.}
+\includegraphics[width=0.4\linewidth]{immagini/service_serviceImpl.pdf}
+\caption{Esempio di implementazione dell'interfaccia EmployeeService}
 \label{service-serviceImpl}
 \end{figure}
 \FloatBarrier
 %%% IMG
-Di seguito (fig. \ref{employeeServiceImpl}) viene riportato l'esempio dell'implementazione del servizio \textbf{EmployeeServiceImpl}.
-\begin{lstlisting}[language=Java, morecomment={[s][\color{DarkOrchid}]{@}{\ }},  morecomment={[s][\color{OliveGreen}]{"}{"}},]
+A seguire viene riportato l'esempio dell'implementazione del servizio \textbf{EmployeeServiceImpl}:
+\begin{lstlisting}[language=Java, title={EmployeeServiceImpl.java}, morecomment={[s][\color{DarkOrchid}]{@}{\ }},  morecomment={[s][\color{OliveGreen}]{"}{"}},]
 @Service ()
 public class EmployeeServiceImpl implements EmployeeService{
     @Autowired
@@ -232,8 +232,8 @@ Le annotazioni utilizzate sono:
 Sono stati resi disponibili metodi semplici che vanno ad invocare, grazie alla dipendenza con la repository, le query già disponibili con la \textit{JPARepository<T, ID>} e la query vista precedenemente \textit{SelByBornInRage}.\\
 Lo strato di servizio si incarica della gestione delle eccezioni estendendo il gestore  \textit{HandlerExceptionResolver}; in questo modo si migliora il comportamento di default che non sempre fornisce informazioni comprensibili sulla natura dell'errore.
 \subsubsection*{Controller}
-Lo strato di controller si occupa di gestire le richieste che il server riceve attraverso il protocollo HTTP e di mapparle inoltre sui metodi corrispondenti. Di seguito il codice del controller \ref{emp-controller}:
-\begin{lstlisting}[title={EmployeeController.class}, label={emp-controller}, language=Java, morecomment={[s][\color{DarkOrchid}]{@}{\ }},  morecomment={[s][\color{OliveGreen}]{"}{"}},]
+Lo strato di controller si occupa di gestire le richieste che il server riceve attraverso il protocollo HTTP e di mapparle inoltre sui metodi corrispondenti. Di seguito il codice del controller:
+\begin{lstlisting}[title={EmployeeController.java}, language=Java, morecomment={[s][\color{DarkOrchid}]{@}{\ }},  morecomment={[s][\color{OliveGreen}]{"}{"}},]
 @RestController
 @RequestMapping (value = "api/employee")
 public class EmployeeController {
@@ -306,8 +306,8 @@ Si rendono disponibili i seguenti metodi:
 Essendo un prototipo incentrato sulla realizzazione delle API sono stati svolti in maniera semplice e veloce i test per gli strati di servizio e repository, essi non verranno riportati. Per quanto riguarda i test sui controller sono stati svolti test più approfonditi.\\
 Per eseguire i test sui metodi del controller è stato scelto di utilizzare il framework JUnit5.\\
 Il primo test realizzato è uno \textit{Smoke Test} che si incarica di verificare che il contesto Spring abbia effettivamente creato i controller dell'applicazione. In figura \ref{smoke-test} la classe \textit{SmokeTest} con una dipendenza per ciascun controller risolta con la dependency injection grazie all'annotazione \textbf{@Autowired}. Per ciascun controller è presente il relativo metodo di verifica, ciascuno annotato con \textbf{@Test} per indicare a JUnit5 che si tratta di un metodo di test.\\
-Come possiamo notare sempre nell'immagine \ref{smoke-test} è presente l'annotazione \textbf{@SpringBootTest}, necessaria per indicare a Spring Boot dove si trova la principale classe di configurazione e dunque avviare il contesto Spring. Da notare inoltre che ciascun metodo è dichiarato in maniera da poter sollevare eccezioni se necessario.
-\begin{lstlisting}[language=Java, morecomment={[s][\color{DarkOrchid}]{@}{\ }},  morecomment={[s][\color{OliveGreen}]{"}{"}},]
+Come possiamo notare è presente l'annotazione \textbf{@SpringBootTest}, necessaria per indicare a Spring Boot dove si trova la principale classe di configurazione e dunque avviare il contesto Spring. Da notare inoltre che ciascun metodo è dichiarato in maniera da poter sollevare eccezioni se necessario.
+\begin{lstlisting}[language=Java, title={SmokeTest.java}, morecomment={[s][\color{DarkOrchid}]{@}{\ }},  morecomment={[s][\color{OliveGreen}]{"}{"}},]
 @SpringBootTest (classes = PrototypeManagerApplication.class)
 public class SmokeTest {
     @Autowired
@@ -346,17 +346,31 @@ public class SmokeTest {
 %\label{smoke-test}
 %\end{figure}
 %\FloatBarrier
-Passiamo ora ai test sui metodi del controller \textit{EmployeeController}. Nell'immagine \ref{employee-controller-test} è raffigurata la classe \textit{EmployeeControllerTest} con i vari test da effettuare sul controller.
-\FloatBarrier
-\begin{figure}[!ht]
-\begin{mdframed}
-\centering
-\includegraphics[width=1\linewidth]{immagini/EmployeeControllerTest.pdf}
-\end{mdframed}
-\caption{Classe \textit{EmployeeControllerTest}.}
-\label{employee-controller-test}
-\end{figure}
-\FloatBarrier
+Passiamo ora ai test sui metodi del controller \textit{EmployeeController}. Di seguito è raffigurata la classe \textit{EmployeeControllerTest}, sono stati riportati solo i primi due metodi di test per questioni di spazio.
+\begin{lstlisting}[language=Java, title={EmployeeControllerTest.java}, morecomment={[s][\color{DarkOrchid}]{@}{\ }},  morecomment={[s][\color{OliveGreen}]{"}{"}},]
+@WebMvcTest (EmployeeController.class)
+public class EmployeeControllerTest {
+    @Autowired ()
+    private MockMvc mockMvc;
+    @Autowired ()
+    private ObjectMapper objectMapper;
+    @MockBean ()
+    private EmployeeService employeeService;
+    //Testing listAllEmployee()
+    @Test ()
+    void listAllEmployeeWihtNotEmptyList() throws Exception{
+        int a = 0;
+        int b = 0;
+        int c = a+b;
+    }
+    @Test ()
+    void listAllEmployeeWihtEmptyList() throws Exception{
+        int a = 0;
+        int b = 0;
+        int c = a+b;
+    }
+}
+\end{lstlisting}
 La classe \textit{EmployeeControllerTest} utilizza l'annotazione \textbf{@WebMvcTest} per caricare nel contesto di test esclusivamente il controller testato.\\
 Nella classe di test \textit{EmployeeControllerTest} sono dichiarate tre dipendenze fondamentali risolte con la dependency injection:
 \begin{itemize}
@@ -364,17 +378,22 @@ Nella classe di test \textit{EmployeeControllerTest} sono dichiarate tre dipende
   \item \textbf{ObjectMapper}: oggetto utilizzato nei test per la serializzazione e deserializzazione degli oggetti JSON in oggetti java e viceversa;
   \item \textbf{EmployeeService}: servizio che viene utilizzato nei test che usa l'annotazione \textbf{@MockBean} per aggiungere un mock dell'oggetto \textit{EmployeeService}.
 \end{itemize}
-Infine si riporta in figura \ref{create-employee} l'implementazione dettagliata del metodo di test \textit{createEmployee} seguendo il pattern \textit{Arrange - Act - Assert}.
-\FloatBarrier
-\begin{figure}[!ht]
-\begin{mdframed}
-\centering
-\includegraphics[width=1\linewidth]{immagini/createEmployee.png}
-\end{mdframed}
-\caption{Metodo di test \textit{createEmployee} della classe \textit{EmployeeControllerTest}.}
-\label{create-employee}
-\end{figure}
-\FloatBarrier
+Infine si riporta di seguito l'implementazione dettagliata del metodo di test \textit{createEmployee} seguendo il pattern \textit{Arrange - Act - Assert}.
+\begin{lstlisting}[language=Java, title={createEmployee()}, morecomment={[s][\color{DarkOrchid}]{@}{\ }},  morecomment={[s][\color{OliveGreen}]{"}{"}},]
+@Test ()
+void createEmployee() throws Exception{
+    //Arrange
+    Employee employee = new Employee();
+    employee.setName("Mario");
+    employee.setSurname("Rossi");
+    LocalDate date = LocalDate.of(1992, 05, 03);
+    employee.setBirth(Date.from(date.atStartOfDay(ZoneId.systemDefault()).toInstant()));
+    //Act & Assert
+    mockMvc.perform(post("/api/employee/insert").contentType(MediaType.APPLICATION_JSON)
+            .contentType(objectMapper.writeValueAsString(employee))).andExpect(status().isCreated())
+            .andDo(print());
+}
+\end{lstlisting}
 Nella prima parte (arrange) viene creato un nuovo Employee e gli viene assegnato un nome, un cognome e una data di nascita; successivamente (act) si esegue la chiamata GET utilizzando l'oggetto \textit{MockMvc} e passando nel body della richiesta HTTP l'oggetto Java Employee trasformato in JSON grazie all'\textit{ObjectMapper}. Per ultima la fase finale (assert) in cui si verifica che lo stato di ritorno sia \textit{created}, in caso contrario il test fallisce.
 \subsection{Progettazione e realizzazione frontend}
 Per quanto riguarda il frontend dell'applicativo è stato utilizzato il framework Angular per realizzare una Single-Page Application. Si tratta di un frontend minimale, realizzato con il solo scopo di comprendere e sviluppare la parte di comunicazione con il server utilizzando al massimo le REST API disponibili. Per questo motivo non è stata effettuata alcuna considerazione sull'utenza e sono stati tralascati completamente aspetti quali estetica grafica, accessibilità e responsive design.\\
@@ -401,8 +420,8 @@ In linea con le query rese disponibili dal backend, devono essere presenti le se
 \end{itemize}
 Nel sezione sucessiva verrà mostrato come sono state implementate le funzionalità appena introdotte.
 \subsubsection*{Realizzazione}
-Inizialmente sono state create le interfacce per poter creare gli oggetti corrispondenti alle quattro entità del prototipo. Di seguito in figura \ref{employee-interface} l'esempio della dichiarazione della interfaccia dell'entità Employee:
-\begin{lstlisting}[language=JavaScript]
+Inizialmente sono state create le interfacce per poter creare gli oggetti corrispondenti alle quattro entità del prototipo. A seguire l'esempio della dichiarazione della interfaccia dell'entità Employee:
+\begin{lstlisting}[language=JavaScript, title={object.ts}]
 export interface Employee {
   id: string;
   name: string;
@@ -441,8 +460,8 @@ In figura \ref{get-employee} abbiamo il caso in cui è stata selezionata l'entit
 \end{figure}
 \FloatBarrier
 Viene dunque esposta una lista contenente tutti gli impiegati, per ciascun impiegato vengono mostrati id, nome e cognome, salario e data di nascita. Successivamente viene visualizzata la scelta riguardante il campo per il quale eseguire la ricerca, in questo caso è stato scelto il nome, dunque inserendo nell'apposito campo di input il nome e selezionendo il bottone è possibile effettuare la ricerca per nome.\\
-La scelta dell'opzione GET permette alla vista di invocare immediatamente il servizio che esegue una chiamata alle REST API del backend per ricevere la lista di tutti gli employee, stessa cosa accade anche quando premiamo il bottone "Esegui ricerca " dopo aver inserito il nome. Il servizio in questione si chiama \textit{EmployeeService} e di seguito in figura \ref{employee-service} ne è riportata l'implementazione:
-\begin{lstlisting}[language=JavaScript]
+La scelta dell'opzione GET permette alla vista di invocare immediatamente il servizio che esegue una chiamata alle REST API del backend per ricevere la lista di tutti gli employee, stessa cosa accade anche quando premiamo il bottone "Esegui ricerca " dopo aver inserito il nome. Il servizio in questione si chiama \textit{EmployeeService} e di seguito ne è riportata l'implementazione:
+\begin{lstlisting}[language=JavaScript, title={employee.service.ts}]
 export class EmployeeService {
 
   url: String = 'http://localhost:8080/api/employee/';
@@ -474,7 +493,7 @@ Proseguendo vengono visualizzati ora i casi in cui si sceglie come operazione qu
 \begin{figure}[!ht]
 \centering
 \includegraphics[width=0.3\linewidth]{immagini/postEmployee.png}
-\caption{Opzioni disponibili con operazione INSERT/UPDATE selezionata.}
+\caption{Opzioni disponibili con operazione INSERT/UPDATE selezionata}
 \label{post-employee}
 \end{figure}
 \FloatBarrier
@@ -484,13 +503,13 @@ Per finire in figura \ref{delete-employee} il caso in cui venga selezionata l'op
 \begin{figure}[!ht]
 \centering
 \includegraphics[width=0.3\linewidth]{immagini/deleteEmployee.png}
-\caption{Opzioni disponibili con operazione DELETE selezionata.}
+\caption{Opzioni disponibili con operazione DELETE selezionata}
 \label{delete-employee}
 \end{figure}
 \FloatBarrier
 \subsubsection*{Testing}
-I test di unità sono stati implementati seguendo il pattern \textit{Arrange - Act - Assert} sui metodi del servizio riportato in figura \ref{employee-service}. Di seguito nell'immagine \ref{employee-service-tests} è possibile visualizzare la funzione \textit{describe} la quale viene utilizzata per raggruppare un insieme di test:
-\begin{lstlisting}[language=JavaScript]
+I test di unità sono stati implementati seguendo il pattern \textit{Arrange - Act - Assert} sui metodi del servizio riportato in figura \ref{employee-service}. Di seguito è possibile visualizzare la funzione \textit{describe} la quale viene utilizzata per raggruppare un insieme di test:
+\begin{lstlisting}[language=JavaScript, title={employee.service.spec.test}]
 describe('EmployeeService', () => {
   let service: EmployeeService;
   let httpMock: HttpTestingController;
@@ -515,8 +534,8 @@ describe('EmployeeService', () => {
   it('should delete one employee'), () => { ... }
 \end{lstlisting}
 Viene incluso il modulo Angular \textit{HttpClientTestModule}, necessario al fine di importare il servizio iniettabile \textit{HttpTestingController} utilizzato per il mocking e il flushing e dunque per eliminare le microtask in sospeso. Sono inoltre presenti le funzioni \textit{BeforeEach} utilizzata per configurare l'ambiente di test, dunque importare i moduli necessari e risolvere le dipendenze e la funzione \textit{afterEach} utilizzata per controllare, dopo l'esecuzion di ciascun test, che non siano rimaste richieste in sospeso. Infine, con la funzione \textit{it} viene definito un titolo per ciascun test e implementato il test stesso.\\
-Più nello specifico in figura \ref{get-all-test} si può visualizzare l'implementazione di un test per il metodo \textit{allEmployee} del servizio \textit{EmployeeService}:
-\begin{lstlisting}[language=JavaScript]
+Più nello specifico si può visualizzare l'implementazione di un test per il metodo \textit{allEmployee} del servizio \textit{EmployeeService}:
+\begin{lstlisting}[language=JavaScript, title={employee.service.spec.test}]
 it('should retrieve all employees'), () => {
   //Arrange
   const employeesList: Employee[] = [
@@ -550,43 +569,82 @@ In questa sezione si affronta la migrazione sia del backend che del frontend da 
 \subsubsection*{Migrazione Backend}
 Il backend realizzato in Spring Boot con l'aiuto del modulo Spring Data REST per la realizzazione dei controller di REST API deve essere riscritto in parte utilizzando il modulo Spring GraphQL per la realizzazione dei controller in GraphQL.\\
 É stata adottata la tecnica \textit{Schema First} che prevede la costruzione del GraphQL Schema ed, a seguire, l'implementazione dei resolver delle API. Nonostante i resolver fossero già realizzati per il prototipo in REST è comunque necessario adattarli all'utilizzo di questo nuovo protocollo.\\
-Le quattro entità presenti, ovvero Employee, Project, Department e Site devono essere riportate tutte nel GraphQL schema poiché sono tutte accessibili dal client; esse saranno definite sia come entità di input che di output poiché GraphQL differenzia i due tipi nelle query, mutation e subscription. In figura \ref{employee-schema} è possibile visualizzare l'implementazione dei tipi \textit{Employee} e \textit{EmployeeInput}.
-\FloatBarrier
-\begin{figure}[!ht]
-\centering
-\includegraphics[width=0.8\linewidth]{immagini/employeeSchema.pdf}
-\caption{Tipi \textit{Employee} e \textit{EmployeeInput} nel GraphQL Schema.}
-\label{employee-schema}
-\end{figure}
-\FloatBarrier
+Le quattro entità presenti, ovvero Employee, Project, Department e Site devono essere riportate tutte nel GraphQL schema poiché sono tutte accessibili dal client; esse saranno definite sia come entità di input che di output poiché GraphQL differenzia i due tipi nelle query, mutation e subscription. Di seguito è possibile visualizzare l'implementazione dei tipi \textit{Employee} e \textit{EmployeeInput}.
+\begin{lstlisting}[language=GraphQL, title={schema.graphqls}]
+type Employee {
+  id: ID
+  name: String
+  surname: String
+  salary: Int
+  birth: Date
+  projects: [Project]
+  department: Department
+}
+\end{lstlisting}
+\begin{lstlisting}[language=GraphQL, title={schema.graphqls}]
+type EmployeeInput {
+  id: ID
+  name: String
+  surname: String
+  salary: Int
+  birth: Date
+  projectsId: [ID]
+  departmentId: ID
+}
+\end{lstlisting}
 Come si può notare i due tipi \textit{Employee} e \textit{EmployeeInput} non corrispondono completamente: i campi \textit{projects} e \textit{department} di \textit{Employee} non sono presenti in \textit{EmployeeInput}, o  meglio sono presenti ma in diversa forma. Il motivo di tale differenza si può sintetizzare in questo modo:
 \begin{itemize}
   \item il tipo \textit{Employee} verrà ritornato al client su richiesta; dovrà contenere le varie istanze dei progetti a cui un impiegato sta partecipando come pure l'oggetto dipartimento;
   \item il tipo \textit{EmployeeInput} indica come fornire i dati necessari all'aggiunta/aggiornamento dell'impiegato; è sufficiente dunque passare gli id dei progetti coinvolti come pure l'id del dipartimento dell'impiegato.
 \end{itemize}
-A questo punto è possibile definire le query, le mutation ed eventualmente le subscription che si vogliono rendere disponibili al client. In figura \ref{query-employee} è possibile visualizzare la dichiarazione delle query, mutation e della subscription riguardanti l'entità Employee.
-\FloatBarrier
-\begin{figure}[!ht]
-\centering
-\includegraphics[width=0.6\linewidth]{immagini/queryEmployee.png}
-\caption{Implementazione delle query, mutation e subscription nel GraphQL Schema.}
-\label{query-employee}
-\end{figure}
-\FloatBarrier
+A questo punto è possibile definire le query, le mutation ed eventualmente le subscription che si vogliono rendere disponibili al client. Di seguito è possibile visualizzare la dichiarazione delle query, mutation e della subscription riguardanti l'entità Employee.
+\begin{lstlisting}[language=GraphQL, title={schema.graphqls}]
+type Query {
+  allEmployees: [Employee]
+  employeeByName(name: String!): [Employee]
+  employeeBySurname(surname: String!): [Employee]
+  employeeByDepartment(id: ID!): [Employee]
+  employeeBornInDateRange(from: Date!, to: Date!): [Employee]
+}
+type Mutation {
+  addEmployee(employee: EmployeeInput!): Employee
+  updateEmployee(employee: EmployeeInput!): Employee
+  delEmployee(id: ID!): Employee
+}
+type Subscription {
+  newEmployeeAdded():[Employee]
+}
+\end{lstlisting}
 Il dato ritornato è di tipo \textit{Employee} per tutte le operazioni mentre quello di input è \textit{EmployeeInput}.\\
 È stata aggiunta inoltre una subscription per sfruttare a pieno le funzionalità di GraphQL. Questa subscription permette al client di ricevere i nuovi impiegati aggiunti senza per forza richiederli.
 \paragraph{Migrazione dei controller}
 La migrazione non coinvolge gli strati di servizio e repository in quanto non è necessario apportare modifiche alle logiche e alla gestione del database. L'unico strato da riscrivere parzialmente è lo strato del controller.\\
 Come prima cosa si realizzano le classi Java corrispondenti ai tipi di input; questo è necessario poiché nei metodi del controller è previsto come parametro di input la versione di input dell'impiegato.\\
-L'implementazione del controller risulta differente rispetto a quella vista con le REST API. Di seguito in figura \ref{graphql-controller} è possibile visualizzarne la struttura ed i metodi:
-\FloatBarrier
-\begin{figure}[!ht]
-\centering
-\includegraphics[width=0.8\linewidth]{immagini/graphQLEmployeeController.png}
-\caption{Classe \textit{EmployeeController}.}
-\label{graphql-controller}
-\end{figure}
-\FloatBarrier
+L'implementazione del controller risulta differente rispetto a quella vista con le REST API. Di seguito è possibile visualizzarne la struttura ed i metodi:
+\begin{lstlisting}[language=Java, title={EmployeeController.java}, morecomment={[s][\color{DarkOrchid}]{@}{\ }},  morecomment={[s][\color{OliveGreen}]{"}{"}},]
+@Controller
+public class EmployeeController {
+    @Autowired
+    private final EmployeeService employeeService;
+
+    @QueryMapping
+    Object employeeByName(@Argument String name) { ... }
+    @QueryMapping
+    Object employeeBySurname(@Argument String surname) { ... }
+    @QueryMapping
+    Object employeeByDepartment(@Argument String id) { ... }
+    @QueryMapping
+    Object employeeBornInDateRange(@Argument Date from, @Argument Date to) { ... }
+    @MutationMapping
+    Object addEmployee (@Argument EmployeeInput employee) { ... }
+    @MutationMapping
+    Object updateEmployee (@Argument EmployeeInput employee) { ... }
+    @MutationMapping
+    Object delEmployee(@Argument String id) { ... }
+    @SubscriptionMapping
+    Publisher<List<Employee>> newEmployeeAdded() { ... }
+}
+\end{lstlisting}
 Come si può notare si tratta di un controller simile a quello REST nei metodi, tuttavia le annotazioni e alcune implementazioni differiscono. Vengono utilizzate le annotazioni:
 \begin{itemize}
   \item \textbf{@Controller}: indica che si tratta di un generico controller (non più REST controller);
@@ -596,7 +654,7 @@ Come si può notare si tratta di un controller simile a quello REST nei metodi, 
   \item \textbf{@Argument}: utilizzato per specificare gli argomenti.
 \end{itemize}
 Queste annotazioni sono fondamentali poiché permettono di effettuare il mapping tra i tipi, le query, le mutation e le subscription definiti nel GraphQL Schema e quelli definiti nel controller. Per questo motivo il nome di ciascun metodo o tipo negli argomenti deve corrispondere esattamente al nome nel GraphQL Schema, altrimenti il mapping non andrà a buon fine e verranno generati degli errori.\\
-L'implementazione dei metodi del controller risulta simile a quella dei corrispettivi metodi nel REST controller. Tuttavia, trattandosi di una particolare funzionalità disponibile esclusivamente in GraphQL, in figura \ref{subscription-graphql} viene riportata l'implementazione della subscription \begin{lstlisting}[language=Java, morecomment={[s][\color{DarkOrchid}]{@}{\ }},  morecomment={[s][\color{OliveGreen}]{"}{"}},]
+L'implementazione dei metodi del controller risulta simile a quella dei corrispettivi metodi nel REST controller. Tuttavia, trattandosi di una particolare funzionalità disponibile esclusivamente in GraphQL; viene riportata l'implementazione della subscription \begin{lstlisting}[language=Java, title={newEmployeeAdded()} morecomment={[s][\color{DarkOrchid}]{@}{\ }},  morecomment={[s][\color{OliveGreen}]{"}{"}},]
 @SubscriptioMapping ()
 Publisher<List<Employee>> newEmployeeAdded(){
   return subscriber -> Executors.newScheduledThreadPool(1).scheduleAtFixedRate(() -> {
@@ -606,7 +664,6 @@ Publisher<List<Employee>> newEmployeeAdded(){
 }
 \end{lstlisting}
 L'implementazione della subscription permette al subscriber, in questo caso il client, di ricevere la lista aggiornata al verificarsi di un evento. L'oggetto \textit{Publisher<>} permette di inviare la lista aggiornata a tutti i subscribers in tempo reale, così facendo il client non dovrà richiedere periodicamente la lista con la query \textit{allEmployee}.
-\textcolor{red}{Mancano test in graphQL}
 \paragraph{Strutture delle risposte HTTP in GraphQL e gestione degli errori}
 Le risposte che il server GraphQL ritorna al client in seguito ad una query, mutation o subscription sono dei file JSON. Questi JSON possono contenere tre tipi di campi:
 \begin{itemize}
@@ -620,8 +677,8 @@ Analizzando gli errori che si possono verificare durante l'esecuzione di una que
   \item \textbf{Errori di validazione}: si verificano quando vengono specificati nella richiesta tipi non coerenti con lo schema. In questo caso l'errore si verifica durante l'esecuzione, dunque viene ritornato sia il campo \textit{data}, con valore null o con i dati parziali che il server è riuscito a recuperare, che il campo \textit{errors} che indica la presenza di uno o più errori di data fetching;
   \item \textbf{Errori nei resolver:} si verificano durante la risoluzione della query e non sono legati al fatto che la query sia formulata male o con tipi sbagliati. Questi errori devono essere gestiti lato server;
 \end{itemize}
-Quando si verificano errori di sintassi o validazione la risposta l'errore ritornato indica perfettamente la natura dell'errore. La terza tipologia di errore quasi sempre risulta incomprensibile dal client. Questo accade perché la gestione delle eccezioni durante l'esecuzione di una richiesta è presa in carico dall'interfaccia predefinita \textit{DataFetcherExceptionHandler} la quale permette la dichiarazione di più risolutori di eccezioni detti \textit{DataFetcherExceptionResolver}. Questi ultimi vengono invocati sequenzialmente fino a quando uno di essi è in grado di risolvere l'eccezione; in caso contrario viene ritornata una informazione di errore incomprensibile con categoria \textit{"INTERNAL\_ERROR"}. Questo per uno sviluppatore può essere un problema poiché non è facile individuare la provenienza dell'errore. Per questo motivo sono stati creati differenti resolvers per le varie eccezioni che possono verificarsi. In figura \ref{resolver-example} l'esempio di implementazione di un resolver che riscrive il metodo di risoluzione delle eccezioni \textit{resolveToSingleError} al fine di risolvere l'eccezione \textit{EmployeeNotFound}.
-\begin{lstlisting}[language=Java, morecomment={[s][\color{DarkOrchid}]{@}{\ }},  morecomment={[s][\color{OliveGreen}]{"}{"}},]
+Quando si verificano errori di sintassi o validazione la risposta l'errore ritornato indica perfettamente la natura dell'errore. La terza tipologia di errore quasi sempre risulta incomprensibile dal client. Questo accade perché la gestione delle eccezioni durante l'esecuzione di una richiesta è presa in carico dall'interfaccia predefinita \textit{DataFetcherExceptionHandler} la quale permette la dichiarazione di più risolutori di eccezioni detti \textit{DataFetcherExceptionResolver}. Questi ultimi vengono invocati sequenzialmente fino a quando uno di essi è in grado di risolvere l'eccezione; in caso contrario viene ritornata una informazione di errore incomprensibile con categoria \textit{"INTERNAL\_ERROR"}. Questo per uno sviluppatore può essere un problema poiché non è facile individuare la provenienza dell'errore. Per questo motivo sono stati creati differenti resolvers per le varie eccezioni che possono verificarsi. Di seguito l'esempio di implementazione di un resolver che riscrive il metodo di risoluzione delle eccezioni \textit{resolveToSingleError} al fine di risolvere l'eccezione \textit{EmployeeNotFound}.
+\begin{lstlisting}[language=Java, title={GraphQLExceptionResolver.java}, morecomment={[s][\color{DarkOrchid}]{@}{\ }},  morecomment={[s][\color{OliveGreen}]{"}{"}},]
 @Component ()
 public class GraphQLExceptionResolver extends DataFetcherExceptionResolverAdapter {
   @Override
@@ -643,8 +700,8 @@ Com'è possibile notare viene ritornato un oggetto di tipo \textit{GraphQLError}
 \subsubsection*{Migrazione Frontend}
 La migrazione del frontend richiede uno sforzo minore rispetto al backend, infatti è sufficiente effettuare la migrazione esclusivamente dei servizi che si occupano dell'invocazione delle API.\\
 Il servizio visualizzato precedentemente in figura \ref{employee-service} \textit{EmployeeService} non cambia la sua struttura; i metodi rimangono gli stessi, tuttavia l'implementazione del metodo deve cambiare. Oltre all'implementazione dei metodi cambia anche l'oggetto che permette il fetching dei dati dal server, infatti trattandosi ora di un GraphQL Server, sarà necessaria la dipendenza dall'oggetto \textit{Apollo} utilizzato nel fetching dei dati da un server GraphQL.\\
-In figura \ref{employee-service-method-graphql} è possibile visualizzare l'implementazione del metodo  \textit{allEmployees}.
-\begin{lstlisting}[language=JavaScript]
+Si riporta l'implementazione del metodo  \textit{allEmployees}.
+\begin{lstlisting}[language=JavaScript, title={allEmployees()}]
   allEmployees(){
       return this.apollo.watchQuery<any>({
         query: gql`
@@ -684,7 +741,7 @@ In figura \ref{ER-sushilab} è possibile visualizzare lo schema ER delle entità
 \begin{figure}[!ht]
 \centering
 \includegraphics[width=1\linewidth]{immagini/ER_sushilab.pdf}
-\caption{Diagramma ER di \textit{SushiLab}.}
+\caption{Diagramma ER delle entità}
 \label{ER-sushilab}
 \end{figure}
 \FloatBarrier
@@ -738,7 +795,7 @@ Il seguente controller dichiara una dipendenza con il servizio \textit{ClientSer
 {\color[HTML]{000000} \textbf{Metodo}} & {\color[HTML]{000000} \textbf{Parametri}} & {\color[HTML]{000000} \textbf{Descrizione}}                                           & {\color[HTML]{000000} \textbf{Azione}} \\ \hline
 \textbf{eseguiLogin}                   & Utente utente             & \begin{tabular}[c]{@{}c@{}}Controlla ed effettua\\ il login di un utente\end{tabular} & POST                           \\ \hline
 \end{tabular}
-\caption{Metodi del controller \textit{LoginController}.}
+\caption{Metodi del controller \textit{LoginController}}
 \end{table}
 %//////////////////////// FINE TABELLA ////////////////////////
 %//////////////////////// FINE TABELLA ////////////////////////
@@ -766,7 +823,7 @@ Questo controller dichiara una dipendenza con il servizio \textit{ClientService}
 {\color[HTML]{000000} \textbf{aggiornaBlacklist}}      & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}String idPersona\\ Ingredienti ingredienti\end{tabular}}           & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Aggiorna la blacklist \\ di una persona con i \\ nuovi ingredienti\end{tabular}}                          & {\color[HTML]{000000} POST}            \\ \hline
 {\color[HTML]{000000} \textbf{ottieniBlacklist}}       & {\color[HTML]{000000} String idPersona}                                                                                & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Ritorna la lista di \\ ingredienti nella \\ blacklist di un utente\end{tabular}}                          & {\color[HTML]{000000} GET}             \\ \hline
 \end{tabular}
-\caption{Metodi del controller \textit{UtenteController}.}
+\caption{Metodi del controller \textit{UtenteController}}
 \end{table}
 %//////////////////////// FINE TABELLA ////////////////////////
 %//////////////////////// FINE TABELLA ////////////////////////
@@ -797,7 +854,7 @@ Anche il seguente controller dichiara una dipendenza con \textit{ClientService} 
 \rowcolor[HTML]{EFEFEF}
 {\color[HTML]{000000} \textbf{spostaGliOrdiniInArrivo}}  & {\color[HTML]{000000} String idTavolo}                                                               & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Imposta come "in arrivo"\\ gli ordini di un \\ determinato tavolo\end{tabular}}                 & {\color[HTML]{000000} POST}            \\ \hline
 \end{tabular}
-\caption{Metodi del controller \textit{TavoloController}.}
+\caption{Metodi del controller \textit{TavoloController}}
 \end{table}
 %//////////////////////// FINE TABELLA ////////////////////////
 %//////////////////////// FINE TABELLA ////////////////////////
@@ -817,7 +874,7 @@ Il \textit{MenuController} richiede la dipendenza con il servizio \textit{Client
 {\color[HTML]{000000} \textbf{ottieniListaFasce}}        & {\color[HTML]{000000} int idMenu}                                                                    & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Ritorna le fasce orarie\\ di un certo menu\end{tabular}}                                      & {\color[HTML]{000000} GET}             \\ \hline
 {\color[HTML]{000000} \textbf{ottieniListaPreferiti}}    & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}int idMenu\\ String idPersona\end{tabular}}         & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Ritorna la lista dei\\ piatti preferiti di una \\ persona\end{tabular}}                       & {\color[HTML]{000000} GET}             \\ \hline
 \end{tabular}
-\caption{Metodi del controller \textit{TavoloController}.}
+\caption{Metodi del controller \textit{MenuController}}
 \end{table}
 %//////////////////////// FINE TABELLA ////////////////////////
 %//////////////////////// FINE TABELLA ////////////////////////
@@ -850,7 +907,7 @@ Infine è presente il \textit{GestoreController} con dipendenza dal servizio \te
 \rowcolor[HTML]{EFEFEF}
 {\color[HTML]{000000} \textbf{eliminaMenu}}        & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}String idPersona\\ String idMenu\end{tabular}}                         & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Elimina un \\ determinato menu\end{tabular}}                        & {\color[HTML]{000000} DELETE}          \\ \hline
 \end{tabular}
-\caption{Metodi del controller \textit{GestoreController}.}
+\caption{Metodi del controller \textit{GestoreController}}
 \end{table}
 %//////////////////////// FINE TABELLA ////////////////////////
 %//////////////////////// FINE TABELLA ////////////////////////
@@ -915,7 +972,7 @@ A questo punto sono state create in Java le classi corrispondenti a tutti i tipi
 \subsubsection*{Analisi sulle API e loro definizione}
 Questa fase prevede la dichiarazione delle query, mutation e subscription nel GraphQL Schema. Si tratta di una fase fondamentale in quanto permette di definire i tipi di input e di output di ciascuna operazione possibile. Rispetto alla progettazione iniziale si è deciso di aggiungere delle subscription. Di seguito è possibile visualizzare le query, le mutation e le subscription per ciascuno dei cinque controller presenti.\\
 Le query rese disponibili sono:
-\begin{lstlisting}[language=GraphQL]
+\begin{lstlisting}[language=GraphQL, title={schema.graphqls}]
 type Query {
   ##############UtenteController##############
   ottieniUtente(idPersona: String!): Utente
@@ -936,7 +993,7 @@ type Query {
 }
 \end{lstlisting}
 Le mutation realizzate sono:
-\begin{lstlisting}[language=GraphQL]
+\begin{lstlisting}[language=GraphQL, title={schema.graphqls}]
 type Mutation {
   ##############LoginController##############
   eseguiLogin(utente: UtenteInput!): LoginSession
@@ -963,7 +1020,7 @@ type Mutation {
 }
 \end{lstlisting}
 Sono state introdotte infine le nuove subscription:
-\begin{lstlisting}[language=GraphQL]
+\begin{lstlisting}[language=GraphQL, title={schema.graphqls}]
 type Subscription {
   ordiniTavoliRealTime(): [Ordine]
   visualizzaSezioniRealTime(): [Sessione]

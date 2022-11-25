@@ -6,7 +6,7 @@
 \chapter{Introduzione}
 \label{introduzione}
 %**************************************************************
-\intro{Il capitolo seguente introduce all'azienda e illustra la struttura del documento.}\\
+\intro{Il capitolo seguente introduce l'azienda e illustra la struttura del documento.}\\
 %**************************************************************
 \section{L'azienda}
 \FloatBarrier
@@ -27,18 +27,18 @@ Nata a Napoli nel 2002 è al giorno d'oggi divisa in sei sedi operative nelle ci
 L'idea alla base dello stage è quella di effettuare la migrazione di un applicativo aziendale dal protocollo REST a GraphQL. Lo scopo è quello di analizzare la nuova tecnologia mai affrontata dall'azienda e valutare, attraverso la realizzazione di una analisi di comparazione, quale protocollo potesse soddisfare meglio le esigenze dell'applicativo aziendale.\\ \\
 Prima di eseguire la migrazione sull'applicativo aziendale è stato scelto di realizzare un prototipo di gestionale aziendale per familiarizzare con le tecnologie e comprendere quale fosse l'approccio corretto per affrontare la migrazione dell'applicativo aziendale al meglio.\\
 Trattandosi di un applicativo composto da backend e frontend, il prototipo è stato realizzato seguendo la medesima architettura al fine di comprenderne il funzionamento e fare pratica. É stato implementato inizialmente con REST API per poi effettuarne la migrazione a GraphQL API.\\ \\
-L'applicativo aziendale scelto sul quale è stato realizzato il processo di migrazione si chiama SushiLab. L'applicativo SushiLab, pensato e realizzato da alcuni stagisti nei mesi che precedevano il mio stage, mira alla gestione delle ordinazioni nei ristoranti di sushi nella formula \gls{ayce}. Dunque dopo aver analizzato l'applicativo e compreso il suo funzionamento ne è stata effettuata la migrazione.\\ \\
+L'applicativo aziendale scelto sul quale è stato realizzato il processo di migrazione si chiama SushiLab. SushiLab, pensato e realizzato da alcuni stagisti nei mesi che precedevano il mio stage, si occupa di gesitre le ordinazioni nei ristoranti di sushi nella formula \gls{ayce}. Dunque dopo aver analizzato l'applicativo e compreso il suo funzionamento ne è stata effettuata la migrazione.\\ \\
 Al termine della migrazione, prendendo atto di quanto compreso durante la progettazione, lo sviluppo e la migrazione del prototipo e di SushiLab, è stata effettuata una analisi comparativa su tutti gli aspetti che differenziano i due protocolli per la realizzazione di API.
 \section{Descrizione del prodotto ottenuto}
 Al termine dello stage è stato realizzato:
 \begin{itemize}
-  \item \textbf{Prototipo} composto da backend e frontend è stato realizzato in due versioni:
+  \item \textbf{Prototipo}: composto da backend e frontend è stato realizzato in due versioni:
   \begin{itemize}
     \item \textit{Versione REST}: il prototipo è stato realizzato prima con REST API;
-    \item \textit{Versione GraphQL}: a partire dalla versione con REST API è stata effettuata la migrazione e dunque è stato ottenuta una versione funzionante con GraphQL API;
+    \item \textit{Versione GraphQL}: a partire dalla versione con REST API è stata effettuata la migrazione e dunque si è ottenuta una versione funzionante con GraphQL API;
   \end{itemize}
-  \item \textbf{SushiLab con GraphQL API}: è stato realizzata la migrazione dell'applicativo aziendale dalla sua versione con REST API, alla versione funzionante con GraphQL API;
-  \item \textbf{Analisi comparativa}: è stato realizzato un documento dettagliato sulla comparazione dei due protocolli REST e GraphQL nel quale sono stati approfonditi sia gli aspetti prettamente teorici che quelli più pratici.
+  \item \textbf{SushiLab con GraphQL API}: è stato realizzata la migrazione dell'applicativo aziendale dalla sua versione con REST API alla versione funzionante con GraphQL API;
+  \item \textbf{Analisi comparativa}: è stato realizzato un documento dettagliato sulla comparazione dei due protocolli REST e GraphQL nel quale si sono approfonditi sia gli aspetti prettamente teorici che quelli più pratici.
 \end{itemize}
 \newpage
 \section{Strumenti e tecnologie utilizzati}
@@ -96,7 +96,7 @@ Al termine dello stage è stato realizzato:
     \includegraphics[width=0.5\linewidth]{immagini/angular.png}
   \end{minipage}
   \begin{minipage}[!h]{0.7\linewidth}
-    \textit{Angular} è un framework open source per lo sviluppo di applicazioni web. Permette di realizare applicazioni multipiattaforma che si adattano facilmente a diversi dispositivi. Utilizzato per lo sviluppo e la migrazione del frontend nel prototipo e in SushiLab.
+    \textit{Angular} è un framework open source per lo sviluppo di applicazioni web. Permette di realizzare Single Page Application che si adattano facilmente a diversi dispositivi. Utilizzato per lo sviluppo e la migrazione del frontend nel prototipo e in SushiLab.
   \end{minipage}
 \end{figure}
 \FloatBarrier
@@ -130,7 +130,7 @@ Al termine dello stage è stato realizzato:
     \includegraphics[width=0.4\linewidth]{immagini/jasmine.png}
   \end{minipage}
   \begin{minipage}[!h]{0.7\linewidth}
-    \textit{JUnit 5} è un framework di test open source. É stato utilizzato in Angular per effettuare i test nel frontend sia del prototipo che dell'applicativo SushiLab.
+    \textit{Jasmine} è un framework di test open source. É stato utilizzato in Angular per effettuare i test nel frontend sia del prototipo che dell'applicativo SushiLab.
   \end{minipage}
 \end{figure}
 \FloatBarrier
@@ -164,17 +164,11 @@ Al termine dello stage è stato realizzato:
 \begin{description}
     \item Il {\hyperref[descrizione-stage]{secondo capitolo}} descrive l'analisi preventiva dei rischi, obbiettivi e infine la pianificazione del lavoro;
 
-    \item Il {\hyperref[protocolli-trasmissione-dati]{terzo capitolo}} introduce ai protocollo di modellazione e trasferimento, tra questi approfondisce REST e GraphQL;
+    \item Il {\hyperref[protocolli-trasmissione-dati]{terzo capitolo}} introduce ai protocolli di modellazione e trasferimento, tra questi approfondisce REST e GraphQL;
 
-    \item Il {\hyperref[casi-uso]{quarto capitolo}} mostra la realizzazione del prototipo con relativa migrazione e la migrazione dell'applicativo SushiLab;
+    \item Il {\hyperref[casi-uso]{quarto capitolo}} illustra la realizzazione del prototipo con relativa migrazione e la migrazione dell'applicativo SushiLab;
 
     \item Il {\hyperref[analisi-comparativa]{quinto capitolo}} descrive dettagliatamente l'analisi comparativa tra i protocolli REST e GraphQL;
 
-    \item Il {\hyperref[conclusioni]{sesto capitolo}} rirpota le conclusioni finali riguardo lo stage effettuato.
+    \item Il {\hyperref[conclusioni]{sesto capitolo}} riporta le conclusioni finali riguardo lo stage effettuato.
 \end{description}
-
-Riguardo la stesura del testo, relativamente al documento sono state adottate le seguenti convenzioni tipografiche:
-\begin{itemize}
-	\item gli acronimi, le abbreviazioni e i termini ambigui o di uso non comune menzionati vengono definiti nel glossario, situato alla fine del presente documento;
-	\item per la prima occorrenza dei termini riportati nel glossario viene utilizzata la seguente nomenclatura: \emph{parola}\glsfirstoccur;
-\end{itemize}
