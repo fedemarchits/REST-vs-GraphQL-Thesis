@@ -596,15 +596,15 @@ Come si può notare si tratta di un controller simile a quello REST nei metodi, 
   \item \textbf{@Argument}: utilizzato per specificare gli argomenti.
 \end{itemize}
 Queste annotazioni sono fondamentali poiché permettono di effettuare il mapping tra i tipi, le query, le mutation e le subscription definiti nel GraphQL Schema e quelli definiti nel controller. Per questo motivo il nome di ciascun metodo o tipo negli argomenti deve corrispondere esattamente al nome nel GraphQL Schema, altrimenti il mapping non andrà a buon fine e verranno generati degli errori.\\
-L'implementazione dei metodi del controller risulta simile a quella dei corrispettivi metodi nel REST controller. Tuttavia, trattandosi di una particolare funzionalità disponibile esclusivamente in GraphQL, in figura \ref{subscription-graphql} viene riportata l'implementazione della subscription \textit{newEmployeeAdded}:
-\FloatBarrier
-\begin{figure}[!ht]
-\centering
-\includegraphics[width=1\linewidth]{immagini/newEmployeeAdded.png}
-\caption{Subscription \textit{newEmployeeAdded}.}
-\label{subscription-graphql}
-\end{figure}
-\FloatBarrier
+L'implementazione dei metodi del controller risulta simile a quella dei corrispettivi metodi nel REST controller. Tuttavia, trattandosi di una particolare funzionalità disponibile esclusivamente in GraphQL, in figura \ref{subscription-graphql} viene riportata l'implementazione della subscription \begin{lstlisting}[language=Java, morecomment={[s][\color{DarkOrchid}]{@}{\ }},  morecomment={[s][\color{OliveGreen}]{"}{"}},]
+@SubscriptioMapping ()
+Publisher<List<Employee>> newEmployeeAdded(){
+  return subscriber -> Executors.newScheduledThreadPool(1).scheduleAtFixedRate(() -> {
+    List<Employee> employees = employeeService.SelAll();
+    subscriber.onNext(employees);
+    }, 0, 2, TimeUnit.SECONDS);
+}
+\end{lstlisting}
 L'implementazione della subscription permette al subscriber, in questo caso il client, di ricevere la lista aggiornata al verificarsi di un evento. L'oggetto \textit{Publisher<>} permette di inviare la lista aggiornata a tutti i subscribers in tempo reale, così facendo il client non dovrà richiedere periodicamente la lista con la query \textit{allEmployee}.
 \textcolor{red}{Mancano test in graphQL}
 \paragraph{Strutture delle risposte HTTP in GraphQL e gestione degli errori}
@@ -621,45 +621,63 @@ Analizzando gli errori che si possono verificare durante l'esecuzione di una que
   \item \textbf{Errori nei resolver:} si verificano durante la risoluzione della query e non sono legati al fatto che la query sia formulata male o con tipi sbagliati. Questi errori devono essere gestiti lato server;
 \end{itemize}
 Quando si verificano errori di sintassi o validazione la risposta l'errore ritornato indica perfettamente la natura dell'errore. La terza tipologia di errore quasi sempre risulta incomprensibile dal client. Questo accade perché la gestione delle eccezioni durante l'esecuzione di una richiesta è presa in carico dall'interfaccia predefinita \textit{DataFetcherExceptionHandler} la quale permette la dichiarazione di più risolutori di eccezioni detti \textit{DataFetcherExceptionResolver}. Questi ultimi vengono invocati sequenzialmente fino a quando uno di essi è in grado di risolvere l'eccezione; in caso contrario viene ritornata una informazione di errore incomprensibile con categoria \textit{"INTERNAL\_ERROR"}. Questo per uno sviluppatore può essere un problema poiché non è facile individuare la provenienza dell'errore. Per questo motivo sono stati creati differenti resolvers per le varie eccezioni che possono verificarsi. In figura \ref{resolver-example} l'esempio di implementazione di un resolver che riscrive il metodo di risoluzione delle eccezioni \textit{resolveToSingleError} al fine di risolvere l'eccezione \textit{EmployeeNotFound}.
-\FloatBarrier
-\begin{figure}[!ht]
-\centering
-\includegraphics[width=0.8\linewidth]{immagini/resolverExample.png}
-\caption{Classe \textit{GraphQLExceptionResolver} con metodo \textit{resolveToSingleError} ridefinito per la risoluzione dell'eccezione \textit{EmployeeNotFoundError}.}
-\label{resolver-example}
-\end{figure}
-\FloatBarrier
+\begin{lstlisting}[language=Java, morecomment={[s][\color{DarkOrchid}]{@}{\ }},  morecomment={[s][\color{OliveGreen}]{"}{"}},]
+@Component ()
+public class GraphQLExceptionResolver extends DataFetcherExceptionResolverAdapter {
+  @Override
+  protected GraphQLError resolveToSingleError(Throwable ex, DataFetchingEnvironment env) {
+    if(ex instanceof EmployeeNotFound) {
+      return GraphQLErrorBuilder.newError()
+                .errorType(ErrorType.NOT_FOUND)
+                .message(ex.getMessage())
+                .path(env.getExecutionStepInfo().getPath())
+                .location(env.getField().getSourceLocation())
+                .build();
+    } else {
+      return null;
+    }
+  }
+}
+\end{lstlisting}
 Com'è possibile notare viene ritornato un oggetto di tipo \textit{GraphQLError} con i campi impostati correttamente. Al presentarsi dell'eccezione il client sarà ora in grado di comprendere il motivo di errore.
 \subsubsection*{Migrazione Frontend}
 La migrazione del frontend richiede uno sforzo minore rispetto al backend, infatti è sufficiente effettuare la migrazione esclusivamente dei servizi che si occupano dell'invocazione delle API.\\
 Il servizio visualizzato precedentemente in figura \ref{employee-service} \textit{EmployeeService} non cambia la sua struttura; i metodi rimangono gli stessi, tuttavia l'implementazione del metodo deve cambiare. Oltre all'implementazione dei metodi cambia anche l'oggetto che permette il fetching dei dati dal server, infatti trattandosi ora di un GraphQL Server, sarà necessaria la dipendenza dall'oggetto \textit{Apollo} utilizzato nel fetching dei dati da un server GraphQL.\\
 In figura \ref{employee-service-method-graphql} è possibile visualizzare l'implementazione del metodo  \textit{allEmployees}.
-\FloatBarrier
-\begin{figure}[!ht]
-\centering
-\includegraphics[width=0.5\linewidth]{immagini/employeeServiceMethodGraphql.png}
-\caption{Metodo \textit{allEmployees()} della classe  \textit{EmployeeService}.}
-\label{employee-service-method-graphql}
-\end{figure}
-\FloatBarrier
+\begin{lstlisting}[language=JavaScript]
+  allEmployees(){
+      return this.apollo.watchQuery<any>({
+        query: gql`
+        {
+          allEmployees {
+            id
+            name
+            surname
+            birth
+            salary
+          }
+        }`,
+        }).valueChanges;
+      }
+\end{lstlisting}
 Attraverso il metodo \textit{watchQuery<>} dell'oggetto \textit{apollo} è possibile eseguire la query all'endopoint del server GraphQL. Il metodo ritorna un oggetto di tipo \textit{Observable} ed il subscriber dovrà occuparsi di gestire quanto ritornato dal servizio. Nel caso in cui la query sia andata a buon fine dovrà leggere le informazioni presenti nel campo \textit{"data"}; nel caso contrario dovrà occuparsi di mostrare il messaggio ed il tipo dell'errore presente nel campo \textit{"errors"}.
 \section{SushiLab}
 \label{sushi-lab}
 \subsection{Confronto con stakeholder}
 Circa dopo un mese dall'inizio dello stage è stato realizzato un confronto con gli stakeholder. Con il tutor interno dell'azienda SyncLab, ovvero Fabio Pallaro sono stati valutati alcuni applicativi già implementati che seguissero l'architettura server - client per effettuarne la migrazione da REST API a GraphQL API.\\
-Tra tutti l'applicativo selezionato è stato \textbf{SushiLab}, il quale è stato realizzato da alcuni stagisti nei mesi precedenti. Il motivo che ci ha portato a concordare questa scelta è stato principalmente il fatto che fosse un applicativo con una struttura API sviluppata.
+Tra tutti l'applicativo selezionato è stato \textbf{SushiLab}, il quale è stato realizzato da alcuni stagisti nei mesi precedenti. Il motivo che ci ha portato a concordare questa scelta è stato principalmente il fatto che fosse un applicativo con una struttura API articolata.
 \subsection{Comprensione dell'applicativo e obbiettivi}
-SushiLab è un applicativo che mira ad automatizzare il processo di tracciamento degli ordini nei ristoranti di sushi all you can eat. Si tratta da un applicativo composto da:
+SushiLab è un applicativo che mira ad automatizzare il processo di tracciamento degli ordini nei ristoranti di sushi all you can eat. Si tratta di un applicativo composto da:
 \begin{itemize}
-  \item \textbf{Backend}: realizzato un backend in Java con il framework Spring Boot, gestisce un inoltre database PostgreSQL;
+  \item \textbf{Backend}: realizzato in Java con il framework Spring Boot con database PostgreSQL;
   \item \textbf{Frontend}: realizzato in Typescript con il framework Angular;
-  \item \textbf{Componente di Machine Learning}: utilizzata per il riconoscimento dei piatti tramite la fotocamera del telefono;
-  \item \textbf{Applicativo mobile}: la versione mobile della web app sotto forma di applicazione.
+  \item \textbf{Componente di Machine Learning}: consente il riconoscimento dei piatti tramite la fotocamera del telefono;
+  \item \textbf{Applicativo mobile}: la versione mobile della Web App.
 \end{itemize}
-Il mio intervento sull'applicativo prevede di lavorare sulla comunicazione tra backend e frontend, effettuando una migrazione completa delle REST API sviluppate portandole a GraphQL API, esattamente come è stato fatto per il prototipo.\\\\
-Di seguito nelle sottosezioni verranno analizzate le strutture del backend e del frontend, tralasciando gli aspetti implementativi specifici già visualizzati per il prototipo e concentrandosi principalmente sulla parte di comunicazione tramite API.
+Il mio intervento sulla Web Application prevede di lavorare sulla comunicazione tra backend e frontend, effettuando una migrazione completa delle REST API sviluppate trasformandole in GraphQL API, esattamente come è stato fatto per il prototipo.\\\\
+Di seguito verranno analizzate le strutture del backend e del frontend tralasciando gli aspetti implementativi specifici già illustrati nel prototipo e concentrandosi principalmente sulla parte di comunicazione tramite API.
 \subsection{Panoramica del backend}
-Il backend sviluppato in Java con il framework Spring Boot segue l'architettura proposta per il prototipo, ovvero il pattern repository - service - controller. Di seguito verranno analizzate e descritte brevemente le componenti principali degli strati di persistenza e di business logic, mentre verrà approfondito lo strato di controller.
+Il backend sviluppato in Java con il framework Spring Boot segue l'architettura proposta per il prototipo, ovvero il pattern repository - service - controller. Di seguito verranno analizzate e descritte brevemente le componenti principali degli strati di persistenza e di business logic, si approfondirà maggiormente lo strato di controller.
 \subsubsection{Entità}
 In figura \ref{ER-sushilab} è possibile visualizzare lo schema ER delle entità presenti e le relazioni che intercorrono. Vengono tralasciati i campi per non entrare eccessivamente nel dettaglio.
 \FloatBarrier
@@ -672,19 +690,19 @@ In figura \ref{ER-sushilab} è possibile visualizzare lo schema ER delle entità
 \FloatBarrier
 Sono dunque presenti le entità:
 \begin{itemize}
-  \item \textbf{PiattoUpload}: una tipo di piatto con allergeni e ingredienti;
+  \item \textbf{PiattoUpload}: un tipo di piatto con allergeni e ingredienti;
   \item \textbf{PiattoPreview}: l'anteprima di un piatto associata ad un \textit{PiattoUpload};
   \item \textbf{SezionePreview}: un insieme di piatti di una particolare categoria;
   \item \textbf{Menù}: un insieme di sezioni di piatti, si tratta del menù di un ristorante;
-  \item \textbf{Utente}: l'utente registrato, può anche essere un gestore e dunque essere il proprietario del ristorante e dunque poter apportare delle modifiche ai menù, ai piatti, ecc..;
+  \item \textbf{Utente}: l'utente registrato, può anche essere un gestore e dunque essere il proprietario del ristorante e dunque poter apportare delle modifiche ai menù, ai piatti;
   \item \textbf{FasciaOraria}: una fascia oraria in cui può essere disponibile un Menù;
   \item \textbf{InformazioniPiatto}: le caratteristiche di un singolo utente riguardo ingredienti che non può mangiare, se gli è piaciuto un piatto specifico o se ha preferenze per particolari tipi di menù;
   \item \textbf{Blacklist}: l'insieme di ingredienti che un cliente preferisce non mangiare;
-  \item \textbf{IdToken}: un token identificativo associato ad un utente quando partecipa ad un tavolo;
+  \item \textbf{IdToken}: un token identificativo associato ad un utente dopo il login;
   \item \textbf{Session}: la situazione di un singolo tavolo in un determinato momento con determinati clienti, quando un cliente si siede ad un tavolo può aprire una sessione e invitare gli amici allo stesso tavolo;
   \item \textbf{Ordine}: gli ordini effettuati in una specifica sessione o da una specifica persona;
   \item \textbf{Allergeni}: le sostanze che tipicamente possono causare allergie;
-  \item \textbf{Ingredienti}: i possibili ingredienti nei vari piatti;
+  \item \textbf{Ingredienti}: i possibili ingredienti nei vari piatti.
 \end{itemize}
 Ciascuna di queste entità ha la corrispettiva classe Java nel backend. Per ciascuna entità è stata realizzata la corrispettiva repository estendendo l'interfaccia \textit{JPARepository<T, ID>} per la gestione dei dati e delle risorse nel database.
 \subsubsection*{Servizi}
@@ -693,10 +711,10 @@ Lo strato di servizio presente prevede la definizione di solo due classi per la 
 Il primo servizio gestisce le logiche delle possibili richieste del client. Questo servizio permette la gestione di:
 \begin{itemize}
   \item \textbf{Utenti}: permette tutte le operazioni di login, registrazione di un nuovo utente, aggiunta dell'IdToken ad un utente all'apertura di una nuova sessione ad un tavolo e infine il recupero e modifica della password;
-  \item \textbf{Preferenze Utente}: permette di modificare le preferenze di un utente e modificare, aggiungere o eliminare le valutazioni attribuite ai piatti; inoltre permette di visualizzare gli ingredienti nella blacklist di uno specifico utente;
-  \item \textbf{Sessioni}: permette di craere ed eliminare le sessioni;
+  \item \textbf{Preferenze Utente}: permette di modificare le preferenze di un utente e modificare, aggiungere o eliminare le valutazioni attribuite ai piatti; inoltre consente di visualizzare gli ingredienti nella blacklist di uno specifico utente;
+  \item \textbf{Sessioni}: permette di creare ed eliminare le sessioni;
   \item \textbf{Ordini}: permette la gestione degli ordini da parte di un utente, di aggiungerne di nuovi o di visualizzarli;
-  \item \textbf{Gestore}: permette di verificare che un utente corrispondi o meno al gestore;
+  \item \textbf{Gestore}: permette di verificare che un utente corrisponda o meno al gestore;
   \item \textbf{Menu}: permette di visualizzare il menù di un ristorante.
 \end{itemize}
 \paragraph{GestoreService}
@@ -725,7 +743,7 @@ Il seguente controller dichiara una dipendenza con il servizio \textit{ClientSer
 %//////////////////////// FINE TABELLA ////////////////////////
 %//////////////////////// FINE TABELLA ////////////////////////
 \paragraph{UtenteController}
-Questo controller dichiara una dipendenza con il servizio \textit{ClientService} ed è composto dai metodi nella specificati nella seguente tabella:
+Questo controller dichiara una dipendenza con il servizio \textit{ClientService} ed è composto dai metodi specificati nella seguente tabella:
 %//////////////////////// INIZIO TABELLA ////////////////////////
 %//////////////////////// INIZIO TABELLA ////////////////////////
 \begin{table}[!h]
@@ -753,7 +771,7 @@ Questo controller dichiara una dipendenza con il servizio \textit{ClientService}
 %//////////////////////// FINE TABELLA ////////////////////////
 %//////////////////////// FINE TABELLA ////////////////////////
 \paragraph{TavoloController}
-Anche il seguente controller dichiara una dipendenza con \textit{ClientService} e i suoi metodi gestiscono gli utenti, gli ordini ed i tavoli.
+Anche il seguente controller dichiara una dipendenza con \textit{ClientService} ed i suoi metodi gestiscono gli utenti, gli ordini ed i tavoli.
 % Please add the following required packages to your document preamble:
 % \usepackage[table,xcdraw]{xcolor}
 % If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
@@ -804,7 +822,7 @@ Il \textit{MenuController} richiede la dipendenza con il servizio \textit{Client
 %//////////////////////// FINE TABELLA ////////////////////////
 %//////////////////////// FINE TABELLA ////////////////////////
 \paragraph{GestoreController}
-Infine è presente il \textit{GesoreController} con dipendenza dal servizio \textit{GestoreService}. I metodi che lo caratterizzano sono:
+Infine è presente il \textit{GestoreController} con dipendenza dal servizio \textit{GestoreService}. I metodi che lo caratterizzano sono:
 %//////////////////////// INIZIO TABELLA ////////////////////////
 %//////////////////////// INIZIO TABELLA ////////////////////////
 % Please add the following required packages to your document preamble:
@@ -841,7 +859,7 @@ Infine è presente il \textit{GesoreController} con dipendenza dal servizio \tex
 \paragraph{Architettura}
 L'applicativo è stato realizzato in Angular e dunque è composto da:
 \begin{itemize}
-  \item \textbf{Moduli}: utili per la separazione delle logiche; sono presenti diversi moduli come: il menu di navigazione, uan sezione ordini, una per la guida, una per il gestore altri ancora;
+  \item \textbf{Moduli}: utili per la separazione delle logiche; sono presenti diversi moduli come: il menu di navigazione, una sezione ordini, una per la guida, una per il gestore ed altri ancora;
   \item \textbf{Servizi}: sono presenti diversi servizi per la gestione della comunicazione con il backend, questo è lo strato in cui avverrà la migrazione;
   \item \textbf{Interceptor}: necessari per intercettare le chiamate HTTP e gestire il token di autenticazione;
   \item \textbf{Guardie}: permettono di bloccare l'accesso ad alcune funzionalità secondo diverse logiche, come ad esempio evitare di mostrare ad un utente che non è un gestore la pagina di gestione del menù;
@@ -862,29 +880,29 @@ Nella seguente sezione verranno illustrati brevemente i principali attori e i lo
       \item \textit{Cameriere}: cameriere del ristorante; può visualizzare le ordinazioni di un determinato tavolo;
     \end{itemize}
 \end{itemize}
-\subsection{Migrazione del backend da REST a Graphql}
-La migrazione del backend applica la tecnica \textit{Schema First}. È stata suddivisa in tre parti principali:
+\subsection{Migrazione del backend}
+La migrazione del backend avviene secondo la tecnica \textit{Schema First}. È stata suddivisa in tre parti principali:
 \begin{itemize}
   \item \textbf{Analisi sui tipi}: in questa prima fase si analizzano i tipi che devono essere esposti al client, dunque si procede con la scrittura del GraphQL Schema definendo i tipi;
   \item \textbf{Analisi sulle API}: sono state analizzate le API che si vuole migrare e successivamente sono state dichiarate nel GraphQL Schema;
   \item \textbf{Migrazione dei controller}: è stato adattato il codice del controller a GraphQL;
 \end{itemize}
 \subsubsection*{Analisi sui tipi e loro definizione}
-É necessario analizzare e dunque riportare solo le entità che devono essere esposti al client. Oltre a questi è necessario anche definire nuovi tipi a seconda delle necessità. Di seguito vengono esposti i tipi che è stato scelto di dichiarare nel GraphQL Schema:
+É necessario analizzare e dunque riportare solo le entità che devono essere esposte al client. Oltre a queste è necessario definire nuovi tipi a seconda delle necessità. Di seguito vengono esposti i tipi che è stato scelto di dichiarare nel GraphQL Schema:
 \begin{itemize}
   \item \textbf{Tipi di output}: sono i tipi che verranno ritornati al client, tra questi troviamo:
   \begin{itemize}
     \item \textit{Menu}: per ritornare il menu;
     \item \textit{FasciaOraria}: per ritornare le fasce orarie riguardo la disponibilità di un menù;
-    \item \textit{Piatto}: per ritornare uno o più piatti; nella versione erano presenti due diverse rappresentazioni di piatto, qui ne sono stati uniti i campi sotto un unico tipo, così facendo backend e frontend potranno decidere quali campi sfruttare e quali no a seconda dell'utilizzo che devono fare di questo oggetto;
+    \item \textit{Piatto}: per ritornare uno o più piatti; nella versione erano presenti due diverse rappresentazioni di piatto, qui ne sono stati uniti i campi sotto un unico tipo, così facendo backend e frontend potranno decidere quali campi sfruttare e quali no a seconda dell'utilizzo che deve essere fatto di questo oggetto;
     \item \textit{PiattoPreferito}: si differenzia dal tipo \textit{Piatto} in quanto deve specificare le preferenze dell'utente e le sue valutazioni riguardo ad uno specifico piatto;
     \item \textit{LoginSession}: per ritornare i dati di login, comprende una stringa per il token della sessione di login e la durata in secondi;
-    \item \textit{Ordine}: si tratta di un oggetto che specifica un piatto, la quantità ordinata e infine una eventuale nota;
+    \item \textit{Ordine}: si tratta di un oggetto che specifica un piatto, la quantità ordinata ed infine una eventuale nota;
     \item \textit{Utente}: per creare un nuovo utente o effettuare il login;
     \item \textit{Blacklist}: per ritornare la blacklist di un utente;
-    \item \textit{Sessione}: per ritornare la sessione atti va in un determinato tavolo;
+    \item \textit{Sessione}: per ritornare la sessione attiva in un determinato tavolo;
   \end{itemize}
-  \item \textbf{Tipi di input}: sono i tipi che verranno ricevuti in input dal client, tra questi troviamo:
+  \item \textbf{Tipi di input}: sono i tipi che verranno forniti in input dal client, tra questi troviamo:
   \begin{itemize}
     \item \textit{PiattoInput}: per aggiunta e modifica di uno o più piatti che si ricevono in input dal client;
     \item \textit{MenuInput}: per aggiunta e modifica di uno o più menu;
@@ -892,11 +910,10 @@ La migrazione del backend applica la tecnica \textit{Schema First}. È stata sud
     \item \textit{UtenteInput}: per creare un nuovo utente o per effettuare il login;
   \end{itemize}
 \end{itemize}
-I tipi elencati sono esclusivamente quelli necessari per la definizione delle query, mutation e subscription. Verranno poi realizzato il tipo \textit{OperationSuccess} che viene ritornato, in caso di successo, per tutte quelle mutation che eseguono un'operazione e non ritornano dati. Questo tipo è comoposto da un solo campo String contenente un eventuale messaggio.\\ \\
-A questo punto sono stati creati in Java le classi corrispondenti a tutti i tipi di input poiché sono composti da campi dati in forma differente rispetto alle entità nel server. Per i tipi di output questa operazione non è necessaria poiché i loro campi corrispondono alle entità in Java. Fanno eccezzione i tipi \textit{Piatto}, \textit{PiattoPreferito} e \textit{LoginSession} poiché si differenziano leggermente dalle classi Java corrispondenti.
+I tipi elencati sono esclusivamente quelli necessari per la definizione delle query, mutation e subscription. Verrà poi realizzato il tipo \textit{OperationSuccess} che viene ritornato, in caso di successo, per tutte quelle mutation che eseguono un'operazione e non ritornano dati. Questo tipo è composto da un solo campo String contenente un eventuale messaggio.\\ \\
+A questo punto sono state create in Java le classi corrispondenti a tutti i tipi di input. Per i tipi di output questa operazione non è necessaria poiché i loro campi corrispondono alle entità in Java. Fanno eccezione i tipi \textit{Piatto}, \textit{PiattoPreferito} e \textit{LoginSession} poiché si differenziano leggermente dalle classi Java corrispondenti.
 \subsubsection*{Analisi sulle API e loro definizione}
-Questa fase prevede la dichiarazione delle query, mutation e subscription nel GraphQL Schema. Si tratta di una fase fondamentale in quanto permette di definire i tipi di input e di output di ciascuna operazione possibile.
-Inoltre sono state aggiunte anche delle subscription. Di seguito è possibile visualizzare le query, le mutation e le subscription per ciascuno dei cinque controller presenti.\\
+Questa fase prevede la dichiarazione delle query, mutation e subscription nel GraphQL Schema. Si tratta di una fase fondamentale in quanto permette di definire i tipi di input e di output di ciascuna operazione possibile. Rispetto alla progettazione iniziale si è deciso di aggiungere delle subscription. Di seguito è possibile visualizzare le query, le mutation e le subscription per ciascuno dei cinque controller presenti.\\
 Le query rese disponibili sono:
 \begin{lstlisting}[language=GraphQL]
 type Query {
@@ -945,7 +962,7 @@ type Mutation {
   eliminaMenu(idPersona: String!, idMenu: String!): OperationSuccess
 }
 \end{lstlisting}
-Sono state introdotte infine le nuove seguenti subscription:
+Sono state introdotte infine le nuove subscription:
 \begin{lstlisting}[language=GraphQL]
 type Subscription {
   ordiniTavoliRealTime(): [Ordine]
@@ -956,24 +973,24 @@ Queste subscription permettono al client di ricevere in tempo reale i nuovi ordi
 \subsubsection*{Migrazione dei controller}
 L'ultimo step per completare la migrazione del backend prevede la riscrittura dei controller. Per effettuare questo passaggio sono stati seguiti i seguenti punti:
 \begin{itemize}
-  \item \textbf{Cambio tipi}: sono stati cambiati i tipi negli argomenti, negli oggetti di ritorno e nell'implementazione dei vari resolver; questo è stato fatto perché sono stati introdotti alcuni nuovi tipi ed è dunque necessario rispettare il mapping tra le dichiarazioni delle query, mutation e subscription nel GraphQL Schema e i corrispettivi resolver nei controller;
+  \item \textbf{Cambio tipi}: sono stati cambiati i tipi negli argomenti, negli oggetti di ritorno e nell'implementazione dei vari resolver; questo perchè sono stati introdotti alcuni nuovi tipi ed è dunque necessario rispettare il mapping tra le dichiarazioni delle query, mutation e subscription nel GraphQL Schema e i corrispettivi resolver nei controller;
   \item \textbf{Cambio annotazioni}: sono state sostituite le annotazioni REST con quelle GraphQL;
-  \item \textbf{Cambio struttura controller}: sono stati uniti i controller: \textit{LoginController}, \textit{UtenteController}, \textit{MenuController} e \textit{TavoloController} in un unico controller; questo è stato fatto perché non è più necessario suddividere in endpoint multipli le richieste e perché tutti i controller elencati dichiaravano la stessa dipendenza dal servizio \textit{ClientService}.
-  \item \textbf{Riscrittura del codice dei resolver}: sono stati riscritte le logiche dei vari resolver seguendo la struttura implementativa precedente; questo è stato fatto perché dopo aver apportato delle modifiche ai tipi in Java è stato necessario di conseguenza modificare alcune logiche;
-  \item \textbf{Aggiunta subscription}: essendo state aggiunte due subscription è stato necessario implementare i resolver da associargli.
+  \item \textbf{Cambio struttura controller}: sono stati uniti i controller: \textit{LoginController}, \textit{UtenteController}, \textit{MenuController} e \textit{TavoloController} in un unico controller; questo perchè non è più necessario suddividere in endpoint multipli le richieste e perché tutti i controller elencati dichiaravano la stessa dipendenza dal servizio \textit{ClientService}.
+  \item \textbf{Riscrittura del codice dei resolver}: sono stati riscritte le logiche dei vari resolver seguendo la struttura implementativa precedente; questo perché dopo aver apportato delle modifiche ai tipi in Java è stato necessario di conseguenza modificare alcune logiche;
+  \item \textbf{Aggiunta subscription}: essendo state aggiunte due subscription si è reso necessario implementare i resolver corrispondenti.
 \end{itemize}
 \subsection{Migrazione del frontend da REST a GraphQL}
 La migrazione del frontend è stata più semplice e ha seguito le seguenti fasi:
 \begin{itemize}
-  \item \textbf{Creazione interfacce dei tipi}: sono state create le interfacce per i nuovi tipi strutturati diversamente durante la migrazione del backend;
-  \item \textbf{Migrazione dei servizi}: è stata effettuata la riscrittura dei servizi in quanto quest'utlimi si incaricano delle chiamate al GraphQL Server e non più al REST Server;
+  \item \textbf{Creazione interfacce dei tipi}: sono state create le interfacce per i nuovi tipi strutturati definiti durante la migrazione del backend;
+  \item \textbf{Migrazione dei servizi}: è stata effettuata la riscrittura dei servizi in quanto responsabili delle chiamate al GraphQL Server e non più al REST Server;
   \item \textbf{Migrazione dell'interceptor}: l'interceptor è stato riscritto per l'intercettazione delle chiamate GraphQL e non più REST;
 \end{itemize}
 \subsubsection*{Interfacce dei tipi}
 Le interfacce dei tipi sono necessarie per poter creare l'oggetto ricevuto dal backend nel'ambiente di frontend. Sono state dunque aggiunte le seguenti interfacce non presenti precedentemente:
 \begin{itemize}
   \item \textit{LoginSession}: precedentemente venivano estrapolati i dati riguardanti l'idToken e la scadenza direttamente dal JSON, ora viene ritornato questo oggetto contenente i medesimi dati;
-  \item \textit{OperationSuccess}: precedentemente il codice di stato della risposta HTTP era sufficiente per saperne l'esito; questo in GraphQL non accade, dunque viene ritornato appositamente questo oggetto;
+  \item \textit{OperationSuccess}: precedentemente il codice di stato della risposta HTTP era sufficiente per conoscerne l'esito; questo in GraphQL non accade, dunque viene ritornato appositamente questo oggetto;
   \item \textit{Sessione}: precedentemente veniva direttamente estrapolato dal JSON l'id della sessione, ora viene ritornato questo oggetto dal backend;
 \end{itemize}
 \subsubsection{Migrazione dei servizi}
@@ -988,4 +1005,4 @@ I servizi che sono stati migrati sono:
 Gli altri servizi presenti non sono stati modificati in quanto non gestivano alcun tipo di comunicazione con il backend.
 \subsubsection*{Migrazione dell'interceptor}
 L'interceptor di Angular viene creato attraverso l'implementazione dell'interfaccia \textit{HttpInterceptor} ed è stato utilizzato nel frontend dell'applicativo per l'aggiunta nell'header della chiamata del token di identificazione. Il token di identificazione viene ritornato al client dopo il login di un utente e sarà necessario in seguito per identificare le azioni dell'utente loggato.\\ \\
-É necessario dunque apportare una modifica all'interceptor realizzato precedentemente poiché non sono più presenti endpoints multipli, ma dopo la migrazione in GraphQL è sufficiente controllare e dunque intercettare le chiamate indirizzate ad un solo endpoint.
+É necessario dunque apportare una modifica all'interceptor realizzato precedentemente poiché non sono più presenti endpoints multipli, ma dopo la migrazione in GraphQL è sufficiente controllare e dunque intercettare le chiamate indirizzate ad un singolo endpoint.

@@ -1,5 +1,5 @@
 [0] Config.pm:311> INFO - This is Biber 2.16
 [0] Config.pm:314> INFO - Logfile is 'tesi.blg'
-[90] biber-darwin:340> INFO - === Fri Nov 25, 2022, 15:09:46
-[107] Utils.pm:411> ERROR - tesi.bcf is malformed, last biblatex run probably failed. Deleted tesi.bbl
-[108] Biber.pm:132> INFO - ERRORS: 1
+[94] biber-darwin:340> INFO - === Fri Nov 25, 2022, 18:50:54
+[117] Utils.pm:411> ERROR - tesi.bcf is malformed, last biblatex run probably failed. Deleted tesi.bbl
+[117] Biber.pm:132> INFO - ERRORS: 1

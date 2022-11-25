@@ -7,26 +7,103 @@
 \label{descrizione-stage}
 %**************************************************************
 
-\intro{Breve introduzione al capitolo}\\
-
-%**************************************************************
-\section{Introduzione al progetto}
-
-%**************************************************************
-\section{Analisi preventiva dei rischi}
-
-Durante la fase di analisi iniziale sono stati individuati alcuni possibili rischi a cui si potrà andare incontro.
-Si è quindi proceduto a elaborare delle possibili soluzioni per far fronte a tali rischi.\\
-
-\begin{risk}{Performance del simulatore hardware}
-    \riskdescription{le performance del simulatore hardware e la comunicazione con questo potrebbero risultare lenti o non abbastanza buoni da causare il fallimento dei test}
-    \risksolution{coinvolgimento del responsabile a capo del progetto relativo il simulatore hardware}
-    \label{risk:hardware-simulator}
-\end{risk}
-
+\intro{Nel capitolo viene esposta l'organizzazione e la pianificazione dello stage}\\
 %**************************************************************
 \section{Requisiti e obiettivi}
-
-
+\label{obiettivi-previsti}
+\subsection*{Notazione dei requisiti e degli obbiettivi}
+Si farà riferimento ai requisiti secondo le seguenti notazioni:
+\begin{itemize}
+  \item O per i requisiti obbligatori, vincolanti in quanto obiettivo primario richiesto dal committente;
+  \item D per i requisiti desiderabili, non vincolanti o strettamente necessari, ma dal riconoscibile valore aggiunto;
+  \item F per i requisiti facoltativi, rappresentanti valore aggiunto non strettamente competitivo.
+\end{itemize}
+Le sigle indicate saranno seguita da dei numeri sequenziali che identificano i vari requisiti.
+\subsection*{Obiettivi fissati}
+É stato previsto lo svolgimento dei seguenti obiettivi:
+\begin{itemize}
+  \item \textbf{Obbligatori}:
+  \begin{itemize}
+    \item \underline{O01}: realizzazione dello studio con relativa relazione sulle tecnologie di trasferimento e model- lazione dati REST API e GraphQL;
+    \item \underline{O02}: studio dei framework Spring e Angular;
+    \item \underline{O03}: sviluppo di un prototipo di web application con back-end Spring, front-end Angular e
+comunicazione tramite linguaggio GraphQL;
+    \item \underline{O04}: realizzazione migrazione da tecnologia REST API a GraphQL di una web application aziendale;
+  \end{itemize}
+  \item \textbf{Desiderabili}:
+  \begin{itemize}
+    \item \underline{D01}: realizzazione di una relazione che riporti un’analisi approfondita e le differenze tra le due tecnologie REST API e GraphQL nel caso d’uso specifico della web application scelta per la migrazione;
+  \end{itemize}
+  \item \textbf{Facoltativi}:
+  \begin{itemize}
+    \item \underline{F01}: realizzazione della migrazione su ulteriori web application per valutare le tecnologie REST API e GraphQL su ulteriori casi d’uso;
+  \end{itemize}
+\end{itemize}
 %**************************************************************
+\section{Analisi preventiva dei rischi}
+Nella fase iniziale dello stage sono state individuate alcue possibili criticità che sarebbero potute sorgere durante lo svolgimento dello stage. Per questo motivo sono state individuate alcune soluzioni per evitare tali rischi. Le principali criticità individuate sono:
+\begin{itemize}
+  \item \textbf{Conoscenza superficiale delle tecnologie utilizzate}: la maggior parte delle tecnologie utilizzate durante lo stage sono tecnologie a me sconosciute. La soluzione individuata prevede che le prime settimane dello stage siano dedicate principalmente allo studio delle seguenti tecnologie:
+  \begin{itemize}
+    \item \textit{Spring Boot Framework};
+    \item \textit{Angular Framework};
+  \end{itemize}
+  \item \textbf{Comprensione dell'applicativo SushiLab}: non avendo partecipato allo sviluppo di SushiLab potrebbe risultare complesso comprenderne le logiche. La soluzione individuata prevede lo studio dell'applicativo consultando sia la documentazione che il codice sorgente.
+\end{itemize}
 \section{Pianificazione}
+\label{pianificazione}
+Inizialmente il carico di lavoro è stato distribuito sulle otto settimane disponibili di stage. Segue la suddivisione:
+\begin{itemize}
+    \item \textbf{Prima Settimana (40 ore)}
+    \begin{itemize}
+        \item Incontro con le persone coinvolte nel progetto per discutere i requisiti e le richieste relativamente al sistema da sviluppare;
+        \item Verifica credenziali e strumenti di lavoro assegnati;
+        \item Ripasso Java Standard Edition e tool di sviluppo (IDE ecc.);
+        \item Studio teorico dell’architettura a microservizi: passaggio da monolite ad architetture a microservizi con pro e contro;
+        \item Ripasso principi della buona programmazione (SOLID, CleanCode);
+        \item Ripasso concetti Web (Servlet, servizi Rest, Json ecc.).
+    \end{itemize}
+    \item \textbf{Seconda Settimana (40 ore)}
+    \begin{itemize}
+        \item Studio Spring Core/Spring Boot;
+        \item Studio ORM, in particolare il framework Spring Data JPA;
+        \item Studio servizi REST e framework Spring Data REST;
+        \item Studio linguaggio GraphQL.
+    \end{itemize}
+    \item \textbf{Terza Settimana (40 ore)}
+    \begin{itemize}
+        \item Studio linguaggio TypeScript;
+        \item Studio Framework Angular.
+    \end{itemize}
+    \item \textbf{Quarta Settimana (40 ore)}
+    \begin{itemize}
+        \item Completamento formazione su Angular.
+    \end{itemize}
+    \item \textbf{Quinta Settimana (40 ore)}
+    \begin{itemize}
+        \item Realizzazione di un mini prototipo web application con back-end Spring, front-end Angular con comunicazione tramite linguaggio GraphQL.
+    \end{itemize}
+    \item \textbf{Sesta Settimana (40 ore)}
+    \begin{itemize}
+        \item Inizio studio e progettazione migrazione progetto didattico REST versus GraphQL;
+        \item Sviluppo migrazione.
+    \end{itemize}
+    \item \textbf{Settima Settimana (40 ore)}
+    \begin{itemize}
+        \item Proseguimento sviluppo migrazione.
+    \end{itemize}
+    \item \textbf{Ottava Settimana (40 ore)}
+    \begin{itemize}
+        \item Fine sviluppi;
+        \item Validazione prodotto con stakeholders.
+    \end{itemize}
+\end{itemize}
+\section{Organizzazione dello stage}
+\subsection*{Lavoro in sede e Smart Working}
+L'organizzazione dello stage è stata accordata con il tutor aziendale. La sede SyncLab di Padova non è aperta tutti i giorni della settimana, per questo motivo sono previsti anche dei giorni di lavoro in modalità Smart Working. Dunque l'organizzazione è stata accordata come segue:
+\begin{itemize}
+  \item \textbf{Almeno un giorno in sede}: non tutti i giorni della settimana il tutor aziendale è presente in sede. Per questo motivo è stato accordato di lavorare in sede almeno un giorno della settimana in cui il tutor fosse presente. Per sfruttare al massimo l'esperienza in sede ho cercato di frequentare la sede più di una volta a settimana;
+  \item \textbf{Lavoro in Smart Working}: nei giorni in cui non si frequentava la sede il lavoro è stato realizzato in modalità Smart Working. In ogni caso la disponibilità del tutor è stata garantita anche in questa modalità, infatti in qualsiasi momento della giornata era possibile contattarlo attraverso la piattaforma Discord.
+\end{itemize}
+\subsection*{Meeting settimanali}
+É stato inoltre accordato con il tutor aziendale almeno un meeting a settimana in sede. Per questo motivo ogni lunedì è stato effettuato un aggiornamento con il tutor di quanto realizzato nella settimana; inoltre ad ogni meeting è stato riorganizzato il lavoro mancante in base alle tempistiche.
