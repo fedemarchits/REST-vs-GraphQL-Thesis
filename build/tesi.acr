@@ -1,10 +1,9 @@
 \glossarysection[\glossarytoctitle]{\glossarytitle}\glossarypreamble
 \begin{theglossary}\glossaryheader
-\glsgroupheading{A}\relax \glsresetentrylist %
-\glossentry{api}{\glossaryentrynumbers{\relax 
-		\setentrycounter[]{page}\glsnumberformat{1}\delimN 
-		\setentrycounter[]{page}\glsnumberformat{69}}}\glsgroupskip
-\glsgroupheading{U}\relax \glsresetentrylist %
-\glossentry{uml}{\glossaryentrynumbers{\relax 
-		\setentrycounter[]{page}\glsnumberformat{69}}}%
+\glsgroupheading{I}\relax \glsresetentrylist %
+\glossentry{ict}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsnumberformat{1}}}%
+\glossentry{ide}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsnumberformat{3}\delimN 
+		\setentrycounter[]{page}\glsnumberformat{75}}}%
 \end{theglossary}\glossarypostamble

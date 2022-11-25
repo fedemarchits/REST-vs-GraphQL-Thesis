@@ -4,7 +4,7 @@
 
 %**************************************************************
 \chapter{Analisi comparativa dei protocolli REST e GraphQL}
-\label{cap:analisi-comparativa}
+\label{analisi-comparativa}
 %**************************************************************
 \intro{In questo capitolo verrà svolta l'analisi comparativa tra i due protocolli REST e GraphQL, sia dal punto di vista teorico che da quello pratico.}\\
 %**************************************************************
@@ -36,7 +36,7 @@ Lo stile REST prevede l'utilizzo di più endpoint, sfrutta infatti la molteplici
 \FloatBarrier
 \begin{figure}[!ht]
 \centering
-\includegraphics[width=1\linewidth]{immagini/RESTEndpoints.pdf}
+\includegraphics[width=0.9\linewidth]{immagini/RESTEndpoints.pdf}
 \caption{Gli endpoints multipli in REST.}
 \label{REST-endpoints}
 \end{figure}
@@ -45,7 +45,7 @@ Con GraphQL questo non avviene, infatti GraphQL prevede l'esposizione di un unic
 \FloatBarrier
 \begin{figure}[!ht]
 \centering
-\includegraphics[width=1\linewidth]{immagini/GraphQLEndpoint.pdf}
+\includegraphics[width=0.9\linewidth]{immagini/GraphQLEndpoint.pdf}
 \caption{Il singolo endpoint GraphQL.}
 \label{GraphQL-endpoint}
 \end{figure}
@@ -58,10 +58,16 @@ Con questa frase L. Byron rappresenta perfettamente l'identità di GraphQL che s
 \subsection{Overfetching e Underfetching}
 Gli aspetti relativi ad overfetching e underfetching hanno un peso importante nella scelta architetturale del protocollo di data fetching da utilizzare.\\
 Lo stile architetturale REST non prevede di definire lato client esattamente quali dati ricevere. Un client che necessita un determinato insieme di informazioni da un server con REST API è costretto ad eseguire una o più richieste e, di conseguenza, a prevedere una rielaborazione dei dati ricevuti. Per uno sviluppatore backend è molto complesso riuscire a creare delle REST API che siano in grado di soddisfare esattamente tutte le richieste dei client.\\
-L'introduzione di GraphQL come nuovo protocollo di data fetching ha posto una soluzione a questo problema, permettendo al client di specificare esattamente la forma e il quantitativo di dati necessari. Quando si decide di implementare un applicativo e si valuta quale protocollo di data fetching utilizzare, questo è sicuramente un punto da considerare.\\
+L'introduzione di GraphQL come nuovo protocollo di data fetching ha posto una soluzione a questo problema, permettendo al client di specificare esattamente la forma e il quantitativo di dati necessari. Quando si decide di implementare un applicativo e si valuta quale protocollo di data fetching utilizzare, questo è sicuramente un punto da considerare.
 \subsubsection*{Overfetching}
 Quando si parla di overfetching si fa riferimento al fatto che vengano forniti più dati di quanti realmente necessari. Riprendendo come esempio il prototipo visto nel capitolo \ref{casi-uso}, si suppone che il client necessiti della lista degli impiegati e che, per ciascun impiegato, necessiti  esclusivamente di id e nome. Nel caso di REST Server il client invia la richiesta HTTP all'endpoint mappato sul metodo \textit{allEmployee()}, il quale ritorna una lista di impiegati e, per ciascun impiegato, tutti i campi che lo descrivono. Di seguito il JSON di risposta che il client riceve in seguito alla richiesta nel caso in cui fossero presenti solo due impiegati:
-\begin{verbatim}
+\lstset{
+    string=[s]{"}{"},
+    stringstyle=\color{RawSienna},
+    comment=[l]{:},
+    commentstyle=\color{black},
+}
+\begin{lstlisting}
   [
     {
         "id": "3AFASDF12F",
@@ -78,52 +84,79 @@ Quando si parla di overfetching si fa riferimento al fatto che vengano forniti p
         "birth": "1993-12-20"
     }
   ]
-\end{verbatim}
+\end{lstlisting}
 Si può subito notare come i campi \textit{surname}, \textit{salary} e \textit{birth} non siano necessari in quanto il client utilizza solo i campi \textit{id} e \textit{name}. Nel caso del prototipo si tratta di un problema irrisorio data la ridotta numerosità di dati, tuttavia in applicativi che richiedono grossi quantitativi di dati complessi può risultare un problema in termini di occupazione di rete e di rallentamenti dell'applicativo. Questo problema può essere risolto in un server con REST API fornendo endpoint specifici per ciascun tipo di richiesta; la proliferazione degli endpoint tende a creare confusione ed aumenta gli aspetti legati alla manutenzione del software.\\
-GraphQL risolve questo problema attribuendo al client la responsabilità di definire quali siano i campi di cui necessita. Questo è possibile specificando nella query i campi richiesti, di seguito l'esempio dell'invocazione contenente a sinistra la query \textit{allEmployees}, mentre a destra il JSON ricevuto in risposta:
-\begin{verbatim}
-    QUERY                                     JSON RETURNED
-
-    query {                              "data": {
-      allEmployees {                        "allEmployees": [
-          id                                  {
-          name                                   "id": "3AFASDF12F",
-          }                                      "name": "Matteo"
-        }                                     },
-      }                                       {
-                                                 "id": "GA14PL3FAV",
-                                                 "name": "Marco"
-                                              }
-                                            ]
-                                          }
-\end{verbatim}
+GraphQL risolve questo problema attribuendo al client la responsabilità di definire quali siano i campi di cui necessita. Questo è possibile specificando nella query i campi richiesti, di seguito l'esempio dell'invocazione effettuata e successivamente il JSON ritornato:
+\begin{lstlisting}[language=GraphQL]
+    query {
+      allEmployees {
+        id
+        name
+      }
+    }
+\end{lstlisting}
+\lstset{
+    string=[s]{"}{"},
+    stringstyle=\color{RawSienna},
+    comment=[l]{:},
+    commentstyle=\color{black},
+}
+\begin{lstlisting}
+    "data": {
+      "allEmployees": [
+        {
+          "id": "3AFASDF12F",
+          "name": "Matteo"
+        },
+        {
+          "id": "GA14PL3FAV",
+          "name": "Marco"
+        }
+      ]
+    }
+\end{lstlisting}
 L'approccio adottato da GraphQL permette di non sovraccaricare inutilmente la rete e di mantenere ordinata e di facile manutenzione la struttura API del server. Lato client è richiesto un maggior sforzo nella specifica della query, così facendo però si evitano problemi di rallentamento o errori dovuti al fetching di grossi quantitativi di dati inutili.
 \subsubsection*{Underfetching}
 L'underfetching è il problema opposto all'overfetching, ovvero ciò accade quando il client dopo una richiesta alle REST API riceve solo una parte dei dati necessari. Questo implica che il client deve eseguire più chiamate per ottenere i dati completi.\\
 Riprendendo l'esempio precedente visto nel paragrafo precedente, qualora il client desiderasse visualizzare i progetti ai quali sta lavorando un impiegato, dovrà prima ricevere la lista degli impiegati e, solo successivamente, ricercare i progetti con l'id dell'impiegato.\\
-La stessa operazione utilizzando GraphQL è risolvibile in una sola richiesta:
-\begin{verbatim}
-  QUERY                                 JSON RETURNED
-
-  query {                           "data": {
-    allEmployees {                     "allEmployees": [
-      id                                 {
-      projects {                           "id": "3AFASDF12F",
-          id                               "projects": [
-          name                               {
-        }                                       "id": "7NFAISH280",
-      }                                         "name": "Progetto Beta"
-    }                                        },
-  }                                          {
-                                                "id": "N2A8F234SD",
-                                                "name": "Progetto Teta"
-                                            }
-                                           ]
-                                          }
-                                        ]
-                                      }
-\end{verbatim}
-A sinistra è possibile visualizzare la query \textit{allEmployees} nella quale viene specificato l'id di ciascun impiegato ed il campo \textit{projects}, il quale, a sua volta, ha specificato i campi \textit{id} e \textit{name}. A destra invece è visualizzato il JSON ritornato con l'impiegato e i due progetti ai quali sta partecipando.
+La stessa operazione utilizzando GraphQL è risolvibile in una sola richiesta. Di seguito la query realizzata e il JSON ritornato:
+\begin{lstlisting}[language=GraphQL]
+    query {
+      allEmployees {
+        id
+        projects {
+          id
+          name
+        }
+      }
+    }
+\end{lstlisting}
+\lstset{
+    string=[s]{"}{"},
+    stringstyle=\color{RawSienna},
+    comment=[l]{:},
+    commentstyle=\color{black},
+}
+\begin{lstlisting}
+     "data": {
+       "allEmployees": [
+         {
+           "id": "3AFASDF12F",
+           "projects": [
+             {
+                "id": "7NFAISH280",
+                "name": "Progetto Beta"
+             },
+             {
+                "id": "N2A8F234SD",
+                "name": "Progetto Teta"
+             }
+           ]
+         }
+       ]
+     }
+\end{lstlisting}
+Nella query \textit{allEmployees} viene specificato l'id di ciascun impiegato ed il campo \textit{projects}, il quale, a sua volta, ha specificato i campi \textit{id} e \textit{name}. Successivamente invece è visualizzato il JSON ritornato con l'impiegato e i due progetti ai quali sta partecipando.
 \subsection{Utilizzo del protocollo HTTP}
 Nonostante entrambi i protocolli non richiedano per forza il protocollo HTTP per funzionare, entrambi nella maggior parte dei casi vengono utilizzati con esso. Per questo motivo viene eseguita un'analisi su come REST e GraphQL si comportano con il protocollo HTTP. \\
 I due protocolli comparati utilizzano il protocollo HTTP in maniera molto differente. Lo stile REST alla sua creazione è stato fortemente basato sul protocollo HTTP, per questo motivo lo sfrutta ampiamente. GraphQL invece, per il modo in cui opera, sfrutta solo in parte ed in maniera "stupida" il protocollo HTTP e per questo motivo GraphQL viene spesso definito agnostico rispetto al protocollo di trasporto.
@@ -174,7 +207,7 @@ Queste problematiche non sono presenti in REST il quale risulta molto più sempl
 Un altro aspetto che sicuramente ha reso più complessa la realizzazione del server di backend in GraphQL rispetto a REST è stata la gestione degli errori. Come spiegato precedentemente la compatibilità di REST con il protocollo HTTP, il quale è stato utilizzato per la comunicazione tra server e client, ha permesso una più facile e veloce gestione degli errori, in quanto a parte qualche specifica necessaria, risultano essere già chiari e significativi. L'uso improprio che GraphQL fa del protocollo HTTP si riflette anche nella gestione degli errori i quali, se non trattati approfonditamente, rischiano di essere totalmente inespressivi.
 \subsubsection*{Sviluppo e migrazione frontend}
 Per quanto riguarda lo sviluppo del frontend con i due protocolli di data fetching non sono state riscontrate considerevoli differenze e criticità con un protocollo piuttosto che con l'altro. L'unico aspetto che è importante riportare è la questione legata all'overfetching e underfetching; principalmente per questo motivo lo sviluppo del frontend con protocollo REST risulta essere leggermente più complesso rispetto allo sviluppo del medesimo frontend in GraphQL. Infatti nel caso dell'underfetching è necessario un maggior lavoro lato frontend nella gestione dei dati i quali, dopo aver inviato più richieste, devono essere fatti combaciare per estrarne la forma richiesta per i propri scopi. Per quanto riguarda l'overfetching invece sarà necessario estrapolare dai dati ricevuti, in una forma più estesa di quanto richiesto, i campi necessari. In GraphQL questo non accade poiché nella query può essere direttamente specificato il tipo e la forma dei dati che si desidera ricevere. Il frontend in REST dunque risulta molto più limitato rispetto al medesimo in GraphQL poiché deve accontentarsi delle API fornite dal backend lottando con problemi di overfetching e underfetching o, in casi estremi, richiedere l'implementazione di API specifiche.
-\subsubsection*{Analisi comparativa prestazionale}
+\subsection{Analisi comparativa prestazionale}
 Fare fiferimento al documento B4.
 \section{Conclusioni}
 L'analisi comparativa effettuata ha mostrato come entrambi i protocolli abbiamo vantaggi e svantaggi. In questa sezione si vuole definire quale sia il miglior approccio a seconda dell'applicativo che si vuole realizzare. Sicuramente non c'è un protocollo che può essere ritenuto migliore rispetto all'altro in maniera assoluta, infatti è necessario analizzare bene il caso d'uso e comprendere quando sia preferibile uno piuttosto che l'altro. Si tratta principalmente di una scelta che deve essere fatta lato backend, questo perché è qui che si ha l'impatto maggiore.
@@ -207,7 +240,7 @@ Negli ultimi anni si stanno realizzando delle soluzioni ibride per andare incont
 \FloatBarrier
 \begin{figure}[!ht]
 \centering
-\includegraphics[width=0.8\linewidth]{immagini/ibridSolution.pdf}
+\includegraphics[width=0.9\linewidth]{immagini/ibridSolution.pdf}
 \caption{Soluzione ibrida mantenendo sia REST API che GraphQL API.}
 \label{ibrid-solution}
 \end{figure}

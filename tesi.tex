@@ -112,17 +112,33 @@
 \usepackage[backend=biber,style=verbose-ibid,hyperref,backref]{biblatex}
 \usepackage{colortbl}
 \usepackage{array,booktabs}
+\usepackage{float}
 \usepackage{listings}
 \lstdefinelanguage{GraphQL}{
-  keywords = {Query, Mutation, Subscription, union, mutation, subscriptio, query, String, Date, number, },
+  keywords = {Query, Mutation, Subscription, union, mutation, subscriptio, query, String, Date, number},
   keywordstyle = \color{DarkOrchid}\bfseries,
   ndkeywords = {type, gigi},
   ndkeywordstyle = \color{BlueViolet}\bfseries,
-  comment=[l]{#},
+  comment=[l]{\#},
+  morecomment=[s]{/*}{*/},
   commentstyle=\color{Gray}\ttfamily,
   stringstyle=\color{Mahogany}\ttfamily,
   morestring=[b]',
   morestring=[b]"
+}
+\lstset{
+   language=GraphQL,
+   extendedchars=true,
+   basicstyle=\footnotesize\ttfamily,
+   showstringspaces=false,
+   showspaces=false,
+   numbers=left,
+   numberstyle=\footnotesize,
+   numbersep=9pt,
+   tabsize=2,
+   breaklines=true,
+   showtabs=false,
+   captionpos=b
 }
 \lstdefinelanguage{JavaScript}{
   %keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break},
@@ -154,7 +170,6 @@
    showtabs=false,
    captionpos=b
 }
-\lstset{escapeinside={<@}{@>}
                                         % eccellente pacchetto per la bibliografia;
                                         % produce uno stile di citazione autore-anno;
                                         % lo stile "numeric-comp" produce riferimenti numerici
@@ -167,7 +182,6 @@
 
 \definecolor{mygrey1}{HTML}{BCBCBC}
 \definecolor{mygrey2}{HTML}{CFCFCF}
-%\newcommand{\centered}[1]{\begin{tabular}{l} #1 \end{tabular}}
 \begin{document}
 %**************************************************************
 % Materiale iniziale

@@ -4,50 +4,176 @@
 
 %**************************************************************
 \chapter{Introduzione}
-\label{cap:introduzione}
+\label{introduzione}
 %**************************************************************
-
-Introduzione al contesto applicativo.\\
-
-\noindent Esempio di utilizzo di un termine nel glossario \\
-\gls{api}. \\
-
-\noindent Esempio di citazione in linea \\
-\cite{site:agile-manifesto}. \\
-
-\noindent Esempio di citazione nel pie' di pagina \\
-citazione\footcite{womak:lean-thinking} \\
-
+\intro{Il capitolo seguente introduce all'azienda e illustra la struttura del documento.}\\
 %**************************************************************
 \section{L'azienda}
+\FloatBarrier
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.4\linewidth]{immagini/synclabLogo.jpeg}
+%\caption{Logo Synclab.}
+\label{controller-service-repository}
+\end{figure}
+\FloatBarrier
+SyncLab S.r.l è un azienda che si occupa di \gls{ict} ed opera in molteplici settori quali: industriale, sanitario, finanziario, logistico, di telecomunicazioni e infine sanitario.\\\\
+Nata a Napoli nel 2002 è al giorno d'oggi divisa in sei sedi operative nelle città di Napoli, Roma, Milano, Como, Verona e infine Padova. Conta più di 300 dipendenti e vanta oltre 150 clienti.
 
-Descrizione dell'azienda.
+\end{figure}
 
 %**************************************************************
-\section{L'idea}
-
-Introduzione all'idea dello stage.
-
+\section{Introduzione al progetto e alla soluzione scelta}
+L'idea alla base dello stage è quella di effettuare la migrazione di un applicativo aziendale dal protocollo REST a GraphQL. Lo scopo è quello di analizzare la nuova tecnologia mai affrontata dall'azienda e valutare, attraverso la realizzazione di una analisi di comparazione, quale protocollo potesse soddisfare meglio le esigenze dell'applicativo aziendale.\\ \\
+Prima di eseguire la migrazione sull'applicativo aziendale è stato scelto di realizzare un prototipo di gestionale aziendale per familiarizzare con le tecnologie e comprendere quale fosse l'approccio corretto per affrontare la migrazione dell'applicativo aziendale al meglio.\\
+Trattandosi di un applicativo composto da backend e frontend, il prototipo è stato realizzato seguendo la medesima architettura al fine di comprenderne il funzionamento e fare pratica. É stato implementato inizialmente con REST API per poi effettuarne la migrazione a GraphQL API.\\ \\
+L'applicativo aziendale scelto sul quale è stato realizzato il processo di migrazione si chiama SushiLab. L'applicativo SushiLab, pensato e realizzato da alcuni stagisti nei mesi che precedevano il mio stage, mira alla gestione delle ordinazioni nei ristoranti di sushi nella formula \gls{ayce}. Dunque dopo aver analizzato l'applicativo e compreso il suo funzionamento ne è stata effettuata la migrazione.\\ \\
+Al termine della migrazione, prendendo atto di quanto compreso durante la progettazione, lo sviluppo e la migrazione del prototipo e di SushiLab, è stata effettuata una analisi comparativa su tutti gli aspetti che differenziano i due protocolli per la realizzazione di API.
+\section{Descrizione del prodotto ottenuto}
+Al termine dello stage è stato realizzato:
+\begin{itemize}
+  \item \textbf{Prototipo} composto da backend e frontend è stato realizzato in due versioni:
+  \begin{itemize}
+    \item \textit{Versione REST}: il prototipo è stato realizzato prima con REST API;
+    \item \textit{Versione GraphQL}: a partire dalla versione con REST API è stata effettuata la migrazione e dunque è stato ottenuta una versione funzionante con GraphQL API;
+  \end{itemize}
+  \item \textbf{SushiLab con GraphQL API}: è stato realizzata la migrazione dell'applicativo aziendale dalla sua versione con REST API, alla versione funzionante con GraphQL API;
+  \item \textbf{Analisi comparativa}: è stato realizzato un documento dettagliato sulla comparazione dei due protocolli REST e GraphQL nel quale sono stati approfonditi sia gli aspetti prettamente teorici che quelli più pratici.
+\end{itemize}
+\newpage
+\section{Strumenti e tecnologie utilizzati}
+\subsection*{IntelliJ IDEA}
+\begin{figure}[ht]
+  \begin{minipage}[h]{0.3\linewidth}
+    \centering
+    \includegraphics[width=0.9\linewidth]{immagini/IntelliJ.png}
+  \end{minipage}
+  \begin{minipage}[!h]{0.7\linewidth}
+    \textit{IntelliJ IDEA} è un \gls{ide} sviluppato da \textit{JetBrains} che agevola nello sviluppo in \gls{jv}.
+    É stato utilizzato nello sviluppo del backend del prototipo e durante la migrazione lato backend sia del prototipo che di SushiLab.
+  \end{minipage}
+\end{figure}
+\subsection*{Visual Studio Code}
+\begin{figure}[ht]
+  \begin{minipage}[h]{0.3\linewidth}
+    \centering
+    \includegraphics[width=0.4\linewidth]{immagini/visualStudioCode.png}
+  \end{minipage}
+  \begin{minipage}[!h]{0.7\linewidth}
+    \textit{Visual Studio Code} è un \gls{ide} sviluppato da \textit{Microsoft} che fornisce molte feature per agevolare lo sviluppo.
+    É stato utilizzato nello sviluppo del frontend del prototipo e durante la migrazione lato frontend sia del prototipo che di SushiLab.
+  \end{minipage}
+\end{figure}
+\subsection*{Atom}
+\FloatBarrier
+\begin{figure}[!h]
+  \begin{minipage}[h]{0.3\linewidth}
+    \centering
+    \includegraphics[width=0.5\linewidth]{immagini/atom.png}
+  \end{minipage}
+  \begin{minipage}[!h]{0.7\linewidth}
+    \textit{Atom} è un editor di testo open source. É stato utilizzato durante la stesura con linguaggio \gls{ltx} del documento di analisi comparativa e della documentazione del prototipo e di SushiLab.
+  \end{minipage}
+\end{figure}
+\FloatBarrier
+\subsection*{Spring Boot Framework}
+\FloatBarrier
+\begin{figure}[!h]
+  \begin{minipage}[h]{0.3\linewidth}
+    \centering
+    \includegraphics[width=0.4\linewidth]{immagini/spring.png}
+  \end{minipage}
+  \begin{minipage}[!h]{0.7\linewidth}
+    \textit{Spring Boot} è un framework open source per lo sviluppo di applicazioni in \gls{jv} strutturate a microservizi. Associati ad esso troviamo molti altri moduli e librerie ampiamente utilizzate nel corso dello stage poiché se integrati permettono di agevolare lo sviluppo. Utilizzato per lo sviluppo e migrazione del prototipo e di SushiLab.
+  \end{minipage}
+\end{figure}
+\FloatBarrier
+\subsection*{Angular Framework}
+\FloatBarrier
+\begin{figure}[!h]
+  \begin{minipage}[h]{0.3\linewidth}
+    \centering
+    \includegraphics[width=0.5\linewidth]{immagini/angular.png}
+  \end{minipage}
+  \begin{minipage}[!h]{0.7\linewidth}
+    \textit{Angular} è un framework open source per lo sviluppo di applicazioni web. Permette di realizare applicazioni multipiattaforma che si adattano facilmente a diversi dispositivi. Utilizzato per lo sviluppo e la migrazione del frontend nel prototipo e in SushiLab.
+  \end{minipage}
+\end{figure}
+\FloatBarrier
+\subsection*{GitHub}
+\begin{figure}[ht]
+  \begin{minipage}[h]{0.3\linewidth}
+    \centering
+    \includegraphics[width=0.5\linewidth]{immagini/github.png}
+  \end{minipage}
+  \begin{minipage}[!h]{0.7\linewidth}
+    \textit{GitHub} è un servizio di hosting per progetti software. É stato utilizzato per effettuare i salvataggi su cloud del codice e della documentazione sia per quanto riguarda il prototipo che per SushiLab. Permette di tener traccia di tutte le versioni gestite con lo strumento di versionamento Git.
+  \end{minipage}
+\end{figure}
+\subsection*{JUnit 5}
+\FloatBarrier
+\begin{figure}[!h]
+  \begin{minipage}[h]{0.3\linewidth}
+    \centering
+    \includegraphics[width=0.6\linewidth]{immagini/JUnit.png}
+  \end{minipage}
+  \begin{minipage}[!h]{0.7\linewidth}
+    \textit{JUnit 5} è un framework di unit testing per il linguaggio di programmazione \gls{jv}. É stato ampiamente utilizzato per effettuare i test di unità nel backend sia del prototipo che dell'applicativo SushiLab.
+  \end{minipage}
+\end{figure}
+\FloatBarrier
+\subsection*{Jasmine}
+\FloatBarrier
+\begin{figure}[!h]
+  \begin{minipage}[h]{0.3\linewidth}
+    \centering
+    \includegraphics[width=0.4\linewidth]{immagini/jasmine.png}
+  \end{minipage}
+  \begin{minipage}[!h]{0.7\linewidth}
+    \textit{JUnit 5} è un framework di test open source. É stato utilizzato in Angular per effettuare i test nel frontend sia del prototipo che dell'applicativo SushiLab.
+  \end{minipage}
+\end{figure}
+\FloatBarrier
+\subsection*{Trello}
+\FloatBarrier
+\begin{figure}[!h]
+  \begin{minipage}[h]{0.3\linewidth}
+    \centering
+    \includegraphics[width=0.35\linewidth]{immagini/trello.png}
+  \end{minipage}
+  \begin{minipage}[!h]{0.7\linewidth}
+    \textit{Trello} è un software gestionale. É stato utilizzato per tenere traccia di tutti gli sviluppi dello stage nel corso delle varie settimane.
+  \end{minipage}
+\end{figure}
+\FloatBarrier
+\subsection*{Discord}
+\FloatBarrier
+\begin{figure}[!h]
+  \begin{minipage}[h]{0.3\linewidth}
+    \centering
+    \includegraphics[width=0.7\linewidth]{immagini/discord.png}
+  \end{minipage}
+  \begin{minipage}[!h]{0.7\linewidth}
+    \textit{Discord} è una piattaforma di messaggistica e distribuzione digitale per la comunicazione. É stata utilizzata per la comunicazione con il tutor aziendale e gli altri stagisti.
+  \end{minipage}
+\end{figure}
+\FloatBarrier
 %**************************************************************
 \section{Organizzazione del testo}
-
 \begin{description}
-    \item[{\hyperref[cap:processi-metodologie]{Il secondo capitolo}}] descrive ...
-    
-    \item[{\hyperref[cap:descrizione-stage]{Il terzo capitolo}}] approfondisce ...
-    
-    \item[{\hyperref[cap:analisi-requisiti]{Il quarto capitolo}}] approfondisce ...
-    
-    \item[{\hyperref[cap:progettazione-codifica]{Il quinto capitolo}}] approfondisce ...
-    
-    \item[{\hyperref[cap:verifica-validazione]{Il sesto capitolo}}] approfondisce ...
-    
-    \item[{\hyperref[cap:conclusioni]{Nel settimo capitolo}}] descrive ...
+    \item Il {\hyperref[descrizione-stage]{secondo capitolo}} descrive l'analisi preventiva dei rischi, obbiettivi e infine la pianificazione del lavoro;
+
+    \item Il {\hyperref[protocolli-trasmissione-dati]{terzo capitolo}} introduce ai protocollo di modellazione e trasferimento, tra questi approfondisce REST e GraphQL;
+
+    \item Il {\hyperref[casi-uso]{quarto capitolo}} mostra la realizzazione del prototipo con relativa migrazione e la migrazione dell'applicativo SushiLab;
+
+    \item Il {\hyperref[analisi-comparativa]{quinto capitolo}} descrive dettagliatamente l'analisi comparativa tra i protocolli REST e GraphQL;
+
+    \item Il {\hyperref[conclusioni]{sesto capitolo}} rirpota le conclusioni finali riguardo lo stage effettuato.
 \end{description}
 
 Riguardo la stesura del testo, relativamente al documento sono state adottate le seguenti convenzioni tipografiche:
 \begin{itemize}
 	\item gli acronimi, le abbreviazioni e i termini ambigui o di uso non comune menzionati vengono definiti nel glossario, situato alla fine del presente documento;
 	\item per la prima occorrenza dei termini riportati nel glossario viene utilizzata la seguente nomenclatura: \emph{parola}\glsfirstoccur;
-	\item i termini in lingua straniera o facenti parti del gergo tecnico sono evidenziati con il carattere \emph{corsivo}.
 \end{itemize}
